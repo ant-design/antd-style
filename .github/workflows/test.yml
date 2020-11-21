@@ -1,0 +1,25 @@
+name: Test CI
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: macos-latest
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@master
+
+      - name: install
+        run: npm install
+
+      - name: lint
+        run: npm run lint && npm run tsc
+
+      - name: test
+        run: npm run test:coverage
+
+      # 不知道为啥 e2e 本地没事但是线上有问题
+      # 所以先禁用了
+      - name: e2e
+        run: npm run e2e
+      - name: Generate coverage
+        run: bash <(curl -s https://codecov.io/bash)
