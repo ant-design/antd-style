@@ -38,7 +38,7 @@
     "prettier": "prettier -c --write \"**/**\"",
     "setup": "dumi setup",
     "start": "dumi dev",
-    "test": "TS_NODE_TRANSPILE_ONLY=yes jest --passWithNoTests",
+    "test": "jest --passWithNoTests",
     "test:coverage": "jest --coverage",
     "test:update": "jest --update-snapshot",
     "type-check": "tsc -p tsconfig-check.json"
@@ -75,6 +75,7 @@
     "father": "^4",
     "husky": "^8",
     "jest": "^29",
+    "jest-environment-jsdom": "^29",
     "lint-staged": "^13",
     "prettier": "^2",
     "react": "^18",
