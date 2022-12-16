@@ -1,8 +1,6 @@
-export default {
-  entry: 'src/index.ts',
-  cjs: 'babel',
-  esm: {
-    type: 'babel',
-    importLibToEs: true,
-  },
-};
+import { defineConfig } from 'father';
+
+export default defineConfig({
+  cjs: { output: 'lib' },
+  esm: { output: 'es' },
+});

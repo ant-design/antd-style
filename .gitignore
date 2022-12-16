@@ -32,8 +32,7 @@ lambda/mock/index.js
 .temp/**
 
 # umi
-.umi
-.umi-production
+.dumi/tmp*
 
 # screenshot
 screenshot
