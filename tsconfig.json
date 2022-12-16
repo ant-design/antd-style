@@ -1,41 +1,15 @@
 {
   "compilerOptions": {
-    "outDir": "build/dist",
-    "module": "esnext",
-    "target": "ES2015",
-    "lib": ["esnext", "dom"],
-    "sourceMap": true,
-    "jsx": "react",
-    "allowSyntheticDefaultImports": true,
-    "resolveJsonModule": true,
-    "moduleResolution": "node",
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "noImplicitReturns": false,
-    "suppressImplicitAnyIndexErrors": true,
-    "noUnusedLocals": true,
-    "experimentalDecorators": true,
     "strict": true,
     "declaration": true,
     "skipLibCheck": true,
+    "esModuleInterop": true,
+    "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
-      "@test-utils": ["./tests/__utils__"],
-      "@docs-utils": ["./docs/__utils__"],
-      "@e2e-utils": ["./e2e/__utils__"]
+      "@@/*": [".dumi/tmp/*"],
+      "@arvinxu/module-develop-template": ["src"],
+      "@arvinxu/module-develop-template/*": ["src/*", "*"]
     }
-  },
-  "include": ["**/src/", "**/docs/", "**/e2e/", "**/tests/"],
-  "exclude": [
-    "node_modules",
-    "build",
-    "scripts",
-    "acceptance-tests",
-    "webpack",
-    "jest",
-    "tslint:latest",
-    "tslint-config-prettier",
-    "example",
-    "docs"
-  ]
+  }
 }

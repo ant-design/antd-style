@@ -1,5 +1,5 @@
 {
-  "name": "module-develop-template",
+  "name": "@arvinxu/module-develop-template",
   "version": "0.4.6",
   "description": "a module develop boilerplate",
   "keywords": [
@@ -27,6 +27,7 @@
   "scripts": {
     "build": "father build",
     "build:watch": "father dev",
+    "ci": "npm run lint && npm run type-check",
     "clean": "rm -rf es lib dist coverage .dumi/tmp .eslintcache",
     "dev": "dumi dev",
     "docs:build": "dumi build",
@@ -39,10 +40,10 @@
     "prettier": "prettier -c --write \"**/**\"",
     "setup": "dumi setup",
     "start": "dumi dev",
-    "test": "jest",
+    "test": "TS_NODE_TRANSPILE_ONLY=yes jest --passWithNoTests",
     "test:coverage": "jest --coverage",
     "test:update": "jest --update-snapshot",
-    "tsc": "tsc -p tsconfig-check.json"
+    "type-check": "tsc -p tsconfig-check.json"
   },
   "lint-staged": {
     "*.{md,json}": [
@@ -63,8 +64,10 @@
   },
   "devDependencies": {
     "@commitlint/cli": "^17",
+    "@testing-library/jest-dom": "^5",
     "@testing-library/react": "^13",
-    "@types/jest": "^29",
+    "@types/jest": "^27",
+    "@types/testing-library__jest-dom": "^5",
     "@umijs/max": "^4",
     "antd": "^5",
     "commitlint": "^17",
@@ -83,7 +86,9 @@
     "react-dom": "^18",
     "semantic-release": "^19",
     "semantic-release-config-gitmoji": "^1",
+    "stylelint": "^14",
     "ts-jest": "^29",
+    "ts-node": "^10",
     "typescript": "^4"
   },
   "publishConfig": {
