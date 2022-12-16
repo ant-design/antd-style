@@ -1,29 +1,6 @@
 {
+  "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "build/dist",
-    "module": "esnext",
-    "target": "ES2015",
-    "lib": ["esnext", "dom"],
-    "sourceMap": true,
-    "baseUrl": ".",
-    "jsx": "react",
-    "allowSyntheticDefaultImports": true,
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "noUnusedLocals": true,
-    "experimentalDecorators": true,
-    "strict": true,
-    "declaration": true,
-    "skipLibCheck": true,
-    "paths": {
-      "html2sketch": ["./src"],
-      "html2sketch/*": ["./src/*"],
-      "@test-utils": ["./tests/__utils__"],
-      "@docs-utils": ["./docs/__utils__"]
-    }
-  },
-  "include": ["src/"]
+    "noEmit": true
+  }
 }
