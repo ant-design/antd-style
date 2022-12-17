@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.2.1](https://github.com/arvinxx/npm-template/compare/v1.2.0...v1.2.1) (2022-12-17)
+
+### 🐛 Bug Fixes
+
+- 补充 react 类型依赖 ([c8723ad](https://github.com/arvinxx/npm-template/commit/c8723ad))
+
 # [1.2.0](https://github.com/arvinxx/npm-template/compare/v1.1.2...v1.2.0) (2022-12-17)
 
 ### ✨ Features
