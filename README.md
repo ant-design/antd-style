@@ -68,6 +68,12 @@ pnpm i @arvinxu/npm-template -S
 
 ### 消费场景二
 
+## 迭代记录
+
+2022.12.17 - 基于蚂蚁研发技术栈配置完成最新的 npm 研发脚手架
+
+详情：[CHANGELOG](./CHANGELOG.md)
+
 ## License
 
 [MIT](./LICENSE)
