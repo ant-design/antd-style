@@ -1,5 +1,11 @@
 # Changelog
 
+# [1.1.0](https://github.com/arvinxx/module-develop-template/compare/v1.0.0...v1.1.0) (2022-12-17)
+
+### ✨ Features
+
+- 使用 Vercel 部署预览 ([f423074](https://github.com/arvinxx/module-develop-template/commit/f423074))
+
 # 1.0.0 (2022-12-17)
 
 ### ✨ Features
