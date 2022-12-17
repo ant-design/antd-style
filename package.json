@@ -3,8 +3,7 @@
   "version": "1.1.0",
   "description": "a npm develop template",
   "keywords": [
-    "boilerplate",
-    "module",
+    "npm",
     "template"
   ],
   "homepage": "https://github.com/arvinxx/module-develop-template",
