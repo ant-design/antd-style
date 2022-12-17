@@ -1,14 +1,10 @@
 # @arvinxu/npm-template
 
-<div align="center">
-
 [![NPM version][npm-image]][npm-url] [![NPM downloads][download-image]][download-url] [![install size][npm-size]][npm-size-url]
 
 [![Test CI status][test-ci]][test-ci-url] ![Deploy CI][deploy-ci] [![Coverage][coverage]][codecov-url]
 
 [![ docs by dumi][dumi-url]](https://d.umijs.org/) [![Build With father][father-url]](https://github.com/umijs/father/)
-
-[![Gitpod ready-to-code][gitpod-badge]][gitpod-url]
 
 <!-- gitpod url -->
 
@@ -40,8 +36,6 @@
 [deploy-ci-ci]: https://github.com/arvinxx/npm-template/actions?query=workflow%3ADeploy%20CI
 [download-image]: https://img.shields.io/npm/dm/@arvinxu/npm-template.svg?style=flat-square
 [download-url]: https://npmjs.org/package/@arvinxu/npm-template
-
-</div>
 
 ## 简介
 
