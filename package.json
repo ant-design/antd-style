@@ -40,7 +40,7 @@
     "setup": "dumi setup",
     "start": "dumi dev",
     "test": "jest --passWithNoTests",
-    "test:coverage": "jest --coverage",
+    "test:coverage": "jest --coverage  --passWithNoTests",
     "test:update": "jest --update-snapshot",
     "type-check": "tsc -p tsconfig-check.json"
   },
