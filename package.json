@@ -36,6 +36,7 @@
     "prepare": "husky install && npm run setup",
     "prepublishOnly": "father doctor && npm run build",
     "prettier": "prettier -c --write \"**/**\"",
+    "release": "semantic-release",
     "setup": "dumi setup",
     "start": "dumi dev",
     "test": "jest --passWithNoTests",
