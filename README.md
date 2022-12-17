@@ -39,7 +39,14 @@
 
 ## 简介
 
-这是一个模块的简洁 demo
+这是一个开发 npm 项目的模板，工程框架选型如下：
+
+- 构建： father4
+- 文档： dumi2
+- CI: Github Action
+- CD:
+  - 文档发布: 使用 vercel 自动化触发文档站构建;
+  - npm 发布: 使用 `semantic-release` 实现 npm 包的自动化发布;
 
 ## 快速上手
 
