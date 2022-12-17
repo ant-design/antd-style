@@ -1,3 +1,3 @@
 export const hello = () => {
-  console.log('hello template');
+  return 'world';
 };

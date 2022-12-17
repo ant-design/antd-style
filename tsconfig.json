@@ -8,8 +8,8 @@
     "baseUrl": ".",
     "paths": {
       "@@/*": [".dumi/tmp/*"],
-      "@arvinxu/module-develop-template": ["src"],
-      "@arvinxu/module-develop-template/*": ["src/*", "*"]
+      "@arvinxu/npm-template": ["src"],
+      "@arvinxu/npm-template/*": ["src/*", "*"]
     }
   }
 }
