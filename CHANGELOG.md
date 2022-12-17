@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.1.2](https://github.com/arvinxx/npm-template/compare/v1.1.1...v1.1.2) (2022-12-17)
+
+### 🐛 Bug Fixes
+
+- 修正无法上传到 npm 的问题 ([e2c609d](https://github.com/arvinxx/npm-template/commit/e2c609d))
+
 ## [1.1.1](https://github.com/arvinxx/module-develop-template/compare/v1.1.0...v1.1.1) (2022-12-17)
 
 # [1.1.0](https://github.com/arvinxx/module-develop-template/compare/v1.0.0...v1.1.0) (2022-12-17)
