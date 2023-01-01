@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.2.2](https://github.com/arvinxx/npm-template/compare/v1.2.1...v1.2.2) (2023-01-01)
+
+### 🐛 Bug Fixes
+
+- 修正 commitlint 指令 ([f2b380b](https://github.com/arvinxx/npm-template/commit/f2b380b))
+
 ## [1.2.1](https://github.com/arvinxx/npm-template/compare/v1.2.0...v1.2.1) (2022-12-17)
 
 ### 🐛 Bug Fixes
