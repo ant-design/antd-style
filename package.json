@@ -6,13 +6,13 @@
     "npm",
     "template"
   ],
-  "homepage": "https://github.com/arvinxx/npm-template",
+  "homepage": "https://github.com/arvinxx/antd-style",
   "bugs": {
-    "url": "https://github.com/arvinxx/npm-template"
+    "url": "https://github.com/arvinxx/antd-style"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/arvinxx/npm-template.git"
+    "url": "https://github.com/arvinxx/antd-style.git"
   },
   "license": "MIT",
   "author": "arvinxx(arvinx@foxmail.com)",
