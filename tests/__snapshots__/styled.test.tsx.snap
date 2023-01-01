@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`styled 使用 antd 主题样式 在 Provider 包裹下，能正常获得样式 1`] = `
+exports[`styled 使用 antd 主题样式 在 ThemeProvider 包裹下，能正常获得样式 1`] = `
 .emotion-0 {
   width: 30px;
   color: #1677ff;
@@ -16,7 +16,41 @@ exports[`styled 使用 antd 主题样式 在 Provider 包裹下，能正常获�
 </div>
 `;
 
-exports[`styled 使用 antd 主题样式 没有包裹 Provider 的情况下，找不到样式 1`] = `
+exports[`styled 使用 antd 主题样式 带有外部传参的方式 1`] = `
+.emotion-0 {
+  border-radius: 8px;
+  padding: 24px;
+  background: #ffffff;
+  color: rgba(0, 0, 0, 0.88);
+}
+
+<div>
+  <div
+    class="emotion-0"
+  >
+    卡片
+  </div>
+</div>
+`;
+
+exports[`styled 使用 antd 主题样式 带有外部传参的方式 2`] = `
+.emotion-0 {
+  border-radius: 8px;
+  padding: 24px;
+  background: #1677ff;
+  color: #fff;
+}
+
+<div>
+  <div
+    class="emotion-0"
+  >
+    卡片
+  </div>
+</div>
+`;
+
+exports[`styled 使用 antd 主题样式 没有包裹 ThemeProvider 的情况下，找不到样式 1`] = `
 .emotion-0 {
   width: 30px;
 }
