@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react';
 
-import { useToken } from './useToken';
+import { useToken } from 'antd-style';
 
 describe('useToken', () => {
   it('can get colorPrimary', () => {
