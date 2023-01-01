@@ -20,7 +20,7 @@ export interface ThemeProviderProps {
    */
   customToken?: Record<string, any>;
   /**
-   * 自定义 stylish 可以自行扩展和新增自己需要的符合样式
+   * 自定义 stylish 可以自行扩展和新增自己需要的复合样式
    */
   customStylish?: Record<string, string>;
 }
