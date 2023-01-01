@@ -19,6 +19,7 @@ const config: Config.InitialOptions = {
   moduleNameMapper: {
     'antd-style/(.*)$': '<rootDir>/src/$1',
     'antd-style': '<rootDir>/src',
+    '@/(.*)$': '<rootDir>/src/$1',
   },
   /* if needed other snapshotSerializers should go here */
   snapshotSerializers: ['@emotion/jest/serializer'],
