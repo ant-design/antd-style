@@ -8,11 +8,11 @@
   ],
   "homepage": "https://github.com/arvinxx/npm-template",
   "bugs": {
-    "url": "https://github.com/arvinxx/npm-template"
+    "url": "https://github.com/arvinxx/npm-template/issues/new"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/arvinxx/npm-template.git"
+    "url": "https://github.com/arvinxx/npm-template.git"
   },
   "license": "MIT",
   "author": "arvinxx(arvinx@foxmail.com)",
