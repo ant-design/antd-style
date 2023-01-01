@@ -2,7 +2,7 @@
 
 [![NPM version][npm-image]][npm-url] [![NPM downloads][download-image]][download-url] [![install size][npm-size]][npm-size-url]
 
-[![Test CI status][test-ci]][test-ci-url] ![Deploy CI][deploy-ci] [![Coverage][coverage]][codecov-url]
+[![Test CI status][test-ci]][test-ci-url] [![Deploy CI][release-ci]][release-ci-url] [![Coverage][coverage]][codecov-url]
 
 [![ docs by dumi][dumi-url]](https://d.umijs.org/) [![Build With father][father-url]](https://github.com/umijs/father/)
 
@@ -31,9 +31,9 @@
 <!-- Github CI -->
 
 [test-ci]: https://github.com/arvinxx/npm-template/workflows/Test%20CI/badge.svg
-[deploy-ci]: https://github.com/arvinxx/npm-template/workflows/Deploy%20CI/badge.svg
+[release-ci]: https://github.com/arvinxx/npm-template/workflows/Release%20CI/badge.svg
 [test-ci-url]: https://github.com/arvinxx/npm-template/actions?query=workflow%3ATest%20CI
-[deploy-ci-ci]: https://github.com/arvinxx/npm-template/actions?query=workflow%3ADeploy%20CI
+[release-ci-url]: https://github.com/arvinxx/npm-template/actions?query=workflow%3ARelease%20CI
 [download-image]: https://img.shields.io/npm/dm/@arvinxu/npm-template.svg?style=flat-square
 [download-url]: https://npmjs.org/package/@arvinxu/npm-template
 
@@ -60,13 +60,19 @@ pnpm i @arvinxu/npm-template -S
 
 ### 使用
 
-核心功能简介
+基于该仓库模板可以快速创建一个 npm 包的工程化脚手架。
 
-## 场景介绍
+## 使用介绍
 
-### 消费场景一
+### Step1. 使用该模板创建一个新的仓库
 
-### 消费场景二
+点击右上角 `use this template` -> `create a new reposity` 按钮，创建一个新的仓库。
+
+### Step2. 初始化项目信息
+
+使用编辑器全局替换 `@arvinxu/npm-template` 为你的包名（例如 `antd-style`），执行 `pnpm i` 安装依赖。
+
+### Step3. 开始开发
 
 ## 迭代记录
 
