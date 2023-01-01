@@ -1,1 +1,1 @@
-module.exports = require('@umijs/max/stylelint');
+module.exports = require('@umijs/lint/dist/config/stylelint');
