@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "declaration": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@@/*": [".dumi/tmp/*"],
+      "@arvinxu/npm-template": ["src"],
+      "@arvinxu/npm-template/*": ["src/*", "*"]
+    }
+  }
+}
