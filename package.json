@@ -1,6 +1,6 @@
 {
   "name": "antd-style",
-  "version": "0.0.0",
+  "version": "1.0.0-rc.1",
   "description": "a css-in-js application solution combine emotion with antd v5 token system",
   "keywords": [
     "npm",
