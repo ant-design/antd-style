@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`styled 使用 antd 主题样式 在 Provider 包裹下，能正常获得样式 1`] = `
+.emotion-0 {
+  width: 30px;
+  color: #1677ff;
+  background: #e6f4ff;
+}
+
+<div>
+  <div
+    class="emotion-0"
+  >
+    自定义样式
+  </div>
+</div>
+`;
+
+exports[`styled 使用 antd 主题样式 没有包裹 Provider 的情况下，找不到样式 1`] = `
+.emotion-0 {
+  width: 30px;
+}
+
+<div>
+  <div
+    class="emotion-0"
+  >
+    自定义样式
+  </div>
+</div>
+`;

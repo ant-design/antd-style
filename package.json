@@ -65,6 +65,7 @@
   },
   "devDependencies": {
     "@commitlint/cli": "^17",
+    "@emotion/jest": "^11",
     "@testing-library/jest-dom": "^5",
     "@testing-library/react": "^13",
     "@types/jest": "^27",
