@@ -1,3 +1,2 @@
-export const hello = () => {
-  return 'world';
-};
+export * from './types';
+export * from './useToken';
