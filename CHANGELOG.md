@@ -1,5 +1,11 @@
 # Changelog
 
+# [1.1.0](https://github.com/arvinxx/antd-style/compare/v1.0.0...v1.1.0) (2023-01-01)
+
+### ✨ Features
+
+- 增加 createStyles 的使用方法 ([b53a804](https://github.com/arvinxx/antd-style/commit/b53a804))
+
 # 1.0.0 (2023-01-01)
 
 ### ✨ Features
