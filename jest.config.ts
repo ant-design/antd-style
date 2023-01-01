@@ -1,4 +1,4 @@
-import { Config, createConfig } from '@umijs/max/test';
+import { Config, createConfig } from '@umijs/test';
 
 const base = createConfig({
   target: 'browser',
