@@ -1,4 +1,5 @@
 {
+  "include": ["src", "tests", ".dumi/**/*", ".dumirc.ts", ".fatherrc.ts"],
   "compilerOptions": {
     "strict": true,
     "declaration": true,
@@ -8,8 +9,9 @@
     "baseUrl": ".",
     "paths": {
       "@@/*": [".dumi/tmp/*"],
-      "@arvinxu/npm-template": ["src"],
-      "@arvinxu/npm-template/*": ["src/*", "*"]
+      "@/*": ["src/*"],
+      "antd-style": ["src"],
+      "antd-style/*": ["src/*", "*"]
     }
   }
 }

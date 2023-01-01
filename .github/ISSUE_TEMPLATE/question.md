@@ -1,6 +1,6 @@
 ---
 name: '疑问或需要帮助 ❓'
-about: 对 html2sketch 使用的疑问或需要帮助
+about: 对 antd-style 使用的疑问或需要帮助
 title: '🧐[问题]'
 labels: '🧐 Question'
 assignees: ''

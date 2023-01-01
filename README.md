@@ -1,15 +1,15 @@
-# @arvinxu/npm-template
+# antd-style
 
 [![NPM version][npm-image]][npm-url] [![NPM downloads][download-image]][download-url] [![install size][npm-size]][npm-size-url]
 
-[![Test CI status][test-ci]][test-ci-url] ![Deploy CI][deploy-ci] [![Coverage][coverage]][codecov-url]
+[![Test CI status][test-ci]][test-ci-url] [![Rlease CI][release-ci]][release-ci-url] [![Coverage][coverage]][codecov-url]
 
 [![ docs by dumi][dumi-url]](https://d.umijs.org/) [![Build With father][father-url]](https://github.com/umijs/father/)
 
 <!-- gitpod url -->
 
 [gitpod-badge]: https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod
-[gitpod-url]: https://gitpod.io/#https://github.com/ant-design/@arvinxu/npm-template
+[gitpod-url]: https://gitpod.io/#https://github.com/ant-design/antd-style
 
 <!-- umi url -->
 
@@ -18,10 +18,10 @@
 
 <!-- npm url -->
 
-[npm-image]: http://img.shields.io/npm/v/@arvinxu/npm-template.svg?style=flat-square&color=deepgreen&label=latest
-[npm-url]: http://npmjs.org/package/@arvinxu/npm-template
-[npm-size]: https://img.shields.io/bundlephobia/minzip/@arvinxu/npm-template?color=deepgreen&label=gizpped%20size&style=flat-square
-[npm-size-url]: https://packagephobia.com/result?p=@arvinxu/npm-template
+[npm-image]: http://img.shields.io/npm/v/antd-style.svg?style=flat-square&color=deepgreen&label=latest
+[npm-url]: http://npmjs.org/package/antd-style
+[npm-size]: https://img.shields.io/bundlephobia/minzip/antd-style?color=deepgreen&label=gizpped%20size&style=flat-square
+[npm-size-url]: https://packagephobia.com/result?p=antd-style
 
 <!-- coverage -->
 
@@ -31,22 +31,15 @@
 <!-- Github CI -->
 
 [test-ci]: https://github.com/arvinxx/npm-template/workflows/Test%20CI/badge.svg
-[deploy-ci]: https://github.com/arvinxx/npm-template/workflows/Deploy%20CI/badge.svg
+[release-ci]: https://github.com/arvinxx/npm-template/workflows/Release%20CI/badge.svg
 [test-ci-url]: https://github.com/arvinxx/npm-template/actions?query=workflow%3ATest%20CI
-[deploy-ci-ci]: https://github.com/arvinxx/npm-template/actions?query=workflow%3ADeploy%20CI
-[download-image]: https://img.shields.io/npm/dm/@arvinxu/npm-template.svg?style=flat-square
-[download-url]: https://npmjs.org/package/@arvinxu/npm-template
+[release-ci-url]: https://github.com/arvinxx/npm-template/actions?query=workflow%Release%20CI
+[download-image]: https://img.shields.io/npm/dm/antd-style.svg?style=flat-square
+[download-url]: https://npmjs.org/package/antd-style
 
 ## 简介
 
-这是一个开发 npm 项目的模板，工程框架选型如下：
-
-- 构建： father4
-- 文档： dumi2
-- CI: Github Action
-- CD:
-  - 文档发布: 使用 vercel 自动化触发文档站构建;
-  - npm 发布: 使用 `semantic-release` 实现 npm 包的自动化发布;
+基于 Ant Design V5 Token System 构建的业务级 `css-in-js` 解决方案。目前基于 `emotion` 提供 api。
 
 ## 快速上手
 
@@ -55,12 +48,14 @@
 推荐使用 `pnpm` 安装
 
 ```bash
-pnpm i @arvinxu/npm-template -S
+pnpm i antd-style -S
 ```
 
 ### 使用
 
-核心功能简介
+`antd-style` 结合 `emotion` 使用，需要在项目中安装 `emotion` 依赖。
+
+```bash
 
 ## 场景介绍
 
@@ -77,3 +72,4 @@ pnpm i @arvinxu/npm-template -S
 ## License
 
 [MIT](./LICENSE)
+```

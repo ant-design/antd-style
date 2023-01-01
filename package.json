@@ -1,7 +1,7 @@
 {
-  "name": "@arvinxu/npm-template",
-  "version": "1.2.1",
-  "description": "a npm develop template",
+  "name": "antd-style",
+  "version": "0.0.0",
+  "description": "a css-in-js application solution combine emotion with antd v5 token system",
   "keywords": [
     "npm",
     "template"
@@ -17,11 +17,10 @@
   "license": "MIT",
   "author": "arvinxx(arvinx@foxmail.com)",
   "sideEffects": false,
-  "main": "lib/index.js",
+  "main": "es/index.js",
   "module": "es/index.js",
-  "types": "lib/index.d.ts",
+  "types": "es/index.d.ts",
   "files": [
-    "lib",
     "es"
   ],
   "scripts": {
@@ -57,6 +56,13 @@
       "prettier --parser=typescript --write"
     ]
   },
+  "dependencies": {
+    "@babel/runtime": "^7.20",
+    "@emotion/css": "^11",
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
+    "polished": "^4"
+  },
   "devDependencies": {
     "@commitlint/cli": "^17",
     "@testing-library/jest-dom": "^5",
@@ -91,6 +97,10 @@
     "ts-jest": "^29",
     "ts-node": "^10",
     "typescript": "^4"
+  },
+  "peerDependencies": {
+    "antd": "^5",
+    "react": ">=16.8"
   },
   "publishConfig": {
     "access": "public",
