@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.2.3](https://github.com/arvinxx/npm-template/compare/v1.2.2...v1.2.3) (2023-01-01)
+
+### 🐛 Bug Fixes
+
+- 修正 ISSUE TEMPLATE 中的包名问题 ([e64da9a](https://github.com/arvinxx/npm-template/commit/e64da9a))
+
 ## [1.2.2](https://github.com/arvinxx/npm-template/compare/v1.2.1...v1.2.2) (2023-01-01)
 
 ### 🐛 Bug Fixes
