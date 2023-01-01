@@ -53,23 +53,50 @@ pnpm i antd-style -S
 
 ### 使用
 
-`antd-style` 结合 `emotion` 使用，需要在项目中安装 `emotion` 依赖。
-
-```bash
+`antd-style` 结合 `emotion` 使用，需要在项目中使用 `emotion` 依赖。
 
 ## 场景介绍
 
-### 消费场景一
+### 场景一：消费 token
 
-### 消费场景二
+```tsx
+import { css, useToken } from 'antd-style';
 
-## 迭代记录
+export const useStyle = () => {
+  const token = useToken();
+  return css`
+    color: ${token.colorPrimary};
+  `;
+};
+```
 
-2022.12.17 - 基于蚂蚁研发技术栈配置完成最新的 npm 研发脚手架
+### 场景二：使用 styled 搭配 Token 创建自定义样式的组件
+
+```tsx
+import { styled } from 'antd-style';
+
+const Card = styled.div<{ primary?: boolean }>`
+  border-radius: ${(p) => p.theme.borderRadiusLG}px;
+  padding: ${(p) => p.theme.paddingLG}px;
+
+  background: ${(p) => (p.primary ? p.theme.colorPrimary : p.theme.colorBgContainer)};
+  color: ${(p) => (p.primary ? p.theme.colorTextLightSolid : p.theme.colorText)};
+`;
+
+const App = () => {
+  return (
+    <div>
+      <Card>普通卡片</Card>
+      <Card primary>强调卡片</Card>
+    </div>
+  );
+};
+```
+
+## CHANGELOG
 
 详情：[CHANGELOG](./CHANGELOG.md)
 
 ## License
 
 [MIT](./LICENSE)
-```
