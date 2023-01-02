@@ -4,10 +4,10 @@
 // 可支持将样式部分独立到 style.ts 文件中
 import { useMemo } from 'react';
 
-import type { AntdStylish } from './stylish';
-import { useInternalStylish } from './stylish';
-import { AntdToken } from './types';
-import { useToken } from './useToken';
+import { useAntdToken } from '@/hooks';
+import { AntdToken } from '@/types';
+import type { AntdStylish } from '../stylish';
+import { useInternalStylish } from '../stylish';
 
 export interface CreateStylesTheme {
   token: AntdToken;
@@ -21,7 +21,7 @@ export function createStyles<Props, ReturnStyle>(
   createStyleFn: (theme: CreateStylesTheme, props?: Props) => ReturnStyle,
 ) {
   return (props?: Props): ReturnStyle => {
-    const token = useToken();
+    const token = useAntdToken();
     const stylish = useInternalStylish();
 
     return useMemo(() => createStyleFn({ token, stylish }, props), [token, props]);

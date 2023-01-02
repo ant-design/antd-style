@@ -1,8 +1,10 @@
-import { useTheme } from '@/styled';
-import { Global, Theme } from '@emotion/react';
+import { Global } from '@emotion/react';
 import { serializeStyles } from '@emotion/serialize';
 import { Interpolation } from '@emotion/styled';
 import { memo } from 'react';
+
+import { useTheme } from '@/hooks';
+import { Theme } from '@/types';
 
 interface GlobalTheme {
   theme: Theme;

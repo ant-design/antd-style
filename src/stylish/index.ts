@@ -1,4 +1,4 @@
-import { useToken } from '@/useToken';
+import { useAntdToken } from '@/hooks/useAntdToken';
 import { css } from '@emotion/css';
 import { transparentize } from 'polished';
 import { useMemo } from 'react';
@@ -21,7 +21,7 @@ export interface AntdStylish {
  * 一组统一封装好的 antd 标准样式
  */
 export const useInternalStylish = (): AntdStylish => {
-  const token = useToken();
+  const token = useAntdToken();
 
   return useMemo(() => {
     const containerBgHover = css`
