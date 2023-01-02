@@ -94,7 +94,7 @@
     "react": "^18",
     "react-dom": "^18",
     "semantic-release": "^19",
-    "semantic-release-config-gitmoji": "^1",
+    "semantic-release-config-gitmoji": "rc",
     "stylelint": "^14",
     "ts-jest": "^29",
     "ts-node": "^10",
