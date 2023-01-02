@@ -1,6 +1,9 @@
 ---
 title: 全局样式
 order: 10
+group:
+  title: 创建样式
+  order: 2
 ---
 
 # 全局样式
@@ -19,7 +22,7 @@ order: 10
 
 :::warning
 
-`<Global />` 需要套在 `ThemeProvider` 组件下，token 才能生效，否则是无效的。
+`<Global />` 需要套在 [`ThemeProvider`](/usage/theme-provider) 组件下，token 才能生效，否则是无效的。
 
 :::
 
