@@ -1,5 +1,7 @@
 # Changelog
 
+# [1.0.0-rc.2](https://github.com/arvinxx/antd-style/compare/v1.0.0-rc.1...v1.0.0-rc.2) (2023-01-02)
+
 # 1.0.0-rc.1 (2023-01-01)
 
 ### ✨ Features
