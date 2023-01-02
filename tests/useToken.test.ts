@@ -1,10 +1,10 @@
 import { renderHook } from '@testing-library/react';
 
-import { useToken } from 'antd-style';
+import { useAntdToken } from 'antd-style';
 
 describe('useToken', () => {
   it('can get colorPrimary', () => {
-    const { result } = renderHook(useToken);
+    const { result } = renderHook(useAntdToken);
     expect(result.current.colorPrimary.toLowerCase()).toEqual('#1677ff');
   });
 
