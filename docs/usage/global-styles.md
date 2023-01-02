@@ -1,6 +1,6 @@
 ---
 title: 全局样式
-group: 使用指南
+order: 10
 ---
 
 # 全局样式
@@ -9,13 +9,13 @@ group: 使用指南
 
 ## 默认用法
 
-<code src="../demos/globalStyles/default.tsx"></embed>
+<code src="../demos/globalStyles/default.tsx"></code>
 
 ## 结合 antd 的 token 使用
 
 利用 antd v5 的 token 系统，我们可以自行组织实现一个在 Ant Design 的 Button 中并不存在的样式。
 
-<code src="../demos/globalStyles/AntdToken.tsx"></embed>
+<code src="../demos/globalStyles/AntdToken.tsx"></code>
 
 :::warning
 
@@ -23,4 +23,4 @@ group: 使用指南
 
 :::
 
-<code src="../demos/globalStyles/WithoutProvider.tsx"></embed>
+<code src="../demos/globalStyles/WithoutProvider.tsx"></code>

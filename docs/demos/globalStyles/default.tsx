@@ -4,7 +4,6 @@ const Global = createGlobalStyle`
   .some-class {
     color: hotpink;
   }
-
 `;
 
 export default () => {
