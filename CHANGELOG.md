@@ -1,5 +1,12 @@
 # Changelog
 
+# [1.0.0-rc.7](https://github.com/arvinxx/antd-style/compare/v1.0.0-rc.6...v1.0.0-rc.7) (2023-01-02)
+
+### ✨ Features
+
+- 完成 AppContainer 基础功能并补充 demo ([36a6145](https://github.com/arvinxx/antd-style/commit/36a6145))
+- 新增 useThemeMode hooks ([dd50eee](https://github.com/arvinxx/antd-style/commit/dd50eee))
+
 # [1.0.0-rc.6](https://github.com/arvinxx/antd-style/compare/v1.0.0-rc.5...v1.0.0-rc.6) (2023-01-02)
 
 ### ✨ Features
