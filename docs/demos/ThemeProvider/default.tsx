@@ -9,7 +9,8 @@ export default () => (
   <Space
     align={'center'}
     split={<Divider type={'vertical'} />}
-    style={{ padding: 24, background: '#fafafa' }}
+    style={{ padding: 40, background: '#fafafa' }}
+    size={24}
   >
     <ThemeProvider>
       <App title={'包裹 ThemeProvider'} tokenName={'colorPrimary'} />
