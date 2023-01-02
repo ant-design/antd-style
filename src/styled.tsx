@@ -36,4 +36,5 @@ export const ThemeProvider: FC<PropsWithChildren<ThemeProviderProps>> = memo(
   },
 );
 
+export { useTheme } from '@emotion/react';
 export { default as styled } from '@emotion/styled';

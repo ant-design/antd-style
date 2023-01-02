@@ -60,6 +60,7 @@
     "@babel/runtime": "^7.20",
     "@emotion/css": "^11",
     "@emotion/react": "^11",
+    "@emotion/serialize": "^1",
     "@emotion/styled": "^11",
     "polished": "^4"
   },
@@ -94,7 +95,7 @@
     "react": "^18",
     "react-dom": "^18",
     "semantic-release": "^19",
-    "semantic-release-config-gitmoji": "rc",
+    "semantic-release-config-gitmoji": "^1",
     "stylelint": "^14",
     "ts-jest": "^29",
     "ts-node": "^10",

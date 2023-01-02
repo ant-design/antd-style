@@ -39,7 +39,7 @@
 
 ## 简介
 
-基于 Ant Design V5 Token System 构建的业务级 `css-in-js` 解决方案。目前基于 `emotion` 提供 api。
+基于 Ant Design V5 Token System 构建的业务级 `css-in-js` 解决方案。目前基于 `emotion` 提供进行封装。
 
 ## 快速上手
 
@@ -51,15 +51,11 @@
 pnpm i antd-style -S
 ```
 
-### 使用
+### 典型使用场景
 
-`antd-style` 结合 `emotion` 使用，需要在项目中使用 `emotion` 依赖。
+#### 场景一：消费 token
 
-## 场景介绍
-
-### 场景一：消费 token
-
-```tsx
+```ts
 import { css, useToken } from 'antd-style';
 
 export const useStyle = () => {
@@ -70,9 +66,9 @@ export const useStyle = () => {
 };
 ```
 
-### 场景二：使用 styled 搭配 Token 创建自定义样式的组件
+#### 场景二：使用 styled 搭配 Token 创建自定义样式的组件
 
-```tsx
+```tsx | pure
 import { styled } from 'antd-style';
 
 const Card = styled.div<{ primary?: boolean }>`
@@ -95,7 +91,7 @@ const App = () => {
 
 ## CHANGELOG
 
-详情：[CHANGELOG](./CHANGELOG.md)
+详情：[CHANGELOG](./CHANGELOG)
 
 ## License
 
