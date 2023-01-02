@@ -2,6 +2,8 @@
 title: AppContainer
 order: 2
 group: 容器组件
+demo:
+  cols: 2
 ---
 
 # AppContainer
@@ -12,7 +14,12 @@ group: 容器组件
 
 ## 基础使用
 
+### 基础样式重置
+
+如果没有包裹，在 dumi 文档中 a 节点的默认效果右下所示，而通过 antd App 组件的样式重置，可以保障不在 antd 组件中的原生标签也能符合 antd 的默认样式：
+
 <code src="../demos/AppContainer/default.tsx"></code>
+<code src="../demos/AppContainer/WithoutProvider.tsx"></code>
 
 ## 与 ThemeProvider 的区别？
 
