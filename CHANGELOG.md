@@ -1,5 +1,11 @@
 # Changelog
 
+# [1.0.0-rc.6](https://github.com/arvinxx/antd-style/compare/v1.0.0-rc.5...v1.0.0-rc.6) (2023-01-02)
+
+### ✨ Features
+
+- 增加 AppContainer 组件 ([dce0e6e](https://github.com/arvinxx/antd-style/commit/dce0e6e))
+
 # [1.0.0-rc.5](https://github.com/arvinxx/antd-style/compare/v1.0.0-rc.4...v1.0.0-rc.5) (2023-01-02)
 
 ### ✨ Features
