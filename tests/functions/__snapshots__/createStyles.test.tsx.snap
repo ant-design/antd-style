@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`createStyles 插入样式 1`] = `
+.emotion-0 {
+  color: #1677ff;
+}
+
+<div
+  class="emotion-0"
+>
+  123
+</div>
+`;

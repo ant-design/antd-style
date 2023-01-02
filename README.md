@@ -56,10 +56,10 @@ pnpm i antd-style -S
 #### 场景一：消费 token
 
 ```ts
-import { css, useToken } from 'antd-style';
+import { css, useTheme } from 'antd-style';
 
 export const useStyle = () => {
-  const token = useToken();
+  const token = useTheme();
   return css`
     color: ${token.colorPrimary};
   `;
