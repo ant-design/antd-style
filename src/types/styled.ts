@@ -7,7 +7,7 @@ import {
 } from '@emotion/styled/base';
 import * as React from 'react';
 
-import { Theme } from './index';
+import { Theme } from './theme';
 
 export type StyledTags = {
   [Tag in keyof JSX.IntrinsicElements]: CreateStyledComponent<
