@@ -1,7 +1,7 @@
 import { useAntdToken } from '@/hooks';
 import { Theme } from '@/types';
 import { ThemeProvider as Provider } from '@emotion/react';
-import { memo, PropsWithChildren, ReactNode } from 'react';
+import { memo, PropsWithChildren, ReactElement } from 'react';
 
 export interface ThemeProviderProps<CT, CS = Record<string, string>> {
   /**
@@ -17,7 +17,7 @@ export interface ThemeProviderProps<CT, CS = Record<string, string>> {
 
 export const ThemeProvider: <T = Record<string, string>, S = Record<string, string>>(
   props: PropsWithChildren<ThemeProviderProps<T, S>>,
-) => ReactNode = memo(({ children, customToken = {}, customStylish = {} }) => {
+) => ReactElement | null = memo(({ children, customToken = {}, customStylish = {} }) => {
   const token = useAntdToken();
 
   const stylish = { ...customStylish };

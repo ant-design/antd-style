@@ -1,6 +1,3 @@
-/**
- * 类型直接从 emotion 中复制出来，为了解决自定义类型准确性的问题
- */
 import { PropsOf } from '@emotion/react';
 import { CreateStyledComponent } from '@emotion/styled';
 import {

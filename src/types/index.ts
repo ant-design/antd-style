@@ -21,3 +21,5 @@ export interface Theme extends AntdToken, CustomToken {
    */
   stylish: Stylish;
 }
+
+export * from './styled';
