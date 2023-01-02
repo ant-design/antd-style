@@ -65,6 +65,7 @@
     "polished": "^4"
   },
   "devDependencies": {
+    "@ant-design/icons": "^4",
     "@commitlint/cli": "^17",
     "@emotion/jest": "^11",
     "@testing-library/jest-dom": "^5",
