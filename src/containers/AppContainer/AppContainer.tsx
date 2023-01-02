@@ -1,15 +1,20 @@
 import { ThemeConfig } from 'antd/es/config-provider/context';
-import { FC, ReactNode } from 'react';
+import { memo, ReactNode } from 'react';
 
-import AntdProvider from './AntdProvider';
+import { DisplayTheme, ThemeMode } from '@/types';
 
-export type DisplayTheme = 'dark' | 'light';
+import { ThemeModeContext } from '@/context';
+import { ThemeProvider, ThemeProviderProps } from '../ThemeProvider';
+import { AntdProvider, type AntdProviderProps } from './AntdProvider';
+import { GlobalStyle, GlobalStyleProps } from './GloabalStyle';
 
-export type ThemeMode = 'auto' | 'dark' | 'light';
-
-export interface AppContainerProps {
+export interface AppContainerProps<T, S = Record<string, string>>
+  extends ThemeProviderProps<T, S>,
+    AntdProviderProps,
+    GlobalStyleProps {
   /**
    * 应用的展示外观主题，只存在亮色和暗色两种
+   * @default light
    */
   appearance?: DisplayTheme;
   defaultAppearance?: DisplayTheme;
@@ -20,16 +25,42 @@ export interface AppContainerProps {
    * @default light
    */
   themeMode?: ThemeMode;
-  defaultThemeMode?: ThemeMode;
-  onThemeModeChange?: (mode: ThemeMode) => void;
 
   /**
    * 透传到 antd CP 中的主题对象
    */
   antdTheme?: ThemeConfig;
   children: ReactNode;
+
+  className?: string;
+  prefixCls?: string;
 }
 
-export const AppContainer: FC<AppContainerProps> = ({ children }) => {
-  return <AntdProvider>{children}</AntdProvider>;
-};
+export const AppContainer = memo(
+  <T, S>({
+    children,
+    appearance,
+    themeMode,
+    customToken,
+    customStylish,
+    antdTheme,
+    globalStyle,
+    ...props
+  }: AppContainerProps<T, S>) => {
+    return (
+      <ThemeModeContext.Provider
+        value={{
+          themeMode: themeMode || 'light',
+          appearance: appearance || 'light',
+        }}
+      >
+        <AntdProvider {...props} theme={antdTheme}>
+          <ThemeProvider customToken={customToken} customStylish={customStylish}>
+            <GlobalStyle globalStyle={globalStyle} />
+            {children}
+          </ThemeProvider>
+        </AntdProvider>
+      </ThemeModeContext.Provider>
+    );
+  },
+);

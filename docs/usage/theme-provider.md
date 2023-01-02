@@ -4,7 +4,7 @@ order: 1
 group:
   title: 容器组件
   order: 1
-nav: 完全使用指南
+nav: 应用指南
 ---
 
 # ThemeProvider

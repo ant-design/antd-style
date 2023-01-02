@@ -4,15 +4,17 @@ import { type FC } from 'react';
 
 import StaticMethod from './AntdStaticMethod';
 
-const AntdProvider: FC<ConfigProviderProps> = ({ children, ...props }) => {
+export interface AntdProviderProps extends ConfigProviderProps {
+  className?: string;
+}
+
+export const AntdProvider: FC<AntdProviderProps> = ({ children, className, ...props }) => {
   return (
     <ConfigProvider {...props}>
-      <App>
+      <App className={className}>
         <StaticMethod />
         {children}
       </App>
     </ConfigProvider>
   );
 };
-
-export default AntdProvider;
