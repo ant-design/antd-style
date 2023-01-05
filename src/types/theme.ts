@@ -14,7 +14,9 @@ export interface CustomTheme extends CustomStylish, CustomToken {}
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface Stylish extends CustomStylish {}
 
-export interface Theme extends AntdToken, CustomToken {
+export interface FullToken extends AntdToken, CustomToken {}
+
+export interface Theme extends FullToken {
   /**
    *  暂时不对外暴露
    *  @internal

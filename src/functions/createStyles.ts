@@ -2,29 +2,79 @@
 // 写成 useStyles 的方式
 // 适用场景：单纯用于部分样式的，没必要抽成组件的话，使用这种写法
 // 可支持将样式部分独立到 style.ts 文件中
+import { css, cx, type CSSObject } from '@emotion/css';
+import type { Emotion } from '@emotion/css/create-instance';
 import { useMemo } from 'react';
 
-import { useAntdToken } from '@/hooks';
-import { AntdToken } from '@/types';
-import type { AntdStylish } from '../stylish';
-import { useInternalStylish } from '../stylish';
+import { useAntdToken, useTheme } from '@/hooks';
+import { FullToken, Theme } from '@/types';
+
+import type { AntdStylish } from '@/stylish';
+import { useInternalStylish } from '@/stylish';
 
 export interface CreateStylesTheme {
-  token: AntdToken;
+  token: FullToken;
   stylish: AntdStylish;
 }
+
+interface ReturnStyles<Key extends string> {
+  styles: Record<Key, string>;
+  theme: Theme;
+  cx: Emotion['cx'];
+}
+
+type CSSInput<T extends string> = string | Record<T, CSSObject | string>;
 
 /**
  * 业务应用中创建样式基础写法
  */
-export function createStyles<Props, ReturnStyle>(
-  createStyleFn: (theme: CreateStylesTheme, props?: Props) => ReturnStyle,
+export function createStyles<Props, Key extends string>(
+  cssStyleOrGetCssStyleFn:
+    | CSSInput<Key>
+    | ((theme: CreateStylesTheme, props?: Props) => CSSInput<Key>),
 ) {
-  return (props?: Props): ReturnStyle => {
-    const token = useAntdToken();
-    const stylish = useInternalStylish();
+  return (props?: Props): ReturnStyles<Key> => {
+    const antdToken = useAntdToken();
+    const internalStylish = useInternalStylish();
+    const theme = useTheme();
 
-    return useMemo(() => createStyleFn({ token, stylish }, props), [token, props]);
+    return useMemo(() => {
+      let styles: Record<Key, string>;
+
+      if (typeof cssStyleOrGetCssStyleFn === 'function') {
+        const { stylish, ...fullToken } = theme;
+        // @ts-ignore
+        styles = cssStyleOrGetCssStyleFn(
+          {
+            token: { ...antdToken, ...fullToken },
+            stylish: { ...internalStylish, ...stylish },
+          },
+          props,
+        );
+      } else {
+        // @ts-ignore
+        styles = cssStyleOrGetCssStyleFn;
+      }
+
+      if (typeof styles === 'object') {
+        styles = Object.fromEntries(
+          Object.entries(styles).map(([key, value]) => {
+            if (typeof value === 'object') {
+              return [key, css(value as CSSObject)];
+            }
+
+            return [key, value];
+          }),
+        ) as Record<Key, string>;
+      }
+      // 处理
+
+      return {
+        styles,
+        cx,
+        theme,
+      };
+    }, [antdToken, theme, props]);
   };
 }
 
