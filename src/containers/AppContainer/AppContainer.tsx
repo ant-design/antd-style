@@ -1,4 +1,4 @@
-import { memo, ReactNode } from 'react';
+import { memo, ReactElement, ReactNode } from 'react';
 
 import { DisplayTheme, ThemeMode } from '@/types';
 
@@ -31,7 +31,7 @@ export interface AppContainerProps<T, S = Record<string, string>>
   prefixCls?: string;
 }
 
-export const AppContainer: <T, S>(props: AppContainerProps<T, S>) => ReactNode = memo(
+export const AppContainer: <T, S>(props: AppContainerProps<T, S>) => ReactElement | null = memo(
   ({ children, appearance, themeMode, customToken, customStylish, globalStyle, ...props }) => {
     return (
       <ThemeModeContext.Provider
