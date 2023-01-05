@@ -1,5 +1,11 @@
 # Changelog
 
+# [1.0.0-rc.10](https://github.com/arvinxx/antd-style/compare/v1.0.0-rc.9...v1.0.0-rc.10) (2023-01-05)
+
+### ✨ Features
+
+- 支持使用 injectGlobal 方法 ([c000af1](https://github.com/arvinxx/antd-style/commit/c000af1))
+
 # [1.0.0-rc.9](https://github.com/arvinxx/antd-style/compare/v1.0.0-rc.8...v1.0.0-rc.9) (2023-01-05)
 
 # [1.0.0-rc.8](https://github.com/arvinxx/antd-style/compare/v1.0.0-rc.7...v1.0.0-rc.8) (2023-01-05)
