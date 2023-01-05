@@ -74,4 +74,4 @@ export function createStyles<Props, Key extends string>(
   };
 }
 
-export { css, cx } from '@emotion/css';
+export { css, cx, injectGlobal } from '@emotion/css';
