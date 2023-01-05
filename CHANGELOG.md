@@ -1,5 +1,11 @@
 # Changelog
 
+# [1.0.0-rc.13](https://github.com/arvinxx/antd-style/compare/v1.0.0-rc.12...v1.0.0-rc.13) (2023-01-05)
+
+### 🐛 Bug Fixes
+
+- 补充 Stylish Token 的类型定义 ([de9b903](https://github.com/arvinxx/antd-style/commit/de9b903))
+
 # [1.0.0-rc.12](https://github.com/arvinxx/antd-style/compare/v1.0.0-rc.11...v1.0.0-rc.12) (2023-01-05)
 
 ### 🐛 Bug Fixes
