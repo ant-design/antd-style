@@ -1,9 +1,7 @@
 ---
 title: createGlobalStyle 全局样式
 order: 10
-group:
-  title: 创建样式
-  order: 2
+group: 创建样式
 ---
 
 # 全局样式

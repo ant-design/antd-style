@@ -1,7 +1,6 @@
 import { SmileOutlined } from '@ant-design/icons';
-import { css } from '@emotion/css';
 import { Button, Space } from 'antd';
-import { createStyles } from 'antd-style';
+import { createStyles, css } from 'antd-style';
 
 const useStyles = createStyles(({ token }) => {
   const commonCard = css`
@@ -14,6 +13,7 @@ const useStyles = createStyles(({ token }) => {
       background-color: ${token.colorBgLayout};
       padding: 24px;
     `,
+
     primaryCard: css`
       ${commonCard};
       background: ${token.colorPrimary};
@@ -29,7 +29,7 @@ const useStyles = createStyles(({ token }) => {
 });
 
 const App = () => {
-  const styles = useStyles();
+  const { styles } = useStyles();
 
   return (
     <div className={styles.container}>

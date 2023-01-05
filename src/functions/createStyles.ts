@@ -1,7 +1,3 @@
-// ===========  emotion css 方案  =========== //
-// 写成 useStyles 的方式
-// 适用场景：单纯用于部分样式的，没必要抽成组件的话，使用这种写法
-// 可支持将样式部分独立到 style.ts 文件中
 import { css, cx, type CSSObject } from '@emotion/css';
 import type { Emotion } from '@emotion/css/create-instance';
 import { useMemo } from 'react';
@@ -17,21 +13,21 @@ export interface CreateStylesTheme {
   stylish: AntdStylish;
 }
 
-interface ReturnStyles<Key extends string> {
+export interface ReturnStyles<Key extends string> {
   styles: Record<Key, string>;
   theme: Theme;
   cx: Emotion['cx'];
 }
 
-type CSSInput<T extends string> = string | Record<T, CSSObject | string>;
+export type StyleParams<T extends string> = string | Record<T, CSSObject | string>;
 
 /**
  * 业务应用中创建样式基础写法
  */
 export function createStyles<Props, Key extends string>(
   cssStyleOrGetCssStyleFn:
-    | CSSInput<Key>
-    | ((theme: CreateStylesTheme, props?: Props) => CSSInput<Key>),
+    | StyleParams<Key>
+    | ((theme: CreateStylesTheme, props?: Props) => StyleParams<Key>),
 ) {
   return (props?: Props): ReturnStyles<Key> => {
     const antdToken = useAntdToken();
