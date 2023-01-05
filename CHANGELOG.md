@@ -1,5 +1,7 @@
 # Changelog
 
+# [1.0.0-rc.9](https://github.com/arvinxx/antd-style/compare/v1.0.0-rc.8...v1.0.0-rc.9) (2023-01-05)
+
 # [1.0.0-rc.8](https://github.com/arvinxx/antd-style/compare/v1.0.0-rc.7...v1.0.0-rc.8) (2023-01-05)
 
 ### ✨ Features
