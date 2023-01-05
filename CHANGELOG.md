@@ -1,5 +1,11 @@
 # Changelog
 
+# [1.0.0-rc.8](https://github.com/arvinxx/antd-style/compare/v1.0.0-rc.7...v1.0.0-rc.8) (2023-01-05)
+
+### ✨ Features
+
+- 初步敲定 createStyles 对象用法 ([015cad3](https://github.com/arvinxx/antd-style/commit/015cad3))
+
 # [1.0.0-rc.7](https://github.com/arvinxx/antd-style/compare/v1.0.0-rc.6...v1.0.0-rc.7) (2023-01-02)
 
 ### ✨ Features
