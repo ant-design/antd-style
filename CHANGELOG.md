@@ -1,5 +1,12 @@
 # Changelog
 
+# [1.0.0-rc.12](https://github.com/arvinxx/antd-style/compare/v1.0.0-rc.11...v1.0.0-rc.12) (2023-01-05)
+
+### 🐛 Bug Fixes
+
+- 修正 antd CP 被隔断的问题 ([dffa086](https://github.com/arvinxx/antd-style/commit/dffa086))
+- 修正 stylish 找不到的问题 ([e23453d](https://github.com/arvinxx/antd-style/commit/e23453d))
+
 # [1.0.0-rc.11](https://github.com/arvinxx/antd-style/compare/v1.0.0-rc.10...v1.0.0-rc.11) (2023-01-05)
 
 ### 🐛 Bug Fixes
