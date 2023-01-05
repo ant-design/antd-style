@@ -36,8 +36,8 @@ export interface AppContainerProps<T, S = Record<string, string>>
   prefixCls?: string;
 }
 
-export const AppContainer = memo(
-  <T, S>({
+export const AppContainer: <T, S>(props: AppContainerProps<T, S>) => ReactNode = memo(
+  ({
     children,
     appearance,
     themeMode,
@@ -46,7 +46,7 @@ export const AppContainer = memo(
     antdTheme,
     globalStyle,
     ...props
-  }: AppContainerProps<T, S>) => {
+  }) => {
     return (
       <ThemeModeContext.Provider
         value={{
