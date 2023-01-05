@@ -17,9 +17,5 @@ export interface Stylish extends CustomStylish {}
 export interface FullToken extends AntdToken, CustomToken {}
 
 export interface Theme extends FullToken {
-  /**
-   *  暂时不对外暴露
-   *  @internal
-   */
   stylish: Stylish;
 }
