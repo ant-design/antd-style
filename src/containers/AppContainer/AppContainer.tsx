@@ -1,4 +1,3 @@
-import { ThemeConfig } from 'antd/es/config-provider/context';
 import { memo, ReactNode } from 'react';
 
 import { DisplayTheme, ThemeMode } from '@/types';
@@ -26,10 +25,6 @@ export interface AppContainerProps<T, S = Record<string, string>>
    */
   themeMode?: ThemeMode;
 
-  /**
-   * 透传到 antd CP 中的主题对象
-   */
-  antdTheme?: ThemeConfig;
   children: ReactNode;
 
   className?: string;
@@ -37,16 +32,7 @@ export interface AppContainerProps<T, S = Record<string, string>>
 }
 
 export const AppContainer: <T, S>(props: AppContainerProps<T, S>) => ReactNode = memo(
-  ({
-    children,
-    appearance,
-    themeMode,
-    customToken,
-    customStylish,
-    antdTheme,
-    globalStyle,
-    ...props
-  }) => {
+  ({ children, appearance, themeMode, customToken, customStylish, globalStyle, ...props }) => {
     return (
       <ThemeModeContext.Provider
         value={{
@@ -54,7 +40,7 @@ export const AppContainer: <T, S>(props: AppContainerProps<T, S>) => ReactNode =
           appearance: appearance || 'light',
         }}
       >
-        <AntdProvider {...props} theme={antdTheme}>
+        <AntdProvider {...props}>
           <ThemeProvider customToken={customToken} customStylish={customStylish}>
             <GlobalStyle globalStyle={globalStyle} />
             {children}
