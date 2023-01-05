@@ -1,5 +1,11 @@
 # Changelog
 
+# [1.0.0-rc.11](https://github.com/arvinxx/antd-style/compare/v1.0.0-rc.10...v1.0.0-rc.11) (2023-01-05)
+
+### 🐛 Bug Fixes
+
+- 优化 AppContainer 的类型定义 ([d39fb21](https://github.com/arvinxx/antd-style/commit/d39fb21))
+
 # [1.0.0-rc.10](https://github.com/arvinxx/antd-style/compare/v1.0.0-rc.9...v1.0.0-rc.10) (2023-01-05)
 
 ### ✨ Features
