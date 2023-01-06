@@ -39,7 +39,9 @@
 
 ## 简介
 
-基于 Ant Design V5 Token System 构建的业务级 `css-in-js` 解决方案。目前基于 `emotion` 提供进行封装。
+基于 Ant Design V5 Token System 构建的业务级 `css-in-js` 解决方案。
+
+基于 [emotion](https://emotion.sh/) 二次封装。
 
 ## 快速上手
 
