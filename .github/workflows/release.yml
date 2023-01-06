@@ -3,13 +3,14 @@ on:
   push:
     branches:
       - master
+      - alpha
       - beta
       - rc
 
 jobs:
   test:
     name: Test
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
 
