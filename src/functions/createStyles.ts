@@ -73,5 +73,3 @@ export function createStyles<Props, Key extends string>(
     }, [antdToken, theme, props]);
   };
 }
-
-export { css, cx, injectGlobal } from '@emotion/css';
