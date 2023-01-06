@@ -1,0 +1,10 @@
+{
+  "include": ["**/*"],
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "antd-style": ["../src"]
+    }
+  }
+}

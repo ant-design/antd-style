@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`useThemeMode 没有包裹 AppContainer 会抛出错误 1`] = `"[WrapperError]你可能没有使用 <AppContainer /> 组件，请确保在组件顶层包裹 AppContainer 组件后再使用该 hooks。"`;

@@ -1,6 +1,6 @@
 {
   "name": "antd-style",
-  "version": "0.0.0",
+  "version": "1.0.0-rc.15",
   "description": "a css-in-js application solution combine emotion with antd v5 token system",
   "keywords": [
     "npm",
@@ -17,10 +17,11 @@
   "license": "MIT",
   "author": "arvinxx(arvinx@foxmail.com)",
   "sideEffects": false,
-  "main": "es/index.js",
+  "main": "lib/index.js",
   "module": "es/index.js",
-  "types": "es/index.d.ts",
+  "types": "lib/index.d.ts",
   "files": [
+    "lib",
     "es"
   ],
   "scripts": {
@@ -60,11 +61,14 @@
     "@babel/runtime": "^7.20",
     "@emotion/css": "^11",
     "@emotion/react": "^11",
+    "@emotion/serialize": "^1",
     "@emotion/styled": "^11",
     "polished": "^4"
   },
   "devDependencies": {
+    "@ant-design/icons": "^4",
     "@commitlint/cli": "^17",
+    "@emotion/jest": "^11",
     "@testing-library/jest-dom": "^5",
     "@testing-library/react": "^13",
     "@types/jest": "^27",
@@ -72,6 +76,7 @@
     "@types/react-dom": "^18",
     "@types/testing-library__jest-dom": "^5",
     "@umijs/lint": "^4",
+    "@umijs/test": "^4",
     "antd": "^5",
     "commitlint": "^17",
     "commitlint-config-gitmoji": "^2",
