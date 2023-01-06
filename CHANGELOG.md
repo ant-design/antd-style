@@ -1,5 +1,11 @@
 # Changelog
 
+# [1.0.0-rc.14](https://github.com/arvinxx/antd-style/compare/v1.0.0-rc.13...v1.0.0-rc.14) (2023-01-06)
+
+### ✨ Features
+
+- 补充 keyframes 和 withTheme 方法 ([3eeecda](https://github.com/arvinxx/antd-style/commit/3eeecda))
+
 # [1.0.0-rc.13](https://github.com/arvinxx/antd-style/compare/v1.0.0-rc.12...v1.0.0-rc.13) (2023-01-05)
 
 ### 🐛 Bug Fixes
