@@ -1,5 +1,15 @@
 # Changelog
 
+# [2.0.0](https://github.com/arvinxx/antd-style/compare/v1.0.0...v2.0.0) (2023-01-06)
+
+### ✨ Features
+
+- 计划废弃 v1 大版本 ([d62c8fc](https://github.com/arvinxx/antd-style/commit/d62c8fc))
+
+### 💥 BREAKING CHANGES
+
+- 由于错发 1.1.0，导致 rc 如果发出来就会有 Breaking Change，直接调整版本号到 v2
+
 # 1.0.0 (2023-01-06)
 
 ### ✨ Features
