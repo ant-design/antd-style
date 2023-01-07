@@ -1,6 +1,5 @@
+import { GetCustomStylish, GetCustomToken, ThemeAppearance } from '@/types';
 import { ReactElement, ReactNode, useMemo } from 'react';
-
-import { AntdStylish, AntdToken, FullToken, ThemeAppearance } from '@/types';
 
 import { useThemeMode } from '@/hooks';
 import { useAntdTheme } from '@/hooks/useAntdTheme';
@@ -8,19 +7,6 @@ import { theme } from 'antd';
 import { ThemeConfig } from 'antd/es/config-provider/context';
 import { ThemeProvider } from '../ThemeProvider';
 import { AntdProvider, type AntdProviderProps } from './AntdProvider';
-
-export type GetCustomToken<T> = (theme: {
-  token: AntdToken;
-  appearance: ThemeAppearance;
-  isDarkMode: boolean;
-}) => T;
-
-export type GetCustomStylish<S> = (theme: {
-  token: FullToken;
-  stylish: AntdStylish;
-  appearance: ThemeAppearance;
-  isDarkMode: boolean;
-}) => S;
 
 type GetAntdTheme = (appearance: ThemeAppearance) => ThemeConfig | undefined;
 export interface ThemeContentProps<T, S = Record<string, string>>

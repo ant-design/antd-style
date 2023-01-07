@@ -60,10 +60,8 @@ const ThemeSwitcher: FC<ThemeSwitcherProps> = memo(
         darkThemeMatch = matchThemeMode('dark');
       }
 
-      if (!themeMode || themeMode === 'auto') {
-        setTimeout(() => {
-          matchBrowserTheme();
-        }, 1);
+      if (themeMode === 'auto') {
+        setTimeout(matchBrowserTheme, 1);
       }
 
       darkThemeMatch.addEventListener('change', matchBrowserTheme);

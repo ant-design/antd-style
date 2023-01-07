@@ -1,4 +1,5 @@
 import { ThemeContextState } from '@/context';
+import { ThemeAppearance } from 'antd-style/src';
 import { AliasToken } from 'antd/es/theme/interface';
 
 export type AntdToken = AliasToken;
@@ -12,6 +13,18 @@ export interface AntdStylish {}
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface CustomToken {}
 
+export type GetCustomToken<T> = (theme: {
+  token: AntdToken;
+  appearance: ThemeAppearance;
+  isDarkMode: boolean;
+}) => T;
+
+export type GetCustomStylish<S> = (theme: {
+  token: FullToken;
+  stylish: AntdStylish;
+  appearance: ThemeAppearance;
+  isDarkMode: boolean;
+}) => S;
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface CustomStylish {}
 
