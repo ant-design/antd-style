@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.0.0-alpha.5](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.4...v3.0.0-alpha.5) (2023-01-07)
+
+### 🐛 Bug Fixes
+
+- 优化类型代码导出问题 ([e1d4264](https://github.com/arvinxx/antd-style/commit/e1d4264))
+
 # [3.0.0-alpha.4](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.3...v3.0.0-alpha.4) (2023-01-07)
 
 ### 🐛 Bug Fixes
