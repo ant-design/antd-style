@@ -1,3 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`useTheme 包裹 Provider 后如果自定义主题变量，能拿到完整变量 1`] = `{}`;
