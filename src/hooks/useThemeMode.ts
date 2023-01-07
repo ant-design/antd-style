@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 
-import { ThemeContextState, ThemeModeContext } from '@/context';
+import { ThemeModeContext } from '@/context';
+import { ThemeContextState } from '@/types';
 
 export const useThemeMode = (): ThemeContextState => useContext(ThemeModeContext);
