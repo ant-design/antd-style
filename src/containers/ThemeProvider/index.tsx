@@ -1,5 +1,4 @@
-import { useAntdToken } from '@/hooks';
-import { useInternalStylish } from '@/stylish';
+import { useAntdTheme } from '@/hooks';
 import { Theme } from '@/types';
 import { ThemeProvider as Provider } from '@emotion/react';
 import { memo, PropsWithChildren, ReactElement } from 'react';
@@ -19,11 +18,10 @@ export interface ThemeProviderProps<CT, CS = Record<string, string>> {
 export const ThemeProvider: <T = Record<string, string>, S = Record<string, string>>(
   props: PropsWithChildren<ThemeProviderProps<T, S>>,
 ) => ReactElement | null = memo(({ children, customToken = {}, customStylish = {} }) => {
-  const token = useAntdToken();
-  const internalStylish = useInternalStylish();
+  const { stylish: antdStylish, ...antdToken } = useAntdTheme();
 
-  const stylish = { ...customStylish, ...internalStylish };
-  const theme: Theme = { ...token, ...customToken, stylish };
+  const stylish = { ...customStylish, ...antdStylish };
+  const theme: Theme = { ...antdToken, ...customToken, stylish };
 
   return <Provider theme={theme}>{children}</Provider>;
 });

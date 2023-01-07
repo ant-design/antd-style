@@ -2,16 +2,21 @@ import { css, cx, type CSSObject } from '@emotion/css';
 import type { Emotion } from '@emotion/css/create-instance';
 import { useMemo } from 'react';
 
-import { useAntdToken, useTheme } from '@/hooks';
-import { FullToken, Theme } from '@/types';
-
-import type { AntdStylish } from '@/stylish';
-import { useInternalStylish } from '@/stylish';
+import { useTheme } from '@/hooks';
+import { AntdStylish, FullToken, Theme } from '@/types';
 
 export interface CreateStylesTheme {
   token: FullToken;
   stylish: AntdStylish;
+  cx: Emotion['cx'];
+  css: Emotion['css'];
 }
+
+export type StyleParams<T extends string> = string | Record<T, CSSObject | string>;
+
+export type CssStyleOrGetCssStyleFn<Props, Key extends string> =
+  | StyleParams<Key>
+  | ((theme: CreateStylesTheme, props?: Props) => StyleParams<Key>);
 
 export interface ReturnStyles<Key extends string> {
   styles: Record<Key, string>;
@@ -19,34 +24,22 @@ export interface ReturnStyles<Key extends string> {
   cx: Emotion['cx'];
 }
 
-export type StyleParams<T extends string> = string | Record<T, CSSObject | string>;
-
 /**
  * 业务应用中创建样式基础写法
  */
 export function createStyles<Props, Key extends string>(
-  cssStyleOrGetCssStyleFn:
-    | StyleParams<Key>
-    | ((theme: CreateStylesTheme, props?: Props) => StyleParams<Key>),
+  cssStyleOrGetCssStyleFn: CssStyleOrGetCssStyleFn<Props, Key>,
 ) {
   return (props?: Props): ReturnStyles<Key> => {
-    const antdToken = useAntdToken();
-    const internalStylish = useInternalStylish();
     const theme = useTheme();
 
     return useMemo(() => {
       let styles: Record<Key, string>;
 
       if (typeof cssStyleOrGetCssStyleFn === 'function') {
-        const { stylish, ...fullToken } = theme;
+        const { stylish, ...token } = theme;
         // @ts-ignore
-        styles = cssStyleOrGetCssStyleFn(
-          {
-            token: { ...antdToken, ...fullToken },
-            stylish: { ...internalStylish, ...stylish },
-          },
-          props,
-        );
+        styles = cssStyleOrGetCssStyleFn({ token, stylish, cx, css }, props);
       } else {
         // @ts-ignore
         styles = cssStyleOrGetCssStyleFn;
@@ -70,6 +63,6 @@ export function createStyles<Props, Key extends string>(
         cx,
         theme,
       };
-    }, [antdToken, theme, props]);
+    }, [theme, props]);
   };
 }
