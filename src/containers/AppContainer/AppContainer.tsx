@@ -5,12 +5,10 @@ import { DisplayTheme, ThemeMode } from '@/types';
 import { ThemeModeContext } from '@/context';
 import { ThemeProvider, ThemeProviderProps } from '../ThemeProvider';
 import { AntdProvider, type AntdProviderProps } from './AntdProvider';
-import { GlobalStyle, GlobalStyleProps } from './GloabalStyle';
 
 export interface AppContainerProps<T, S = Record<string, string>>
   extends ThemeProviderProps<T, S>,
-    AntdProviderProps,
-    GlobalStyleProps {
+    AntdProviderProps {
   /**
    * 应用的展示外观主题，只存在亮色和暗色两种
    * @default light
@@ -32,21 +30,18 @@ export interface AppContainerProps<T, S = Record<string, string>>
 }
 
 export const AppContainer: <T, S>(props: AppContainerProps<T, S>) => ReactElement | null = memo(
-  ({ children, appearance, themeMode, customToken, customStylish, globalStyle, ...props }) => {
-    return (
-      <ThemeModeContext.Provider
-        value={{
-          themeMode: themeMode || 'light',
-          appearance: appearance || 'light',
-        }}
-      >
-        <AntdProvider {...props}>
-          <ThemeProvider customToken={customToken} customStylish={customStylish}>
-            <GlobalStyle globalStyle={globalStyle} />
-            {children}
-          </ThemeProvider>
-        </AntdProvider>
-      </ThemeModeContext.Provider>
-    );
-  },
+  ({ children, appearance, themeMode, customToken, customStylish, ...props }) => (
+    <ThemeModeContext.Provider
+      value={{
+        themeMode: themeMode || 'light',
+        appearance: appearance || 'light',
+      }}
+    >
+      <AntdProvider {...props}>
+        <ThemeProvider customToken={customToken} customStylish={customStylish}>
+          {children}
+        </ThemeProvider>
+      </AntdProvider>
+    </ThemeModeContext.Provider>
+  ),
 );
