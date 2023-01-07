@@ -4,7 +4,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "antd-style": ["../src"]
+      "antd-style": ["../src/index.ts"]
     }
   }
 }

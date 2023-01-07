@@ -1,5 +1,8 @@
 import '@testing-library/jest-dom';
+
+// 关闭 antd 的 hash
 import { theme } from 'antd';
+theme.defaultConfig.hashed = false;
 
 const origError = console.error;
 
@@ -10,4 +13,14 @@ console.error = function (...msg) {
   return origError.apply(this, msg);
 };
 
-theme.defaultConfig.hashed = false;
+Object.defineProperty(window, 'matchMedia', {
+  writable: true,
+  value: jest.fn().mockImplementation((query) => ({
+    matches: false,
+    media: query,
+    onchange: null,
+    addEventListener: jest.fn(),
+    removeEventListener: jest.fn(),
+    dispatchEvent: jest.fn(),
+  })),
+});
