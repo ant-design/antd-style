@@ -62,8 +62,7 @@
     "@emotion/css": "^11",
     "@emotion/react": "^11",
     "@emotion/serialize": "^1",
-    "@emotion/styled": "^11",
-    "polished": "^4"
+    "@emotion/styled": "^11"
   },
   "devDependencies": {
     "@ant-design/icons": "^4",
@@ -96,6 +95,7 @@
     "prettier-plugin-packagejson": "^2",
     "react": "^18",
     "react-dom": "^18",
+    "react-layout-kit": "^1",
     "semantic-release": "^19",
     "semantic-release-config-gitmoji": "^1",
     "stylelint": "^14",
@@ -105,7 +105,7 @@
   },
   "peerDependencies": {
     "antd": "^5",
-    "react": ">=16.8"
+    "react": ">=18"
   },
   "publishConfig": {
     "access": "public",
