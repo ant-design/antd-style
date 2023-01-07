@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.0.0-alpha.6](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.5...v3.0.0-alpha.6) (2023-01-07)
+
+### 🐛 Bug Fixes
+
+- 修正 antd theme 配置没有导出的问题 ([a374437](https://github.com/arvinxx/antd-style/commit/a374437))
+
 # [3.0.0-alpha.5](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.4...v3.0.0-alpha.5) (2023-01-07)
 
 ### 🐛 Bug Fixes
