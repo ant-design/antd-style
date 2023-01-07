@@ -63,7 +63,7 @@ const ThemeSwitcher: FC<ThemeSwitcherProps> = memo(
       if (!themeMode || themeMode === 'auto') {
         setTimeout(() => {
           matchBrowserTheme();
-        }, 100);
+        }, 1);
       }
 
       darkThemeMatch.addEventListener('change', matchBrowserTheme);

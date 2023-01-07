@@ -9,12 +9,17 @@ import { ThemeConfig } from 'antd/es/config-provider/context';
 import { ThemeProvider } from '../ThemeProvider';
 import { AntdProvider, type AntdProviderProps } from './AntdProvider';
 
-export type GetCustomToken<T> = (theme: { token: AntdToken; appearance: ThemeAppearance }) => T;
+export type GetCustomToken<T> = (theme: {
+  token: AntdToken;
+  appearance: ThemeAppearance;
+  isDarkMode: boolean;
+}) => T;
 
 export type GetCustomStylish<S> = (theme: {
   token: FullToken;
   stylish: AntdStylish;
   appearance: ThemeAppearance;
+  isDarkMode: boolean;
 }) => S;
 
 type GetAntdTheme = (appearance: ThemeAppearance) => ThemeConfig | undefined;
@@ -47,9 +52,8 @@ const ThemeContent: <T, S>(props: ThemeContentProps<T, S>) => ReactElement | nul
 
   // 获取 自定义 token
   const customToken = useMemo(() => {
-    if (typeof customTokenOrFn === 'function') {
-      // @ts-ignore
-      return customTokenOrFn({ token, appearance });
+    if (customTokenOrFn instanceof Function) {
+      return customTokenOrFn({ token, appearance, isDarkMode });
     }
 
     return customTokenOrFn;
@@ -57,9 +61,13 @@ const ThemeContent: <T, S>(props: ThemeContentProps<T, S>) => ReactElement | nul
 
   // 获取 stylish
   const customStylish = useMemo(() => {
-    if (typeof stylishOrGetStylish === 'function') {
-      // @ts-ignore
-      return stylishOrGetStylish({ token: { ...token, ...customToken }, stylish: antdStylish });
+    if (stylishOrGetStylish instanceof Function) {
+      return stylishOrGetStylish({
+        token: { ...token, ...customToken },
+        stylish: antdStylish,
+        appearance,
+        isDarkMode,
+      });
     }
     return stylishOrGetStylish;
   }, [stylishOrGetStylish, token, customToken, antdStylish, appearance]);
