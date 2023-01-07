@@ -1,5 +1,14 @@
 # Changelog
 
+# [3.0.0-alpha.2](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.1...v3.0.0-alpha.2) (2023-01-07)
+
+### ✨ Features
+
+- AppContainer 支持亮暗模式主题切换 ([bfd9922](https://github.com/arvinxx/antd-style/commit/bfd9922))
+- useTheme 中增加 appearance 等主题状态属性 ([6ce3b7d](https://github.com/arvinxx/antd-style/commit/6ce3b7d))
+- 支持基于主题模式的风格定制 ([3f5d2cb](https://github.com/arvinxx/antd-style/commit/3f5d2cb))
+- 自定义增加一个 isDark 字段 ([ac0fb23](https://github.com/arvinxx/antd-style/commit/ac0fb23))
+
 # [3.0.0-alpha.1](https://github.com/arvinxx/antd-style/compare/v2.0.2...v3.0.0-alpha.1) (2023-01-07)
 
 ### ✨ Features
