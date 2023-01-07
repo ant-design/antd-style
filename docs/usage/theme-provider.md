@@ -38,7 +38,7 @@ export default () => {
 
 :::warning
 
-`useTheme` 只有放在 `ThemeProvider` 组件下，token 值才生效，否则是无效的，切记。
+`useTheme` 会获取上一层 `ThemeProvider` 组件中的
 
 :::
 

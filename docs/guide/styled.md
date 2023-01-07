@@ -1,5 +1,7 @@
 ---
 title: 使用 styled
+order: 5
+group: 快速上手
 ---
 
 # 使用 styled 组织样式组件

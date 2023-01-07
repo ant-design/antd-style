@@ -25,11 +25,3 @@ group:
 ## 详细介绍
 
 ## API
-
-:::warning
-
-`createStyles` 需要套在 [`ThemeProvider`](/usage/theme-provider) 组件下，导出的 theme 对象才能生效，否则是无效的。
-
-:::
-
-[//]: # '<code src="../demos/createStyles/WithoutProvider.tsx"></code>'
