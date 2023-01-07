@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ThemeProvider 注入自定义 Stylish 1`] = `
+.emotion-0 {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+<div>
+  <div
+    class="emotion-0"
+  >
+    普通文本
+  </div>
+</div>
+`;
+
+exports[`ThemeProvider 自定义 Token 1`] = `
+<div>
+  <div
+    style="color: rgb(201, 86, 223);"
+  >
+    #c956df
+  </div>
+</div>
+`;
