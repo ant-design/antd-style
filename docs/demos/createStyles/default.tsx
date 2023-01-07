@@ -1,6 +1,6 @@
-import { createStyles, css } from 'antd-style';
+import { createStyles } from 'antd-style';
 
-const useStyles = createStyles(({ token }) => ({
+const useStyles = createStyles(({ token, css }) => ({
   // 支持 css object 的写法
   container: {
     backgroundColor: token.colorBgLayout,

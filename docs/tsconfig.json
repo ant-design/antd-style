@@ -1,5 +1,5 @@
 {
-  "include": ["**/*"],
+  "include": ["demos/**/*.tsx", "demos/**/*.ts"],
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "baseUrl": ".",

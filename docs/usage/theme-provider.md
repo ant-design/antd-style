@@ -9,7 +9,7 @@ nav: 应用指南
 
 # ThemeProvider
 
-用于全局管理主题变量的容器，在该容器下的 `useTheme` 方法可获得容器中的 token 值。
+用于全局管理主题变量的容器，在该容器下的 `useTheme` 方法可获得这一层容器中的 token 值。
 
 ## 默认用法
 
