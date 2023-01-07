@@ -1,10 +1,10 @@
-import { render, renderHook } from '@testing-library/react';
-import { createStyles, css, ThemeProvider } from 'antd-style';
+import { render } from '@testing-library/react';
+import { createStyles, css } from 'antd-style';
 
 describe('createStyles', () => {
   describe('styles 对象的使用', () => {
     describe('createStyleFn 通过函数方式可以拿到 token 等信息', () => {
-      it('字符串模板的对象模式用法', async () => {
+      it('字符串模板的对象模式用法', () => {
         const useStyles = createStyles(({ token }) => ({
           container: css`
             background-color: ${token.colorBgLayout};
@@ -27,10 +27,11 @@ describe('createStyles', () => {
         const { container } = render(<App />);
 
         expect(container.firstChild).toMatchSnapshot();
+
         expect(container.firstChild).toHaveStyle({ backgroundColor: '#f5f5f5' });
       });
 
-      it.skip('TODO: 对象模式的用法，可以不包含 css，类型定义与提示正常，使用也正常', async () => {
+      it.skip('TODO: 对象模式的用法，可以不包含 css，类型定义与提示正常，使用也正常', () => {
         const useStyles = createStyles(({ token }) => ({
           container: `
         background-color: ${token.colorBgLayout};
@@ -88,7 +89,7 @@ describe('createStyles', () => {
   });
 
   describe('theme 对象使用', () => {
-    it('需要包裹 ThemeProvider 才能拿到 theme 对象', () => {
+    it('默认用法', () => {
       const useStyles = createStyles(({ token }) => ({
         container: {
           color: token.colorPrimary,
@@ -105,20 +106,10 @@ describe('createStyles', () => {
         );
       };
 
-      const { container } = render(<App />, { wrapper: ThemeProvider });
+      const { container } = render(<App />);
 
       expect(container.firstChild).toMatchSnapshot();
       expect(container.firstChild).toHaveStyle({ color: '#1677FF', background: '#f5f5f5' });
-    });
-    it('否则 theme 对象是空的', () => {
-      const useStyles = createStyles(
-        ({ token }) =>
-          css`
-            color: ${token.colorPrimary};
-          `,
-      );
-      const { result } = renderHook(useStyles);
-      expect(result.current.theme).toEqual({});
     });
   });
 });

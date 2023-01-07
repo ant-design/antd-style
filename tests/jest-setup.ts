@@ -1,4 +1,5 @@
 import '@testing-library/jest-dom';
+import { theme } from 'antd';
 
 const origError = console.error;
 
@@ -8,3 +9,5 @@ console.error = function (...msg) {
 
   return origError.apply(this, msg);
 };
+
+theme.defaultConfig.hashed = false;

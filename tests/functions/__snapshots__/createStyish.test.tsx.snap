@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`createStylish 默认快照 1`] = `
+{
+  "containerBgHover": "css-5g3hbo",
+  "containerBgL2": "css-1ho7cfh",
+  "defaultButton": "css-1d5q7n7",
+}
+`;

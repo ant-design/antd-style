@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AppContainer 局部作用域 1`] = `
-.emotion-1 .container {
+.emotion-0 .container {
   color: red;
 }
 
@@ -18,7 +18,7 @@ exports[`AppContainer 局部作用域 1`] = `
     </a>
   </div>
   <div
-    class="emotion-0 ant-app emotion-1"
+    class="ant-app emotion-0"
   >
     <div
       class="container"
@@ -39,7 +39,7 @@ exports[`AppContainer 局部作用域 1`] = `
 exports[`AppContainer 默认 1`] = `
 <div>
   <div
-    class="emotion-0 ant-app"
+    class="ant-app"
   >
     <div
       class="container"

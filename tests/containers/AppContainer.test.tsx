@@ -41,5 +41,9 @@ describe('AppContainer', () => {
     expect(nodeWithout).not.toHaveStyle('color: red;');
   });
 
-  it('注入主题', () => {});
+  describe('注入主题', () => {
+    it.skip('注入自定义 stylish', () => {
+      render(<AppContainer>App</AppContainer>);
+    });
+  });
 });
