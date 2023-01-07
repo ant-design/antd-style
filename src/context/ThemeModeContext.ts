@@ -1,12 +1,6 @@
 import { createContext } from 'react';
 
-import { ThemeAppearance, ThemeMode } from '@/types';
-
-export interface ThemeContextState {
-  appearance: ThemeAppearance;
-  themeMode: ThemeMode;
-  isDarkMode: boolean;
-}
+import { ThemeContextState } from '@/types';
 
 export const ThemeModeContext = createContext<ThemeContextState>({
   appearance: 'light',

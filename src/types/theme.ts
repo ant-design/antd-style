@@ -1,6 +1,11 @@
-import { ThemeContextState } from '@/context';
-import { ThemeAppearance } from 'antd-style/src';
 import { AliasToken } from 'antd/es/theme/interface';
+import { ThemeAppearance, ThemeMode } from './appearance';
+
+export interface ThemeContextState {
+  appearance: ThemeAppearance;
+  themeMode: ThemeMode;
+  isDarkMode: boolean;
+}
 
 export type AntdToken = AliasToken;
 
