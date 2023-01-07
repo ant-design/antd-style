@@ -1,5 +1,17 @@
 # Changelog
 
+# [3.0.0-alpha.1](https://github.com/arvinxx/antd-style/compare/v2.0.2...v3.0.0-alpha.1) (2023-01-07)
+
+### ✨ Features
+
+- 支持 useTheme 获取默认的主题变量 ([a465bf4](https://github.com/arvinxx/antd-style/commit/a465bf4))
+- 通过实际使用测试，移除 AppContainer 上的 globalStyle props ([1d3ee08](https://github.com/arvinxx/antd-style/commit/1d3ee08))
+
+### 💥 BREAKING CHANGES
+
+- useTheme 的默认返回值发生变动，默认返回 antd token 值
+- 移除 AppContainer 的 globalStyle props
+
 ## [2.0.2](https://github.com/arvinxx/antd-style/compare/v2.0.1...v2.0.2) (2023-01-06)
 
 ## [2.0.2-alpha.1](https://github.com/arvinxx/antd-style/compare/v2.0.1...v2.0.2-alpha.1) (2023-01-06)
