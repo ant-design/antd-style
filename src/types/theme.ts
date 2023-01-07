@@ -1,3 +1,4 @@
+import { ThemeContextState } from '@/context';
 import { AliasToken } from 'antd/es/theme/interface';
 
 export type AntdToken = AliasToken;
@@ -26,6 +27,6 @@ export interface AntdTheme extends AntdToken {
 
 export interface FullToken extends AntdToken, CustomToken {}
 
-export interface Theme extends FullToken {
+export interface Theme extends FullToken, ThemeContextState {
   stylish: Stylish;
 }
