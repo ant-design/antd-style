@@ -1,3 +1,4 @@
+import { ThemeConfig } from 'antd/es/config-provider/context';
 import { AliasToken } from 'antd/es/theme/interface';
 import { ThemeAppearance, ThemeMode } from './appearance';
 
@@ -30,6 +31,9 @@ export type GetCustomStylish<S> = (theme: {
   appearance: ThemeAppearance;
   isDarkMode: boolean;
 }) => S;
+
+export type GetAntdThemeConfig = (appearance: ThemeAppearance) => ThemeConfig | undefined;
+
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface CustomStylish {}
 

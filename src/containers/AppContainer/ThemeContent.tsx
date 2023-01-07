@@ -1,4 +1,4 @@
-import { GetCustomStylish, GetCustomToken, ThemeAppearance } from '@/types';
+import { GetAntdThemeConfig, GetCustomStylish, GetCustomToken } from '@/types';
 import { ReactElement, ReactNode, useMemo } from 'react';
 
 import { useThemeMode } from '@/hooks';
@@ -8,7 +8,6 @@ import { ThemeConfig } from 'antd/es/config-provider/context';
 import { ThemeProvider } from '../ThemeProvider';
 import { AntdProvider, type AntdProviderProps } from './AntdProvider';
 
-type GetAntdTheme = (appearance: ThemeAppearance) => ThemeConfig | undefined;
 export interface ThemeContentProps<T, S = Record<string, string>>
   extends Omit<AntdProviderProps, 'theme'> {
   children: ReactNode;
@@ -23,7 +22,7 @@ export interface ThemeContentProps<T, S = Record<string, string>>
   /**
    * 直接传入 antd 主题，或者传入一个函数，根据当前的主题模式返回对应的主题
    */
-  theme?: ThemeConfig | GetAntdTheme;
+  theme?: ThemeConfig | GetAntdThemeConfig;
 }
 
 const ThemeContent: <T, S>(props: ThemeContentProps<T, S>) => ReactElement | null = ({
