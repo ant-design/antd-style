@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AppContainer 局部作用域 1`] = `
+.emotion-1 .container {
+  color: red;
+}
+
+<div>
+  <div
+    class="container"
+    data-testid="without"
+    style="padding: 16px;"
+  >
+    <a
+      href=""
+    >
+      节点样式
+    </a>
+  </div>
+  <div
+    class="emotion-0 ant-app emotion-1"
+  >
+    <div
+      class="container"
+      data-testid="within"
+      style="padding: 16px;"
+    >
+      <a
+        href=""
+      >
+        节点样式
+      </a>
+    </div>
+  </div>
+  ,
+</div>
+`;
+
+exports[`AppContainer 默认 1`] = `
+<div>
+  <div
+    class="emotion-0 ant-app"
+  >
+    <div
+      class="container"
+      style="padding: 16px;"
+    >
+      <a
+        href=""
+      >
+        节点样式
+      </a>
+    </div>
+  </div>
+</div>
+`;

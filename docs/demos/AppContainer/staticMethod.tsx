@@ -3,6 +3,7 @@
  */
 import { Button, Space } from 'antd';
 import { AppContainer, message, modal, notification } from 'antd-style';
+import { Center } from 'react-layout-kit';
 
 const App = () => {
   const showMessage = () => {
@@ -13,13 +14,15 @@ const App = () => {
     modal.warning({
       title: 'This is a warning message',
       content: 'some messages...some messages...',
+      centered: true,
+      maskClosable: true,
     });
   };
 
   const showNotification = () => {
     notification.info({
-      message: `Notification topLeft`,
-      description: 'Hello, Ant Design!!',
+      message: `Notification`,
+      description: 'Hello, Ant Design Style',
     });
   };
 
@@ -34,10 +37,10 @@ const App = () => {
 
 export default () => {
   return (
-    <>
-      <AppContainer appearance={'dark'}>
+    <Center style={{ height: '100vh', background: '#f5f5f5' }}>
+      <AppContainer>
         <App />
       </AppContainer>
-    </>
+    </Center>
   );
 };
