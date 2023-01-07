@@ -1,9 +1,8 @@
 import { render, renderHook } from '@testing-library/react';
 import { theme } from 'antd';
-import { AppContainer, css, useTheme } from 'antd-style';
+import { AppContainer, css, GetCustomToken, useTheme, useThemeMode } from 'antd-style';
 import { MappingAlgorithm } from 'antd/es/config-provider/context';
 import { FC, PropsWithChildren } from 'react';
-import { GetCustomToken } from '../../src/containers/AppContainer/ThemeContent';
 
 declare module 'antd-style' {
   interface CustomToken {
@@ -149,6 +148,28 @@ describe('AppContainer', () => {
   });
 
   describe('主题切换', () => {
-    render(<AppContainer themeMode={'auto'}>App</AppContainer>);
+    beforeEach(() => {
+      Object.defineProperty(window, 'matchMedia', {
+        writable: true,
+        value: jest.fn().mockImplementation((query) => ({
+          matches: true,
+          media: query,
+          onchange: null,
+
+          addEventListener: jest.fn(),
+          removeEventListener: jest.fn(),
+          dispatchEvent: jest.fn(),
+        })),
+      });
+    });
+    it('自动模式', () => {
+      const Wrapper: FC<PropsWithChildren> = ({ children }) => (
+        <AppContainer themeMode={'auto'}>{children}</AppContainer>
+      );
+
+      const { result } = renderHook(useThemeMode, { wrapper: Wrapper });
+
+      expect(result.current.themeMode).toEqual('auto');
+    });
   });
 });
