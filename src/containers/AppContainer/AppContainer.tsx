@@ -2,13 +2,10 @@ import { memo, ReactElement, ReactNode } from 'react';
 
 import { ThemeAppearance, ThemeMode } from '@/types';
 
-import { type AntdProviderProps } from './AntdProvider';
 import ThemeContent, { ThemeContentProps } from './ThemeContent';
 import ThemeSwitcher from './ThemeSwitcher';
 
-export interface AppContainerProps<T, S = Record<string, string>>
-  extends AntdProviderProps,
-    ThemeContentProps<T, S> {
+export interface AppContainerProps<T, S = Record<string, string>> extends ThemeContentProps<T, S> {
   /**
    * 应用的展示外观主题，只存在亮色和暗色两种
    * @default light

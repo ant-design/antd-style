@@ -62,7 +62,8 @@
     "@emotion/css": "^11",
     "@emotion/react": "^11",
     "@emotion/serialize": "^1",
-    "@emotion/styled": "^11"
+    "@emotion/styled": "^11",
+    "use-merge-value": "^1"
   },
   "devDependencies": {
     "@ant-design/icons": "^4",

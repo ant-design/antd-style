@@ -17,7 +17,9 @@ export type GetCustomStylish<S> = (theme: {
   appearance: ThemeAppearance;
 }) => S;
 
-export interface ThemeContentProps<T, S = Record<string, string>> extends AntdProviderProps {
+type GetAntdTheme = (appearance: ThemeAppearance) => ThemeConfig | undefined;
+export interface ThemeContentProps<T, S = Record<string, string>>
+  extends Omit<AntdProviderProps, 'theme'> {
   children: ReactNode;
   /**
    * 自定义 Token
@@ -27,6 +29,10 @@ export interface ThemeContentProps<T, S = Record<string, string>> extends AntdPr
    * 自定义 Stylish
    */
   customStylish?: S | GetCustomStylish<S>;
+  /**
+   * 直接传入 antd 主题，或者传入一个函数，根据当前的主题模式返回对应的主题
+   */
+  theme?: ThemeConfig | GetAntdTheme;
 }
 
 const ThemeContent: <T, S>(props: ThemeContentProps<T, S>) => ReactElement | null = ({
@@ -61,20 +67,26 @@ const ThemeContent: <T, S>(props: ThemeContentProps<T, S>) => ReactElement | nul
   const antdTheme = useMemo<ThemeConfig>(() => {
     const baseAlgorithm = isDarkMode ? theme.darkAlgorithm : theme.defaultAlgorithm;
 
-    if (!themeProp) {
+    let antdTheme = themeProp as ThemeConfig | undefined;
+
+    if (typeof themeProp === 'function') {
+      antdTheme = themeProp(appearance);
+    }
+
+    if (!antdTheme) {
       return { algorithm: baseAlgorithm };
     }
 
     // 如果有 themeProp 说明是外部传入的 theme，需要对算法做一个合并处理，因此先把 themeProp 的算法规整为一个数组
-    const algoProp = !themeProp.algorithm
+    const algoProp = !antdTheme.algorithm
       ? []
-      : themeProp.algorithm instanceof Array
-      ? themeProp.algorithm
-      : [themeProp.algorithm];
+      : antdTheme.algorithm instanceof Array
+      ? antdTheme.algorithm
+      : [antdTheme.algorithm];
 
     return {
-      ...themeProp,
-      algorithm: !themeProp.algorithm ? baseAlgorithm : [baseAlgorithm, ...algoProp],
+      ...antdTheme,
+      algorithm: !antdTheme.algorithm ? baseAlgorithm : [baseAlgorithm, ...algoProp],
     };
   }, [themeProp, isDarkMode]);
 
