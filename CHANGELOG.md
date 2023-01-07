@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.0.0-alpha.3](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.2...v3.0.0-alpha.3) (2023-01-07)
+
+### 🐛 Bug Fixes
+
+- 修正 GetCustom 相关方法类型没导出的问题 ([db6727c](https://github.com/arvinxx/antd-style/commit/db6727c))
+
 # [3.0.0-alpha.2](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.1...v3.0.0-alpha.2) (2023-01-07)
 
 ### ✨ Features
