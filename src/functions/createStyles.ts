@@ -3,7 +3,7 @@ import type { Emotion } from '@emotion/css/create-instance';
 import { useMemo } from 'react';
 
 import { useTheme } from '@/hooks';
-import { AntdStylish, FullToken, Theme } from '@/types';
+import { AntdStylish, FullToken, ReturnStyleToUse, StyleDefinition, Theme } from '@/types';
 
 export interface CreateStylesTheme {
   token: FullToken;
@@ -12,37 +12,40 @@ export interface CreateStylesTheme {
   css: Emotion['css'];
 }
 
-export type StyleParams<T extends string> = string | Record<T, CSSObject | string>;
-
-export type CssStyleOrGetCssStyleFn<Props, Key extends string> =
-  | StyleParams<Key>
-  | ((theme: CreateStylesTheme, props?: Props) => StyleParams<Key>);
-
-export interface ReturnStyles<Key extends string> {
-  styles: Record<Key, string>;
+/**
+ * 最终返回 styles 对象的类型定义
+ */
+export interface ReturnStyles<Obj> {
+  styles: ReturnStyleToUse<Obj>;
   theme: Theme;
   cx: Emotion['cx'];
 }
 
 /**
+ * 创建样式的函数或者对象
+ */
+export type StyleOrGetStyleFn<P, S> =
+  | StyleDefinition<S>
+  | ((theme: CreateStylesTheme, props?: P) => StyleDefinition<S>);
+
+/**
  * 业务应用中创建样式基础写法
  */
-export function createStyles<Props, Key extends string>(
-  cssStyleOrGetCssStyleFn: CssStyleOrGetCssStyleFn<Props, Key>,
-) {
-  return (props?: Props): ReturnStyles<Key> => {
+export function createStyles<Props, Obj>(styleOrGetStyleFn: StyleOrGetStyleFn<Props, Obj>) {
+  return (props?: Props) => {
     const theme = useTheme();
 
-    return useMemo(() => {
-      let styles: Record<Key, string>;
+    // FIXME：如何收敛类型？ How to fix types?
+    // @ts-ignore
+    return useMemo<ReturnStyles<Obj>>(() => {
+      let styles;
 
-      if (typeof cssStyleOrGetCssStyleFn === 'function') {
+      if (styleOrGetStyleFn instanceof Function) {
         const { stylish, ...token } = theme;
-        // @ts-ignore
-        styles = cssStyleOrGetCssStyleFn({ token, stylish, cx, css }, props);
+
+        styles = styleOrGetStyleFn({ token, stylish, cx, css }, props);
       } else {
-        // @ts-ignore
-        styles = cssStyleOrGetCssStyleFn;
+        styles = styleOrGetStyleFn;
       }
 
       if (typeof styles === 'object') {
@@ -54,9 +57,8 @@ export function createStyles<Props, Key extends string>(
 
             return [key, value];
           }),
-        ) as Record<Key, string>;
+        );
       }
-      // 处理
 
       return {
         styles,

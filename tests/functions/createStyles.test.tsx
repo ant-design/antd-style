@@ -31,12 +31,35 @@ describe('createStyles', () => {
         expect(container.firstChild).toHaveStyle({ backgroundColor: '#f5f5f5' });
       });
 
+      it('TODO: 只返回一个 css 字符串，使用正常，类型定义也正常', () => {
+        const useStyles = createStyles(
+          // FIXME：类型定义不正常
+          // @ts-ignore
+          ({ token }) => css`
+            background-color: ${token.colorBgLayout};
+            padding: 24px;
+          `,
+        );
+
+        const App = () => {
+          const { styles } = useStyles();
+
+          return <div className={styles}>card</div>;
+        };
+
+        const { container } = render(<App />);
+
+        expect(container.firstChild).toMatchSnapshot();
+        expect(container.firstChild).toHaveStyle({ backgroundColor: '#f5f5f5' });
+      });
+
       it.skip('TODO: 对象模式的用法，可以不包含 css，类型定义与提示正常，使用也正常', () => {
         const useStyles = createStyles(({ token }) => ({
           container: `
         background-color: ${token.colorBgLayout};
         padding: 24px;
       `,
+
           card: `
         margin-top: ${token.marginLG}px;
       `,
@@ -78,6 +101,55 @@ describe('createStyles', () => {
               <div className={styles.card}>card</div>
             </div>
           );
+        };
+
+        const { container } = render(<App />);
+
+        expect(container.firstChild).toMatchSnapshot();
+        expect(container.firstChild).toHaveStyle({ backgroundColor: '#f5f5f5' });
+      });
+
+      it('css模式的写法', () => {
+        const useStyles = createStyles({
+          container: css`
+            background-color: #f5f5f5;
+            padding: 24px;
+          `,
+          card: css`
+            margin-top: 16px;
+          `,
+        });
+
+        const App = () => {
+          const { styles } = useStyles();
+          return (
+            <div className={styles.container}>
+              <div className={styles.card}>card</div>
+            </div>
+          );
+        };
+
+        const { container } = render(<App />);
+
+        expect(container.firstChild).toMatchSnapshot();
+        expect(container.firstChild).toHaveStyle({ backgroundColor: '#f5f5f5' });
+      });
+
+      it('只返回一个 css 字符串，使用正常，类型定义也正常', () => {
+        const useStyles = createStyles(
+          // FIXME：类型定义不正常
+          // @ts-ignore
+          css`
+            background-color: #f5f5f5;
+            padding: 24px;
+          `,
+        );
+
+        const App = () => {
+          const { styles } = useStyles();
+          // FIXME：类型定义不正常
+          // @ts-ignore
+          return <div className={styles}>card</div>;
         };
 
         const { container } = render(<App />);
