@@ -1,7 +1,7 @@
-import { AppContainer } from 'antd-style';
-
 import { theme } from 'antd';
+import { AppContainer } from 'antd-style';
 import { MappingAlgorithm, ThemeConfig } from 'antd/es/config-provider/context';
+
 import App from '../../../common/demo';
 
 /**
@@ -30,7 +30,7 @@ const darkThemeConfig: ThemeConfig = {
 
 export default () => (
   <AppContainer
-    themeMode={'auto'}
+    themeMode={'dark'}
     theme={(appearance) => (appearance === 'dark' ? darkThemeConfig : undefined)}
   >
     <App />
