@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.0.0-alpha.7](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.6...v3.0.0-alpha.7) (2023-01-08)
+
+### 🐛 Bug Fixes
+
+- 修正 createStyles 的类型定义，避免无法正常跳转 ([4bef457](https://github.com/arvinxx/antd-style/commit/4bef457))
+
 # [3.0.0-alpha.6](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.5...v3.0.0-alpha.6) (2023-01-07)
 
 ### 🐛 Bug Fixes
