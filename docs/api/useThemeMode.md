@@ -1,6 +1,9 @@
 ---
 title: useThemeMode
 order: 2
+group:
+  title: Hooks
+  order: 3
 ---
 
 # useThemeMode
@@ -10,7 +13,7 @@ order: 2
 ## 用法
 
 ```ts
-import ReactFlow, { useThemeMode } from 'antd-style';
+import { useThemeMode } from 'antd-style';
 
 function Theme() {
   const themeMode = useThemeMode();
@@ -23,16 +26,26 @@ function Theme() {
 }
 ```
 
-## Typescript
+## API
+
+### Typescript
 
 ```ts
-useThemeMode = () => ThemeContextState;
+useThemeMode: () => ThemeContextState;
 ```
 
-### 返回值
+### ThemeContextState
 
-| 参数       | 说明           | 类型                   | 默认值  |
-| ---------- | -------------- | ---------------------- | ------- |
-| themeMode  | 主题模式       | `dark  / light / auto` | `light` |
-| appearance | 显示外观       | `dark  / light`        | `light` |
-| isDarkMode | 是否为暗色模式 | `boolean`              | `false` |
+| 参数       | 类型                                  | 默认值  | 说明           |
+| ---------- | ------------------------------------- | ------- | -------------- |
+| themeMode  | [`ThemeMode`](#thememode)             | `light` | 主题模式       |
+| appearance | [`ThemeAppearance`](#themeappearance) | `light` | 显示外观       |
+| isDarkMode | `boolean`                             | `false` | 是否为暗色模式 |
+
+### ThemeAppearance
+
+外观模式，仅为 `dark` 或者 `light`。
+
+### ThemeMode
+
+主题模式，可以是 `dark`、`light` 或者 `auto`。

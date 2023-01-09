@@ -1,7 +1,8 @@
 ---
 title: useTheme
 order: 1
-nav: API 手册
+nav: API
+group: Hooks
 ---
 
 # useTheme
@@ -11,3 +12,33 @@ nav: API 手册
 当 `useTheme` 放在 `ThemeProvider`或 `AppContainer` 组件下使用，才可以获得动态的主题值。
 
 <code src="../demos/api/useTheme.tsx"></code>
+
+## 用法
+
+```ts
+import { useTheme } from 'antd-style';
+
+function Theme() {
+  const theme = useTheme();
+
+  useEffect(() => {
+    console.log(theme);
+  }, [theme]);
+
+  return null;
+}
+```
+
+## Typescript
+
+```ts
+useTheme = () => Theme;
+```
+
+### 返回值
+
+| 参数       | 说明           | 类型                   | 默认值  |
+| ---------- | -------------- | ---------------------- | ------- |
+| themeMode  | 主题模式       | `dark  / light / auto` | `light` |
+| appearance | 显示外观       | `dark  / light`        | `light` |
+| isDarkMode | 是否为暗色模式 | `boolean`              | `false` |

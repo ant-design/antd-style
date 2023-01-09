@@ -1,3 +1,6 @@
+/**
+ * compact: true
+ */
 import { Divider, Space } from 'antd';
 import { AppContainer, ThemeProvider, useTheme } from 'antd-style';
 
@@ -32,19 +35,23 @@ const App = () => {
 
 export default () => {
   return (
-    <>
-      AppContainer 包裹
-      <AppContainer>
-        <App />
+    <div style={{ background: '#f1f2f5', padding: 24 }}>
+      <AppContainer appearance={'dark'}>
+        <div style={{ background: '#000', padding: '24px 12px', borderRadius: 12 }}>
+          AppContainer & 暗色模式
+          <div>
+            <App />
+          </div>
+        </div>
       </AppContainer>
       <Divider />
-      <div>ThemeProvider 包裹</div>
-      <ThemeProvider>
+      <div>ThemeProvider & token 值</div>
+      <ThemeProvider theme={{ token: { colorPrimary: '#60ff68' } }}>
         <App />
       </ThemeProvider>
       <Divider />
-      <div>未包裹</div>
+      <div>未包裹，使用默认值</div>
       <App />
-    </>
+    </div>
   );
 };
