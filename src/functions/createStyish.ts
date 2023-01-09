@@ -1,4 +1,5 @@
-import { createStyles, ReturnStyleToUse, StyleOrGetStyleFn } from './createStyles';
+import { ReturnStyleToUse } from '@/types';
+import { createStyles, StyleOrGetStyleFn } from './createStyles';
 
 /**
  * 业务应用中创建复合通用样式的进阶
