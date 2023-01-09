@@ -1,5 +1,24 @@
 # Changelog
 
+# [3.0.0-alpha.9](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.8...v3.0.0-alpha.9) (2023-01-09)
+
+### ♻ Code Refactoring
+
+- 移除暴露的静态方法，通过回调接口实现实例的转发 ([9b9e340](https://github.com/arvinxx/antd-style/commit/9b9e340))
+
+### ✨ Features
+
+- 为 ThemeProvider 增加主题切换的能力 ([e15668a](https://github.com/arvinxx/antd-style/commit/e15668a))
+- 为 ThemeProvider 补齐主题切换的能力 ([52b68d5](https://github.com/arvinxx/antd-style/commit/52b68d5))
+
+### 🐛 Bug Fixes
+
+- 修正 theme props 类型定义失效的问题 ([2c3749c](https://github.com/arvinxx/antd-style/commit/2c3749c))
+
+### 💥 BREAKING CHANGES
+
+- 移除直接暴露的静态实例
+
 # [3.0.0-alpha.8](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.7...v3.0.0-alpha.8) (2023-01-09)
 
 ### 🐛 Bug Fixes
