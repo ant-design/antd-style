@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.0.0-alpha.8](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.7...v3.0.0-alpha.8) (2023-01-09)
+
+### 🐛 Bug Fixes
+
+- 修正 withTheme 丢失的问题 ([c032827](https://github.com/arvinxx/antd-style/commit/c032827))
+
 # [3.0.0-alpha.7](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.6...v3.0.0-alpha.7) (2023-01-08)
 
 ### 🐛 Bug Fixes
