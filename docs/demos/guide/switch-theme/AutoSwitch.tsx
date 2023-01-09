@@ -1,5 +1,5 @@
 /**
- * iframe: 360
+ * iframe: 600
  */
 import { AppContainer } from 'antd-style';
 

@@ -1,7 +1,7 @@
 ---
 title: 主题切换
 group: 快速上手
-order: 3
+order: 2
 ---
 
 # 主题切换
@@ -49,19 +49,4 @@ antd v5 的 ConfigProvider 提供了 theme 配置，可以传入自定义的 the
 
 ## API
 
-由于 AppContainer 上包含了诸多 API，在这里只呈现和主题相关的 props
-
-| name               | type                              | default | description                                                                             |
-| ------------------ | --------------------------------- | ------- | --------------------------------------------------------------------------------------- |
-| appearance         | `ThemeAppearance`                 | `light` | 应用的展示外观主题，只存在亮色和暗色两种                                                |
-| defaultAppearance  | `ThemeAppearance`                 | `-`     |                                                                                         |
-| onAppearanceChange | `(theme: ThemeAppearance )=>void` | `-`     |                                                                                         |
-| themeMode          | `ThemeMode`                       | `light` | 主题的展示模式，有三种配置：跟随系统、亮色、暗色 。默认不开启自动模式，需要手动进行配置 |
-
-`ThemeAppearance` 和 `ThemeMode` 的类型如下：
-
-```ts
-type ThemeAppearance = 'light' | 'dark';
-
-type ThemeMode = 'auto' | 'light' | 'dark';
-```
+与主题切换相关的 API 查阅：[ThemeProvider](/api/theme-provider#themeprovider-api)
