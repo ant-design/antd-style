@@ -12,9 +12,9 @@ export default () => (
     style={{ padding: 40, background: '#fafafa' }}
     size={24}
   >
-    <ThemeProvider>
+    <ThemeProvider theme={{ token: { colorPrimary: '#363eba' } }}>
       <App title={'包裹 ThemeProvider'} tokenName={'colorPrimary'} />
     </ThemeProvider>
-    <App title={'未包裹 ThemeProvider'} tokenName={'colorPrimary'} />
+    <App title={'未包裹 ThemeProvider 会显示默认值'} tokenName={'colorPrimary'} />
   </Space>
 );

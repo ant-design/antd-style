@@ -1,8 +1,7 @@
 ---
 title: 主题切换
-group:
-  title: 动态主题
-  order: 3
+group: 快速上手
+order: 3
 ---
 
 # 主题切换
@@ -16,7 +15,7 @@ Ant Design V5 中，基于 Css in Js 的能力我们实现了更加优雅的运�
 
 ## 1. 亮暗色主题切换
 
-通过在容器组件 [AppContainer](/usage/app-container) 上修改 `apperance` 这个 props，既可非常简单地实现主题切换，那这是也是动态主题最简单的使用方式。
+通过在容器组件 [AppContainer](/usage/app-container) 或者 [ThemeProvider](/usage/theme-provider) 上修改 `apperance` 这个 props，既可非常简单地实现主题切换，那这是也是动态主题最简单的使用方式。
 
 <code src="../demos/guide/switch-theme/default.tsx"></code>
 

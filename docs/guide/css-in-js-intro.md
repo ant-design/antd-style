@@ -17,11 +17,11 @@ group: 基础知识
 
 ## 常见写法
 
-我们来看看在 CSS in JS 的世界中，目前总共有的 4 种样式书写的方式。我们先不对写法做任何评价，大家可以先了解一下主流的写法方案，有一些自己的主观感受。
+我们来看看在 CSS in JS 的世界中，目前总共有的 4 种样式书写方式。我们先不对这些写法做任何评价，大家先了解一下一些主流的方案，对后续的介绍会更有体感。
 
 ### 方式 1. styled
 
-`styled` 的写法由 styled-component 首创，emotion 后续在 `@emotion/styled`也做了跟进。因此对于主流 cssinjs 样式库，都支持这种写法。甚至 styled-component 与 emotion 两个包互切基本上都不会有问题。
+`styled` 的写法由 [styled-components](https://styled-components.com/) 首创，写法如下：
 
 ```tsx | pure
 import styled from 'styled-component';
@@ -42,9 +42,11 @@ const App: FC = ({ list }) => {
 };
 ```
 
+后续 emotion 在 `@emotion/styled`也做了跟进，因此主流 CSSinJS 库基本都支持这种写法。我们实测基于 styled 这种写法，将 `styled-component` 与 `@emotion/react` 两个包互切，样式没有任何影响，且性能相差无几。
+
 ### 方式 2. `css` 搭配 className
 
-第二种使用方式则由 emotion 提出，核心就是 `css` 方法。
+第二种使用方式则由 emotion 提出，核心是 `css` 方法。
 
 ```tsx | pure
 import { css } from '@emotion/css';
@@ -78,10 +80,10 @@ const objCls = css({
   borderRadius: 2,
 });
 
-// stringCls 与 objCls 等效
+// stringCls 与 objCls 等效 -> css-xxx
 ```
 
-如果要达到与 styled 一致的动态效果，需要将 `css` 放入函数中执行。
+如果要使用与 styled 一致的动态效果，需要将 `css` 放入函数中执行，进而得到动态性。
 
 ```tsx | pure
 import { css } from '@emotion/css';
@@ -107,7 +109,7 @@ const App: FC = ({ list }) => {
 
 ### 方式 3. `css` props
 
-在 `@emotion/react` 中，还额外提供了 `css` props 的写法
+在 `@emotion/react` 中还额外提供了 `css` props 的写法。这是第三种方式，也是 emotion 的前维护者 Sam Magura 在业务中使用的方式（详见：[Why We're Breaking Up with CSS-in-JS](https://dev.to/srmagura/why-were-breaking-up-wiht-css-in-js-4g9b)）。
 
 ```tsx | pure
 /** @jsx jsx */
@@ -117,7 +119,6 @@ const App: FC = ({ list }) => {
   const { token } = theme.useToken();
 
   return (
-    // 引用组件
     <List
       dataSource={list}
       // 直接书写 css props

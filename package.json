@@ -1,10 +1,15 @@
 {
   "name": "antd-style",
   "version": "3.0.0-alpha.9",
-  "description": "a css-in-js application solution combine emotion with antd v5 token system",
+  "description": "a css-in-js solution for application combine with antd v5 token system and emotion",
   "keywords": [
-    "npm",
-    "template"
+    "css-in-js",
+    "cssinjs",
+    "emtion",
+    "token",
+    "design token",
+    "token-system",
+    "antd"
   ],
   "homepage": "https://github.com/arvinxx/antd-style",
   "bugs": {
@@ -67,6 +72,7 @@
   },
   "devDependencies": {
     "@ant-design/icons": "^4",
+    "@ant-design/pro-components": "^2",
     "@commitlint/cli": "^17",
     "@emotion/jest": "^11",
     "@testing-library/jest-dom": "^5",
@@ -78,14 +84,13 @@
     "@umijs/lint": "^4",
     "@umijs/test": "^4",
     "antd": "^5",
+    "classnames": "^2",
     "commitlint": "^17",
     "commitlint-config-gitmoji": "^2",
     "concurrently": "^7",
     "cross-env": "^7",
     "dumi": "^2",
     "eslint": "^8",
-    "eslint-import-resolver-alias": "^1.1.2",
-    "eslint-import-resolver-typescript": "^2.2.1",
     "father": "^4",
     "husky": "^8",
     "jest": "^29",

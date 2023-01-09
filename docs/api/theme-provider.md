@@ -4,12 +4,16 @@ order: 1
 group:
   title: 容器组件
   order: 1
-nav: 应用指南
 ---
 
 # ThemeProvider
 
-用于全局管理主题变量的容器，在该容器下的 `useTheme` 方法可获得这一层容器中的 token 值。
+用于全局管理主题变量的容器，该组件在封装 `ConfigProvider`
+基础上，提供了一键切换亮暗色主题、自定义主题、应用级作用域样式的统一入口。同时在该容器下的 `useTheme` 方法可获得这一层容器中的
+token 值。
+
+1. 提供适配主题的 antd 静态方法对象；
+2. 提供系统主题管理与自适应的能力；
 
 ## 默认用法
 
@@ -101,7 +105,12 @@ export default () => (
 
 ### ThemeProvider API
 
-| 名称        | 默认值      | 描述                                                                                                     |
-| ----------- | ----------- | -------------------------------------------------------------------------------------------------------- |
-| customToken | `undefined` | 自定义 token， 可在 antd v5 token 规范基础上扩展和新增自己需要的 token                                   |
-| customTheme | `undefined` | 自定义主题变量， 注入后可以在 `useTheme` 中获取一些 token 以外的用在主题场景的信息，例如 `isDarkMode` 等 |
+| 名称               | 默认值                             | 描述                                                                                                     |
+| ------------------ | ---------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| customToken        | `undefined`                        | 自定义 token， 可在 antd v5 token 规范基础上扩展和新增自己需要的 token                                   |
+| customTheme        | `undefined`                        | 自定义主题变量， 注入后可以在 `useTheme` 中获取一些 token 以外的用在主题场景的信息，例如 `isDarkMode` 等 |
+| appearance         | `light`                            | 应用的展示外观主题，只存在亮色和暗色两种                                                                 |
+| defaultAppearance  |                                    |                                                                                                          |
+| onAppearanceChange | (appearance:ThemeAppearance)=>void | 外观主题的回调                                                                                           |
+| themeMode          | `light`                            | 主题的展示模式，有三种配置：跟随系统、亮色、暗色 默认不开启自动模式，需要手动进行配置                    |
+| defaultThemeMode   | `n/a`                              |                                                                                                          |

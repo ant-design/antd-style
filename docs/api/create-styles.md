@@ -14,12 +14,6 @@ group:
 这是第一推荐的使用方式。应用样式书写，或者对基础组件做样式覆写，都可以默认采用这种写法。
 :::
 
-## 典型示例
-
-一个 demo 胜千言，看懂了这个 demo 就会使用 `createStyles` 方法了。
-
-<code src="../demos/createStyles/default.tsx"></code>
-
 ## 详细介绍
 
 `createStyles` 针对不同的使用场景，提供了若干种写法，满足研发诉求，并提升研发体验。

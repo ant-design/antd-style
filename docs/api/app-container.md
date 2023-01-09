@@ -10,16 +10,14 @@ demo:
 
 用于包裹应用的实例对象，基于 antd 的 [`App`](https://ant.design/components/app-cn) 组件 和 [`ThemeProvider`](/usage/theme-provider) 进行封装。
 
-该组件提供一键切换亮暗色主题、自定义主题、应用级作用域样式的统一入口。
+因此该组件提供一键切换亮暗色主题、自定义主题、应用级作用域样式的统一入口。
 
 ## 使用说明
 
-AppContainer 容器组件从应用级消费场景出发，提供了四大功能：
+AppContainer 容器组件从应用级消费场景出发，在 ThemeProvider 基础上额外提供了两大功能：
 
 1. 基础样式重置；
-2. 消费 antd 对象静态方法；
-3. 系统主题响应；
-4. 注入作用域级别的样式；
+2. 注入作用域级别的样式；
 
 ### 1. 基础样式重置
 
@@ -40,7 +38,7 @@ AppContainer 容器组件从应用级消费场景出发，提供了四大功能�
 
 AppContainer 默认集成亮暗色主题切换能力，通过 `appearance` props 即可快速完成亮暗色的主题切换。如需详细了解 `antd-style` 的主题切换能力，可以参阅 [主题切换](/guide/switch-theme) 这一部分。
 
-<code src="../demos/AppContainer/SwitchTheme/SwitchTheme.tsx"></code>
+<code src="../demos/AppContainer/SwitchTheme.tsx"></code>
 
 ### 4. 添加容器作用于样式
 
@@ -61,7 +59,8 @@ AppContainer 默认集成亮暗色主题切换能力，通过 `appearance` props
 
 ThemeProvider 本质上是一个 React Context 的数据容器，用于为子级应用提供主题消费的相关数据，因此：
 
-- 该组件本身不具有主题切换的能力，需要配合外层组件进行使用；
+- 集成了亮暗色主题切换的基础状态；
+- 提供 antd 单一实例的静态对象消费方法（该静态方法能响应主题）；
 - 该组件不具有真实的 DOM 节点，只有虚拟节点，因此无法通过节点样式来限制自定义样式的范围；
 
 ### AppContainer
@@ -69,15 +68,12 @@ ThemeProvider 本质上是一个 React Context 的数据容器，用于为子级
 AppContainer 在定位上，期望能作为应用的根节点的角色，因此：
 
 - 基于 antd `<App />` 组件封装，有真实的 DOM 节点，可以把样式覆盖范围扩展到到不在 antd 组件内部的原生节点（例如 `a` 节点）；
-- 集成了亮暗色主题切换的基础状态；
-- 提供 antd 单一实例的静态对象消费方法（该静态方法能响应主题）；
+- 重置基础样式；
 
 ## AppContainer API
 
-| name              | type             | optional | default | description                                                                           |
-| ----------------- | ---------------- | -------- | ------- | ------------------------------------------------------------------------------------- |
-| appearance        | `light` / `dark` | `true`   | `light` | 应用的展示外观主题，只存在亮色和暗色两种                                              |
-| defaultAppearance | `light` / `dark` | `true`   |         |                                                                                       |
-| themeMode         |                  | `true`   | `light` | 主题的展示模式，有三种配置：跟随系统、亮色、暗色 默认不开启自动模式，需要手动进行配置 |
-| defaultThemeMode  |                  | `true`   | `n/a`   |                                                                                       |
-| className         | string           | `true`   | `n/a`   |                                                                                       |
+在 [ThemeProvider](/api/theme-provider#themeprovider-api) 的 API 上扩充。
+
+| name      | type   | default | description |
+| --------- | ------ | ------- | ----------- |
+| className | string | `n/a`   |             |

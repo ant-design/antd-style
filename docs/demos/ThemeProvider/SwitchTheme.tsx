@@ -1,22 +1,22 @@
 /**
  * compact: true
  */
-import { AppContainer } from 'antd-style';
+import { ThemeProvider } from 'antd-style';
 import { Flexbox } from 'react-layout-kit';
-import App from '../../common/demo';
+import App from '../common/demo';
 
 export default () => {
   return (
     <Flexbox horizontal>
       <Flexbox flex={1}>
-        <AppContainer appearance={'light'}>
+        <ThemeProvider appearance={'light'}>
           <App />
-        </AppContainer>
+        </ThemeProvider>
       </Flexbox>
       <Flexbox flex={1}>
-        <AppContainer appearance={'dark'}>
+        <ThemeProvider appearance={'dark'}>
           <App />
-        </AppContainer>
+        </ThemeProvider>
       </Flexbox>
     </Flexbox>
   );

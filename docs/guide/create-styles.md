@@ -1,6 +1,6 @@
 ---
-title: 使用 createStyles
-order: 2
+title: 样式创建
+order: 1
 group:
   title: 快速上手
   order: 0
@@ -8,27 +8,24 @@ group:
 
 # 使用 createStyles 类名组织样式
 
-使用 `createStyles` 方法可以适用类名来组织样式，它更加接近 CSS Modules 的写法。
+antd-style 提供的核心 api 就是使用 `createStyles` 方法可以适用类名来组织样式，它更加接近 CSS Modules 的写法。
 
-## 基础使用
+:::success{title=默认推荐}
+这是 antd-style 第一推荐的使用方式。应用样式书写或者对基础组件做样式覆写，都可以使用这种写法。
+:::
 
-```ts
-import { createStyles, css } from 'antd-style';
+## 典型示例
 
-const useStyles = createStyles(
-  () => css`
-    background: pink;
-    padding: 24px;
-  `,
-);
-```
+一个包含基础用法的 demo 示例，看懂了这个 demo 就会使用 `createStyles` 方法了。
 
-## 结合 antd token 使用
+<code src="../demos/createStyles/default.tsx"></code>
+
+## 结合自定义 token 使用
 
 ```tsx | pure
-import { createStyles, css } from 'antd-style';
+import { createStyles } from 'antd-style';
 
-const useStyles = createStyles(({ token }) => ({
+const useStyles = createStyles(({ token, css }) => ({
   container: css`
     background-color: ${token.colorBgLayout};
     padding: 24px;
@@ -36,7 +33,7 @@ const useStyles = createStyles(({ token }) => ({
 }));
 
 const App = () => {
-  const styles = useStyles();
+  const { styles } = useStyles();
 
   return (
     <div className={styles.container}>
