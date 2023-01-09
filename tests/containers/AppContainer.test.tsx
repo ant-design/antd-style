@@ -134,7 +134,7 @@ describe('AppContainer', () => {
 
       const { result: dark } = renderHook(useTheme, { wrapper: Darker });
       expect(dark.current.customColor).toEqual('#000');
-      expect(dark.current.customBrandColor).toEqual('#1677ff');
+      expect(dark.current.customBrandColor).toEqual('#1668dc');
     });
 
     it('注入自定义 stylish', () => {

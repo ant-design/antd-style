@@ -1,11 +1,12 @@
-import { memo, ReactElement, ReactNode } from 'react';
+import { App } from 'antd';
+import { memo, ReactElement } from 'react';
 
 import { ThemeAppearance, ThemeMode } from '@/types';
 
-import ThemeContent, { ThemeContentProps } from './ThemeContent';
+import { ThemeProvider, ThemeProviderProps } from '../ThemeProvider';
 import ThemeSwitcher from './ThemeSwitcher';
 
-export interface AppContainerProps<T, S = Record<string, string>> extends ThemeContentProps<T, S> {
+export interface AppContainerProps<T, S = Record<string, string>> extends ThemeProviderProps<T, S> {
   /**
    * 应用的展示外观主题，只存在亮色和暗色两种
    * @default light
@@ -20,10 +21,7 @@ export interface AppContainerProps<T, S = Record<string, string>> extends ThemeC
    */
   themeMode?: ThemeMode;
 
-  children: ReactNode;
-
   className?: string;
-  prefixCls?: string;
 }
 
 export const AppContainer: <T, S>(props: AppContainerProps<T, S>) => ReactElement | null = memo(
@@ -35,6 +33,7 @@ export const AppContainer: <T, S>(props: AppContainerProps<T, S>) => ReactElemen
     themeMode,
     customToken,
     customStylish,
+    className,
     ...props
   }) => (
     <ThemeSwitcher
@@ -43,9 +42,9 @@ export const AppContainer: <T, S>(props: AppContainerProps<T, S>) => ReactElemen
       appearance={appearance}
       onAppearanceChange={onAppearanceChange}
     >
-      <ThemeContent customStylish={customStylish} customToken={customToken} {...props}>
-        {children}
-      </ThemeContent>
+      <ThemeProvider customStylish={customStylish} customToken={customToken} {...props}>
+        <App className={className}>{children}</App>
+      </ThemeProvider>
     </ThemeSwitcher>
   ),
 );
