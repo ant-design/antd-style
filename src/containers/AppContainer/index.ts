@@ -1,1 +1,0 @@
-export { AppContainer } from './AppContainer';
