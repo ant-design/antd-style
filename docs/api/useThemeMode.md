@@ -5,12 +5,34 @@ order: 2
 
 # useThemeMode
 
-可以获取到 `AppContainer` 下的主题外观模式。
+可以获取到 `AppContainer` 或者 `ThemeProvider` 下的主题外观模式。
 
-:::warning
+## 用法
 
-`useThemeMode` 只有放在 `AppContainer` 组件下值才有效，否则会抛出
+```ts
+import ReactFlow, { useThemeMode } from 'antd-style';
 
-`你可能没有使用 <AppContainer /> 组件，请确保在组件顶层包裹 AppContainer 组件后再使用该 hooks.` 的错误。
+function Theme() {
+  const themeMode = useThemeMode();
 
-:::
+  useEffect(() => {
+    console.log(themeMode);
+  }, [themeMode]);
+
+  return null;
+}
+```
+
+## Typescript
+
+```ts
+useThemeMode = () => ThemeContextState;
+```
+
+### 返回值
+
+| 参数       | 说明           | 类型                   | 默认值  |
+| ---------- | -------------- | ---------------------- | ------- |
+| themeMode  | 主题模式       | `dark  / light / auto` | `light` |
+| appearance | 显示外观       | `dark  / light`        | `light` |
+| isDarkMode | 是否为暗色模式 | `boolean`              | `false` |

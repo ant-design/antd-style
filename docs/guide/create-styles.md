@@ -1,7 +1,9 @@
 ---
 title: 使用 createStyles
 order: 2
-group: 快速上手
+group:
+  title: 快速上手
+  order: 0
 ---
 
 # 使用 createStyles 类名组织样式

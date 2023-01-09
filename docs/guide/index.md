@@ -5,7 +5,7 @@ nav:
   title: 快速上手
   order: 0
 group:
-  title: 快速上手
+  title: 基础知识
   order: 0
 ---
 
@@ -17,5 +17,5 @@ group:
 
 - Ant Design Token System：
 - 自定义主题：
-- 收敛而确定的用法：与 Css Modules 基本一致的
+- 应用样式写法的最佳实践：与 Css Modules 基本一致的
 - 超强扩展性：
