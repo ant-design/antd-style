@@ -1,5 +1,7 @@
 # Changelog
 
+# [3.0.0-alpha.10](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.9...v3.0.0-alpha.10) (2023-01-10)
+
 # [3.0.0-alpha.9](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.8...v3.0.0-alpha.9) (2023-01-09)
 
 ### ♻ Code Refactoring
