@@ -6,11 +6,17 @@ import { CSSObject } from '@emotion/css';
  */
 export type StyleDefinition<StyleObj> = StyleObj extends string
   ? string
-  : Record<keyof StyleObj, CSSObject | string>;
+  : {
+      [Key in keyof StyleObj]: CSSObject | string;
+    };
 
 /**
  * 根据用户返回的样式对象，返回一个可以给用户使用的
  * 譬如用户输入为 { a: css`color: red;`, b: { color: 'red' }
  * 输出的类型泛型为 { a:string; b:string }
  */
-export type ReturnStyleToUse<T> = T extends Record<infer R, any> ? Record<R, string> : string;
+export type ReturnStyleToUse<T> = T extends string
+  ? string
+  : {
+      [Key in keyof T]: string;
+    };

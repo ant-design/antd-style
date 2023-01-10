@@ -29,17 +29,18 @@ export type StyleOrGetStyleFn<Input, P> = StyleDefinition<Input> | GetStyleFn<In
 // 获取样式
 export type GetStyleFn<Input, P> = (theme: CreateStylesTheme, props?: P) => StyleDefinition<Input>;
 
-export type UseStyleS<Input, P> = (props?: P) => ReturnStyles<Input>;
+export type UseStyleHook<Input, P> = (props?: P) => ReturnStyles<Input>;
 
 interface CreateStylesFn {
-  <Props, Input>(style: StyleDefinition<Input>): UseStyleS<Input, Props>;
-  <Props, Input>(getCssStyleFn: GetStyleFn<Input, Props>): UseStyleS<Input, Props>;
+  <Props, Input>(style: StyleDefinition<Input>): UseStyleHook<Input, Props>;
+  <Props, Input>(getCssStyleFn: GetStyleFn<Input, Props>): UseStyleHook<Input, Props>;
 }
+
 /**
  * 业务应用中创建样式基础写法
  */
 export const createStyles: CreateStylesFn =
-  <Input, P>(styleOrGetStyleFn: StyleOrGetStyleFn<Input, P>) =>
+  <P, Input>(styleOrGetStyleFn: StyleOrGetStyleFn<Input, P>) =>
   (props?: P): ReturnStyles<Input> => {
     const theme = useTheme();
 
