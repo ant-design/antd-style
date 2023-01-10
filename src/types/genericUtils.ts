@@ -1,13 +1,15 @@
 import { CSSObject } from '@emotion/css';
 
+type CSSParams<T> = T extends string ? string : CSSObject;
+
 /**
  * 给用户提供类型定义的返回签名
  * 用户可以使用  key: css` color:red `，或者 key :{ color : 'red' }，都能正常提供类型定义
  */
-export type StyleDefinition<StyleObj> = StyleObj extends string
+export type StyleDefinition<Style> = Style extends string
   ? string
   : {
-      [Key in keyof StyleObj]: StyleObj[Key] extends string ? string : CSSObject;
+      [Key in keyof Style]: CSSParams<Style[Key]>;
     };
 
 /**
