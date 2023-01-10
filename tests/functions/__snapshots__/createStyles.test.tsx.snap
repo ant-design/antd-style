@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`createStyles styles 对象的使用 createStyleFn 通过函数方式可以拿到 token 等信息 TODO: 只返回一个 css 字符串，使用正常，类型定义也正常 1`] = `
+exports[`createStyles styles 对象的使用 createStyleFn 通过函数方式可以拿到 token 等信息 只返回一个 css 字符串，使用正常，类型定义也正常 1`] = `
 .emotion-0 {
-  background-color: #f5f5f5;
+  background-color: #ffffff;
   padding: 24px;
 }
 
