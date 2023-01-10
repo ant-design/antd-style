@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.0.0-alpha.12](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.11...v3.0.0-alpha.12) (2023-01-10)
+
+### 🐛 Bug Fixes
+
+- 尝试修正类型定义问题 ([207019f](https://github.com/arvinxx/antd-style/commit/207019f))
+
 # [3.0.0-alpha.11](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.10...v3.0.0-alpha.11) (2023-01-10)
 
 ### ✨ Features
