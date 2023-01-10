@@ -1,10 +1,15 @@
 {
   "include": ["**/*.tsx", "**/*.ts"],
-  "extends": "../../tsconfig.json",
   "compilerOptions": {
+    "strict": true,
+    "declaration": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "jsx": "react-jsx",
+    "lib": ["DOM", "ESNext"],
     "baseUrl": ".",
     "paths": {
-      "antd-style": ["../../src"]
+      "antd-style": ["../../es"]
     }
   }
 }
