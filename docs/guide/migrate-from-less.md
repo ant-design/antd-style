@@ -10,88 +10,7 @@ createStyle 可以非常简单地创建和书写样式代码，且能够获得�
 
 以 Ant Design Pro 中的 HeaderSearch 为例，和样式相关的核心代码如下：
 
-```tsx | pure
-// index.tsx
-import { SearchOutlined } from '@ant-design/icons';
-import { AutoComplete, Input, InputRef } from 'antd';
-import { FC, useRef, useState } from 'react';
-
-import classNames from 'classnames';
-
-import styles from './index.less';
-
-const HeaderSearch: FC = () => {
-  const [searchMode, setSearchMode] = useState(false);
-
-  const inputRef = useRef<InputRef | null>(null);
-
-  const inputClass = classNames(styles.input, searchMode ? styles.show : '');
-
-  return (
-    <div className={styles.container}>
-      <div
-        className={styles.headerSearch}
-        onClick={() => {
-          setSearchMode(true);
-          inputRef.current?.focus();
-        }}
-      >
-        <SearchOutlined
-          key="Icon"
-          style={{
-            cursor: 'pointer',
-          }}
-        />
-        <AutoComplete key="AutoComplete" className={inputClass}>
-          <Input
-            ref={inputRef}
-            size="small"
-            onBlur={() => {
-              setSearchMode(false);
-            }}
-          />
-        </AutoComplete>
-      </div>
-    </div>
-  );
-};
-
-export default HeaderSearch;
-```
-
-相应的 less 文件为：
-
-```less
-// index.less
-.headerSearch {
-  display: inline-flex;
-  align-items: center;
-
-  .input {
-    width: 0;
-    min-width: 0;
-    overflow: hidden;
-    background: transparent;
-    border-radius: 0;
-    transition: width 0.3s, margin-left 0.3s;
-
-    :global(.ant-select-selection) {
-      background: transparent;
-    }
-
-    input {
-      box-shadow: none !important;
-    }
-
-    &.show {
-      width: 210px;
-      margin-left: 8px;
-    }
-  }
-}
-```
-
-[//]: # '<code src="../demos/migration/LessMode"></code>'
+<code src="../demos/migration/LessMode"></code>
 
 ## 替换步骤
 
@@ -115,9 +34,7 @@ const Login: React.FC = () => {
 
 ### 2. 替换样式代码
 
-借助一些工具，我们可以非常高效地完成代码的替换：
-
-将样式代码从 less 语法改为 createStyle 语法，首先重命名 `index.less` 为 `style.ts`，然后在顶部添加
+将样式代码从 less 语法改为 createStyles 语法，首先重命名 `index.less` 为 `style.ts`，然后在顶部添加
 
 ```diff
 + import { createStyles } from 'antd-style';
@@ -127,9 +44,9 @@ const Login: React.FC = () => {
 
 接下来使用一些工具，可以帮助我们快速将 css 转成 CSS Object，例如：
 
-- https://transform.tools/css-to-js
-- https://staxmanade.com/CssToReact/
-- VSCode 插件：https://marketplace.visualstudio.com/items?itemName=rishabh-rathod.css-to-js&ssr=false#qna
+- https://transform.tools/css-to-js ：Transform 的 css to JS 工具，嵌套可以正常处理，但是转换后会保留 '.' 前缀，仍然需要手动处理掉；
+- https://staxmanade.com/CssToReact/ ： 这个可以直接直接转换成需要的目标样式，但似乎对 css 嵌套的支持不太理想；
+- https://marketplace.visualstudio.com/items?itemName=rishabh-rathod.css-to-js&ssr=false#qna ：可以一键转换的 VSCode 插件，但对 less 变量兼容性不好；
 
 ```ts
 // style.ts
@@ -153,7 +70,6 @@ export default createStyles(() => ({
       background: 'transparent',
       borderRadius: '0',
       transition: 'width 0.3s, margin-left 0.3s',
-      ':global(.ant-select-selection)': { background: 'transparent' },
       input: { boxShadow: 'none !important' },
       '&.show': { width: '210px', marginLeft: '8px' },
     },
@@ -185,7 +101,6 @@ export default createStyles(() => ({
     background: 'transparent',
     borderRadius: '0',
     transition: 'width 0.3s, margin-left 0.3s',
-    ':global(.ant-select-selection)': { background: 'transparent' },
     input: { boxShadow: 'none !important' },
   },
   show: { width: '210px', marginLeft: '8px' },

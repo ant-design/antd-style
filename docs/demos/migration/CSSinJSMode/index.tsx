@@ -3,14 +3,15 @@
  */
 import { SearchOutlined } from '@ant-design/icons';
 import { AutoComplete, Input, InputRef } from 'antd';
+import classNames from 'classnames';
 import React, { useRef, useState } from 'react';
 
-import classNames from 'classnames';
 import useStyles from './style';
 
 const HeaderSearch: React.FC = () => {
-  const [searchMode, setSearchMode] = useState(false);
   const { styles } = useStyles();
+
+  const [searchMode, setSearchMode] = useState(false);
 
   const inputRef = useRef<InputRef | null>(null);
 

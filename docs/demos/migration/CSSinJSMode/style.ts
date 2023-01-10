@@ -19,7 +19,6 @@ export default createStyles(({ token }) => ({
     background: 'transparent',
     borderRadius: '0',
     transition: 'width 0.3s, margin-left 0.3s',
-    ':global(.ant-select-selection)': { background: 'transparent' },
     input: { boxShadow: 'none !important' },
   },
   show: { width: '210px', marginLeft: '8px' },

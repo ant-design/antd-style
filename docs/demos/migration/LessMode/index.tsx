@@ -1,16 +1,13 @@
 /**
- * iframe: true
+ * iframe: 200
  */
 import { SearchOutlined } from '@ant-design/icons';
 import { AutoComplete, Input, InputRef } from 'antd';
+import classNames from 'classnames';
 import { FC, useRef, useState } from 'react';
 
-import classNames from 'classnames';
-
 // @ts-ignore
-import styles from './index.less';
-
-console.log(styles);
+import styles from './index.module.less';
 
 const HeaderSearch: FC = () => {
   const [searchMode, setSearchMode] = useState(false);
