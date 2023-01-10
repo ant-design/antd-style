@@ -8,7 +8,7 @@ import {
   FullStylish,
   FullToken,
   ReturnStyleToUse,
-  StyleDefinition,
+  StyleInputType,
   Theme,
   ThemeAppearance,
 } from '@/types';
@@ -22,41 +22,45 @@ export interface CreateStylesTheme extends CommonStyleUtils {
 /**
  * 最终返回 styles 对象的类型定义
  */
-export interface ReturnStyles<Obj> {
-  styles: ReturnStyleToUse<Obj>;
+export interface ReturnStyles<T extends StyleInputType> {
+  styles: ReturnStyleToUse<T>;
   theme: Theme;
   cx: Emotion['cx'];
 }
 
 // 获取样式
-export type GetStyleFn<Input> = <P>(theme: CreateStylesTheme, props?: P) => StyleDefinition<Input>;
+export type GetStyleFn<Input extends StyleInputType, Props> = <P extends Props>(
+  theme: CreateStylesTheme,
+  props?: P,
+) => Input;
 
 /**
  * 创建样式的函数或者对象
  */
-export type StyleOrGetStyleFn<Input> = Input extends (...args: any[]) => any
-  ? StyleDefinition<Input>
-  : GetStyleFn<Input>;
+export type StyleOrGetStyleFn<Input extends StyleInputType, Props> =
+  | Input
+  | GetStyleFn<Input, Props>;
 
 /**
  * 业务应用中创建样式基础写法
  */
 export const createStyles =
-  <Input>(styleOrGetStyleFn: StyleOrGetStyleFn<Input>) =>
-  <P>(props?: P): ReturnStyles<Input> => {
+  <Props, Input extends StyleInputType>(styleOrGetStyleFn: StyleOrGetStyleFn<Input, Props>) =>
+  (props?: Props): ReturnStyles<Input> => {
     const theme = useTheme();
 
-    // FIXME：如何收敛类型？ How to fix types?
-    // @ts-ignore
-    return useMemo<ReturnStyles<Input>>(() => {
-      let styles;
+    return useMemo(() => {
+      let styles: ReturnStyleToUse<Input>;
 
       if (styleOrGetStyleFn instanceof Function) {
         const { stylish, appearance, ...token } = theme;
 
-        styles = styleOrGetStyleFn({ token, stylish, appearance, cx, css, injectGlobal }, props);
+        styles = styleOrGetStyleFn(
+          { token, stylish, appearance, cx, css, injectGlobal },
+          props,
+        ) as any;
       } else {
-        styles = styleOrGetStyleFn;
+        styles = styleOrGetStyleFn as any;
       }
 
       if (typeof styles === 'object') {
@@ -68,7 +72,7 @@ export const createStyles =
 
             return [key, value];
           }),
-        );
+        ) as any;
       }
 
       return {
