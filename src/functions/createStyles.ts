@@ -4,7 +4,8 @@ import { useMemo } from 'react';
 
 import { useTheme } from '@/hooks';
 import {
-  AntdStylish,
+  CommonStyleUtils,
+  FullStylish,
   FullToken,
   ReturnStyleToUse,
   StyleDefinition,
@@ -12,13 +13,10 @@ import {
   ThemeAppearance,
 } from '@/types';
 
-export interface CreateStylesTheme {
+export interface CreateStylesTheme extends CommonStyleUtils {
   token: FullToken;
-  stylish: AntdStylish;
+  stylish: FullStylish;
   appearance: ThemeAppearance;
-  cx: Emotion['cx'];
-  css: Emotion['css'];
-  injectGlobal: Emotion['injectGlobal'];
 }
 
 /**
@@ -30,20 +28,22 @@ export interface ReturnStyles<Obj> {
   cx: Emotion['cx'];
 }
 
+// 获取样式
+export type GetStyleFn<Input> = <P>(theme: CreateStylesTheme, props?: P) => StyleDefinition<Input>;
+
 /**
  * 创建样式的函数或者对象
  */
-export type StyleOrGetStyleFn<Props, Input> = StyleDefinition<Input> | GetStyleFn<Input, Props>;
-
-// 获取样式
-export type GetStyleFn<Input, P> = (theme: CreateStylesTheme, props?: P) => StyleDefinition<Input>;
+export type StyleOrGetStyleFn<Input> = Input extends (...args: any[]) => any
+  ? StyleDefinition<Input>
+  : GetStyleFn<Input>;
 
 /**
  * 业务应用中创建样式基础写法
  */
 export const createStyles =
-  <P, Input>(styleOrGetStyleFn: StyleOrGetStyleFn<P, Input>) =>
-  (props?: P): ReturnStyles<Input> => {
+  <Input>(styleOrGetStyleFn: StyleOrGetStyleFn<Input>) =>
+  <P>(props?: P): ReturnStyles<Input> => {
     const theme = useTheme();
 
     // FIXME：如何收敛类型？ How to fix types?

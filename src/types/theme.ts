@@ -1,6 +1,13 @@
+import { Emotion } from '@emotion/css/create-instance';
 import { ThemeConfig } from 'antd/es/config-provider/context';
 import { AliasToken } from 'antd/es/theme/interface';
 import { ThemeAppearance, ThemeMode } from './appearance';
+
+export interface CommonStyleUtils {
+  cx: Emotion['cx'];
+  css: Emotion['css'];
+  injectGlobal: Emotion['injectGlobal'];
+}
 
 export interface ThemeContextState {
   appearance: ThemeAppearance;
@@ -41,7 +48,7 @@ export interface CustomStylish {}
 export interface CustomTheme extends CustomStylish, CustomToken {}
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface Stylish extends AntdStylish, CustomStylish {}
+export interface FullStylish extends AntdStylish, CustomStylish {}
 
 export interface AntdTheme extends AntdToken {
   stylish: AntdStylish;
@@ -50,5 +57,5 @@ export interface AntdTheme extends AntdToken {
 export interface FullToken extends AntdToken, CustomToken {}
 
 export interface Theme extends FullToken, ThemeContextState {
-  stylish: Stylish;
+  stylish: FullStylish;
 }
