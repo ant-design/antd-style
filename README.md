@@ -43,7 +43,7 @@
 
 基于 [emotion](https://emotion.sh/) 二次封装。
 
-- Ant Design Token System：
+- Ant Design V5 Token System：
 - 自定义主题：
 - 收敛而确定的用法：与 Css Modules 基本一致的
 - 超强扩展性：
