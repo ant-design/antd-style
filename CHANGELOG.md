@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.0.0-alpha.17](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.16...v3.0.0-alpha.17) (2023-01-10)
+
+### 🐛 Bug Fixes
+
+- 经过思考 create({ 单个 css obj }) 这个使用方式不合理，将其移出基础的类型定义对象中 ([51ed579](https://github.com/arvinxx/antd-style/commit/51ed579))
+
 # [3.0.0-alpha.16](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.15...v3.0.0-alpha.16) (2023-01-10)
 
 ### 🐛 Bug Fixes
