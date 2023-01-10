@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.0.0-alpha.15](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.14...v3.0.0-alpha.15) (2023-01-10)
+
+### 🐛 Bug Fixes
+
+- 重构优化类型 ([4472a2b](https://github.com/arvinxx/antd-style/commit/4472a2b))
+
 # [3.0.0-alpha.14](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.13...v3.0.0-alpha.14) (2023-01-10)
 
 ### 🐛 Bug Fixes
