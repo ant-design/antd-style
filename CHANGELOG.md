@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.0.0-alpha.14](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.13...v3.0.0-alpha.14) (2023-01-10)
+
+### 🐛 Bug Fixes
+
+- 修正 CSS Object 和 CSS String 同时存在时的类型定义问题 ([bd38764](https://github.com/arvinxx/antd-style/commit/bd38764))
+
 # [3.0.0-alpha.13](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.12...v3.0.0-alpha.13) (2023-01-10)
 
 ### 🐛 Bug Fixes
