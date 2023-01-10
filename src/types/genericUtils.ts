@@ -7,7 +7,7 @@ import { CSSObject } from '@emotion/css';
 export type StyleDefinition<StyleObj> = StyleObj extends string
   ? string
   : {
-      [Key in keyof StyleObj]: CSSObject | string;
+      [Key in keyof StyleObj]: StyleObj[Key] extends string ? string : CSSObject;
     };
 
 /**
