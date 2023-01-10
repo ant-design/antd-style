@@ -5,7 +5,7 @@ type StyleObject = Record<string, CSSObject | string>;
 /**
  *  所有用户的可能的入参类型
  */
-export type StyleInputType = string | CSSObject | StyleObject;
+export type StyleInputType = string | StyleObject;
 
 type StyleObjectOnly<T extends StyleInputType> = T extends string ? never : T;
 
