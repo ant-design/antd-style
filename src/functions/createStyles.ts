@@ -33,23 +33,16 @@ export interface ReturnStyles<Obj> {
 /**
  * 创建样式的函数或者对象
  */
-export type StyleOrGetStyleFn<Input, P> = StyleDefinition<Input> | GetStyleFn<Input, P>;
+export type StyleOrGetStyleFn<Props, Input> = StyleDefinition<Input> | GetStyleFn<Input, Props>;
 
 // 获取样式
 export type GetStyleFn<Input, P> = (theme: CreateStylesTheme, props?: P) => StyleDefinition<Input>;
 
-export type UseStyleHook<Input, P> = (props?: P) => ReturnStyles<Input>;
-
-interface CreateStylesFn {
-  <Props, Input>(style: StyleDefinition<Input>): UseStyleHook<Input, Props>;
-  <Props, Input>(getCssStyleFn: GetStyleFn<Input, Props>): UseStyleHook<Input, Props>;
-}
-
 /**
  * 业务应用中创建样式基础写法
  */
-export const createStyles: CreateStylesFn =
-  <P, Input>(styleOrGetStyleFn: StyleOrGetStyleFn<Input, P>) =>
+export const createStyles =
+  <P, Input>(styleOrGetStyleFn: StyleOrGetStyleFn<P, Input>) =>
   (props?: P): ReturnStyles<Input> => {
     const theme = useTheme();
 
