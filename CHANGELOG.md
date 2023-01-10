@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.0.0-alpha.16](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.15...v3.0.0-alpha.16) (2023-01-10)
+
+### 🐛 Bug Fixes
+
+- 修正 createStyles 类型不正确的问题 ([bacdc0b](https://github.com/arvinxx/antd-style/commit/bacdc0b))
+
 # [3.0.0-alpha.15](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.14...v3.0.0-alpha.15) (2023-01-10)
 
 ### 🐛 Bug Fixes
