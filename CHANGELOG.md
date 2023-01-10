@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.0.0-alpha.13](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.12...v3.0.0-alpha.13) (2023-01-10)
+
+### 🐛 Bug Fixes
+
+- 修正 CSS Object 模式下的类型定义问题 ([0521200](https://github.com/arvinxx/antd-style/commit/0521200))
+
 # [3.0.0-alpha.12](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.11...v3.0.0-alpha.12) (2023-01-10)
 
 ### 🐛 Bug Fixes
