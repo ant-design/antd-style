@@ -1,15 +1,24 @@
-import { css, cx, type CSSObject } from '@emotion/css';
+import { css, cx, injectGlobal, type CSSObject } from '@emotion/css';
 import type { Emotion } from '@emotion/css/create-instance';
 import { useMemo } from 'react';
 
 import { useTheme } from '@/hooks';
-import { AntdStylish, FullToken, ReturnStyleToUse, StyleDefinition, Theme } from '@/types';
+import {
+  AntdStylish,
+  FullToken,
+  ReturnStyleToUse,
+  StyleDefinition,
+  Theme,
+  ThemeAppearance,
+} from '@/types';
 
 export interface CreateStylesTheme {
   token: FullToken;
   stylish: AntdStylish;
+  appearance: ThemeAppearance;
   cx: Emotion['cx'];
   css: Emotion['css'];
+  injectGlobal: Emotion['injectGlobal'];
 }
 
 /**
@@ -50,9 +59,9 @@ export const createStyles: CreateStylesFn =
       let styles;
 
       if (styleOrGetStyleFn instanceof Function) {
-        const { stylish, ...token } = theme;
+        const { stylish, appearance, ...token } = theme;
 
-        styles = styleOrGetStyleFn({ token, stylish, cx, css }, props);
+        styles = styleOrGetStyleFn({ token, stylish, appearance, cx, css, injectGlobal }, props);
       } else {
         styles = styleOrGetStyleFn;
       }
