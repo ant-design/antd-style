@@ -1,5 +1,15 @@
 # Changelog
 
+# [3.0.0-alpha.11](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.10...v3.0.0-alpha.11) (2023-01-10)
+
+### ✨ Features
+
+- createStyles 入参支持 appearance 和 injectGlobal ([0b1d947](https://github.com/arvinxx/antd-style/commit/0b1d947))
+
+### 🐛 Bug Fixes
+
+- 修正类型定义不准确的问题 ([d318382](https://github.com/arvinxx/antd-style/commit/d318382))
+
 # [3.0.0-alpha.10](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.9...v3.0.0-alpha.10) (2023-01-10)
 
 # [3.0.0-alpha.9](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.8...v3.0.0-alpha.9) (2023-01-09)
