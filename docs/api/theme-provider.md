@@ -27,7 +27,7 @@ ThemeProvider 默认集成亮暗色主题切换能力，通过 `appearance` prop
 
 ## useTheme 用法
 
-全局顶层包裹 ThemeProvider 后，使用 `useTheme` 获取 antd Token 主题值。
+全局顶层包裹 ThemeProvider 后，使用 `useTheme` 获取 theme 对象，其中包含 antd v5 token 主题值、自定义主题、当前的主题外观等方法。 api 详见 [](api/use-theme-mode)
 
 ```tsx | pure
 import { ThemeProvider, useTheme } from 'antd-style';
@@ -115,7 +115,7 @@ export default () => (
 
 ## 基础样式重置
 
-如果没有包裹，在 dumi 文档中 a 节点的默认效果如下所示。
+在 dumi 文档中 a 节点的默认效果如下所示。
 
 <code src="../demos/ThemeProvider/demo.tsx"></code>
 
@@ -126,7 +126,7 @@ export default () => (
 
 ### 消费静态实例方法
 
-v5 中由于 react 生命周期的问题移除了静态方法，因此如果使用 antd 默认导出的 message 等静态方法，会无法响应动态主题。因此 ThemeProvider 这种提供了一个 `getStaticInstance` 将可以响应动态主题的静态方法实例提供到外部。
+v5 中由于 react 生命周期的问题移除了静态方法，因此如果使用 antd 默认导出的 message 等静态方法，会无法响应动态主题。因此 ThemeProvider 中提供了一个 `getStaticInstance` 接口，将响应动态主题的静态方法实例提供给外部使用。
 
 ```tsx | pure
 /**
@@ -162,7 +162,7 @@ export default () => {
 <code src="../demos/ThemeProvider/AppGlobalStyle.tsx"></code>
 
 :::info{title=全局样式作用域}
-在 css-in-js 的世界中，局部作用域非常容易实现。因此，除非必要，应该尽量减少全局作用域的使用。 这也是 antd v5 中推荐的用法。
+在 css-in-js 的世界中，局部作用域非常容易实现。因此应该尽量减少全局作用域的使用（实在不行才用全局作用域）。 这也是 antd v5 中推荐的用法。
 但如果仍然需全局作用域层面的样式注入，可以使用 [createGlobalStyles](/usage/global-styles)
 :::
 
