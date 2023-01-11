@@ -15,7 +15,7 @@ Ant Design V5 中，基于 Css in Js 的能力我们实现了更加优雅的运�
 
 ## 1. 亮暗色主题切换
 
-通过在容器组件 [AppContainer](/usage/app-container) 或者 [ThemeProvider](/usage/theme-provider) 上修改 `apperance` 这个 props，既可非常简单地实现主题切换，那这是也是动态主题最简单的使用方式。
+通过在容器组件 [ThemeProvider](/usage/theme-provider) 上修改 `apperance` 这个 props，既可非常简单地实现主题切换，那这是也是动态主题最简单的使用方式。
 
 <code src="../demos/guide/switch-theme/default.tsx"></code>
 
@@ -24,7 +24,7 @@ Ant Design V5 中，基于 Css in Js 的能力我们实现了更加优雅的运�
 介绍完上述方案后，有心人应该会发现，这种方案会强依赖用户对主题的手动切换。但手机、电脑的系统级主题切换一般都是能跟随时间自动完成的。因此一般
 macOS 系统也会提供「自动」的模式。
 
-而在 AppContainer 中，我们提供了 `themeMode` 这个 props。对于不需要用户手动控制主题的场景，可以直接设置 `themeMode="auto"`
+而在 ThemeProvider 中，我们提供了 `themeMode` 这个 props。对于不需要用户手动控制主题的场景，可以直接设置 `themeMode="auto"`
 一键实现系统主题模式的自动。
 
 <code src="../demos/guide/switch-theme/AutoSwitch.tsx"></code>

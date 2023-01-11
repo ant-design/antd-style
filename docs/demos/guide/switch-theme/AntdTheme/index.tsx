@@ -4,7 +4,7 @@
  * description: 传入不同的 token 、算法组成的 theme ，可以实现主题风格的自定义
  */
 import { Divider, theme } from 'antd';
-import { AppContainer } from 'antd-style';
+import { ThemeProvider } from 'antd-style';
 
 import App from '../../../common/demo';
 import CustomDark from './CustomDark';
@@ -16,9 +16,9 @@ const themeConfig = {
 export default () => {
   return (
     <>
-      <AppContainer theme={themeConfig}>
+      <ThemeProvider theme={themeConfig}>
         <App />
-      </AppContainer>
+      </ThemeProvider>
       <Divider orientation={'left'}>定制主题： ☝️修改主色与紧凑模式 👇 自定义暗色风格</Divider>
       <CustomDark />
     </>

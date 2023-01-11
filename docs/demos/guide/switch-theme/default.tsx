@@ -1,7 +1,7 @@
 /**
  * compact: true
  */
-import { AppContainer, ThemeAppearance } from 'antd-style';
+import { ThemeAppearance, ThemeProvider } from 'antd-style';
 import { useState } from 'react';
 import { Center, Flexbox } from 'react-layout-kit';
 
@@ -21,9 +21,9 @@ export default () => {
         <Segmented onChange={(v) => setTheme(v as ThemeAppearance)} options={options} />
       </Center>
       <Flexbox flex={8}>
-        <AppContainer appearance={appearance}>
+        <ThemeProvider appearance={appearance}>
           <App />
-        </AppContainer>
+        </ThemeProvider>
       </Flexbox>
     </Flexbox>
   );

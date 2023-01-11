@@ -1,14 +1,14 @@
 /**
  * iframe: 600
  */
-import { AppContainer } from 'antd-style';
+import { ThemeProvider } from 'antd-style';
 
 import App from '../../common/demo';
 
 export default () => {
   return (
-    <AppContainer themeMode={'auto'}>
+    <ThemeProvider themeMode={'auto'}>
       <App />
-    </AppContainer>
+    </ThemeProvider>
   );
 };
