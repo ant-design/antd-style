@@ -143,3 +143,7 @@ import { createStyles } from 'antd-style';
 最终效果如下：
 
 <code src="../demos/migration/CSSinJSMode"></code>
+
+当完成迁移后，得益于 TS 良好的类型编程能力，在拥有动态化主题能力的同时，我们还获得了类名下钻跳转的能力，提升研发体验。
+
+![](https://gw.alipayobjects.com/zos/kitchen/szcQ1qz3n/style.gif)
