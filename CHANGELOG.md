@@ -1,5 +1,15 @@
 # Changelog
 
+# [3.0.0-alpha.18](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.17...v3.0.0-alpha.18) (2023-01-11)
+
+### ✨ Features
+
+- 经过讨论移除 AppContainer 容器组件，直接使用 antd 的 App 即可 ([0ff52d3](https://github.com/arvinxx/antd-style/commit/0ff52d3))
+
+### 💥 BREAKING CHANGES
+
+- 移除 AppContainer
+
 # [3.0.0-alpha.17](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.16...v3.0.0-alpha.17) (2023-01-10)
 
 ### 🐛 Bug Fixes
