@@ -1,5 +1,7 @@
 # Changelog
 
+# [3.0.0-alpha.19](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.18...v3.0.0-alpha.19) (2023-01-11)
+
 # [3.0.0-alpha.18](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.17...v3.0.0-alpha.18) (2023-01-11)
 
 ### ✨ Features
