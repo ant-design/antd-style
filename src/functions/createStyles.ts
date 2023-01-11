@@ -49,32 +49,34 @@ export const createStyles =
   (props?: Props): ReturnStyles<Input> => {
     const theme = useTheme();
 
-    let styles: ReturnStyleToUse<Input>;
+    const styles = useMemo(() => {
+      let tempStyles: ReturnStyleToUse<Input>;
 
-    if (styleOrGetStyleFn instanceof Function) {
-      const { stylish, appearance, ...token } = theme;
+      if (styleOrGetStyleFn instanceof Function) {
+        const { stylish, appearance, ...token } = theme;
 
-      styles = styleOrGetStyleFn(
-        { token, stylish, appearance, cx, css, injectGlobal },
-        props,
-      ) as any;
-    } else {
-      styles = styleOrGetStyleFn as any;
-    }
+        tempStyles = styleOrGetStyleFn(
+          { token, stylish, appearance, cx, css, injectGlobal },
+          props,
+        ) as any;
+      } else {
+        tempStyles = styleOrGetStyleFn as any;
+      }
 
-    if (typeof styles === 'object') {
-      styles = Object.fromEntries(
-        Object.entries(styles).map(([key, value]) => {
-          if (typeof value === 'object') {
-            return [key, css(value as CSSObject)];
-          }
+      if (typeof tempStyles === 'object') {
+        tempStyles = Object.fromEntries(
+          Object.entries(tempStyles).map(([key, value]) => {
+            if (typeof value === 'object') {
+              return [key, css(value as CSSObject)];
+            }
 
-          return [key, value];
-        }),
-      ) as any;
-    }
+            return [key, value];
+          }),
+        ) as any;
+      }
 
-    return useMemo(() => {
-      return { styles, cx, theme };
-    }, [styles, theme, props]);
+      return tempStyles;
+    }, [styleOrGetStyleFn, props, theme]);
+
+    return useMemo(() => ({ styles, cx, theme }), [styles, theme]);
   };
