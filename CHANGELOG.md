@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.0.0-alpha.21](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.20...v3.0.0-alpha.21) (2023-01-11)
+
+### 🐛 Bug Fixes
+
+- 经过讨论,移除 injectGlobal 在 createStyles 中的入参 ([d6d2aaf](https://github.com/arvinxx/antd-style/commit/d6d2aaf))
+
 # [3.0.0-alpha.20](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.19...v3.0.0-alpha.20) (2023-01-11)
 
 # [3.0.0-alpha.19](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.18...v3.0.0-alpha.19) (2023-01-11)
