@@ -165,14 +165,14 @@ export default () => {
 但如果仍然需全局作用域层面的样式注入，可以使用 [createGlobalStyles](/usage/global-styles)
 :::
 
-### ThemeProvider API
+## API
 
-| 名称               | 默认值                             | 描述                                                                                                     |
-| ------------------ | ---------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| customToken        | `undefined`                        | 自定义 token， 可在 antd v5 token 规范基础上扩展和新增自己需要的 token                                   |
-| customTheme        | `undefined`                        | 自定义主题变量， 注入后可以在 `useTheme` 中获取一些 token 以外的用在主题场景的信息，例如 `isDarkMode` 等 |
-| appearance         | `light`                            | 应用的展示外观主题，只存在亮色和暗色两种                                                                 |
-| defaultAppearance  |                                    |                                                                                                          |
-| onAppearanceChange | (appearance:ThemeAppearance)=>void | 外观主题的回调                                                                                           |
-| themeMode          | `light`                            | 主题的展示模式，有三种配置：跟随系统、亮色、暗色 默认不开启自动模式，需要手动进行配置                    |
-| defaultThemeMode   | `n/a`                              |                                                                                                          |
+| 名称               | 默认值                             | 描述                                                                                  |
+| ------------------ | ---------------------------------- | ------------------------------------------------------------------------------------- |
+| customToken        | `undefined`                        | 自定义 token， 可在 antd v5 token 规范基础上扩展和新增自己需要的 token                |
+| customStylish      | `undefined`                        | 自定义 Stylish 变量                                                                   |
+| appearance         | `light`                            | 应用的展示外观主题，只存在亮色和暗色两种                                              |
+| defaultAppearance  |                                    |                                                                                       |
+| onAppearanceChange | (appearance:ThemeAppearance)=>void | 外观主题的回调                                                                        |
+| themeMode          | `light`                            | 主题的展示模式，有三种配置：跟随系统、亮色、暗色 默认不开启自动模式，需要手动进行配置 |
+| defaultThemeMode   | `n/a`                              |                                                                                       |
