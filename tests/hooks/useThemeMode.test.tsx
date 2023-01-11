@@ -2,14 +2,14 @@ import { renderHook } from '@testing-library/react';
 import { ThemeProvider, useThemeMode } from 'antd-style';
 
 describe('useThemeMode', () => {
-  it('没有包裹 Container 能正常使用', () => {
+  it('没有包裹 ThemeProvider 能正常使用', () => {
     const { result } = renderHook(useThemeMode);
 
     expect(result.current.appearance).toEqual('light');
     expect(result.current.themeMode).toEqual('light');
   });
 
-  it('包裹 AppContainer 后正常可以正常调用', () => {
+  it('包裹 ThemeProvider 后正常可以正常调用', () => {
     const { result } = renderHook(useThemeMode, { wrapper: ThemeProvider });
     expect(result.current.appearance).toEqual('light');
     expect(result.current.themeMode).toEqual('light');

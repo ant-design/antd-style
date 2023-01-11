@@ -144,7 +144,7 @@
 
 ### ✨ Features
 
-- 计划废弃 v1 大版本 ([d62c8fc](https://github.com/arvinxx/antd-style/commit/d62c8fc))
+- 废弃 v1 大版本 ([d62c8fc](https://github.com/arvinxx/antd-style/commit/d62c8fc))
 
 ### 💥 BREAKING CHANGES
 

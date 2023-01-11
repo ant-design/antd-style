@@ -8,7 +8,7 @@ group:
 
 # useThemeMode
 
-可以获取到 `AppContainer` 或者 `ThemeProvider` 下的主题外观模式。
+可以获取到 `ThemeProvider` 下的主题外观模式。
 
 ## 用法
 

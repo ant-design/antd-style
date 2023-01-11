@@ -1,4 +1,4 @@
-import { AppContainer, createStyles } from 'antd-style';
+import { createStyles, ThemeProvider } from 'antd-style';
 import { Center } from 'react-layout-kit';
 import { getClayStylish, getClayToken } from './theme';
 
@@ -29,8 +29,8 @@ const App = () => {
 
 export default () => {
   return (
-    <AppContainer customToken={getClayToken} customStylish={getClayStylish}>
+    <ThemeProvider customToken={getClayToken} customStylish={getClayStylish}>
       <App />
-    </AppContainer>
+    </ThemeProvider>
   );
 };

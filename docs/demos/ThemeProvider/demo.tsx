@@ -4,7 +4,7 @@
 const App = () => {
   return (
     <div style={{ padding: 16 }}>
-      <a href="docs/demos/AppContainer">节点样式</a>
+      <a href="~demos/docs-api-theme-provider-demo-demo">节点样式</a>
     </div>
   );
 };
