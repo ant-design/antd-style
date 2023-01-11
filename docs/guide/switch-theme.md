@@ -17,6 +17,19 @@ Ant Design V5 中，基于 Css in Js 的能力我们实现了更加优雅的运�
 
 通过在容器组件 [ThemeProvider](/usage/theme-provider) 上修改 `apperance` 这个 props，既可非常简单地实现主题切换，那这是也是动态主题最简单的使用方式。
 
+```tsx | pure
+import { ThemeProvider } from 'antd-style';
+
+export default () => {
+  return (
+    // 自动变为暗色模式
+    <ThemeProvider apperance={'dark'}>
+      <App />
+    </ThemeProvider>
+  );
+};
+```
+
 <code src="../demos/guide/switch-theme/default.tsx"></code>
 
 ## 2. 自动响应系统主题
@@ -26,6 +39,18 @@ macOS 系统也会提供「自动」的模式。
 
 而在 ThemeProvider 中，我们提供了 `themeMode` 这个 props。对于不需要用户手动控制主题的场景，可以直接设置 `themeMode="auto"`
 一键实现系统主题模式的自动。
+
+```tsx | pure
+import { ThemeProvider } from 'antd-style';
+
+export default () => {
+  return (
+    <ThemeProvider themeMode={'auto'}>
+      <App />
+    </ThemeProvider>
+  );
+};
+```
 
 <code src="../demos/guide/switch-theme/AutoSwitch.tsx"></code>
 
@@ -44,6 +69,41 @@ macOS 系统也会提供「自动」的模式。
 ## 4. 如果传入 antd 的 theme
 
 antd v5 的 ConfigProvider 提供了 theme 配置，可以传入自定义的 theme 对象来实现自定义主题。
+
+```tsx | pure
+/**
+ * 自定义主题算法
+ */
+const customDarkAlgorithm = (seedToken, mapToken) => {
+  const mergeToken = theme.darkAlgorithm(seedToken, mapToken);
+
+  return {
+    ...mergeToken,
+    colorBgLayout: '#20252b',
+    colorBgContainer: '#282c34',
+    colorBgElevated: '#32363e',
+  };
+};
+
+export default () => (
+  <ThemeProvider
+    themeMode={'dark'}
+    // 支持传入方法，来动态响应外观
+    theme={(appearance) =>
+      appearance === 'dark'
+        ? // 暗色自定义
+          {
+            token: { borderRadius: 2 },
+            algorithm: [customDarkAlgorithm],
+          }
+        : // 亮色采用默认值
+          undefined
+    }
+  >
+    <App />
+  </ThemeProvider>
+);
+```
 
 <code src="../demos/guide/switch-theme/AntdTheme"></code>
 
