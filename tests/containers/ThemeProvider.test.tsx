@@ -1,7 +1,8 @@
 import { render, renderHook } from '@testing-library/react';
-import { theme } from 'antd';
-import { css, ThemeProvider, useTheme, useThemeMode } from 'antd-style';
+import { App, theme } from 'antd';
+import { css, GetCustomToken, ThemeProvider, useTheme, useThemeMode } from 'antd-style';
 import { MappingAlgorithm } from 'antd/es/config-provider/context';
+import { MessageInstance } from 'antd/es/message/interface';
 import { FC, PropsWithChildren } from 'react';
 
 interface TestDesignToken {
@@ -20,46 +21,6 @@ declare module 'antd-style' {
 }
 
 describe('ThemeProvider', () => {
-  it('自定义 Token', () => {
-    const App = () => {
-      const theme = useTheme();
-      return <div style={{ color: theme.customBrandColor }}>{theme.customBrandColor}</div>;
-    };
-
-    const { container } = render(
-      <ThemeProvider<TestDesignToken> customToken={{ customBrandColor: '#c956df' }}>
-        <App />
-      </ThemeProvider>,
-    );
-
-    expect(container).toMatchSnapshot();
-    expect(container.firstChild).toHaveStyle({ color: '#c956df' });
-  });
-
-  it('注入自定义 Stylish', () => {
-    const App = () => {
-      const theme = useTheme();
-      return <div className={theme.stylish.defaultText}>普通文本</div>;
-    };
-
-    const { container } = render(
-      <ThemeProvider<any, TestDesignStylish>
-        customStylish={{
-          defaultText: css`
-            font-size: 14px;
-            font-weight: 500;
-            color: #333;
-          `,
-        }}
-      >
-        <App />
-      </ThemeProvider>,
-    );
-
-    expect(container).toMatchSnapshot();
-    expect(container.firstChild).toHaveStyle({ color: '#333', fontSize: 14, fontWeight: 500 });
-  });
-
   describe('注入 antd 主题', () => {
     it('注入 token', () => {
       const Wrapper: FC<PropsWithChildren> = ({ children }) => (
@@ -118,6 +79,82 @@ describe('ThemeProvider', () => {
     });
   });
 
+  describe('注入自定义主题', () => {
+    it('自定义 Token', () => {
+      const App = () => {
+        const theme = useTheme();
+        return <div style={{ color: theme.customBrandColor }}>{theme.customBrandColor}</div>;
+      };
+
+      const { container } = render(
+        <ThemeProvider<TestDesignToken> customToken={{ customBrandColor: '#c956df' }}>
+          <App />
+        </ThemeProvider>,
+      );
+
+      expect(container).toMatchSnapshot();
+      expect(container.firstChild).toHaveStyle({ color: '#c956df' });
+    });
+
+    it('自定义 Stylish', () => {
+      const App = () => {
+        const theme = useTheme();
+        return <div className={theme.stylish.defaultText}>普通文本</div>;
+      };
+
+      const { container } = render(
+        <ThemeProvider<any, TestDesignStylish>
+          customStylish={{
+            defaultText: css`
+              font-size: 14px;
+              font-weight: 500;
+              color: #333;
+            `,
+          }}
+        >
+          <App />
+        </ThemeProvider>,
+      );
+
+      expect(container).toMatchSnapshot();
+      expect(container.firstChild).toHaveStyle({ color: '#333', fontSize: 14, fontWeight: 500 });
+    });
+
+    it('注入自定义 Token 方法', () => {
+      const customTokenFn: GetCustomToken<any> = ({ token, isDarkMode }) => ({
+        customColor: isDarkMode ? '#000' : token.colorPrimary,
+        customBrandColor: isDarkMode ? token.colorPrimary : '#FFF',
+      });
+
+      const Wrapper: FC<PropsWithChildren> = ({ children }) => (
+        <ThemeProvider customToken={customTokenFn}>{children}</ThemeProvider>
+      );
+
+      const { result: light } = renderHook(useTheme, { wrapper: Wrapper });
+      expect(light.current.customColor).toEqual('#1677ff');
+      expect(light.current.customBrandColor).toEqual('#FFF');
+
+      const Darker: FC<PropsWithChildren> = ({ children }) => (
+        <ThemeProvider appearance={'dark'} customToken={customTokenFn}>
+          {children}
+        </ThemeProvider>
+      );
+
+      const { result: dark } = renderHook(useTheme, { wrapper: Darker });
+      expect(dark.current.customColor).toEqual('#000');
+      expect(dark.current.customBrandColor).toEqual('#1668dc');
+    });
+
+    it('注入自定义 stylish 方法', () => {
+      const Wrapper: FC<PropsWithChildren> = ({ children }) => (
+        <ThemeProvider customStylish={() => ({ x: '' })}>{children}</ThemeProvider>
+      );
+
+      const { result } = renderHook(useTheme, { wrapper: Wrapper });
+      expect(result.current.stylish.x).toEqual('');
+    });
+  });
+
   describe('主题切换', () => {
     beforeEach(() => {
       Object.defineProperty(window, 'matchMedia', {
@@ -143,5 +180,57 @@ describe('ThemeProvider', () => {
 
       expect(result.current.themeMode).toEqual('auto');
     });
+  });
+
+  it('配合 App 实现局部作用域', async () => {
+    const Demo: FC<{ id?: string }> = ({ id }) => {
+      return (
+        <div data-testid={id} style={{ padding: 16 }} className={'container'}>
+          <a href="">节点样式</a>
+        </div>
+      );
+    };
+
+    const { container, findByTestId } = render(
+      <>
+        <Demo id={'without'} />
+        <ThemeProvider>
+          <App
+            className={css`
+              .container {
+                color: red;
+              }
+            `}
+          >
+            <Demo id={'within'} />
+          </App>
+        </ThemeProvider>
+        ,
+      </>,
+    );
+    expect(container).toMatchSnapshot();
+
+    const nodeWithout = await findByTestId('without');
+    const nodeWithin = await findByTestId('within');
+
+    expect(nodeWithin).toHaveStyle('color: red;');
+    expect(nodeWithout).not.toHaveStyle('color: red;');
+  });
+
+  it('获得静态实例对象', () => {
+    let message = {} as MessageInstance;
+    const Demo: FC = () => {
+      return (
+        <ThemeProvider getStaticInstance={(instances) => (message = instances.message)}>
+          <div style={{ padding: 16 }} className={'container'}>
+            <a href="">节点样式</a>
+          </div>
+        </ThemeProvider>
+      );
+    };
+
+    render(<Demo />);
+
+    expect(message.success).not.toBeUndefined();
   });
 });

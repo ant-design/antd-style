@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ThemeProvider 注入自定义 Stylish 1`] = `
+exports[`ThemeProvider 注入自定义主题 自定义 Stylish 1`] = `
 .emotion-0 {
   font-size: 14px;
   font-weight: 500;
@@ -16,12 +16,48 @@ exports[`ThemeProvider 注入自定义 Stylish 1`] = `
 </div>
 `;
 
-exports[`ThemeProvider 自定义 Token 1`] = `
+exports[`ThemeProvider 注入自定义主题 自定义 Token 1`] = `
 <div>
   <div
     style="color: rgb(201, 86, 223);"
   >
     #c956df
   </div>
+</div>
+`;
+
+exports[`ThemeProvider 配合 App 实现局部作用域 1`] = `
+.emotion-0 .container {
+  color: red;
+}
+
+<div>
+  <div
+    class="container"
+    data-testid="without"
+    style="padding: 16px;"
+  >
+    <a
+      href=""
+    >
+      节点样式
+    </a>
+  </div>
+  <div
+    class="ant-app emotion-0"
+  >
+    <div
+      class="container"
+      data-testid="within"
+      style="padding: 16px;"
+    >
+      <a
+        href=""
+      >
+        节点样式
+      </a>
+    </div>
+  </div>
+  ,
 </div>
 `;
