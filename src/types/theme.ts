@@ -6,7 +6,6 @@ import { ThemeAppearance, ThemeMode } from './appearance';
 export interface CommonStyleUtils {
   cx: Emotion['cx'];
   css: Emotion['css'];
-  injectGlobal: Emotion['injectGlobal'];
 }
 
 export interface ThemeContextState {

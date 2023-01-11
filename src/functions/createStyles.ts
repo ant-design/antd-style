@@ -1,4 +1,4 @@
-import { css, cx, injectGlobal, type CSSObject } from '@emotion/css';
+import { css, cx, type CSSObject } from '@emotion/css';
 import type { Emotion } from '@emotion/css/create-instance';
 import { useMemo } from 'react';
 
@@ -55,10 +55,7 @@ export const createStyles =
       if (styleOrGetStyleFn instanceof Function) {
         const { stylish, appearance, ...token } = theme;
 
-        tempStyles = styleOrGetStyleFn(
-          { token, stylish, appearance, cx, css, injectGlobal },
-          props,
-        ) as any;
+        tempStyles = styleOrGetStyleFn({ token, stylish, appearance, cx, css }, props) as any;
       } else {
         tempStyles = styleOrGetStyleFn as any;
       }
