@@ -35,7 +35,9 @@ const App = () => {
 
   return (
     <Space>
-      <Button onClick={showMessage}>Open message</Button>
+      <Button type={'primary'} onClick={showMessage}>
+        Open message
+      </Button>
       <Button onClick={showModal}>Open modal</Button>
       <Button onClick={showNotification}>Open notification</Button>
     </Space>
