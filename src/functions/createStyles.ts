@@ -49,36 +49,32 @@ export const createStyles =
   (props?: Props): ReturnStyles<Input> => {
     const theme = useTheme();
 
+    let styles: ReturnStyleToUse<Input>;
+
+    if (styleOrGetStyleFn instanceof Function) {
+      const { stylish, appearance, ...token } = theme;
+
+      styles = styleOrGetStyleFn(
+        { token, stylish, appearance, cx, css, injectGlobal },
+        props,
+      ) as any;
+    } else {
+      styles = styleOrGetStyleFn as any;
+    }
+
+    if (typeof styles === 'object') {
+      styles = Object.fromEntries(
+        Object.entries(styles).map(([key, value]) => {
+          if (typeof value === 'object') {
+            return [key, css(value as CSSObject)];
+          }
+
+          return [key, value];
+        }),
+      ) as any;
+    }
+
     return useMemo(() => {
-      let styles: ReturnStyleToUse<Input>;
-
-      if (styleOrGetStyleFn instanceof Function) {
-        const { stylish, appearance, ...token } = theme;
-
-        styles = styleOrGetStyleFn(
-          { token, stylish, appearance, cx, css, injectGlobal },
-          props,
-        ) as any;
-      } else {
-        styles = styleOrGetStyleFn as any;
-      }
-
-      if (typeof styles === 'object') {
-        styles = Object.fromEntries(
-          Object.entries(styles).map(([key, value]) => {
-            if (typeof value === 'object') {
-              return [key, css(value as CSSObject)];
-            }
-
-            return [key, value];
-          }),
-        ) as any;
-      }
-
-      return {
-        styles,
-        cx,
-        theme,
-      };
-    }, [theme, props]);
+      return { styles, cx, theme };
+    }, [styles, theme, props]);
   };
