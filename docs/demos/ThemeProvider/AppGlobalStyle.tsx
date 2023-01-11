@@ -2,8 +2,8 @@
  * iframe: 180
  */
 import { css } from '@emotion/css';
-import { Divider } from 'antd';
-import { AppContainer } from 'antd-style';
+import { App, Divider } from 'antd';
+import { ThemeProvider } from 'antd-style';
 import { Flexbox } from 'react-layout-kit';
 
 const appScopeStyle = css`
@@ -25,9 +25,11 @@ export default () => {
     <Flexbox>
       <div className={'custom-button'}>Out App Container Custom Button</div>
       <Divider />
-      <AppContainer className={appScopeStyle}>
-        <div className={'custom-button'}>in App Container Custom Button</div>
-      </AppContainer>
+      <ThemeProvider>
+        <App className={appScopeStyle}>
+          <div className={'custom-button'}>in App Container Custom Button</div>
+        </App>
+      </ThemeProvider>
     </Flexbox>
   );
 };

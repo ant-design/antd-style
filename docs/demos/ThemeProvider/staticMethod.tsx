@@ -2,8 +2,15 @@
  * iframe: 240
  */
 import { Button, Space } from 'antd';
-import { AppContainer, message, modal, notification } from 'antd-style';
+import { ThemeProvider } from 'antd-style';
+import { MessageInstance } from 'antd/es/message/interface';
+import { ModalStaticFunctions } from 'antd/es/modal/confirm';
+import { NotificationInstance } from 'antd/es/notification/interface';
 import { Center } from 'react-layout-kit';
+
+let message: MessageInstance,
+  modal: Omit<ModalStaticFunctions, 'warn'>,
+  notification: NotificationInstance;
 
 const App = () => {
   const showMessage = () => {
@@ -38,9 +45,18 @@ const App = () => {
 export default () => {
   return (
     <Center style={{ height: '100vh', background: '#f5f5f5' }}>
-      <AppContainer>
+      <ThemeProvider
+        theme={{
+          token: { colorPrimary: '#5bdbe6', colorInfo: '#5bdbe6', borderRadius: 2 },
+        }}
+        getStaticInstance={(instances) => {
+          message = instances.message;
+          modal = instances.modal;
+          notification = instances.notification;
+        }}
+      >
         <App />
-      </AppContainer>
+      </ThemeProvider>
     </Center>
   );
 };
