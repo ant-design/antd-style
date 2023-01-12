@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.0.0-alpha.23](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.22...v3.0.0-alpha.23) (2023-01-12)
+
+### ✨ Features
+
+- 添加 staticInstanceConfig api 以支持静态实例的配置 ([fdca322](https://github.com/arvinxx/antd-style/commit/fdca322))
+
 # [3.0.0-alpha.22](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.21...v3.0.0-alpha.22) (2023-01-11)
 
 ### 🐛 Bug Fixes
