@@ -7,14 +7,21 @@ import { ThemeConfig } from 'antd/es/config-provider/context';
 
 type AntdProviderProps = Pick<
   ThemeProviderProps<any>,
-  'theme' | 'prefixCls' | 'getStaticInstance' | 'children'
+  'theme' | 'prefixCls' | 'getStaticInstance' | 'children' | 'staticInstanceConfig'
 >;
 
 const AntdProvider: FC<AntdProviderProps> = memo(
-  ({ children, theme: themeProp, prefixCls, getStaticInstance }) => {
+  ({ children, theme: themeProp, prefixCls, getStaticInstance, staticInstanceConfig }) => {
     const { appearance, isDarkMode } = useThemeMode();
-    const [messageInstance, messageContextHolder] = message.useMessage();
-    const [notificationInstance, notificationContextHolder] = notification.useNotification();
+
+    const [messageInstance, messageContextHolder] = message.useMessage({
+      prefixCls,
+      ...(staticInstanceConfig?.message || {}),
+    });
+    const [notificationInstance, notificationContextHolder] = notification.useNotification({
+      prefixCls,
+      ...(staticInstanceConfig?.notification || {}),
+    });
     const [modalInstance, modalContextHolder] = Modal.useModal();
 
     useEffect(() => {

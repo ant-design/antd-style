@@ -1,8 +1,9 @@
-import { render, renderHook } from '@testing-library/react';
+import { act, render, renderHook } from '@testing-library/react';
 import { App, theme } from 'antd';
 import { css, GetCustomToken, ThemeProvider, useTheme, useThemeMode } from 'antd-style';
 import { MappingAlgorithm } from 'antd/es/config-provider/context';
 import { MessageInstance } from 'antd/es/message/interface';
+import { NotificationInstance } from 'antd/es/notification/interface';
 import { FC, PropsWithChildren } from 'react';
 
 interface TestDesignToken {
@@ -217,20 +218,65 @@ describe('ThemeProvider', () => {
     expect(nodeWithout).not.toHaveStyle('color: red;');
   });
 
-  it('获得静态实例对象', () => {
+  describe('静态实例对象', () => {
+    it('获得静态实例对象', () => {
+      let message = {} as MessageInstance;
+      const Demo: FC = () => {
+        return (
+          <ThemeProvider getStaticInstance={(instances) => (message = instances.message)}>
+            <div style={{ padding: 16 }} className={'container'}>
+              <a href="">节点样式</a>
+            </div>
+          </ThemeProvider>
+        );
+      };
+
+      render(<Demo />);
+
+      expect(message.success).not.toBeUndefined();
+    });
+  });
+  it('测试 prefix', () => {
     let message = {} as MessageInstance;
+    let notification = {} as NotificationInstance;
+
     const Demo: FC = () => {
       return (
-        <ThemeProvider getStaticInstance={(instances) => (message = instances.message)}>
-          <div style={{ padding: 16 }} className={'container'}>
+        <ThemeProvider
+          prefixCls={'demo'}
+          getStaticInstance={(instances) => {
+            message = instances.message;
+            notification = instances.notification;
+          }}
+          staticInstanceConfig={{
+            message: {
+              getContainer: () => document.getElementById('xxx')!,
+            },
+            notification: {
+              getContainer: () => document.getElementById('xxx')!,
+            },
+          }}
+        >
+          <div id={'xxx'} style={{ padding: 16 }} className={'container'}>
             <a href="">节点样式</a>
           </div>
         </ThemeProvider>
       );
     };
 
-    render(<Demo />);
+    const { container } = render(<Demo />);
 
-    expect(message.success).not.toBeUndefined();
+    act(() => {
+      message.success('success');
+    });
+
+    expect(container.getElementsByClassName('demo-notice-success')).toHaveLength(1);
+
+    act(() => {
+      notification.warning({ message: '123' });
+    });
+
+    expect(container.getElementsByClassName('demo-notice-warning')).toHaveLength(1);
+    expect(container.getElementsByClassName('demo-notice')).toHaveLength(2);
   });
 });

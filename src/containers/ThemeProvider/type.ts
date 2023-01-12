@@ -1,8 +1,8 @@
 import { GetCustomStylish, GetCustomToken, ThemeAppearance, ThemeMode } from '@/types';
 import { ThemeConfig } from 'antd/es/config-provider/context';
-import { MessageInstance } from 'antd/es/message/interface';
+import { ConfigOptions as MessageConfig, MessageInstance } from 'antd/es/message/interface';
 import { ModalStaticFunctions } from 'antd/es/modal/confirm';
-import { NotificationInstance } from 'antd/es/notification/interface';
+import { NotificationConfig, NotificationInstance } from 'antd/es/notification/interface';
 import { ReactNode } from 'react';
 
 export interface GetAntdTheme {
@@ -33,6 +33,13 @@ export interface ThemeProviderProps<T, S = Record<string, string>> {
    */
   getStaticInstance?: (instances: StaticInstance) => void;
 
+  /**
+   * 静态方法的入参
+   */
+  staticInstanceConfig?: {
+    message?: MessageConfig;
+    notification?: NotificationConfig;
+  };
   // --------------------- 主题切换 --------------------- //
   /**
    * 应用的展示外观主题，只存在亮色和暗色两种

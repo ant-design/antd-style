@@ -16,6 +16,7 @@ export const ThemeProvider: <T = any, S = any>(
   theme,
   getStaticInstance,
   prefixCls,
+  staticInstanceConfig,
 
   appearance,
   defaultAppearance,
@@ -29,7 +30,12 @@ export const ThemeProvider: <T = any, S = any>(
       appearance={appearance}
       onAppearanceChange={onAppearanceChange}
     >
-      <AntdProvider prefixCls={prefixCls} theme={theme} getStaticInstance={getStaticInstance}>
+      <AntdProvider
+        prefixCls={prefixCls}
+        staticInstanceConfig={staticInstanceConfig}
+        theme={theme}
+        getStaticInstance={getStaticInstance}
+      >
         <TokenContainer customToken={customToken} customStylish={customStylish}>
           {children}
         </TokenContainer>
