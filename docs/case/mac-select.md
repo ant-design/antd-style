@@ -1,6 +1,6 @@
 ---
 title: MacOS选择器
-group: 自定义主题
+group: 自定义组件
 ---
 
 # MacOS 选择器

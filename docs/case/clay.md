@@ -1,7 +1,7 @@
 ---
 title: 黏土风 UI
-group: 自定义风格
 order: 10
+group: 自定义主题
 ---
 
 # 黏土风格
