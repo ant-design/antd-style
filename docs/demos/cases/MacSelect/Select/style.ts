@@ -27,12 +27,12 @@ export const useStyles = createStyles(({ css, cx, token }, prefixCls) => ({
     `${prefixCls}-button`,
     css`
       all: unset;
-      font-size: 15px;
+      font-size: ${token.fontSize}px;
       padding: 12px 10px;
       line-height: 1;
       background: ${token.colorBgContainer};
       color: ${token.colorText};
-      border-radius: 5px;
+      border-radius: ${token.borderRadius}px;
       cursor: default;
       user-select: none;
       border: 1px solid ${token.colorBorder};

@@ -21,18 +21,21 @@ import {
 import { SelectProps } from 'antd';
 import { FC, useEffect, useRef, useState } from 'react';
 import { flushSync } from 'react-dom';
+import useControlledState from 'use-merge-value';
 
 import { ScrollArrow } from '../ScrollArrow';
 import SelectItem from '../SelectItem';
 import { useStyles } from './style';
 
 interface MacSelectProps {
+  value?: number;
   options?: SelectProps['options'];
   prefixCls?: string;
 }
 
-const MacSelect: FC<MacSelectProps> = ({ options = [], prefixCls }) => {
+const MacSelect: FC<MacSelectProps> = ({ options = [], value, prefixCls }) => {
   const cls = prefixCls ?? 'mac-select';
+  const [selectedIndex, setSelectedIndex] = useControlledState<number>(0, { value });
 
   const { styles } = useStyles(cls);
   const listRef = useRef<Array<HTMLElement | null>>([]);
@@ -44,7 +47,6 @@ const MacSelect: FC<MacSelectProps> = ({ options = [], prefixCls }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const [open, setOpen] = useState(false);
-  const [selectedIndex, setSelectedIndex] = useState(12);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [fallback, setFallback] = useState(false);
   const [innerOffset, setInnerOffset] = useState(0);
