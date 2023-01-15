@@ -19,10 +19,17 @@ const Demo = () => {
   const theme = useTheme();
   return (
     <Center>
-      <Flexbox style={{ background: theme.colorBgLayout, padding: 24 }}>
-        <MacSelect value={4} options={fruits} />
-        <Divider />
-        <Select value={'Apple'} options={fruits} />
+      <Flexbox
+        horizontal
+        align={'center'}
+        gap={16}
+        style={{ background: theme.colorBgLayout, padding: 24 }}
+      >
+        macOS：
+        <MacSelect defaultValue={4} options={fruits} />
+        <Divider type={'vertical'} />
+        antd：
+        <Select defaultValue={'Apple'} options={fruits} />
       </Flexbox>
     </Center>
   );

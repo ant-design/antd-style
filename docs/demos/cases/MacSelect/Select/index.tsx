@@ -28,14 +28,15 @@ import SelectItem from '../SelectItem';
 import { useStyles } from './style';
 
 interface MacSelectProps {
+  defaultValue?: number;
   value?: number;
   options?: SelectProps['options'];
   prefixCls?: string;
 }
 
-const MacSelect: FC<MacSelectProps> = ({ options = [], value, prefixCls }) => {
+const MacSelect: FC<MacSelectProps> = ({ options = [], value, defaultValue, prefixCls }) => {
   const cls = prefixCls ?? 'mac-select';
-  const [selectedIndex, setSelectedIndex] = useControlledState<number>(0, { value });
+  const [selectedIndex, setSelectedIndex] = useControlledState<number>(0, { value, defaultValue });
 
   const { styles } = useStyles(cls);
   const listRef = useRef<Array<HTMLElement | null>>([]);
