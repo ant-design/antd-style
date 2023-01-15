@@ -55,6 +55,7 @@ const ThemeSwitcher: FC<ThemeSwitcherProps> = memo(
       else setAppearance(themeMode);
     }, [themeMode]);
 
+    // 自动监听系统主题变更
     useLayoutEffect(() => {
       if (!darkThemeMatch) {
         darkThemeMatch = matchThemeMode('dark');
