@@ -75,6 +75,7 @@
     "@ant-design/pro-components": "^2",
     "@commitlint/cli": "^17",
     "@emotion/jest": "^11",
+    "@floating-ui/react": "^0.17",
     "@testing-library/jest-dom": "^5",
     "@testing-library/react": "^13",
     "@types/jest": "^27",
