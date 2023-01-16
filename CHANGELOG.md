@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.0.0-alpha.24](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.23...v3.0.0-alpha.24) (2023-01-16)
+
+### ✨ Features
+
+- 导出 sheet 对象，用于测试 qiankun 下样式会丢失的 bug ([32f273e](https://github.com/arvinxx/antd-style/commit/32f273e))
+
 # [3.0.0-alpha.23](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.22...v3.0.0-alpha.23) (2023-01-12)
 
 ### ✨ Features
