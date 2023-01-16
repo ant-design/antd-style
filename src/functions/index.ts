@@ -1,4 +1,4 @@
-export { css, cx, injectGlobal, keyframes } from '@emotion/css';
+export { css, cx, injectGlobal, keyframes, sheet } from '@emotion/css';
 export { withTheme } from '@emotion/react';
 export * from './createGlobalStyle';
 export * from './createStyish';
