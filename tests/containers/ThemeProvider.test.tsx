@@ -250,6 +250,7 @@ describe('ThemeProvider', () => {
           }}
           staticInstanceConfig={{
             message: {
+              maxCount: 1,
               getContainer: () => document.getElementById('xxx')!,
             },
             notification: {
@@ -270,13 +271,12 @@ describe('ThemeProvider', () => {
       message.success('success');
     });
 
-    expect(container.getElementsByClassName('demo-notice-success')).toHaveLength(1);
+    expect(container.getElementsByClassName('demo-message')).toHaveLength(1);
 
     act(() => {
       notification.warning({ message: '123' });
     });
 
-    expect(container.getElementsByClassName('demo-notice-warning')).toHaveLength(1);
-    expect(container.getElementsByClassName('demo-notice')).toHaveLength(2);
+    expect(container.getElementsByClassName('demo-notification')).toHaveLength(1);
   });
 });
