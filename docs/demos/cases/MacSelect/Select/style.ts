@@ -1,6 +1,6 @@
 import { createStyles } from 'antd-style';
 
-export const useStyles = createStyles(({ css, cx, token }, prefixCls) => ({
+export const useStyles = createStyles(({ css, cx, token }, prefixCls: string) => ({
   container: cx(
     prefixCls,
     css`

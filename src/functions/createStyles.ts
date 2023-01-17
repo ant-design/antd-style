@@ -29,9 +29,9 @@ export interface ReturnStyles<T extends StyleInputType> {
 }
 
 // 获取样式
-export type GetStyleFn<Input extends StyleInputType, Props> = <P extends Props>(
+export type GetStyleFn<Input extends StyleInputType, Props> = (
   theme: CreateStylesTheme,
-  props?: P,
+  props: Props,
 ) => Input;
 
 /**
@@ -45,7 +45,9 @@ export type StyleOrGetStyleFn<Input extends StyleInputType, Props> =
  * 业务应用中创建样式基础写法
  */
 export const createStyles =
-  <Props, Input extends StyleInputType>(styleOrGetStyleFn: StyleOrGetStyleFn<Input, Props>) =>
+  <Props, Input extends StyleInputType = StyleInputType>(
+    styleOrGetStyleFn: StyleOrGetStyleFn<Input, Props>,
+  ) =>
   (props?: Props): ReturnStyles<Input> => {
     const theme = useTheme();
 
@@ -55,7 +57,7 @@ export const createStyles =
       if (styleOrGetStyleFn instanceof Function) {
         const { stylish, appearance, ...token } = theme;
 
-        tempStyles = styleOrGetStyleFn({ token, stylish, appearance, cx, css }, props) as any;
+        tempStyles = styleOrGetStyleFn({ token, stylish, appearance, cx, css }, props!) as any;
       } else {
         tempStyles = styleOrGetStyleFn as any;
       }
