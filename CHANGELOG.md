@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.0.0-alpha.27](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.26...v3.0.0-alpha.27) (2023-01-17)
+
+### 🐛 Bug Fixes
+
+- 修正类型定义 ([8a7d053](https://github.com/arvinxx/antd-style/commit/8a7d053))
+
 # [3.0.0-alpha.26](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.25...v3.0.0-alpha.26) (2023-01-17)
 
 ### ✨ Features
