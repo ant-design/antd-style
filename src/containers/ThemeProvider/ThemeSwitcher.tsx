@@ -1,7 +1,8 @@
-import { FC, memo, ReactNode, useCallback, useLayoutEffect } from 'react';
+import { FC, memo, ReactNode, useCallback, useLayoutEffect, useMemo } from 'react';
 import useControlledState from 'use-merge-value';
 
 import { ThemeModeContext } from '@/context';
+import { useTheme } from '@/hooks';
 import { ThemeAppearance, ThemeMode } from '@/types';
 
 let darkThemeMatch: MediaQueryList;
@@ -32,11 +33,18 @@ const ThemeSwitcher: FC<ThemeSwitcherProps> = memo(
     appearance: appearanceProp,
     defaultAppearance,
     onAppearanceChange,
-    themeMode = 'light',
+    themeMode: themeModeProps,
   }) => {
+    const { appearance: upperAppearance, themeMode: upperThemeMode } = useTheme();
+
+    const themeMode = useMemo(
+      () => themeModeProps ?? upperThemeMode,
+      [themeModeProps, upperThemeMode],
+    );
+
     const [appearance, setAppearance] = useControlledState<ThemeAppearance>('light', {
       value: appearanceProp,
-      defaultValue: defaultAppearance,
+      defaultValue: defaultAppearance ?? upperAppearance,
       onChange: onAppearanceChange,
     });
 

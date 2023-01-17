@@ -16,11 +16,13 @@ describe('useTheme', () => {
     expect(result.current.stylish).toEqual({});
   });
 
-  it('嵌套 Provider 后能拿到准确的值', () => {
+  it('嵌套 Provider 后能拿到准确的主题值', () => {
     const Wrapper: FC<PropsWithChildren> = ({ children }) => {
       return (
         <ThemeProvider themeMode={'dark'}>
-          <ThemeProvider prefixCls={'kitchen'}>{children}</ThemeProvider>
+          <ThemeProvider defaultAppearance={'light'} prefixCls={'kitchen'}>
+            {children}
+          </ThemeProvider>
         </ThemeProvider>
       );
     };
