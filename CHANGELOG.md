@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.0.0-alpha.26](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.25...v3.0.0-alpha.26) (2023-01-17)
+
+### ✨ Features
+
+- 支持嵌套 Provider 后还能获得准确的 theme 值 ([8581665](https://github.com/arvinxx/antd-style/commit/8581665))
+
 # [3.0.0-alpha.25](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.24...v3.0.0-alpha.25) (2023-01-17)
 
 ### 🐛 Bug Fixes
