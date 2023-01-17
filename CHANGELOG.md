@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.0.0-alpha.25](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.24...v3.0.0-alpha.25) (2023-01-17)
+
+### 🐛 Bug Fixes
+
+- 修正 message、notification 组件 prefix 不对的问题 ([01380ee](https://github.com/arvinxx/antd-style/commit/01380ee))
+
 # [3.0.0-alpha.24](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.23...v3.0.0-alpha.24) (2023-01-16)
 
 ### ✨ Features
