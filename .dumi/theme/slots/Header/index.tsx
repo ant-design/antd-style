@@ -1,5 +1,5 @@
-import { useRouteMeta, useSiteData } from 'dumi';
-import { useState, type FC } from 'react';
+import { useRouteMeta } from 'dumi';
+import { memo, useState, type FC } from 'react';
 import { Flexbox } from 'react-layout-kit';
 
 import LangSwitch from 'dumi/theme-default/slots/LangSwitch';
@@ -15,9 +15,9 @@ import { useStyle } from './style';
 const Header: FC = () => {
   const { frontmatter } = useRouteMeta();
   const [showMenu, setShowMenu] = useState(false);
-  const { themeConfig } = useSiteData();
 
   const { styles } = useStyle();
+
   return (
     <div
       className={styles.header}
@@ -38,7 +38,7 @@ const Header: FC = () => {
           <Flexbox horizontal align={'center'} className="dumi-default-header-right-aside">
             <SearchBar />
             <LangSwitch />
-            {themeConfig.prefersColor.switch && <ColorSwitch />}
+            <ColorSwitch />
           </Flexbox>
         </section>
         {/*<button*/}
@@ -56,4 +56,4 @@ const Header: FC = () => {
   );
 };
 
-export default Header;
+export default memo(Header);

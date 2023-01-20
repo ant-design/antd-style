@@ -53,7 +53,7 @@ const Navbar: FC = () => {
   const { pathname } = useLocation();
   const { styles } = useStyles();
 
-  const activePath = nav.find((i) => pathname.startsWith(i.activePath)).activePath;
+  const activePath = nav.find((i) => pathname.startsWith(i.activePath))?.activePath;
 
   return (
     <>

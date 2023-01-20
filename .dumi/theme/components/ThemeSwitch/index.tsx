@@ -45,9 +45,7 @@ const ThemeSwitch: FC = () => {
   const [, , setPrefersColor] = usePrefersColor();
 
   return (
-    <span
-    // title={}
-    >
+    <span>
       <NativeSelect
         options={options}
         value={options.findIndex((o) => o.value === themeMode)}
