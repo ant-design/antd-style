@@ -4,8 +4,9 @@ import { Flexbox } from 'react-layout-kit';
 
 import LangSwitch from 'dumi/theme-default/slots/LangSwitch';
 import Logo from 'dumi/theme-default/slots/Logo';
-import Navbar from 'dumi/theme-default/slots/Navbar';
 import SearchBar from 'dumi/theme-default/slots/SearchBar';
+
+import Navbar from 'dumi/theme/slots/Navbar';
 
 import ColorSwitch from '../../components/ThemeSwitch';
 
@@ -27,6 +28,9 @@ const Header: FC = () => {
       <Flexbox horizontal distribution={'space-between'} className={styles.content}>
         <Flexbox gap={48} horizontal className={styles.left}>
           <Logo />
+        </Flexbox>
+
+        <Flexbox style={{ marginLeft: 48, alignSelf: 'end' }}>
           <Navbar />
         </Flexbox>
         <section className={styles.right}>

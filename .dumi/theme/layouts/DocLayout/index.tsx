@@ -1,10 +1,11 @@
 import animateScrollTo from 'animated-scroll-to';
 import { Helmet, useIntl, useLocation, useOutlet, useRouteMeta, useSiteData } from 'dumi';
+
 import Features from 'dumi/theme-original/slots/Features';
-import Footer from 'dumi/theme-original/slots/Footer';
 import Hero from 'dumi/theme-original/slots/Hero';
 
 import Content from 'dumi/theme/slots/Content';
+import Footer from 'dumi/theme/slots/Footer';
 import Header from 'dumi/theme/slots/Header';
 import Sidebar from 'dumi/theme/slots/Sidebar';
 import Toc from 'dumi/theme/slots/Toc';
