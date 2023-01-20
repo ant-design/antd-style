@@ -8,8 +8,8 @@
     "baseUrl": "..",
     "paths": {
       "@@/*": ["./.dumi/tmp/*"],
-      "dumi/theme/*": ["./.dumi/theme/*"],
-      "dumi/theme-original/*": ["./.dumi/tmp/dumi/theme/*"],
+      "dumi/theme/slots/*": ["./.dumi/theme/slots/*"],
+      "dumi/theme-original/slots/*": ["./.dumi/tmp/dumi/theme/slots/*"],
       "antd-style": ["es"]
     }
   },

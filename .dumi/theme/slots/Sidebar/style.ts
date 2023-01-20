@@ -52,9 +52,8 @@ export const useStyles = createStyles(({ css, token }) => ({
           }
 
           &.active {
-            color: ${token.colorPrimary};
-            background: ${token.colorPrimaryBg};
-            //font-weight: 500;
+            color: ${token.colorPrimaryTextActive};
+            background: ${token.colorPrimaryBgHover};
           }
         }
       }

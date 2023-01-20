@@ -29,11 +29,12 @@ export const useStyles = createStyles(({ css, token }) => ({
   `,
   tocWrapper: css`
     position: sticky;
-    top: 106px;
+    top: 126px;
     width: 184px;
     margin-inline-end: 24px;
     max-height: 80vh;
     overflow: auto;
+    margin-top: 48px;
     overscroll-behavior: contain;
     -webkit-overflow-scrolling: touch;
 

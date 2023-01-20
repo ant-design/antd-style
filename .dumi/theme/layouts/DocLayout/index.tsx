@@ -8,8 +8,9 @@ import Hero from 'dumi/theme-original/slots/Hero';
 import Toc from 'dumi/theme-original/slots/Toc';
 import Sidebar from 'dumi/theme/slots/Sidebar';
 import { useEffect, useState, type FC } from 'react';
-import { Center } from 'react-layout-kit';
+import { Center, Flexbox } from 'react-layout-kit';
 
+import { ApiHeader } from '../../components/ApiHeader';
 import Provider from '../../components/Provider';
 
 import { GlobalStyle, useStyles } from './styles';
@@ -17,10 +18,12 @@ import { GlobalStyle, useStyles } from './styles';
 const DocLayout: FC = () => {
   const intl = useIntl();
   const outlet = useOutlet();
-  const { hash } = useLocation();
+  const { hash, pathname } = useLocation();
   const { loading } = useSiteData();
   const [showSidebar, setShowSidebar] = useState(false);
   const { frontmatter: fm } = useRouteMeta();
+
+  const isApiPage = pathname.startsWith('/api');
 
   const { styles } = useStyles();
   // handle hash change or visit page hash after async chunk loaded
@@ -62,16 +65,33 @@ const DocLayout: FC = () => {
       <Features />
       <main>
         <Sidebar />
-        <Center width={'100%'}>
-          <Content>
-            {outlet}
-            <Footer />
-          </Content>
-        </Center>
-        <div className={styles.tocWrapper}>
-          <h4>TABLE OF CONTENTS</h4>
-          <Toc />
-        </div>
+        <Flexbox width={'100%'}>
+          {isApiPage ? (
+            <Flexbox style={{ marginRight: 176 }}>
+              <Center>
+                <Flexbox style={{ maxWidth: 1152, width: '100%' }}>
+                  <Flexbox padding={'0 48px'}>
+                    <ApiHeader title={fm.title} description={fm.description} />
+                  </Flexbox>
+                </Flexbox>
+              </Center>
+            </Flexbox>
+          ) : null}
+          <Flexbox horizontal width={'100%'}>
+            <Center width={'100%'}>
+              <Flexbox style={{ maxWidth: 1152, width: '100%' }}>
+                <Flexbox horizontal>
+                  <Content>{outlet}</Content>
+                </Flexbox>
+                <Footer />
+              </Flexbox>
+            </Center>
+            <div className={styles.tocWrapper}>
+              <h4>Table of Contents</h4>
+              <Toc />
+            </div>
+          </Flexbox>
+        </Flexbox>
       </main>
     </div>
   );

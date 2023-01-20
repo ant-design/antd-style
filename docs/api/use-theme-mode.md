@@ -6,7 +6,7 @@ group:
   order: 3
 ---
 
-# useThemeMode
+## 简介
 
 可以获取到 `ThemeProvider` 下的主题外观模式。
 

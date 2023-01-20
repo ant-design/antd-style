@@ -1,5 +1,5 @@
 /**
- * compact: true
+ * iframe: 460
  */
 import { ThemeProvider } from 'antd-style';
 import { Flexbox } from 'react-layout-kit';
