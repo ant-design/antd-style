@@ -2,5 +2,6 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "noEmit": true
-  }
+  },
+  "exclude": ["./.dumi/theme"]
 }
