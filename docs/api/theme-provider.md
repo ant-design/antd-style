@@ -1,5 +1,6 @@
 ---
 title: ThemeProvider
+description: 用于全局管理主题变量的容器。提供了一键切换亮暗色主题、自定义主题、应用级作用域样式的统一入口。
 order: 1
 group:
   title: 容器组件
@@ -8,7 +9,7 @@ demo:
   cols: 2
 ---
 
-# ThemeProvider
+## 简介
 
 用于全局管理主题变量的容器，该组件在封装 `ConfigProvider` 基础上，提供了一键切换亮暗色主题、自定义主题、应用级作用域样式的统一入口。同时在该容器下的 `useTheme` 方法可获得这一层容器中的 `theme` 对象。
 

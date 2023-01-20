@@ -1,10 +1,11 @@
 ---
-title: createGlobalStyle 全局样式
+title: createGlobalStyle
+description: 创建全局样式
 order: 10
 group: 创建样式
 ---
 
-# 全局样式
+## 简介
 
 使用 `createGlobalStyle` 可以创建注入到全局的样式。 该方法的使用和 `styled-component` 基本没有区别，但实现上是基于 `@emotion/react` 和 `@emotion/serialize` 做的封装。
 

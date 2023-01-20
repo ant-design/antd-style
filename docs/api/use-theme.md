@@ -5,7 +5,7 @@ nav: API
 group: Hooks
 ---
 
-# useTheme
+## 简介
 
 配合容器组件进行使用（`ThemeProvider`），可以获取到容器下的主题信息。如果不添加 `ThemeProvider`，默认获取到的值为：
 

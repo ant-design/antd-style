@@ -1,12 +1,12 @@
 ---
-title: createStylish 创建复合样式
+title: createStylish
 order: 1
 group:
   title: 创建样式
   order: 0
 ---
 
-# createStylish 创建复合样式
+## 简介
 
 对于一般的样式诉求，通过 [createStyles](/usage/create-styles) 就可以基本满足，`createStylish` 属于进阶用法。
 

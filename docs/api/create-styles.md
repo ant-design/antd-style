@@ -1,12 +1,13 @@
 ---
-title: createStyles 创建样式
+title: createStyles
+description: 创建具有作用域的样式
 order: 1
 group:
   title: 创建样式
   order: 0
 ---
 
-# createStyles 模块样式
+## 简介
 
 使用 `createStyles` 可以创建具有作用域的的样式。书写能力上和 DX 基本与 CSS Modules 齐平。并在动态主题写法更方便，能力更强。
 
