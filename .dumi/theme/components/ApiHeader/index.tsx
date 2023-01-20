@@ -13,20 +13,20 @@ const Label = styled(Typography.Text)`
   width: 100px;
 `;
 
-const Text = styled.text`
+const TextContainer = styled(Flexbox)`
   color: ${(p) => p.theme.colorTextSecondary};
   cursor: pointer;
+
+  &:hover {
+    color: ${(p) => p.theme.colorText};
+  }
 `;
 
-const Icon = styled.span`
-  vertical-align: middle;
-  color: ${(p) => p.theme.colorTextSecondary};
-`;
 const IconDescription = ({ icon, children }) => (
-  <Flexbox horizontal align={'center'} gap={8}>
-    <Text>{icon}</Text>
-    <Text>{children}</Text>
-  </Flexbox>
+  <TextContainer horizontal align={'center'} gap={8}>
+    <>{icon}</>
+    <>{children}</>
+  </TextContainer>
 );
 
 interface ApiTitleProps {
@@ -66,7 +66,7 @@ export const ApiHeader: FC<ApiTitleProps> = memo(({ title, description }) => {
 
   return (
     <Flexbox>
-      <Typography.Title>{title}</Typography.Title>
+      <Typography.Title className={styles.title}>{title}</Typography.Title>
       {description && (
         <div>
           <Typography.Text type={'secondary'} className={styles.desc}>

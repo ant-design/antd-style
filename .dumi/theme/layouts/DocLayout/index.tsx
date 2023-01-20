@@ -1,12 +1,14 @@
 import animateScrollTo from 'animated-scroll-to';
 import { Helmet, useIntl, useLocation, useOutlet, useRouteMeta, useSiteData } from 'dumi';
-import Content from 'dumi/theme-original/slots/Content';
 import Features from 'dumi/theme-original/slots/Features';
 import Footer from 'dumi/theme-original/slots/Footer';
 import Header from 'dumi/theme-original/slots/Header';
 import Hero from 'dumi/theme-original/slots/Hero';
 import Toc from 'dumi/theme-original/slots/Toc';
+
+import Content from 'dumi/theme/slots/Content';
 import Sidebar from 'dumi/theme/slots/Sidebar';
+
 import { useEffect, useState, type FC } from 'react';
 import { Center, Flexbox } from 'react-layout-kit';
 
