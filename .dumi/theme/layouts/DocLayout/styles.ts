@@ -17,6 +17,11 @@ export const useStyles = createStyles(({ css, token }) => ({
   layout: css`
     font-family: sans-serif;
     background-color: ${token.colorBgLayout};
+    background-image: linear-gradient(
+      180deg,
+      ${token.colorBgContainer} 0%,
+      rgba(255, 255, 255, 0) 10%
+    );
 
     > main {
       display: flex;

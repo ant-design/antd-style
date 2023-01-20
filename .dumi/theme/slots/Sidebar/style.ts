@@ -38,7 +38,7 @@ export const useStyles = createStyles(({ css, token }) => ({
           font-size: ${token.fontSize}px;
           line-height: ${token.lineHeight};
           text-decoration: none;
-          transition: all 0.3s;
+          transition: all 0.1s;
 
           white-space: nowrap;
           overflow: hidden;
@@ -52,8 +52,13 @@ export const useStyles = createStyles(({ css, token }) => ({
           }
 
           &.active {
-            color: ${token.colorPrimaryTextActive};
-            background: ${token.colorPrimaryBgHover};
+            color: ${token.colorPrimaryText};
+            background: ${token.colorPrimaryBg};
+
+            &:hover {
+              color: ${token.colorPrimaryTextHover};
+              background: ${token.colorPrimaryBgHover};
+            }
           }
         }
       }

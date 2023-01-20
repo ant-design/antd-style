@@ -26,9 +26,11 @@ export const useStyles = createStyles(({ css, cx, token }, prefixCls) => ({
   selected: cx(
     `${prefixCls}-item-selected`,
     css`
+      color: ${token.colorPrimaryText};
       background: ${token.colorPrimaryBg};
       font-weight: bold;
       &:hover {
+        color: ${token.colorPrimaryTextHover};
         background: ${token.colorPrimaryBgHover};
       }
     `,

@@ -82,7 +82,7 @@ const DocLayout: FC = () => {
           ) : null}
           <Flexbox horizontal width={'100%'}>
             <Center width={'100%'}>
-              <Flexbox style={{ maxWidth: theme.contentMaxWidth, width: '100%' }}>
+              <Flexbox style={{ maxWidth: theme.contentMaxWidth, width: '100%', margin: '0 24px' }}>
                 <Flexbox horizontal>
                   <Content>{outlet}</Content>
                 </Flexbox>

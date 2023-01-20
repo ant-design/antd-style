@@ -2,7 +2,7 @@ import { Tabs } from 'antd';
 import { createStyles } from 'antd-style';
 import { history, Link, useLocation, useNavData } from 'dumi';
 import NavbarExtra from 'dumi/theme-default/slots/NavbarExtra';
-import { type FC } from 'react';
+import { memo, type FC } from 'react';
 
 const useStyles = createStyles(({ css, token }) => {
   const prefixCls = '.ant-tabs';
@@ -20,7 +20,7 @@ const useStyles = createStyles(({ css, token }) => {
 
       ${prefixCls}-tab {
         color: ${token.colorTextSecondary};
-        transition: background-color 150ms ease-out;
+        transition: background-color 100ms ease-out;
 
         &:first-child {
           margin: ${marginHoriz}px 4px ${marginHoriz}px 0;
@@ -30,7 +30,7 @@ const useStyles = createStyles(({ css, token }) => {
         &:hover {
           color: ${token.colorText} !important;
           background: ${token.colorFillTertiary};
-          border-radius: 4px;
+          border-radius: ${token.borderRadius}px;
         }
       }
 
@@ -51,8 +51,10 @@ const useStyles = createStyles(({ css, token }) => {
 const Navbar: FC = () => {
   const nav = useNavData();
   const { pathname } = useLocation();
-
   const { styles } = useStyles();
+
+  const activePath = nav.find((i) => pathname.startsWith(i.activePath)).activePath;
+
   return (
     <>
       <Tabs
@@ -63,13 +65,14 @@ const Navbar: FC = () => {
             </Link>
           ),
 
-          key: item.link,
+          key: item.activePath,
         }))}
-        onChange={(x) => {
-          console.log(x);
-          history.push(x);
+        onChange={(path) => {
+          const url = nav.find((i) => i.activePath === path).link;
+
+          history.push(url);
         }}
-        activeKey={pathname}
+        activeKey={activePath}
         className={styles.tabs}
       />
 
@@ -78,4 +81,4 @@ const Navbar: FC = () => {
   );
 };
 
-export default Navbar;
+export default memo(Navbar);
