@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.0.0-alpha.29](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.28...v3.0.0-alpha.29) (2023-01-20)
+
+### ✨ Features
+
+- 将主题配置中的 antd 主题配置与算法导出供自定义时使用 ([90a291d](https://github.com/arvinxx/antd-style/commit/90a291d))
+
 # [3.0.0-alpha.28](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.27...v3.0.0-alpha.28) (2023-01-20)
 
 ### ✨ Features
