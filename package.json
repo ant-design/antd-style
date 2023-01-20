@@ -74,6 +74,7 @@
     "@ant-design/icons": "^4",
     "@ant-design/pro-components": "^2",
     "@commitlint/cli": "^17",
+    "@emotion/babel-plugin": "^11",
     "@emotion/jest": "^11",
     "@floating-ui/react": "^0.17",
     "@testing-library/jest-dom": "^5",

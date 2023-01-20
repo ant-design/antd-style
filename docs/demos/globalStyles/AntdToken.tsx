@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'antd-style';
+import { createGlobalStyle, ThemeProvider } from 'antd-style';
 
 const Global = createGlobalStyle`
   .ant-custom-button {
@@ -25,9 +25,9 @@ const Global = createGlobalStyle`
 
 export default () => {
   return (
-    <>
+    <ThemeProvider>
       <Global />
       <button className="ant-custom-button">antd 中不存在的按钮</button>
-    </>
+    </ThemeProvider>
   );
 };

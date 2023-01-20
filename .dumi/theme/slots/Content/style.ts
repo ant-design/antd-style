@@ -13,14 +13,14 @@ export const useStyles = createStyles(({ token, isDarkMode, css }) => ({
 
       // hyperlink
       a {
-        color: ${token.colorPrimaryText};
+        color: ${token.colorLink};
 
         &:hover {
-          color: ${token.colorPrimaryTextHover};
+          color: ${token.colorLinkHover};
         }
 
         &:active {
-          color: ${token.colorPrimaryTextActive};
+          color: ${token.colorLinkActive};
         }
       }
 
@@ -34,7 +34,7 @@ export const useStyles = createStyles(({ token, isDarkMode, css }) => ({
       *:not(pre) code {
         padding: 2px 6px;
 
-        color: ${token.colorPrimaryTextActive};
+        color: ${token.colorPrimaryText};
         background: ${token.colorPrimaryBg};
         border-radius: 4px;
       }
