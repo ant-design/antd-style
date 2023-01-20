@@ -17,6 +17,7 @@ export interface CreateStylesTheme extends CommonStyleUtils {
   token: FullToken;
   stylish: FullStylish;
   appearance: ThemeAppearance;
+  isDarkMode: boolean;
 }
 
 /**
@@ -55,9 +56,12 @@ export const createStyles =
       let tempStyles: ReturnStyleToUse<Input>;
 
       if (styleOrGetStyleFn instanceof Function) {
-        const { stylish, appearance, ...token } = theme;
+        const { stylish, appearance, isDarkMode, ...token } = theme;
 
-        tempStyles = styleOrGetStyleFn({ token, stylish, appearance, cx, css }, props!) as any;
+        tempStyles = styleOrGetStyleFn(
+          { token, stylish, appearance, cx, css, isDarkMode },
+          props!,
+        ) as any;
       } else {
         tempStyles = styleOrGetStyleFn as any;
       }
