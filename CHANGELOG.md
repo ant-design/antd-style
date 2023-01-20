@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.0.0-alpha.28](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.27...v3.0.0-alpha.28) (2023-01-20)
+
+### ✨ Features
+
+- 为 createStyles 添加 isDarkMode 入参 ([ee1def0](https://github.com/arvinxx/antd-style/commit/ee1def0))
+
 # [3.0.0-alpha.27](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.26...v3.0.0-alpha.27) (2023-01-17)
 
 ### 🐛 Bug Fixes
