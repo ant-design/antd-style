@@ -5,7 +5,7 @@ export const useStyles = createStyles(
     css`
       cursor: pointer;
       &:hover {
-        background: ${token.colorFillQuaternary};
+        background: ${token.colorFillSecondary};
         border-radius: 4px;
       }
       pre {

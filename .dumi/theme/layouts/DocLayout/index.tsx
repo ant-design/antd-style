@@ -2,11 +2,11 @@ import animateScrollTo from 'animated-scroll-to';
 import { Helmet, useIntl, useLocation, useOutlet, useRouteMeta, useSiteData } from 'dumi';
 import Features from 'dumi/theme-original/slots/Features';
 import Footer from 'dumi/theme-original/slots/Footer';
-import Header from 'dumi/theme-original/slots/Header';
 import Hero from 'dumi/theme-original/slots/Hero';
 import Toc from 'dumi/theme-original/slots/Toc';
 
 import Content from 'dumi/theme/slots/Content';
+import Header from 'dumi/theme/slots/Header';
 import Sidebar from 'dumi/theme/slots/Sidebar';
 
 import { useEffect, useState, type FC } from 'react';
@@ -27,7 +27,7 @@ const DocLayout: FC = () => {
 
   const isApiPage = pathname.startsWith('/api');
 
-  const { styles } = useStyles();
+  const { styles, theme } = useStyles();
   // handle hash change or visit page hash after async chunk loaded
   useEffect(() => {
     const id = hash.replace('#', '');
@@ -69,9 +69,9 @@ const DocLayout: FC = () => {
         <Sidebar />
         <Flexbox width={'100%'}>
           {isApiPage ? (
-            <Flexbox style={{ marginRight: 176 }}>
+            <Flexbox style={{ marginRight: theme.tocWidth }}>
               <Center>
-                <Flexbox style={{ maxWidth: 1152, width: '100%' }}>
+                <Flexbox style={{ maxWidth: theme.contentMaxWidth, width: '100%' }}>
                   <Flexbox padding={'0 48px'}>
                     <ApiHeader title={fm.title} description={fm.description} />
                   </Flexbox>
@@ -81,7 +81,7 @@ const DocLayout: FC = () => {
           ) : null}
           <Flexbox horizontal width={'100%'}>
             <Center width={'100%'}>
-              <Flexbox style={{ maxWidth: 1152, width: '100%' }}>
+              <Flexbox style={{ maxWidth: theme.contentMaxWidth, width: '100%' }}>
                 <Flexbox horizontal>
                   <Content>{outlet}</Content>
                 </Flexbox>

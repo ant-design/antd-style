@@ -2,7 +2,7 @@ import { Tooltip } from 'antd';
 import copy from 'copy-to-clipboard';
 import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
 import js from 'react-syntax-highlighter/dist/esm/languages/hljs/javascript';
-import { githubGist } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import { atomOneDark, githubGist } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
 import { CheckOutlined } from '@ant-design/icons';
 
@@ -46,8 +46,10 @@ const CodeSnippet = ({ children }) => {
           setCopy(true);
         }}
       >
-        {}
-        <SyntaxHighlighter language={'javaScript'} style={githubGist}>
+        <SyntaxHighlighter
+          language={'javaScript'}
+          style={theme.isDarkMode ? atomOneDark : githubGist}
+        >
           {children}
         </SyntaxHighlighter>
       </div>
