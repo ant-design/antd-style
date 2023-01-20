@@ -29,7 +29,7 @@ export const useStyles = createStyles(({ css, token }) => ({
   `,
   tocWrapper: css`
     position: sticky;
-    top: 126px;
+    top: 100px;
     width: 184px;
     margin-inline-end: 24px;
     max-height: 80vh;
@@ -41,7 +41,7 @@ export const useStyles = createStyles(({ css, token }) => ({
     > h4 {
       margin: 0 0 8px;
       color: ${token.colorTextDescription};
-      font-size: 13px;
+      font-size: 12px;
       line-height: 1;
     }
   `,
