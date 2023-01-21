@@ -1,5 +1,5 @@
 import { CheckOutlined, CopyOutlined } from '@ant-design/icons';
-import { Button, Tooltip } from 'antd';
+import { Button, ConfigProvider, Tooltip } from 'antd';
 import { createStyles } from 'antd-style';
 import copy from 'copy-to-clipboard';
 import { FC } from 'react';
@@ -61,14 +61,16 @@ const SourceCode: FC<HighlighterProps> = ({ children, language }) => {
           )
         }
       >
-        <Button
-          icon={<CopyOutlined />}
-          className={styles.button}
-          onClick={() => {
-            copy(children);
-            setCopied();
-          }}
-        />
+        <ConfigProvider theme={{ token: { colorBgContainer: theme.colorBgElevated } }}>
+          <Button
+            icon={<CopyOutlined />}
+            className={styles.button}
+            onClick={() => {
+              copy(children);
+              setCopied();
+            }}
+          />
+        </ConfigProvider>
       </Tooltip>
       <Highlighter language={language}>{children}</Highlighter>
     </div>
