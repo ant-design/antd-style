@@ -1,8 +1,8 @@
 import { useMemo } from 'react';
 
-import { CommonStyleUtils } from '@/context';
 import { useEmotion, useTheme } from '@/hooks';
-import {
+import type {
+  CommonStyleUtils,
   FullStylish,
   FullToken,
   ReturnStyleToUse,
@@ -18,6 +18,7 @@ export interface CreateStylesTheme extends CommonStyleUtils {
   stylish: FullStylish;
   appearance: ThemeAppearance;
   isDarkMode: boolean;
+  prefixCls: string;
 }
 
 /**
@@ -25,8 +26,9 @@ export interface CreateStylesTheme extends CommonStyleUtils {
  */
 export interface ReturnStyles<T extends StyleInputType> {
   styles: ReturnStyleToUse<T>;
-  theme: Theme;
+  theme: Omit<Theme, 'prefixCls'>;
   cx: Emotion['cx'];
+  prefixCls: string;
 }
 
 // 获取样式
@@ -56,14 +58,17 @@ export const createStyles =
     const styles = useMemo(() => {
       let tempStyles: ReturnStyleToUse<Input>;
 
+      // 函数场景
       if (styleOrGetStyleFn instanceof Function) {
-        const { stylish, appearance, isDarkMode, ...token } = theme;
+        const { stylish, appearance, isDarkMode, prefixCls, ...token } = theme;
 
         tempStyles = styleOrGetStyleFn(
-          { token, stylish, appearance, cx, css, isDarkMode },
+          { token, stylish, appearance, cx, css, isDarkMode, prefixCls },
           props!,
         ) as any;
-      } else {
+      }
+      // 没有函数时直接就是 object 或者 string
+      else {
         tempStyles = styleOrGetStyleFn as any;
       }
 
@@ -82,5 +87,8 @@ export const createStyles =
       return tempStyles;
     }, [styleOrGetStyleFn, props, theme]);
 
-    return useMemo(() => ({ styles, cx, theme }), [styles, theme]);
+    return useMemo(() => {
+      const { prefixCls, ...res } = theme;
+      return { styles, cx, theme: res, prefixCls };
+    }, [styles, theme]);
   };

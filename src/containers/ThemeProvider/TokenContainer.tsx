@@ -10,13 +10,14 @@ import { Theme } from '@/types';
 
 type TokenContainerProps<T, S = Record<string, string>> = Pick<
   ThemeProviderProps<T, S>,
-  'children' | 'customToken' | 'customStylish'
+  'children' | 'customToken' | 'customStylish' | 'prefixCls'
 >;
 
 const TokenContainer: <T, S>(props: TokenContainerProps<T, S>) => ReactElement | null = ({
   children,
   customToken: customTokenOrFn,
   customStylish: stylishOrGetStylish,
+  prefixCls = 'ant',
 }) => {
   const themeState = useThemeMode();
   const { appearance, isDarkMode } = themeState;
@@ -53,6 +54,7 @@ const TokenContainer: <T, S>(props: TokenContainerProps<T, S>) => ReactElement |
     ...customToken,
     stylish,
     ...themeState,
+    prefixCls,
   };
 
   return <Provider theme={theme}>{children}</Provider>;

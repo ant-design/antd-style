@@ -36,7 +36,11 @@ export const ThemeProvider: <T = any, S = any>(
         theme={theme}
         getStaticInstance={getStaticInstance}
       >
-        <TokenContainer customToken={customToken} customStylish={customStylish}>
+        <TokenContainer
+          prefixCls={prefixCls}
+          customToken={customToken}
+          customStylish={customStylish}
+        >
           {children}
         </TokenContainer>
       </AntdProvider>

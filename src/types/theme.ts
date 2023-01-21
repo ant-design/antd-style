@@ -1,9 +1,13 @@
 import { ThemeConfig } from 'antd/es/config-provider/context';
 import { AliasToken } from 'antd/es/theme/interface';
 
-import { CommonStyleUtils } from '@/context';
+import { Emotion } from '@/functions';
 import { ThemeAppearance, ThemeMode } from './appearance';
 
+export interface CommonStyleUtils {
+  cx: Emotion['cx'];
+  css: Emotion['css'];
+}
 export interface ThemeContextState {
   appearance: ThemeAppearance;
   themeMode: ThemeMode;
@@ -54,4 +58,6 @@ export interface FullToken extends AntdToken, CustomToken {}
 
 export interface Theme extends FullToken, ThemeContextState {
   stylish: FullStylish;
+
+  prefixCls: string;
 }
