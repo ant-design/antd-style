@@ -4,8 +4,8 @@ import { history, Link, useLocation, useNavData } from 'dumi';
 import NavbarExtra from 'dumi/theme-default/slots/NavbarExtra';
 import { memo, type FC } from 'react';
 
-const useStyles = createStyles(({ css, token }) => {
-  const prefixCls = '.ant-tabs';
+const useStyles = createStyles(({ css, token, prefixCls }) => {
+  const prefix = `.${prefixCls}-tabs`;
 
   const marginHoriz = 16;
   const paddingVertical = 6;
@@ -13,12 +13,12 @@ const useStyles = createStyles(({ css, token }) => {
   return {
     tabs: css`
       //align-self: end;
-      ${prefixCls}-tab + ${prefixCls}-tab {
+      ${prefix}-tab + ${prefix}-tab {
         margin: ${marginHoriz}px 4px !important;
         padding: 0 12px !important;
       }
 
-      ${prefixCls}-tab {
+      ${prefix}-tab {
         color: ${token.colorTextSecondary};
         transition: background-color 100ms ease-out;
 
@@ -34,7 +34,7 @@ const useStyles = createStyles(({ css, token }) => {
         }
       }
 
-      .ant-tabs-nav {
+      ${prefix}-nav {
         margin-bottom: 0;
       }
     `,

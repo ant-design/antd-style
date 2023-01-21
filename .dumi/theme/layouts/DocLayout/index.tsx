@@ -13,7 +13,7 @@ import Sidebar from 'dumi/theme/slots/Sidebar';
 import Toc from 'dumi/theme/slots/Toc';
 
 import { ApiHeader } from '../../components/ApiHeader';
-import Provider from '../../components/Provider';
+import SiteProvider from '../../components/SiteProvider';
 
 import { StoreUpdater } from '../../components/StoreUpdater';
 import { GlobalStyle, useStyles } from './styles';
@@ -102,9 +102,9 @@ const DocLayout: FC = memo(() => {
 
 export default () => (
   <StrictMode>
-    <Provider>
+    <SiteProvider>
       <StoreUpdater />
       <DocLayout />
-    </Provider>
+    </SiteProvider>
   </StrictMode>
 );

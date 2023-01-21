@@ -10,6 +10,7 @@
       "@@/*": ["./.dumi/tmp/*"],
       "dumi/theme/slots/*": ["./.dumi/theme/slots/*"],
       "dumi/theme-original/slots/*": ["./.dumi/tmp/dumi/theme/slots/*"],
+      "dumi/theme-original/builtins/*": ["./.dumi/tmp/dumi/theme/builtins/*"],
       "antd-style": ["es"]
     }
   },

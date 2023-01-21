@@ -1,7 +1,7 @@
-import { StyleProvider } from 'antd-style';
 import { useOutlet } from 'dumi';
+import DemoProvider from '../../components/DemoProvider';
 
 export default () => {
   const outlet = useOutlet();
-  return <StyleProvider prefix={'demo'}>{outlet}</StyleProvider>;
+  return <DemoProvider>{outlet}</DemoProvider>;
 };

@@ -11,6 +11,7 @@ export default ({ children }: PropsWithChildren) => {
   return (
     <StyleProvider prefix={'site'}>
       <ThemeProvider
+        prefixCls={'site'}
         themeMode={themeMode}
         theme={getAntdTheme}
         customStylish={getCustomStylish}
