@@ -1,9 +1,9 @@
 import { useMemo } from 'react';
-import { css, cx, type CSSObject, type Emotion } from './css';
 
+import { CommonStyleUtils } from '@/context';
 import { useTheme } from '@/hooks';
+import { useStyleUtils } from '@/hooks/useStyleUtils';
 import {
-  CommonStyleUtils,
   FullStylish,
   FullToken,
   ReturnStyleToUse,
@@ -11,6 +11,8 @@ import {
   Theme,
   ThemeAppearance,
 } from '@/types';
+
+import { type CSSObject, type Emotion } from './css';
 
 export interface CreateStylesTheme extends CommonStyleUtils {
   token: FullToken;
@@ -50,6 +52,7 @@ export const createStyles =
   ) =>
   (props?: Props): ReturnStyles<Input> => {
     const theme = useTheme();
+    const { css, cx } = useStyleUtils();
 
     const styles = useMemo(() => {
       let tempStyles: ReturnStyleToUse<Input>;

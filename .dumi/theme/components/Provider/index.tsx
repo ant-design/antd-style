@@ -1,5 +1,5 @@
 import { App } from 'antd';
-import { ThemeProvider } from 'antd-style';
+import { StyleProvider, ThemeProvider } from 'antd-style';
 import { PropsWithChildren } from 'react';
 
 import { useThemeStore } from '../../store/useThemeStore';
@@ -9,13 +9,15 @@ export default ({ children }: PropsWithChildren) => {
   const themeMode = useThemeStore((s) => s.themeMode);
 
   return (
-    <ThemeProvider
-      themeMode={themeMode}
-      theme={getAntdTheme}
-      customStylish={getCustomStylish}
-      customToken={getCustomToken}
-    >
-      <App>{children}</App>
-    </ThemeProvider>
+    <StyleProvider prefix={'site'}>
+      <ThemeProvider
+        themeMode={themeMode}
+        theme={getAntdTheme}
+        customStylish={getCustomStylish}
+        customToken={getCustomToken}
+      >
+        <App>{children}</App>
+      </ThemeProvider>
+    </StyleProvider>
   );
 };

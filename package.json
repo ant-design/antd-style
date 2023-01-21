@@ -64,6 +64,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.20",
+    "@emotion/cache": "^11",
     "@emotion/css": "^11",
     "@emotion/react": "^11",
     "@emotion/serialize": "^1",

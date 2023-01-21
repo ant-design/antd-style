@@ -1,12 +1,8 @@
-import { Emotion } from '@emotion/css/create-instance';
 import { ThemeConfig } from 'antd/es/config-provider/context';
 import { AliasToken } from 'antd/es/theme/interface';
-import { ThemeAppearance, ThemeMode } from './appearance';
 
-export interface CommonStyleUtils {
-  cx: Emotion['cx'];
-  css: Emotion['css'];
-}
+import { CommonStyleUtils } from '@/context';
+import { ThemeAppearance, ThemeMode } from './appearance';
 
 export interface ThemeContextState {
   appearance: ThemeAppearance;
