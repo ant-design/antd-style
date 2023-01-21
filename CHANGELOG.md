@@ -1,5 +1,12 @@
 # Changelog
 
+# [3.0.0-alpha.32](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.31...v3.0.0-alpha.32) (2023-01-21)
+
+### ✨ Features
+
+- 优化 StyledProvider 实现逻辑并新增 useEmotion 的 hook ([d9d8014](https://github.com/arvinxx/antd-style/commit/d9d8014))
+- 新增 StyledProvider 以新增多 emotion 实例的能力 ([c4feb3b](https://github.com/arvinxx/antd-style/commit/c4feb3b))
+
 # [3.0.0-alpha.31](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.30...v3.0.0-alpha.31) (2023-01-21)
 
 ### ✨ Features
