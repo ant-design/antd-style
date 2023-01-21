@@ -2,8 +2,8 @@
 
 exports[`createStylish 默认快照 1`] = `
 {
-  "containerBgHover": "css-5g3hbo",
-  "containerBgL2": "css-1ho7cfh",
-  "defaultButton": "css-1d5q7n7",
+  "containerBgHover": "ant-css-5g3hbo",
+  "containerBgL2": "ant-css-1ho7cfh",
+  "defaultButton": "ant-css-1d5q7n7",
 }
 `;
