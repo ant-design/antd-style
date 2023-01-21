@@ -1,6 +1,7 @@
 import { ThemeProvider as Provider } from '@emotion/react';
 import { ReactElement, useMemo } from 'react';
 
+import { css, cx } from '@/functions';
 import { useThemeMode } from '@/hooks';
 import { useAntdTheme } from '@/hooks/useAntdTheme';
 import type { ThemeProviderProps } from './type';
@@ -38,6 +39,8 @@ const TokenContainer: <T, S>(props: TokenContainerProps<T, S>) => ReactElement |
         stylish: antdStylish,
         appearance,
         isDarkMode,
+        css,
+        cx,
       });
     }
     return stylishOrGetStylish;

@@ -1,5 +1,6 @@
 {
   "include": ["src", ".dumi/**/*", ".dumirc.ts", "*.ts"],
+  "exclude": [".dumi/theme"],
   "compilerOptions": {
     "strict": true,
     "declaration": true,
