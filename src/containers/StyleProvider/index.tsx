@@ -1,4 +1,4 @@
-import { StyleUtilsContext } from '@/context/StyleUtilsContext';
+import { EmotionContext } from '@/context/EmotionContext';
 import { createEmotion } from '@/functions';
 import { StylisPlugin } from '@emotion/cache';
 import { Emotion } from '@emotion/css/create-instance';
@@ -36,7 +36,8 @@ export const StyleProvider: FC<StyleProviderProps> = memo(
     ...emotionOptions
   }) => {
     const emotion = useMemo(() => {
-      const defaultSpeedy = process.env.NODE_ENV !== 'development';
+      const defaultSpeedy = process.env.NODE_ENV === 'development';
+
       return createEmotion({
         speedy: speedy ?? defaultSpeedy,
         key: prefix,
@@ -48,10 +49,6 @@ export const StyleProvider: FC<StyleProviderProps> = memo(
       getEmotionInstance?.(emotion);
     }, [emotion]);
 
-    return (
-      <StyleUtilsContext.Provider value={{ css: emotion.css, cx: emotion.cx }}>
-        {children}
-      </StyleUtilsContext.Provider>
-    );
+    return <EmotionContext.Provider value={emotion}>{children}</EmotionContext.Provider>;
   },
 );

@@ -1,2 +1,2 @@
-export * from './StyleUtilsContext';
+export * from './EmotionContext';
 export * from './ThemeModeContext';
