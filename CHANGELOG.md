@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.0.0-alpha.30](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.29...v3.0.0-alpha.30) (2023-01-21)
+
+### ✨ Features
+
+- css 和 cx 对象从独立 instance 中导出 ([d927630](https://github.com/arvinxx/antd-style/commit/d927630))
+
 # [3.0.0-alpha.29](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.28...v3.0.0-alpha.29) (2023-01-20)
 
 ### ✨ Features
