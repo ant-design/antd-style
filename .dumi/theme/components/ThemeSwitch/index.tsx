@@ -1,5 +1,4 @@
 import { styled, ThemeMode } from 'antd-style';
-import { usePrefersColor } from 'dumi';
 import { memo, type FC } from 'react';
 import { Flexbox } from 'react-layout-kit';
 import { useThemeStore } from '../../store/useThemeStore';
@@ -42,7 +41,6 @@ const options = [
 
 const ThemeSwitch: FC = () => {
   const themeMode = useThemeStore((s) => s.themeMode);
-  const [, , setPrefersColor] = usePrefersColor();
 
   return (
     <span>
@@ -52,7 +50,6 @@ const ThemeSwitch: FC = () => {
         onChange={(index) => {
           const mode = options[index].value as unknown as ThemeMode;
           useThemeStore.setState({ themeMode: mode });
-          setPrefersColor(mode);
         }}
         renderValue={(index) => options[index].icon}
         renderItem={(item) => <Option label={item.label} icon={item.icon} />}

@@ -33,6 +33,8 @@ const Footer: FC = () => {
         <Typography.Link href="https://d.umijs.org/">dumi</Typography.Link>
         <Divider type={'vertical'} style={{ margin: '0 8px' }} />
         <Typography.Link href="https://ant.design/">antd</Typography.Link>
+        <Divider type={'vertical'} style={{ margin: '0 8px' }} />
+        <Typography.Link href="https://kitchen.alipay.com/">kitchen</Typography.Link>
       </Flexbox>
     </Center>
   );

@@ -1,31 +1,16 @@
+import { CheckOutlined } from '@ant-design/icons';
 import { Tooltip } from 'antd';
 import copy from 'copy-to-clipboard';
-import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
-import js from 'react-syntax-highlighter/dist/esm/languages/hljs/javascript';
-import { atomOneDark, githubGist } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
-import { CheckOutlined } from '@ant-design/icons';
+import Highlighter from '../Highlighter';
 
-import { useEffect, useState } from 'react';
+import { useCopied } from '../../hooks/useCopied';
 import { useStyles } from './style';
-
-SyntaxHighlighter.registerLanguage('javascript', js);
 
 const CodeSnippet = ({ children }) => {
   const { styles, theme } = useStyles();
-  const [copied, setCopy] = useState(false);
+  const { copied, setCopied } = useCopied();
 
-  useEffect(() => {
-    if (!copied) return;
-
-    const timer = setTimeout(() => {
-      setCopy(false);
-    }, 2000);
-
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [copied]);
   return (
     <Tooltip
       placement={'right'}
@@ -43,15 +28,10 @@ const CodeSnippet = ({ children }) => {
         className={styles}
         onClick={() => {
           copy(children);
-          setCopy(true);
+          setCopied();
         }}
       >
-        <SyntaxHighlighter
-          language={'javaScript'}
-          style={theme.isDarkMode ? atomOneDark : githubGist}
-        >
-          {children}
-        </SyntaxHighlighter>
+        <Highlighter language={'javaScript'}>{children}</Highlighter>
       </div>
     </Tooltip>
   );

@@ -8,7 +8,7 @@ group: 基础知识
 
 由于 CSS in JS 的写法过多，所以我们需要给出一种最佳实践的写法，能兼容 V5 的 Token System、自定义主题、较低的研发心智和良好的扩展性。而本文会从各个角度来聊聊不同写法之间的差异。并给出 `antd-style` 最推荐的方式。
 
-### 基础：原有的 V4 CSS Modules
+## 对比基础：原有的 V4 CSS Modules
 
 我们先来回顾一下在之前（antd v4）的写法，这是我们与 CSS in JS 写法的对比基础。
 
@@ -34,7 +34,7 @@ const App = ({ list }) => {
 };
 ```
 
-### 1. styled 写法
+## 1. styled 写法
 
 styled 的写法从体感上看完全是另一套代码。 由于我们在业务中已经持续使用了两年，所以相对来说经验也算丰富。先来讲讲使用 styled 的一些痛点。
 
@@ -73,7 +73,7 @@ export default () => {
 
 如果是在已有一个设计系统的基础上，styled 是不合适的。尤其是 antd v5 本身已经具有很强的动态主题能力基础之上。
 
-### 2. css props 写法
+## 2. css props 写法
 
 这种写法似乎是 emotion 推荐的方案，而且 emotion 的核心维护者在自己的业务中也大量使用这种写法。这种写法存在两个很大的问题：1）样式代码耦合 ，2）性能缺陷。
 
@@ -201,8 +201,7 @@ const Command = () => {
 };
 ```
 
-emotion
-的前维护者在自己的业务中大量使用这种写法，但是他也在[自己的博客](https://dev.to/srmagura/why-were-breaking-up-wiht-css-in-js-4g9b) 中提到了这种写法的问题：性能缺陷。
+emotion 的前维护者在自己的业务中大量使用这种写法，但是他也在[自己的博客](https://dev.to/srmagura/why-were-breaking-up-wiht-css-in-js-4g9b) 中提到了这种写法的问题：性能缺陷。
 
 由于 react 的渲染机制， 将样式对象直接传入 `css` 属性时，由于每次渲染都会将 object 作为一个新对象处理，因此会造成 react 的 re-render，这样就会造成不必要的性能开销。而作者推荐的用法是，将 css props 中的对象放到组件外部静态化。但同时这样也就失去了 css-in-js 的动态化能力。
 

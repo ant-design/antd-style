@@ -76,7 +76,7 @@ export const ApiHeader: FC<ApiTitleProps> = memo(({ title, description }) => {
       )}
       <Flexbox style={{ marginTop: 24 }} gap={12}>
         {items.map((item) => (
-          <Flexbox horizontal>
+          <Flexbox horizontal key={item.label}>
             <Label type={'secondary'}>{item.label}</Label>
             {item.import ? (
               <Code>{item.children}</Code>

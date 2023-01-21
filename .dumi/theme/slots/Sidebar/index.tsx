@@ -1,12 +1,14 @@
-import { NavLink, useSidebarData } from 'dumi';
-import { type FC } from 'react';
+import { NavLink } from 'dumi';
+import isEqual from 'fast-deep-equal';
+import { memo, type FC } from 'react';
 
+import { useSiteStore } from '../../store/useSiteStore';
 import { useStyles } from './style';
 
 const Sidebar: FC = () => {
-  const sidebar = useSidebarData();
-
+  const sidebar = useSiteStore((s) => s.sidebar, isEqual);
   const { styles } = useStyles();
+
   if (!sidebar) return null;
 
   return (
@@ -27,4 +29,4 @@ const Sidebar: FC = () => {
   );
 };
 
-export default Sidebar;
+export default memo(Sidebar);

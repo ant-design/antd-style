@@ -4,9 +4,15 @@ export const useStyles = createStyles(({ token, isDarkMode, css }) => ({
   tmp: css``,
 
   content: css`
+    min-height: 400px;
     .markdown {
       color: ${token.colorTextSecondary};
 
+      h1,
+      h2,
+      h3 {
+        color: ${token.colorText};
+      }
       p {
         line-height: 1.8;
       }
@@ -31,7 +37,7 @@ export const useStyles = createStyles(({ token, isDarkMode, css }) => ({
       }
 
       // inline code
-      *:not(pre) code {
+      > :not(.source-code) code {
         padding: 2px 6px;
 
         color: ${token.colorPrimaryText};

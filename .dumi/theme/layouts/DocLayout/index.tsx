@@ -1,5 +1,7 @@
 import animateScrollTo from 'animated-scroll-to';
 import { Helmet, useIntl, useLocation, useOutlet, useRouteMeta, useSiteData } from 'dumi';
+import { memo, StrictMode, useEffect, useState, type FC } from 'react';
+import { Center, Flexbox } from 'react-layout-kit';
 
 import Features from 'dumi/theme-original/slots/Features';
 import Hero from 'dumi/theme-original/slots/Hero';
@@ -10,15 +12,13 @@ import Header from 'dumi/theme/slots/Header';
 import Sidebar from 'dumi/theme/slots/Sidebar';
 import Toc from 'dumi/theme/slots/Toc';
 
-import { useEffect, useState, type FC } from 'react';
-import { Center, Flexbox } from 'react-layout-kit';
-
 import { ApiHeader } from '../../components/ApiHeader';
 import Provider from '../../components/Provider';
 
+import { StoreUpdater } from '../../components/StoreUpdater';
 import { GlobalStyle, useStyles } from './styles';
 
-const DocLayout: FC = () => {
+const DocLayout: FC = memo(() => {
   const intl = useIntl();
   const outlet = useOutlet();
   const { hash, pathname } = useLocation();
@@ -98,10 +98,13 @@ const DocLayout: FC = () => {
       </main>
     </div>
   );
-};
+});
 
 export default () => (
-  <Provider>
-    <DocLayout />
-  </Provider>
+  <StrictMode>
+    <Provider>
+      <StoreUpdater />
+      <DocLayout />
+    </Provider>
+  </StrictMode>
 );

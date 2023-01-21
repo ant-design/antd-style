@@ -1,8 +1,8 @@
 import { useSidebarData } from 'dumi';
-import { type FC, type ReactNode } from 'react';
+import { PropsWithChildren, type FC } from 'react';
 import { useStyles } from './style';
 
-const Content: FC<{ children: ReactNode }> = (props) => {
+const Content: FC<PropsWithChildren> = ({ children }) => {
   const sidebar = useSidebarData();
 
   const { styles, cx } = useStyles();
@@ -11,7 +11,7 @@ const Content: FC<{ children: ReactNode }> = (props) => {
       className={cx('dumi-default-content', styles.content)}
       data-no-sidebar={!sidebar || undefined}
     >
-      {props.children}
+      {children}
     </div>
   );
 };
