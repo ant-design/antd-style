@@ -3,7 +3,7 @@ import { StyleProvider, ThemeProvider } from 'antd-style';
 import { PropsWithChildren } from 'react';
 
 import { useThemeStore } from '../../store/useThemeStore';
-import { getAntdTheme, getCustomStylish, getCustomToken } from './customTheme';
+import { getAntdTheme, getCustomStylish, getCustomToken } from '../../styles';
 
 export default ({ children }: PropsWithChildren) => {
   const themeMode = useThemeStore((s) => s.themeMode);
