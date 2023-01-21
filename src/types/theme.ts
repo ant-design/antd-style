@@ -14,6 +14,7 @@ export interface ThemeContextState {
   isDarkMode: boolean;
 }
 
+export type AppearanceState = Omit<ThemeContextState, 'themeMode'>;
 export type AntdToken = AliasToken;
 
 /**
@@ -25,18 +26,18 @@ export interface AntdStylish {}
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface CustomToken {}
 
-export type GetCustomToken<T> = (theme: {
+export interface CustomTokenParams extends AppearanceState {
   token: AntdToken;
-  appearance: ThemeAppearance;
-  isDarkMode: boolean;
-}) => T;
+}
 
-export type GetCustomStylish<S> = (theme: {
+export type GetCustomToken<T> = (theme: CustomTokenParams) => T;
+
+export interface CustomStylishParams extends CommonStyleUtils, AppearanceState {
   token: FullToken;
   stylish: AntdStylish;
-  appearance: ThemeAppearance;
-  isDarkMode: boolean;
-}) => S;
+}
+
+export type GetCustomStylish<S> = (theme: CustomStylishParams) => S;
 
 export type GetAntdThemeConfig = (appearance: ThemeAppearance) => ThemeConfig | undefined;
 

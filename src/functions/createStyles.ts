@@ -1,6 +1,5 @@
-import { css, cx, type CSSObject } from '@emotion/css';
-import type { Emotion } from '@emotion/css/create-instance';
 import { useMemo } from 'react';
+import { css, cx, type CSSObject, type Emotion } from './css';
 
 import { useTheme } from '@/hooks';
 import {
