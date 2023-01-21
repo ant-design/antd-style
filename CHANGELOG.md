@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.0.0-alpha.31](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.30...v3.0.0-alpha.31) (2023-01-21)
+
+### ✨ Features
+
+- 将 stylish 的接口从 styled 方法中移除，二者并不兼容 ([90809f9](https://github.com/arvinxx/antd-style/commit/90809f9))
+
 # [3.0.0-alpha.30](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.29...v3.0.0-alpha.30) (2023-01-21)
 
 ### ✨ Features
