@@ -3,10 +3,10 @@ import { serializeStyles } from '@emotion/serialize';
 import { memo } from 'react';
 
 import { useTheme } from '@/hooks';
-import { CSSStyle, Theme } from '@/types';
+import { CSSStyle, StyledTheme } from '@/types';
 
 export interface GlobalTheme {
-  theme: Theme;
+  theme: StyledTheme;
 }
 
 /**

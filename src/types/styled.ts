@@ -9,10 +9,12 @@ import * as React from 'react';
 
 import { Theme } from './theme';
 
+export type StyledTheme = Omit<Theme, 'stylish'>;
+
 export type StyledTags = {
   [Tag in keyof JSX.IntrinsicElements]: CreateStyledComponent<
     {
-      theme?: Theme;
+      theme?: StyledTheme;
       as?: React.ElementType;
     },
     JSX.IntrinsicElements[Tag]
