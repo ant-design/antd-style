@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.0.0-alpha.33](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.32...v3.0.0-alpha.33) (2023-01-21)
+
+### ✨ Features
+
+- 在各方法中新增 prefixCls 的参数 ([33d23b4](https://github.com/arvinxx/antd-style/commit/33d23b4))
+
 # [3.0.0-alpha.32](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.31...v3.0.0-alpha.32) (2023-01-21)
 
 ### ✨ Features
