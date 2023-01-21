@@ -47,6 +47,7 @@ export interface SiteStylish {
 
 export const getCustomStylish: GetCustomStylish<SiteStylish> = ({ css, token }) => ({
   clickableText: css`
+    cursor: pointer;
     color: ${token.colorTextSecondary};
     &:hover {
       color: ${token.colorText};

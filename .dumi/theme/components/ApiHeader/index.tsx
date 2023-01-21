@@ -13,22 +13,6 @@ const Label = styled(Typography.Text)`
   width: 100px;
 `;
 
-const TextContainer = styled(Flexbox)`
-  color: ${(p) => p.theme.colorTextSecondary};
-  cursor: pointer;
-
-  &:hover {
-    color: ${(p) => p.theme.colorText};
-  }
-`;
-
-const IconDescription = ({ icon, children }) => (
-  <TextContainer horizontal align={'center'} gap={8}>
-    <>{icon}</>
-    <>{children}</>
-  </TextContainer>
-);
-
 interface ApiTitleProps {
   title: string;
   description?: string;
@@ -82,7 +66,15 @@ export const ApiHeader: FC<ApiTitleProps> = memo(({ title, description }) => {
               <Code>{item.children}</Code>
             ) : (
               <a href={item.url} target={'_blank'}>
-                <IconDescription icon={item.icon}>{item.children}</IconDescription>
+                <Flexbox
+                  horizontal
+                  align={'center'}
+                  gap={8}
+                  className={theme.stylish.clickableText}
+                >
+                  <>{item.icon}</>
+                  <>{item.children}</>
+                </Flexbox>
               </a>
             )}
           </Flexbox>
