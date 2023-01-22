@@ -5,8 +5,8 @@ hero:
   actions:
     - text: 立即开始
       link: /guide
-    - text: 完全指南
-      link: /usage
+    - text: 使用案例
+      link: /case
 ---
 
 <embed src="../README.md"></embed>
