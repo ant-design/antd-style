@@ -1,8 +1,6 @@
 import { createStyles } from 'antd-style';
 
 export const useStyles = createStyles(({ token, isDarkMode, css }) => ({
-  tmp: css``,
-
   content: css`
     min-height: 400px;
     .markdown {

@@ -1,21 +1,23 @@
 import animateScrollTo from 'animated-scroll-to';
-import { Helmet, useIntl, useLocation, useOutlet, useRouteMeta, useSiteData } from 'dumi';
+import { Helmet, useIntl, useLocation, useOutlet, useSiteData } from 'dumi';
 import { memo, StrictMode, useEffect, useState, type FC } from 'react';
 import { Center, Flexbox } from 'react-layout-kit';
 
 import Features from 'dumi/theme-original/slots/Features';
-import Hero from 'dumi/theme-original/slots/Hero';
 
 import Content from 'dumi/theme/slots/Content';
 import Footer from 'dumi/theme/slots/Footer';
 import Header from 'dumi/theme/slots/Header';
+import Hero from 'dumi/theme/slots/Hero';
 import Sidebar from 'dumi/theme/slots/Sidebar';
 import Toc from 'dumi/theme/slots/Toc';
 
 import { ApiHeader } from '../../components/ApiHeader';
 import SiteProvider from '../../components/SiteProvider';
 
+import isEqual from 'fast-deep-equal';
 import { StoreUpdater } from '../../components/StoreUpdater';
+import { useSiteStore } from '../../store/useSiteStore';
 import { GlobalStyle, useStyles } from './styles';
 
 const DocLayout: FC = memo(() => {
@@ -24,7 +26,7 @@ const DocLayout: FC = memo(() => {
   const { hash, pathname } = useLocation();
   const { loading } = useSiteData();
   const [showSidebar, setShowSidebar] = useState(false);
-  const { frontmatter: fm } = useRouteMeta();
+  const fm = useSiteStore((s) => s.routeMeta.frontmatter || {}, isEqual);
 
   const isApiPage = pathname.startsWith('/api');
 
@@ -56,7 +58,7 @@ const DocLayout: FC = memo(() => {
       <GlobalStyle />
       <Helmet>
         <html lang={intl.locale.replace(/-.+$/, '')} />
-        {fm.title && <title>{fm.title}</title>}
+        {fm.title && <title>{fm.title} - Antd Style</title>}
         {fm.title && <meta property="og:title" content={fm.title} />}
         {fm.description && <meta name="description" content={fm.description} />}
         {fm.description && <meta property="og:description" content={fm.description} />}
@@ -80,7 +82,7 @@ const DocLayout: FC = memo(() => {
               </Center>
             </Flexbox>
           ) : null}
-          <Flexbox horizontal width={'100%'}>
+          <Flexbox horizontal width={'100%'} style={{ zIndex: 10 }}>
             <Center width={'100%'}>
               <Flexbox style={{ maxWidth: theme.contentMaxWidth, width: '100%', margin: '0 24px' }}>
                 <Flexbox horizontal>
@@ -89,10 +91,15 @@ const DocLayout: FC = memo(() => {
                 <Footer />
               </Flexbox>
             </Center>
-            <div className={styles.tocWrapper}>
-              <h4>Table of Contents</h4>
-              <Toc />
-            </div>
+            {
+              // 如果是首页就不显示 ToC
+              fm.hero ? null : (
+                <div className={styles.tocWrapper}>
+                  <h4>Table of Contents</h4>
+                  <Toc />
+                </div>
+              )
+            }
           </Flexbox>
         </Flexbox>
       </main>
