@@ -1,5 +1,15 @@
 # Changelog
 
+# [3.0.0-alpha.34](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.33...v3.0.0-alpha.34) (2023-01-22)
+
+### ✨ Features
+
+- 调整 stylish 的实现逻辑 ([1822b38](https://github.com/arvinxx/antd-style/commit/1822b38))
+
+### 💥 BREAKING CHANGES
+
+- stylish 将不再能直接作为 className 使用，需要通过 css 包裹才能生效，将 stylish 的定位变得更加精准 —— 可复用的样式片段
+
 # [3.0.0-alpha.33](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.32...v3.0.0-alpha.33) (2023-01-21)
 
 ### ✨ Features
