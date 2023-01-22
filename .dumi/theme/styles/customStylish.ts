@@ -8,9 +8,12 @@ declare module 'antd-style' {
 export interface SiteStylish {
   clickableText: string;
   resetLinkColor: string;
+
+  heroButtonGradient: string;
   heroGradient: string;
   heroTextShadow: string;
   heroGradientFlow: string;
+  heroBlurBall: string;
 }
 
 export const getCustomStylish: GetCustomStylish<SiteStylish> = ({ css, token, isDarkMode }) => {
@@ -68,6 +71,33 @@ export const getCustomStylish: GetCustomStylish<SiteStylish> = ({ css, token, is
           ${chroma(isDarkMode ? token.cyan : token.blue)
             .alpha(isDarkMode ? 0.2 : 0.6)
             .hex()};
+    `,
+
+    heroBlurBall: css`
+      filter: blur(69px);
+      background: linear-gradient(
+        135deg,
+        ${color3} 0%,
+        ${color1} 30%,
+        ${token.red} 70%,
+        ${token.cyan} 100%
+      );
+      background-size: 200% 200%;
+      animation: glow 10s ease infinite;
+
+      @keyframes glow {
+        0% {
+          background-position: 0 -100%;
+        }
+
+        50% {
+          background-position: 200% 50%;
+        }
+
+        100% {
+          background-position: 0 -100%;
+        }
+      }
     `,
   };
 };
