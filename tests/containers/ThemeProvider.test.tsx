@@ -100,18 +100,19 @@ describe('ThemeProvider', () => {
     it('自定义 Stylish', () => {
       const App = () => {
         const theme = useTheme();
-        return <div className={theme.stylish.defaultText}>普通文本</div>;
+        return <div className={css(theme.stylish.defaultText)}>普通文本</div>;
       };
 
       const { container } = render(
         <ThemeProvider<any, TestDesignStylish>
-          customStylish={{
+          // @ts-ignore
+          customStylish={({ css }) => ({
             defaultText: css`
               font-size: 14px;
               font-weight: 500;
               color: #333;
             `,
-          }}
+          })}
         >
           <App />
         </ThemeProvider>,
@@ -152,7 +153,7 @@ describe('ThemeProvider', () => {
       );
 
       const { result } = renderHook(useTheme, { wrapper: Wrapper });
-      expect(result.current.stylish.x).toEqual('');
+      expect(result.current.stylish.x).toBeUndefined();
     });
   });
 
