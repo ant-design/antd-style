@@ -66,12 +66,7 @@ export const ApiHeader: FC<ApiTitleProps> = memo(({ title, description }) => {
               <Code>{item.children}</Code>
             ) : (
               <a href={item.url} target={'_blank'}>
-                <Flexbox
-                  horizontal
-                  align={'center'}
-                  gap={8}
-                  className={theme.stylish.clickableText}
-                >
+                <Flexbox horizontal align={'center'} gap={8} className={styles.text}>
                   <>{item.icon}</>
                   <>{item.children}</>
                 </Flexbox>

@@ -4,7 +4,7 @@ import { history, Link, useLocation, useNavData } from 'dumi';
 import NavbarExtra from 'dumi/theme-default/slots/NavbarExtra';
 import { memo, type FC } from 'react';
 
-const useStyles = createStyles(({ css, token, prefixCls }) => {
+const useStyles = createStyles(({ css, token, stylish, prefixCls }) => {
   const prefix = `.${prefixCls}-tabs`;
 
   const marginHoriz = 16;
@@ -40,11 +40,7 @@ const useStyles = createStyles(({ css, token, prefixCls }) => {
     `,
 
     link: css`
-      color: inherit;
-      &:hover,
-      &:active {
-        color: inherit;
-      }
+      ${stylish.resetLinkColor}
     `,
   };
 });
@@ -53,7 +49,7 @@ const Navbar: FC = () => {
   const { pathname } = useLocation();
   const { styles } = useStyles();
 
-  const activePath = nav.find((i) => pathname.startsWith(i.activePath))?.activePath;
+  const activePath = nav.find((i) => pathname.startsWith(i.activePath!))?.activePath;
 
   return (
     <>
@@ -64,11 +60,11 @@ const Navbar: FC = () => {
               {item.title}
             </Link>
           ),
-
-          key: item.activePath,
+          key: item.activePath!,
         }))}
         onChange={(path) => {
-          const url = nav.find((i) => i.activePath === path).link;
+          const url = nav.find((i) => i.activePath === path)?.link;
+          if (!url) return;
 
           history.push(url);
         }}
