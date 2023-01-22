@@ -9,14 +9,11 @@ import { useStyles } from './style';
 const Logo: FC = () => {
   const locale = useLocale();
   const themeConfig = useSiteStore((s) => s.siteData.themeConfig, isEqual);
-  const { styles, cx, theme } = useStyles();
+  const { styles, cx } = useStyles();
 
   return (
     themeConfig && (
-      <Link
-        className={cx(theme.stylish.clickableText, styles)}
-        to={'base' in locale ? locale.base : '/'}
-      >
+      <Link className={cx(styles)} to={'base' in locale ? locale.base : '/'}>
         <img src={themeConfig.logo} alt={themeConfig.name} />
         {themeConfig.name}
       </Link>

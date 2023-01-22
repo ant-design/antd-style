@@ -22,7 +22,6 @@ import { FC, ReactNode, useEffect, useRef, useState } from 'react';
 import { flushSync } from 'react-dom';
 import useControlledState from 'use-merge-value';
 
-import { ScrollArrow } from './ScrollArrow';
 import SelectItem from './SelectItem';
 import { useStyles } from './style';
 
@@ -264,19 +263,6 @@ const NativeSelect: FC<NativeSelectProps> = ({
                     );
                   })}
                 </div>
-                {(['up', 'down'] as Array<'up' | 'down'>).map((dir) => (
-                  <ScrollArrow
-                    key={dir}
-                    dir={dir}
-                    prefixCls={cls}
-                    scrollTop={scrollTop}
-                    scrollRef={scrollRef}
-                    innerOffset={innerOffset}
-                    isPositioned={isPositioned}
-                    onScroll={handleArrowScroll}
-                    onHide={handleArrowHide}
-                  />
-                ))}
               </div>
             </FloatingFocusManager>
           </FloatingOverlay>

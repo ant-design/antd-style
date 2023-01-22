@@ -6,11 +6,6 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
     background-color: ${(p) => p.theme.colorBgLayout};
   }
-
-  .dumi-default-content {
-    max-width: 1152px;
-    margin-top: 24px;
-  }
 `;
 
 export const useStyles = createStyles(({ css, token }) => ({
@@ -22,9 +17,13 @@ export const useStyles = createStyles(({ css, token }) => ({
       ${token.colorBgContainer} 0%,
       rgba(255, 255, 255, 0) 10%
     );
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 
     > main {
       display: flex;
+      height: 100%;
 
       > section {
         flex: 1;

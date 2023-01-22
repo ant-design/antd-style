@@ -3,19 +3,22 @@ import { memo, useState, type FC } from 'react';
 import { Flexbox } from 'react-layout-kit';
 
 import LangSwitch from 'dumi/theme-default/slots/LangSwitch';
-import SearchBar from 'dumi/theme-default/slots/SearchBar';
 
 import Logo from 'dumi/theme/slots/Logo';
 import Navbar from 'dumi/theme/slots/Navbar';
+import SearchBar from 'dumi/theme/slots/SearchBar';
 
 import ColorSwitch from '../../components/ThemeSwitch';
 
+import { GithubFilled } from '@ant-design/icons';
+import { Button } from 'antd';
 import { useSiteStore } from '../../store/useSiteStore';
 import { useStyle } from './style';
 
 const Header: FC = () => {
   const [showMenu, setShowMenu] = useState(false);
   const frontmatter = useSiteStore((s) => s.routeMeta.frontmatter, isEqual);
+  const repoUrl = useSiteStore((s) => s.siteData.themeConfig?.repoUrl);
 
   const { styles } = useStyle();
 
@@ -37,9 +40,17 @@ const Header: FC = () => {
           </Flexbox>
           <section className={styles.right}>
             <div />
-            <Flexbox horizontal align={'center'} className="dumi-default-header-right-aside">
+            <Flexbox
+              gap={16}
+              horizontal
+              align={'center'}
+              className="dumi-default-header-right-aside"
+            >
               <SearchBar />
               <LangSwitch />
+              <a href={repoUrl} target={'_blank'}>
+                <Button icon={<GithubFilled />} />
+              </a>
               <ColorSwitch />
             </Flexbox>
           </section>

@@ -1,7 +1,7 @@
 import { createStyles } from 'antd-style';
 
 export const useStyles = createStyles(
-  ({ css, token }) => css`
+  ({ css, stylish, token }) => css`
     display: inline-flex;
     align-items: center;
     color: ${token.colorText};
@@ -9,6 +9,8 @@ export const useStyles = createStyles(
     line-height: 1;
     font-weight: 500;
     text-decoration: none;
+
+    ${stylish.clickableText};
 
     @media @mobile {
       font-size: 18px;

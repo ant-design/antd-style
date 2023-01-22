@@ -3,7 +3,7 @@ import { createStyles } from 'antd-style';
 export const useStyle = createStyles(({ css, token }) => ({
   header: css`
     position: relative;
-    z-index: 10000;
+    z-index: ${token.zIndexPopupBase - 50};
     border-bottom: 1px solid ${token.colorSplit};
 
     &:not([data-static]) {
@@ -12,18 +12,12 @@ export const useStyle = createStyles(({ css, token }) => ({
       background-color: transparent;
       backdrop-filter: blur(6px);
 
-
       // to avoid backdrop filter conflict with navbar overlay
       &[data-mobile-active] {
-        background-color: @c-site-bg;
+        background-color: ${token.colorBgLayout};
         backdrop-filter: none;
-
-        @{dark-selector} & {
-          background-color: @c-site-bg-dark;
-        }
       }
     }
-
   `,
   content: css`
     display: flex;
@@ -55,37 +49,34 @@ export const useStyle = createStyles(({ css, token }) => ({
         margin: 8px 16px;
         padding-top: 24px;
         justify-content: center;
-        border-top: 1px solid @c-border-light;
+        border-top: 1px solid ${token.colorBorder};
 
-        @{dark-selector} & {
-          border-top-color: @c-border-less-dark;
-        }
       }
     }
 
-    @media @mobile {
-      position: fixed;
-      top: @s-header-height-m;
-      left: 0;
-      right: 0;
-      height: calc(100vh - @s-header-height-m);
-      display: block;
-      background-color: fadeout(@c-site-bg, 40%);
-      border-top: 1px solid @c-border-light;
-      backdrop-filter: blur(30px);
-      box-sizing: border-box;
-      transition: all 0.2s;
-
-      @{dark-selector} & {
-        background-color: fadeout(@c-site-bg-dark, 40%);
-        border-top: 1px solid @c-border-less-dark;
-      }
-
-      .@{prefix}-header:not([data-mobile-active]) & {
-        opacity: 0;
-        visibility: hidden;
-        padding-top: 20px;
-      }
+    //@media @mobile {
+    //  position: fixed;
+    //  top: @s-header-height-m;
+    //  left: 0;
+    //  right: 0;
+    //  height: calc(100vh - @s-header-height-m);
+    //  display: block;
+    //  background-color: fadeout(@c-site-bg, 40%);
+    //  border-top: 1px solid @c-border-light;
+    //  backdrop-filter: blur(30px);
+    //  box-sizing: border-box;
+    //  transition: all 0.2s;
+    //
+    //  @{dark-selector} & {
+    //    background-color: fadeout(@c-site-bg-dark, 40%);
+    //    border-top: 1px solid @c-border-less-dark;
+    //  }
+    //
+    //  .@{prefix}-header:not([data-mobile-active]) & {
+    //    opacity: 0;
+    //    visibility: hidden;
+    //    padding-top: 20px;
+    //  }
     }
   `,
 }));

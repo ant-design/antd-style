@@ -129,5 +129,6 @@ export const useStyles = createStyles(({ token, isDarkMode, css }) => ({
     background-color: ${token.colorBgContainer};
     border-radius: 10px;
     box-shadow: ${token.boxShadow};
+    margin-top: 24px;
   `,
 }));
