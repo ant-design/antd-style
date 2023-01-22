@@ -11,7 +11,7 @@ import type {
   ThemeAppearance,
 } from '@/types';
 
-import { type CSSObject, type Emotion } from './css';
+import { type CSSObject } from './css';
 
 export interface CreateStylesTheme extends CommonStyleUtils {
   token: FullToken;
@@ -24,10 +24,9 @@ export interface CreateStylesTheme extends CommonStyleUtils {
 /**
  * 最终返回 styles 对象的类型定义
  */
-export interface ReturnStyles<T extends StyleInputType> {
+export interface ReturnStyles<T extends StyleInputType> extends Pick<CommonStyleUtils, 'cx'> {
   styles: ReturnStyleToUse<T>;
   theme: Omit<Theme, 'prefixCls'>;
-  cx: Emotion['cx'];
   prefixCls: string;
 }
 

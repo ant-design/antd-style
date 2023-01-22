@@ -1,7 +1,7 @@
-import { ThemeProvider as Provider } from '@emotion/react';
+import { css as reactCss, ThemeProvider as Provider } from '@emotion/react';
+import { SerializedStyles } from '@emotion/serialize';
 import { ReactElement, useMemo } from 'react';
 
-import { css, cx } from '@/functions';
 import { useThemeMode } from '@/hooks';
 import { useAntdTheme } from '@/hooks/useAntdTheme';
 import type { ThemeProviderProps } from './type';
@@ -40,14 +40,19 @@ const TokenContainer: <T, S>(props: TokenContainerProps<T, S>) => ReactElement |
         stylish: antdStylish,
         appearance,
         isDarkMode,
-        css,
-        cx,
+        css: reactCss,
       });
     }
     return stylishOrGetStylish;
   }, [stylishOrGetStylish, token, customToken, antdStylish, appearance]);
 
-  const stylish = { ...customStylish, ...antdStylish };
+  const stylish = useMemo(() => {
+    const merged = { ...customStylish, ...antdStylish };
+
+    return Object.fromEntries(
+      Object.entries<SerializedStyles>(merged).map(([key, value]) => [key, value.styles]),
+    );
+  }, [customStylish, antdStylish]);
 
   const theme: Theme = {
     ...token,

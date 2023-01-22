@@ -2,12 +2,19 @@ import { ThemeConfig } from 'antd/es/config-provider/context';
 import { AliasToken } from 'antd/es/theme/interface';
 
 import { Emotion } from '@/functions';
+import { CSSInterpolation, SerializedStyles } from '@emotion/serialize';
 import { ThemeAppearance, ThemeMode } from './appearance';
+
+export interface EmotionReactCss {
+  (template: TemplateStringsArray, ...args: Array<CSSInterpolation>): SerializedStyles;
+  (...args: Array<CSSInterpolation>): SerializedStyles;
+}
 
 export interface CommonStyleUtils {
   cx: Emotion['cx'];
   css: Emotion['css'];
 }
+
 export interface ThemeContextState {
   appearance: ThemeAppearance;
   themeMode: ThemeMode;
@@ -32,12 +39,15 @@ export interface CustomTokenParams extends AppearanceState {
 
 export type GetCustomToken<T> = (theme: CustomTokenParams) => T;
 
-export interface CustomStylishParams extends CommonStyleUtils, AppearanceState {
+export interface CustomStylishParams extends AppearanceState {
   token: FullToken;
   stylish: AntdStylish;
+  css: EmotionReactCss;
 }
 
-export type GetCustomStylish<S> = (theme: CustomStylishParams) => S;
+export type GetCustomStylish<S> = (theme: CustomStylishParams) => {
+  [T in keyof S]: SerializedStyles;
+};
 
 export type GetAntdThemeConfig = (appearance: ThemeAppearance) => ThemeConfig | undefined;
 
