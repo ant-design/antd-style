@@ -1,9 +1,11 @@
+import { Button, ConfigProvider } from 'antd';
+import { Link } from 'dumi';
 import isEqual from 'fast-deep-equal';
 import { type FC } from 'react';
 import { Center, Flexbox } from 'react-layout-kit';
 
-import { Button, ConfigProvider } from 'antd';
-import { Link } from 'dumi';
+import HeroButton from './HeroButton';
+
 import { useSiteStore } from '../../store/useSiteStore';
 import { useStyles } from './style';
 
@@ -34,16 +36,17 @@ const Hero: FC = () => {
         {Boolean(frontmatter.hero!.actions?.length) && (
           <ConfigProvider theme={{ token: { fontSize: 16, controlHeight: 40 } }}>
             <Flexbox horizontal gap={24} className={styles.actions}>
-              <Link to={'guide'}>
-                <Button size={'large'} shape={'round'} type={'primary'}>
-                  立即开始
-                </Button>
-              </Link>
-              <Link to={'/api/create-styles'}>
-                <Button size={'large'} shape={'round'} type={'default'}>
-                  完全指南
-                </Button>
-              </Link>
+              {frontmatter.hero!.actions!.map(({ text, link }, index) => (
+                <Link key={text} to={link}>
+                  {index === 0 ? (
+                    <HeroButton>{text}</HeroButton>
+                  ) : (
+                    <Button size={'large'} shape={'round'} type={'default'}>
+                      {text}
+                    </Button>
+                  )}
+                </Link>
+              ))}
             </Flexbox>
           </ConfigProvider>
         )}

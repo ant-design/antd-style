@@ -1,7 +1,6 @@
 import { createStyles } from 'antd-style';
-import chroma from 'chroma-js';
 
-export const useStyles = createStyles(({ css, token, isDarkMode }) => ({
+export const useStyles = createStyles(({ css, token, stylish, isDarkMode }) => ({
   container: css`
     position: relative;
     margin: -@s-header-height - 20 auto -160px auto;
@@ -54,32 +53,11 @@ export const useStyles = createStyles(({ css, token, isDarkMode }) => ({
     b {
       position: relative;
       z-index: 5;
-      background-image: radial-gradient(
-        at 80% 20%,
-        ${token.blue} 0%,
-        ${token.pink} 80%,
-        ${token.purple} 130%
-      );
+      ${stylish.heroGradient};
+      ${stylish.heroGradientFlow}
+
       background-clip: text;
       -webkit-text-fill-color: transparent;
-
-      animation: flow 5s ease infinite;
-      background-size: 300% 300%;
-      background-repeat: repeat;
-
-      @keyframes flow {
-        0% {
-          background-position: 0% 0%;
-        }
-
-        50% {
-          background-position: 100% 100%;
-        }
-
-        100% {
-          background-position: 0% 0%;
-        }
-      }
     }
   `,
   titleShadow: css`
@@ -93,12 +71,7 @@ export const useStyles = createStyles(({ css, token, isDarkMode }) => ({
 
     font-family: AliPuHui, ${token.fontFamily};
 
-    text-shadow: 0 8px 20px ${chroma(token.pink).alpha(0.2).hex()},
-      0 8px 60px ${chroma(token.purple).alpha(0.2).hex()},
-      0 8px 80px
-        ${chroma(isDarkMode ? token.cyan : token.blue)
-          .alpha(isDarkMode ? 0.2 : 0.6)
-          .hex()};
+    ${stylish.heroTextShadow}
 
     b {
       color: transparent;
