@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.0.0-alpha.35](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.34...v3.0.0-alpha.35) (2023-01-23)
+
+### ✨ Features
+
+- antd stylish 模块实现 ([86e1abb](https://github.com/arvinxx/antd-style/commit/86e1abb))
+
 # [3.0.0-alpha.34](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.33...v3.0.0-alpha.34) (2023-01-22)
 
 ### ✨ Features
