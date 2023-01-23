@@ -1,6 +1,6 @@
 import { createStyles } from 'antd-style';
 
-export const useStyles = createStyles(({ css, cx, token }, prefixCls: string) => ({
+export const useStyles = createStyles(({ css, stylish, cx, token }, prefixCls: string) => ({
   container: cx(
     prefixCls,
     css`
@@ -38,10 +38,7 @@ export const useStyles = createStyles(({ css, cx, token }, prefixCls: string) =>
       border: 1px solid ${token.colorBorder};
       -webkit-tap-highlight-color: transparent;
 
-      &:hover {
-        // background: ${token.colorPrimaryBg};
-        border-color: ${token.colorPrimaryBorder};
-      }
+      ${stylish.buttonDefaultHover}
 
       &:focus-visible {
         border-color: ${token.colorPrimary};
