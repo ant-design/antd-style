@@ -21,7 +21,7 @@ export interface ThemeProviderProps<T, S = Record<string, string>> {
   /**
    * 自定义 Stylish
    */
-  customStylish?: S | GetCustomStylish<S>;
+  customStylish?: GetCustomStylish<S>;
   // --------------------- antd 主题 --------------------- //
   prefixCls?: string;
   /**

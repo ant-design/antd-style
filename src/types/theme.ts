@@ -24,11 +24,21 @@ export interface ThemeContextState {
 export type AppearanceState = Omit<ThemeContextState, 'themeMode'>;
 export type AntdToken = AliasToken;
 
+export interface AntdStylishParams extends AppearanceState {
+  token: AntdToken;
+  css: EmotionReactCss;
+}
+
+export type GetAntdStylish = (theme: AntdStylishParams) => {
+  [T in keyof AntdStylish]: SerializedStyles;
+};
+
 /**
  * 一组统一封装好的 antd 标准样式
  */
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface AntdStylish {}
+export interface AntdStylish {
+  buttonDefaultHover: string;
+}
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface CustomToken {}

@@ -1,12 +1,12 @@
-import { css as reactCss, ThemeProvider as Provider } from '@emotion/react';
 import { SerializedStyles } from '@emotion/serialize';
 import { ReactElement, useMemo } from 'react';
 
-import { useThemeMode } from '@/hooks';
-import { useAntdTheme } from '@/hooks/useAntdTheme';
-import type { ThemeProviderProps } from './type';
+import { EmotionThemeProvider as Provider, reactCss } from '@/functions/react';
+import { useAntdTheme, useThemeMode } from '@/hooks';
+import { convertStylishToString } from '@/utils/convertStylish';
 
 import { Theme } from '@/types';
+import type { ThemeProviderProps } from './type';
 
 type TokenContainerProps<T, S = Record<string, string>> = Pick<
   ThemeProviderProps<T, S>,
@@ -34,25 +34,25 @@ const TokenContainer: <T, S>(props: TokenContainerProps<T, S>) => ReactElement |
 
   // 获取 stylish
   const customStylish = useMemo(() => {
-    if (stylishOrGetStylish instanceof Function) {
-      return stylishOrGetStylish({
-        token: { ...token, ...customToken },
-        stylish: antdStylish,
-        appearance,
-        isDarkMode,
-        css: reactCss,
-      });
-    }
-    return stylishOrGetStylish;
+    if (!stylishOrGetStylish) return {};
+
+    let rawStylish: Record<string, SerializedStyles>;
+
+    rawStylish = stylishOrGetStylish({
+      token: { ...token, ...customToken },
+      stylish: antdStylish,
+      appearance,
+      isDarkMode,
+      css: reactCss,
+    });
+
+    return convertStylishToString(rawStylish);
   }, [stylishOrGetStylish, token, customToken, antdStylish, appearance]);
 
-  const stylish = useMemo(() => {
-    const merged = { ...customStylish, ...antdStylish };
-
-    return Object.fromEntries(
-      Object.entries<SerializedStyles>(merged).map(([key, value]) => [key, value.styles]),
-    );
-  }, [customStylish, antdStylish]);
+  const stylish = useMemo(
+    () => ({ ...customStylish, ...antdStylish }),
+    [customStylish, antdStylish],
+  );
 
   const theme: Theme = {
     ...token,

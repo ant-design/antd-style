@@ -1,11 +1,12 @@
-import { AntdTheme } from '@/types';
 import { useMemo } from 'react';
+
+import { AntdTheme } from '@/types';
 import { useAntdStylish } from './useAntdStylish';
 import { useAntdToken } from './useAntdToken';
 
 export const useAntdTheme = (): AntdTheme => {
   const token = useAntdToken();
-  const antdStylish = useAntdStylish();
+  const stylish = useAntdStylish();
 
-  return useMemo(() => ({ stylish: antdStylish, ...token }), [token, antdStylish]);
+  return useMemo(() => ({ ...token, stylish }), [token, stylish]);
 };
