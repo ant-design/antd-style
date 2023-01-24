@@ -2,14 +2,15 @@ import { createStyles } from 'antd-style';
 
 export const useStyles = createStyles(({ css, token }) => ({
   sidebar: css`
+    grid-area: sidebar;
+
     position: sticky;
     top: ${token.headerHeight}px;
-    width: ${token.sidebarWidth}px;
     max-height: calc(100vh - ${token.headerHeight}px);
+
     padding-top: 20px;
     padding-bottom: 24px;
     padding-inline: 16px;
-    //background: ${token.colorBgContainer};
     border-right: 1px solid ${token.colorSplit};
 
     > dl {

@@ -3,9 +3,6 @@ import { createStyles } from 'antd-style';
 export const useStyles = createStyles(({ css, token, stylish, isDarkMode }) => ({
   container: css`
     position: relative;
-    //margin: -@s-header-height - 20 auto -160px auto;
-    // max-width: ${token.contentMaxWidth}px;
-    //height: 932px;
     padding-top: 80px;
     text-align: center;
     box-sizing: border-box;
@@ -41,14 +38,6 @@ export const useStyles = createStyles(({ css, token, stylish, isDarkMode }) => (
     color: transparent;
     margin: 0;
     font-family: AliPuHui, ${token.fontFamily};
-
-    @font-face {
-      font-family: 'AliPuHui';
-      src: url('https://at.alicdn.com/wf/webfont/exMpJIukiCms/Gsw2PSKrftc1yNWMNlXgw.woff2')
-          format('woff2'),
-        url('https://at.alicdn.com/wf/webfont/exMpJIukiCms/vtu73by4O2gEBcvBuLgeu.woff')
-          format('woff');
-    }
 
     b {
       position: relative;

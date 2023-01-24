@@ -34,7 +34,7 @@ features:
     imageStyle: primary
 
   - title: 应用案例
-    description: 展示使用 Ant Design Style 的中、小型案例。本文档站点同样使用 Ant Design Style 构建样式，可以作为站点类的标准应用。
+    description: 展示使用 Ant Design Style 的组件、应用的各种案例，帮助开发者快速上手。<quotient> 本文档同样使用 Ant Design Style 构建样式，可以作为静态站点类的参考。</quotient>
     link: /case
     image: https://mdn.alipayobjects.com/huamei_rqvucu/afts/img/A*5H2ySLO-X4cAAAAAAAAAAAAADoN6AQ/original
     imageStyle: soon
@@ -45,15 +45,15 @@ features:
     image: https://mdn.alipayobjects.com/huamei_rqvucu/afts/img/A*5H2ySLO-X4cAAAAAAAAAAAAADoN6AQ/original
     imageStyle: primary
 
-  - title: 微应用良好兼容
-    description: 默认兼容 qiankun 微应用场景，并为性能优先场景提供优化选项
-    image: https://mdn.alipayobjects.com/huamei_rqvucu/afts/img/A*tZNeQIUYx_4AAAAAAAAAAAAADoN6AQ/original
-    imageStyle: primary
-
   - title: 基于 Emotion 构建
     image: https://mdn.alipayobjects.com/huamei_rqvucu/afts/img/A*MvKkQqXEyfQAAAAAAAAAAAAADoN6AQ/original
     description: Ant Design Style 的底层实现基于 Emotion，因此支持 emotion 中的所有写法
     imageStyle: light
+
+  - title: 微应用良好兼容
+    description: 默认兼容 qiankun 微应用场景，并为性能优先场景提供优化选项
+    image: https://mdn.alipayobjects.com/huamei_rqvucu/afts/img/A*tZNeQIUYx_4AAAAAAAAAAAAADoN6AQ/original
+    imageStyle: primary
 
   - title: 响应式轻松适配
     description: Ant Design Style 为响应式样式提供了一套

@@ -4,7 +4,6 @@ export const useStyles = createStyles(({ css, token, stylish }) => ({
   title: css`
     font-family: monospace;
   `,
-  container: css``,
   desc: css`
     font-size: ${token.fontSizeLG}px;
     line-height: ${token.lineHeightLG}px;

@@ -6,18 +6,13 @@ import { Center, Flexbox } from 'react-layout-kit';
 
 const useStyles = createStyles(
   ({ css, token }) => css`
-    margin-top: 48px;
+    grid-area: footer;
     border-top: 1px solid ${token.colorSplit};
     color: ${token.colorTextDescription};
     font-size: 14px;
     line-height: 26px;
     text-align: center;
     padding: 24px 0;
-
-    //@media @mobile {
-    //  padding: @s-content-padding * 0.3 0;
-    //  font-size: 13px;
-    //}
   `,
 );
 

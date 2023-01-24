@@ -1,12 +1,15 @@
 export default () => (
   <svg
-    preserveAspectRatio="xMidYMid"
-    viewBox="0 0 256 256"
+    width="14px"
+    height="14px"
+    viewBox="0 0 14 14"
+    version="1.1"
     xmlns="http://www.w3.org/2000/svg"
-    width="14"
-    height="14"
+    xmlnsXlink="http://www.w3.org/1999/xlink"
   >
-    <path d="M0 256V0h256v256z" fill="#C12127"></path>
-    <path d="M48 48h160v160h-32V80h-48v128H48z" fill="#FFF"></path>
+    <path
+      d="M13,0 C13.5522847,-1.01453063e-16 14,0.44771525 14,1 L14,13 C14,13.5522847 13.5522847,14 13,14 L1,14 C0.44771525,14 -4.87476137e-16,13.5522847 0,13 L0,1 C-6.76353751e-17,0.44771525 0.44771525,-4.5365845e-16 1,0 L13,0 Z M11.375,2.625 L2.625,2.625 L2.625,11.375 L7,11.375 L7,4.375 L9.625,4.375 L9.625,11.375 L11.375,11.375 L11.375,2.625 Z"
+      fill="#C12127"
+    ></path>
   </svg>
 );

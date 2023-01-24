@@ -9,22 +9,6 @@ export const useStyles = createStyles(({ token, css, stylish, isDarkMode }) => (
     grid-template-columns: repeat(3, 1fr);
     gap: 16px;
     position: relative;
-
-    &:after {
-      position: absolute;
-      z-index: 0;
-      width: 100%;
-      height: 100%;
-      ${isDarkMode
-        ? stylish.heroGradient
-        : css`
-            background: linear-gradient(135deg, ${token.colorFill}, ${token.colorBgLayout});
-          `};
-      border-radius: 24px;
-      content: '';
-      inset: 0;
-      opacity: 0.05;
-    }
   `,
 
   cell: css`
@@ -99,5 +83,16 @@ export const useStyles = createStyles(({ token, css, stylish, isDarkMode }) => (
         color: ${token.colorPrimaryHover};
       }
     }
+  `,
+  first: css`
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+  `,
+  blur: css`
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    ${stylish.heroBlurBall};
+    scale: 2;
+    opacity: 0.1;
   `,
 }));

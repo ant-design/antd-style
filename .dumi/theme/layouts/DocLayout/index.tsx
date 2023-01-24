@@ -1,36 +1,23 @@
 import animateScrollTo from 'animated-scroll-to';
-import { Helmet, useIntl, useLocation, useOutlet } from 'dumi';
+import { Helmet, useIntl, useLocation } from 'dumi';
 import isEqual from 'fast-deep-equal';
-import { memo, StrictMode, useEffect, useState, type FC } from 'react';
-import { Center, Flexbox } from 'react-layout-kit';
+import { memo, StrictMode, useEffect, type FC } from 'react';
 
-import Content from 'dumi/theme/slots/Content';
-import Footer from 'dumi/theme/slots/Footer';
-import Header from 'dumi/theme/slots/Header';
-import Sidebar from 'dumi/theme/slots/Sidebar';
-import Toc from 'dumi/theme/slots/Toc';
-
-import { ApiHeader } from '../../components/ApiHeader';
 import SiteProvider from '../../components/SiteProvider';
 import { StoreUpdater } from '../../components/StoreUpdater';
 
-import Home from './Home';
+import Docs from '../../pages/Docs';
+import Home from '../../pages/Home';
 
 import { isHeroPageSel, useSiteStore } from '../../store/useSiteStore';
-import { GlobalStyle, useStyles } from './styles';
+import { GlobalStyle } from './styles';
 
 const DocLayout: FC = memo(() => {
   const intl = useIntl();
-  const outlet = useOutlet();
-  const { hash, pathname } = useLocation();
-  const [showSidebar, setShowSidebar] = useState(false);
+  const { hash } = useLocation();
   const fm = useSiteStore((s) => s.routeMeta.frontmatter, isEqual);
   const isHomePage = useSiteStore(isHeroPageSel);
   const loading = useSiteStore((s) => s.siteData.loading);
-
-  const isApiPage = pathname.startsWith('/api');
-
-  const { styles, theme } = useStyles();
 
   // handle hash change or visit page hash after async chunk loaded
   useEffect(() => {
@@ -51,66 +38,18 @@ const DocLayout: FC = memo(() => {
   }, [loading, hash]);
 
   return (
-    <div
-      className={styles.layout}
-      data-mobile-sidebar-active={showSidebar || undefined}
-      onClick={() => setShowSidebar(false)}
-    >
-      <GlobalStyle />
+    <>
       <Helmet>
         <html lang={intl.locale.replace(/-.+$/, '')} />
-        {isHomePage ? (
-          <title>Ant Design Style</title>
-        ) : (
-          fm.title && <title> {fm.title} - Ant Design Style</title>
-        )}
         {fm.title && <meta property="og:title" content={fm.title} />}
         {fm.description && <meta name="description" content={fm.description} />}
         {fm.description && <meta property="og:description" content={fm.description} />}
         {fm.keywords && <meta name="keywords" content={fm.keywords.join(',')} />}
         {fm.keywords && <meta property="og:keywords" content={fm.keywords.join(',')} />}
       </Helmet>
-      <Header />
-      {
-        // 如果是首页就不显示内容页
-        isHomePage ? (
-          <Home />
-        ) : (
-          <main>
-            <Sidebar />
-            <Flexbox width={'100%'}>
-              {isApiPage ? (
-                <Flexbox style={{ marginRight: theme.tocWidth }}>
-                  <Center>
-                    <Flexbox style={{ maxWidth: theme.contentMaxWidth, width: '100%' }}>
-                      <Flexbox padding={'0 48px'}>
-                        <ApiHeader title={fm.title} description={fm.description} />
-                      </Flexbox>
-                    </Flexbox>
-                  </Center>
-                </Flexbox>
-              ) : null}
-              <Flexbox horizontal width={'100%'} style={{ zIndex: 10 }}>
-                <Center width={'100%'}>
-                  <Flexbox
-                    style={{ maxWidth: theme.contentMaxWidth, width: '100%', margin: '0 24px' }}
-                  >
-                    <Flexbox horizontal>
-                      <Content>{outlet}</Content>
-                    </Flexbox>
-                    <Footer />
-                  </Flexbox>
-                </Center>
-                <div className={styles.tocWrapper}>
-                  <h4>Table of Contents</h4>
-                  <Toc />
-                </div>
-              </Flexbox>
-            </Flexbox>
-          </main>
-        )
-      }
-    </div>
+
+      {isHomePage ? <Home /> : <Docs />}
+    </>
   );
 });
 
@@ -118,6 +57,7 @@ export default () => (
   <StrictMode>
     <SiteProvider>
       <StoreUpdater />
+      <GlobalStyle />
       <DocLayout />
     </SiteProvider>
   </StrictMode>

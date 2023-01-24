@@ -18,9 +18,9 @@ const Features: FC = () => {
   return (
     <Center style={{ marginTop: 80 }}>
       <div className={styles.container}>
-        {features!.map(({ title, description, image, link, imageStyle }) => {
+        {features!.map(({ title, description, image, link, imageStyle }, index) => {
           return (
-            <div key={title} className={styles.cell}>
+            <div key={title} className={cx(styles.cell, index === 0 ? styles.first : '')}>
               {image && (
                 <Center
                   padding={4}
@@ -56,6 +56,8 @@ const Features: FC = () => {
             </div>
           );
         })}
+
+        <div className={styles.blur} />
       </div>
     </Center>
   );
