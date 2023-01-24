@@ -17,10 +17,17 @@ const Features: FC = () => {
 
   return (
     <div className={styles.container}>
-      {features!.map(({ title, description, image, link, imageStyle }, index) => {
+      {features!.map(({ title, description, avatar, link, imageStyle, row, column, center }) => {
         return (
-          <div key={title} className={cx(styles.cell, index === 0 ? styles.first : '')}>
-            {image && (
+          <div
+            key={title}
+            className={cx(styles.cell)}
+            style={{
+              gridRow: `span ${row || 7}`,
+              gridColumn: `span ${column || 1}`,
+            }}
+          >
+            {avatar && (
               <Center
                 padding={4}
                 width={24}
@@ -28,7 +35,7 @@ const Features: FC = () => {
                 image-style={imageStyle}
                 className={cx(styles.imgContainer)}
               >
-                <img className={styles.img} src={image} alt={title} />
+                <img className={styles.img} src={avatar} alt={title} />
               </Center>
             )}
             {title && (
@@ -52,11 +59,10 @@ const Features: FC = () => {
                 </Link>
               </div>
             )}
+            {center && <div className={styles.blur} />}
           </div>
         );
       })}
-
-      <div className={styles.blur} />
     </div>
   );
 };

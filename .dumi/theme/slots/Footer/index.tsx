@@ -13,6 +13,7 @@ const useStyles = createStyles(
     line-height: 26px;
     text-align: center;
     padding: 24px 0;
+    align-self: stretch;
   `,
 );
 

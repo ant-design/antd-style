@@ -7,9 +7,9 @@ export const useStyles = createStyles(({ token, css, stylish, isDarkMode }) => (
 
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    grid-auto-flow: row dense;
+    grid-auto-rows: 24px;
     gap: 16px;
-    position: relative;
-    justify-content: center;
   `,
 
   cell: css`
@@ -17,6 +17,7 @@ export const useStyles = createStyles(({ token, css, stylish, isDarkMode }) => (
     padding: 24px;
     border-radius: 24px;
     background: linear-gradient(135deg, ${token.colorFillContent}, ${token.colorFillQuaternary});
+    position: relative;
 
     h3 {
       font-size: 20px;
@@ -85,15 +86,16 @@ export const useStyles = createStyles(({ token, css, stylish, isDarkMode }) => (
       }
     }
   `,
-  first: css`
-    grid-column: 2 / 3;
-    grid-row: 2 / 3;
-  `,
+
   blur: css`
-    grid-column: 2 / 3;
-    grid-row: 2 / 3;
+    pointer-events: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
     ${stylish.heroBlurBall};
     scale: 2;
-    opacity: 0.1;
+    opacity: 0.05;
   `,
 }));
