@@ -31,6 +31,7 @@ const DocLayout: FC = memo(() => {
   const isApiPage = pathname.startsWith('/api');
 
   const { styles, theme } = useStyles();
+
   // handle hash change or visit page hash after async chunk loaded
   useEffect(() => {
     const id = hash.replace('#', '');
@@ -58,7 +59,11 @@ const DocLayout: FC = memo(() => {
       <GlobalStyle />
       <Helmet>
         <html lang={intl.locale.replace(/-.+$/, '')} />
-        {fm.title && <title>{fm.title} - Ant Design Style</title>}
+        {isHomePage ? (
+          <title>Ant Design Style</title>
+        ) : (
+          fm.title && <title> {fm.title} - Ant Design Style</title>
+        )}
         {fm.title && <meta property="og:title" content={fm.title} />}
         {fm.description && <meta name="description" content={fm.description} />}
         {fm.description && <meta property="og:description" content={fm.description} />}
