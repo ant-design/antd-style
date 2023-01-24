@@ -16,50 +16,48 @@ const Features: FC = () => {
   if (!Boolean(features?.length)) return null;
 
   return (
-    <Center style={{ marginTop: 80 }}>
-      <div className={styles.container}>
-        {features!.map(({ title, description, image, link, imageStyle }, index) => {
-          return (
-            <div key={title} className={cx(styles.cell, index === 0 ? styles.first : '')}>
-              {image && (
-                <Center
-                  padding={4}
-                  width={24}
-                  height={24}
-                  image-style={imageStyle}
-                  className={cx(styles.imgContainer)}
-                >
-                  <img className={styles.img} src={image} alt={title} />
-                </Center>
-              )}
-              {title && (
-                <Flexbox as={'h3'} horizontal gap={4} align={'center'}>
-                  {title}
-                  {imageStyle === 'soon' ? (
-                    <Tag
-                      color={theme.isDarkMode ? 'purple-inverse' : 'cyan-inverse'}
-                      style={{ border: 'none' }}
-                    >
-                      Soon
-                    </Tag>
-                  ) : null}
-                </Flexbox>
-              )}
-              {description && <p dangerouslySetInnerHTML={{ __html: description }} />}{' '}
-              {link && (
-                <div className={styles.link}>
-                  <Link to={link}>
-                    立即了解 <ArrowRightOutlined />
-                  </Link>
-                </div>
-              )}
-            </div>
-          );
-        })}
+    <div className={styles.container}>
+      {features!.map(({ title, description, image, link, imageStyle }, index) => {
+        return (
+          <div key={title} className={cx(styles.cell, index === 0 ? styles.first : '')}>
+            {image && (
+              <Center
+                padding={4}
+                width={24}
+                height={24}
+                image-style={imageStyle}
+                className={cx(styles.imgContainer)}
+              >
+                <img className={styles.img} src={image} alt={title} />
+              </Center>
+            )}
+            {title && (
+              <Flexbox as={'h3'} horizontal gap={8} align={'center'}>
+                {title}
+                {imageStyle === 'soon' ? (
+                  <Tag
+                    color={theme.isDarkMode ? 'pink-inverse' : 'cyan-inverse'}
+                    // style={{ border: 'none' }}
+                  >
+                    SOON
+                  </Tag>
+                ) : null}
+              </Flexbox>
+            )}
+            {description && <p dangerouslySetInnerHTML={{ __html: description }} />}{' '}
+            {link && (
+              <div className={styles.link}>
+                <Link to={link}>
+                  立即了解 <ArrowRightOutlined />
+                </Link>
+              </div>
+            )}
+          </div>
+        );
+      })}
 
-        <div className={styles.blur} />
-      </div>
-    </Center>
+      <div className={styles.blur} />
+    </div>
   );
 };
 

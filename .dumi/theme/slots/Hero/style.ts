@@ -3,7 +3,6 @@ import { createStyles } from 'antd-style';
 export const useStyles = createStyles(({ css, token, stylish, isDarkMode }) => ({
   container: css`
     position: relative;
-    padding-top: 80px;
     text-align: center;
     box-sizing: border-box;
 

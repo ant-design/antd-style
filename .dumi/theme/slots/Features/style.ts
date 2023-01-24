@@ -9,6 +9,7 @@ export const useStyles = createStyles(({ token, css, stylish, isDarkMode }) => (
     grid-template-columns: repeat(3, 1fr);
     gap: 16px;
     position: relative;
+    justify-content: center;
   `,
 
   cell: css`

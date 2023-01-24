@@ -6,8 +6,8 @@ export const useStyle = createStyles(({ css, token }) => ({
     z-index: ${token.zIndexPopupBase - 50};
     border-bottom: 1px solid ${token.colorSplit};
 
-    grid-row: 1 / 2;
-    grid-column: 1 / -1;
+    grid-area: head;
+    align-self: stretch;
 
     &:not([data-static]) {
       top: 0;
