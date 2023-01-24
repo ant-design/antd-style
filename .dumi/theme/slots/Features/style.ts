@@ -15,7 +15,11 @@ export const useStyles = createStyles(({ token, css, stylish, isDarkMode }) => (
       z-index: 0;
       width: 100%;
       height: 100%;
-      ${isDarkMode ? stylish.heroGradient : ''};
+      ${isDarkMode
+        ? stylish.heroGradient
+        : css`
+            background: linear-gradient(135deg, ${token.colorFill}, ${token.colorBgLayout});
+          `};
       border-radius: 24px;
       content: '';
       inset: 0;
@@ -27,17 +31,7 @@ export const useStyles = createStyles(({ token, css, stylish, isDarkMode }) => (
     z-index: 1;
     padding: 24px;
     border-radius: 24px;
-    ${isDarkMode
-      ? css`
-          background: linear-gradient(
-            135deg,
-            ${token.colorFillSecondary},
-            ${token.colorFillQuaternary}
-          );
-        `
-      : css`
-          background: ${token.colorFillTertiary};
-        `}
+    background: linear-gradient(135deg, ${token.colorFillContent}, ${token.colorFillQuaternary});
 
     h3 {
       font-size: 20px;
@@ -45,21 +39,47 @@ export const useStyles = createStyles(({ token, css, stylish, isDarkMode }) => (
     }
     p {
       color: ${token.colorTextSecondary};
+
+      quotient {
+        color: ${token.colorTextDescription};
+        display: block;
+        margin: 12px 0;
+        padding-left: 12px;
+        position: relative;
+        &:before {
+          position: absolute;
+          content: '';
+          left: 0;
+          display: block;
+          border-radius: 2px;
+          width: 4px;
+          height: 100%;
+          background: ${isDarkMode ? token.colorPrimary : token.colorPrimaryBgHover};
+        }
+      }
     }
   `,
   imgContainer: css`
     background: ${token.colorFillContent};
-    background: linear-gradient(
-      135deg,
-      ${chroma(token.gradientColor2).brighten(1).hex()},
-      ${token.gradientColor2} 50%,
-      ${token.gradientColor1}
-    );
     border-radius: 8px;
     opacity: 0.8;
 
+    &[image-style='primary'] {
+      background: linear-gradient(135deg, ${token.gradientColor1}, ${token.gradientColor2});
+    }
+
     &[image-style='light'] {
       background: ${token.colorBgContainer};
+    }
+
+    &[image-style='soon'] {
+      opacity: 0.5;
+      background: linear-gradient(
+        135deg,
+        ${chroma(token.gradientColor2).alpha(0.3).hex()},
+        ${chroma(token.gradientColor2).alpha(0.3).hex()} 50%,
+        ${chroma(token.gradientColor1).alpha(0.3).hex()}
+      );
     }
   `,
 

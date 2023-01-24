@@ -14,6 +14,8 @@ export interface SiteStylish {
   heroTextShadow: string;
   heroGradientFlow: string;
   heroBlurBall: string;
+
+  iconGradientDefault: string;
 }
 
 export const getCustomStylish: GetCustomStylish<SiteStylish> = ({ css, token, isDarkMode }) => {
@@ -38,10 +40,12 @@ export const getCustomStylish: GetCustomStylish<SiteStylish> = ({ css, token, is
     heroButtonGradient: css`
       background: linear-gradient(90deg, ${token.gradientColor1} 0%, ${token.gradientColor2} 100%);
     `,
+
     heroGradient: css`
-      background-image: ${token.heroBgGradient};
+      background-image: ${token.gradientHeroBgG};
       background-size: 300% 300%;
     `,
+
     heroGradientFlow: css`
       animation: flow 5s ease infinite;
 
@@ -59,7 +63,6 @@ export const getCustomStylish: GetCustomStylish<SiteStylish> = ({ css, token, is
         }
       }
     `,
-
     heroTextShadow: css`
       text-shadow: 0 8px 20px ${chroma(token.gradientColor2).alpha(0.2).hex()},
         0 8px 60px ${chroma(token.gradientColor3).alpha(0.2).hex()},
@@ -68,7 +71,6 @@ export const getCustomStylish: GetCustomStylish<SiteStylish> = ({ css, token, is
             .alpha(isDarkMode ? 0.2 : 0.4)
             .hex()};
     `,
-
     heroBlurBall: css`
       filter: blur(69px);
       background: linear-gradient(
@@ -95,5 +97,12 @@ export const getCustomStylish: GetCustomStylish<SiteStylish> = ({ css, token, is
         }
       }
     `,
+
+    iconGradientDefault: css`
+      radial-gradient(
+        100% 100% at 50% 0,
+        ${chroma(token.colorSolid).alpha(0.2).hex()} 0,
+        ${chroma(token.colorSolid).alpha(0.1).hex()} 100%
+      )`,
   };
 };
