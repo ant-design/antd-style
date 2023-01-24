@@ -1,5 +1,5 @@
 /**
- * compact: true
+ * iframe: 470
  */
 import { ThemeAppearance, ThemeProvider } from 'antd-style';
 import { useState } from 'react';

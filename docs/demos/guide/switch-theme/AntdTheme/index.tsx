@@ -1,5 +1,5 @@
 /**
- * compact: true
+ * iframe: 900
  * title: 传入 Antd Theme 主题
  * description: 传入不同的 token 、算法组成的 theme ，可以实现主题风格的自定义
  */

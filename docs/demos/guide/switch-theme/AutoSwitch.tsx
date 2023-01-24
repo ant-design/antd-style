@@ -1,5 +1,5 @@
 /**
- * iframe: 600
+ * iframe: 460
  */
 import { ThemeProvider } from 'antd-style';
 
