@@ -35,27 +35,37 @@ interface Store {
   routeMeta: IRouteMeta;
 }
 
+const initialState: Store = {
+  siteData: {
+    // @ts-ignore
+    setLoading: undefined,
+    loading: true,
+    pkg: {},
+    components: {},
+    demos: {},
+    locales: [],
+    entryExports: {},
+    // @ts-ignore
+    themeConfig: {},
+  },
+  sidebar: [],
+  routeMeta: {
+    toc: [],
+    texts: [],
+    tabs: undefined,
+    // @ts-ignore
+    frontmatter: {},
+  },
+};
+
 export const useSiteStore = create<Store>()(
   devtools(
     () => ({
-      siteData: {
-        setLoading: undefined,
-        loading: true,
-        pkg: {},
-        components: {},
-        demos: {},
-        locales: [],
-        entryExports: {},
-        themeConfig: undefined,
-      },
-      sidebar: [],
-      routeMeta: {
-        toc: [],
-        texts: [],
-        tabs: undefined,
-        frontmatter: undefined,
-      },
+      ...initialState,
     }),
     { name: 'dumi-site-store' },
   ),
 );
+
+export const isHeroPageSel = (s: Store) => !!s.routeMeta.frontmatter.hero;
+export const featuresSel = (s: Store) => s.routeMeta.frontmatter.features;

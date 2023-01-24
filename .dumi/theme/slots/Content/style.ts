@@ -3,6 +3,16 @@ import { createStyles } from 'antd-style';
 export const useStyles = createStyles(({ token, isDarkMode, css }) => ({
   content: css`
     min-height: 400px;
+    flex: 1;
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 24px 48px;
+    background-color: ${token.colorBgContainer};
+    border-radius: 10px;
+    box-shadow: ${token.boxShadow};
+    margin-top: 24px;
+
     .markdown {
       color: ${token.colorTextSecondary};
 
@@ -120,15 +130,5 @@ export const useStyles = createStyles(({ token, isDarkMode, css }) => ({
         }
       }
     }
-
-    flex: 1;
-    width: 100%;
-    box-sizing: border-box;
-
-    padding: 24px 48px;
-    background-color: ${token.colorBgContainer};
-    border-radius: 10px;
-    box-shadow: ${token.boxShadow};
-    margin-top: 24px;
   `,
 }));

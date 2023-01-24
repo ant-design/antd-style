@@ -11,7 +11,7 @@ export const getAntdTheme: GetAntdTheme = (appearance) => {
 
   if (appearance === 'dark') {
     theme.token = {
-      colorTextBase: '#a3b2cc',
+      colorTextBase: '#c7ddff',
     };
 
     theme.algorithm = darkAlgorithm;

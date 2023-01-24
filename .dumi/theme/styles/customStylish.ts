@@ -17,10 +17,6 @@ export interface SiteStylish {
 }
 
 export const getCustomStylish: GetCustomStylish<SiteStylish> = ({ css, token, isDarkMode }) => {
-  const color1 = token.blue;
-  const color2 = isDarkMode ? token.pink : token.cyan;
-  const color3 = token.purple;
-
   return {
     clickableText: css`
       cursor: pointer;
@@ -40,10 +36,10 @@ export const getCustomStylish: GetCustomStylish<SiteStylish> = ({ css, token, is
     `,
 
     heroButtonGradient: css`
-      background: linear-gradient(90deg, ${color1} 0%, ${color2} 100%);
+      background: linear-gradient(90deg, ${token.gradientColor1} 0%, ${token.gradientColor2} 100%);
     `,
     heroGradient: css`
-      background-image: radial-gradient(at 80% 20%, ${color1} 0%, ${color2} 80%, ${color3} 130%);
+      background-image: ${token.heroBgGradient};
       background-size: 300% 300%;
     `,
     heroGradientFlow: css`
@@ -51,7 +47,7 @@ export const getCustomStylish: GetCustomStylish<SiteStylish> = ({ css, token, is
 
       @keyframes flow {
         0% {
-          background-position: 0% 0%;
+          background-position: 0 0;
         }
 
         50% {
@@ -59,17 +55,17 @@ export const getCustomStylish: GetCustomStylish<SiteStylish> = ({ css, token, is
         }
 
         100% {
-          background-position: 0% 0%;
+          background-position: 0 0;
         }
       }
     `,
 
     heroTextShadow: css`
-      text-shadow: 0 8px 20px ${chroma(color2).alpha(0.2).hex()},
-        0 8px 60px ${chroma(color3).alpha(0.2).hex()},
+      text-shadow: 0 8px 20px ${chroma(token.gradientColor2).alpha(0.2).hex()},
+        0 8px 60px ${chroma(token.gradientColor3).alpha(0.2).hex()},
         0 8px 80px
-          ${chroma(isDarkMode ? token.cyan : token.blue)
-            .alpha(isDarkMode ? 0.2 : 0.6)
+          ${chroma(token.cyan)
+            .alpha(isDarkMode ? 0.2 : 0.4)
             .hex()};
     `,
 
@@ -77,8 +73,8 @@ export const getCustomStylish: GetCustomStylish<SiteStylish> = ({ css, token, is
       filter: blur(69px);
       background: linear-gradient(
         135deg,
-        ${color3} 0%,
-        ${color1} 30%,
+        ${token.gradientColor3} 0%,
+        ${token.gradientColor1} 30%,
         ${token.red} 70%,
         ${token.cyan} 100%
       );

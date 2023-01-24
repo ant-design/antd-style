@@ -1,6 +1,6 @@
 import { styled, ThemeMode } from 'antd-style';
 import { usePrefersColor } from 'dumi';
-import { memo, type FC } from 'react';
+import { memo, ReactNode, type FC } from 'react';
 import { Flexbox } from 'react-layout-kit';
 
 import { useThemeStore } from '../../store/useThemeStore';
@@ -28,7 +28,7 @@ const IconWrapper = styled.span`
   width: 12px;
 `;
 
-const Option = ({ icon, label }) => (
+const Option = ({ icon, label }: { icon: ReactNode; label: ReactNode }) => (
   <Flexbox horizontal gap={12} align={'center'}>
     <IconWrapper>{icon} </IconWrapper>
     {label}

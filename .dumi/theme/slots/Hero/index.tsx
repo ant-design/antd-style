@@ -10,7 +10,7 @@ import { useSiteStore } from '../../store/useSiteStore';
 import { useStyles } from './style';
 
 const Hero: FC = () => {
-  const frontmatter = useSiteStore((s) => s.routeMeta.frontmatter || {}, isEqual);
+  const frontmatter = useSiteStore((s) => s.routeMeta.frontmatter, isEqual);
 
   const { styles, cx } = useStyles();
 
