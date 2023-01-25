@@ -2,32 +2,23 @@ import { reactCss } from '@/functions/react';
 import { useAntdToken } from '@/hooks';
 import type { Breakpoint, BreakpointMapParams, CSSObject, ResponsiveMap } from '@/types';
 import { isReactCssResult } from '@/utils';
+import { convertBreakpointToResponsive } from '@/utils/responsive';
 import type { SerializedStyles } from '@emotion/react';
 import { useMemo } from 'react';
 
-export const useResponsiveMap = (): ResponsiveMap => {
+export const useMediaQueryMap = (): ResponsiveMap => {
   const token = useAntdToken();
 
   const breakpoints: Record<Breakpoint, string> = {
     xs: `@media (max-width: ${token.screenXSMax}px)`,
     sm: `@media (max-width: ${token.screenSMMax}px)`,
     md: `@media (max-width: ${token.screenMDMax}px)`,
-
     lg: `@media (max-width: ${token.screenLGMax}px)`,
     xl: `@media (max-width: ${token.screenXLMax}px)`,
     xxl: `@media (min-width: ${token.screenXXLMin}px)`,
   };
 
-  return useMemo(
-    () => ({
-      ...breakpoints,
-      mobile: breakpoints.xs,
-      tablet: breakpoints.md,
-      laptop: breakpoints.lg,
-      desktop: breakpoints.xxl,
-    }),
-    [token],
-  );
+  return useMemo(() => convertBreakpointToResponsive(breakpoints), [token]);
 };
 
 /**

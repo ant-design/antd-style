@@ -16,7 +16,7 @@ import type {
 } from '@/types';
 import { isReactCssResult } from '@/utils';
 
-import { convertResponsiveStyleToString, useResponsiveMap } from './response';
+import { convertResponsiveStyleToString, useMediaQueryMap } from './response';
 
 import { reactCss } from '../react';
 
@@ -63,7 +63,7 @@ export const createStyles =
   ) =>
   (props?: Props): ReturnStyles<Input> => {
     const theme = useTheme();
-    const responsiveMap = useResponsiveMap();
+    const responsiveMap = useMediaQueryMap();
     const { css, cx } = useEmotion();
 
     const styles = useMemo(() => {
