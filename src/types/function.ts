@@ -1,8 +1,9 @@
 import { ClassNamesArg } from '@emotion/css/create-instance';
-import { CSSInterpolation, SerializedStyles } from '@emotion/serialize';
+import { CSSInterpolation, CSSObject, SerializedStyles } from '@emotion/serialize';
 import { ThemeConfig } from 'antd/es/config-provider/context';
 
 import { ThemeAppearance } from './appearance';
+import { ResponsiveKey } from './response';
 import type { AntdStylish, AntdToken, AppearanceState, FullToken } from './theme';
 
 export interface EmotionReactCss {
@@ -11,9 +12,17 @@ export interface EmotionReactCss {
 }
 export type EmotionCX = (...classNames: ClassNamesArg[]) => string;
 
+export type ResponsiveStyleUtil = (
+  breakpoints: Partial<Record<ResponsiveKey, CSSObject | SerializedStyles>>,
+) => any;
+
 export interface CommonStyleUtils {
   cx: EmotionCX;
   css: EmotionReactCss;
+  /**
+   * 可以快速创建响应式样式的工具函数
+   */
+  r: ResponsiveStyleUtil;
 }
 
 /**

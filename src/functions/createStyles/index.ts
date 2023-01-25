@@ -6,6 +6,7 @@ import type {
   EmotionCX,
   FullStylish,
   FullToken,
+  ResponsiveStyleUtil,
   ReturnStyleToUse,
   StyleInputType,
   Theme,
@@ -13,8 +14,10 @@ import type {
 } from '@/types';
 import { isReactCssResult } from '@/utils';
 
-import { type CSSObject } from './css';
-import { reactCss } from './react';
+import { convertResponsiveStyleToString, useResponsiveMap } from './response';
+
+import { type CSSObject } from '../css';
+import { reactCss } from '../react';
 
 export interface CreateStylesTheme extends CommonStyleUtils {
   token: FullToken;
@@ -51,48 +54,65 @@ export type StyleOrGetStyleFn<Input extends StyleInputType, Props> =
  */
 export const createStyles =
   <Props, Input extends StyleInputType = StyleInputType>(
-    styleOrGetStyleFn: StyleOrGetStyleFn<Input, Props>,
+    styleOrGetStyle: StyleOrGetStyleFn<Input, Props>,
   ) =>
   (props?: Props): ReturnStyles<Input> => {
     const theme = useTheme();
+    const responsiveMap = useResponsiveMap();
     const { css, cx } = useEmotion();
 
     const styles = useMemo(() => {
       let tempStyles: ReturnStyleToUse<Input>;
 
       // 函数场景
-      if (styleOrGetStyleFn instanceof Function) {
+      if (styleOrGetStyle instanceof Function) {
         const { stylish, appearance, isDarkMode, prefixCls, ...token } = theme;
 
         // 由于使用了 reactCss 作为基础样式工具，因此在使用 cx 级联 className 时需要使用特殊处理的 cx，要将 reactCss 的产出转为 css 产物
         const reactCx: EmotionCX = (...classNames) =>
           cx(...classNames.map((c) => (isReactCssResult(c) ? css(c) : c)));
 
-        tempStyles = styleOrGetStyleFn(
-          { token, stylish, appearance, cx: reactCx, css: reactCss, isDarkMode, prefixCls },
+        // 创建响应式断点选择器的工具函数
+        const responsive: ResponsiveStyleUtil = (styles) =>
+          convertResponsiveStyleToString(styles, responsiveMap);
+
+        tempStyles = styleOrGetStyle(
+          {
+            token,
+            stylish,
+            appearance,
+            isDarkMode,
+            prefixCls,
+            // 工具函数们
+            cx: reactCx,
+            css: reactCss,
+            r: responsive,
+          },
           props!,
         ) as any;
       }
+
       // 没有函数时直接就是 object 或者 string
       else {
-        tempStyles = styleOrGetStyleFn as any;
+        tempStyles = styleOrGetStyle as any;
       }
 
       if (typeof tempStyles === 'object') {
-        // 判断是否是直接用 reactCSS 生成的
+        // 判断是否是用 reactCSS 生成的
         if (isReactCssResult(tempStyles)) {
+          // 如果是用 reactCss 生成的话，需要用 className 的 css 做一层转换
           tempStyles = css(tempStyles) as any;
         } else {
-          // 不是的话就是直接是 css object，需要转换了
+          // 不是的话就是直接是 复合的 css object
           tempStyles = Object.fromEntries(
             Object.entries(tempStyles).map(([key, value]) => {
               // 这里有可能是 x:{ color:red } 也可能是 c:reactCss`color:red`;
-              // 但无论哪种，都可以直接用 css 包一下转换掉
+              // 但无论哪种，都可以直接用 css 包一下转换成 className
               if (typeof value === 'object') {
                 return [key, css(value as CSSObject)];
               }
 
-              // 这里只可能是 c: css`color:red`; css 直接来自 antd-style
+              // 这里只可能是 c: css`color:red`; css 直接来自 antd-style，因此啥也不用处理
               return [key, value];
             }),
           ) as any;
@@ -100,7 +120,7 @@ export const createStyles =
       }
 
       return tempStyles;
-    }, [styleOrGetStyleFn, props, theme]);
+    }, [styleOrGetStyle, props, theme]);
 
     return useMemo(() => {
       const { prefixCls, ...res } = theme;
