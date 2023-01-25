@@ -1,9 +1,8 @@
 import { reactCss } from '@/functions/react';
 import { useAntdToken } from '@/hooks';
-import type { Breakpoint, ResponsiveKey, ResponsiveMap } from '@/types';
+import type { Breakpoint, BreakpointMapParams, CSSObject, ResponsiveMap } from '@/types';
 import { isReactCssResult } from '@/utils';
 import type { SerializedStyles } from '@emotion/react';
-import type { CSSObject } from '@emotion/serialize';
 import { useMemo } from 'react';
 
 export const useResponsiveMap = (): ResponsiveMap => {
@@ -37,12 +36,12 @@ export const useResponsiveMap = (): ResponsiveMap => {
  * @param map
  */
 export const convertResponsiveStyleToString = (
-  obj: Partial<Record<ResponsiveKey, SerializedStyles | CSSObject>>,
+  obj: BreakpointMapParams,
   map: ResponsiveMap,
 ): any => {
   return Object.entries(obj)
     .map(([key, value]) => {
-      let str: SerializedStyles | CSSObject = value;
+      let str = value as SerializedStyles | CSSObject;
 
       if (!isReactCssResult(value)) {
         str = reactCss(value);

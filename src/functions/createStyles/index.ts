@@ -2,42 +2,47 @@ import { useMemo } from 'react';
 
 import { useEmotion, useTheme } from '@/hooks';
 import type {
+  BaseReturnType,
   CommonStyleUtils,
+  CSSObject,
   EmotionCX,
   FullStylish,
   FullToken,
   ResponsiveStyleUtil,
   ReturnStyleToUse,
-  StyleInputType,
   Theme,
   ThemeAppearance,
+  UtilReactCss,
 } from '@/types';
 import { isReactCssResult } from '@/utils';
 
 import { convertResponsiveStyleToString, useResponsiveMap } from './response';
 
-import { type CSSObject } from '../css';
 import { reactCss } from '../react';
 
-export interface CreateStylesTheme extends CommonStyleUtils {
+/**
+ * 用户书写样式时使用的第一个参数
+ */
+export interface CreateStylesTheme extends Omit<CommonStyleUtils, 'css'> {
   token: FullToken;
   stylish: FullStylish;
   appearance: ThemeAppearance;
   isDarkMode: boolean;
   prefixCls: string;
+  css: UtilReactCss;
 }
 
 /**
  * 最终返回 styles 对象的类型定义
  */
-export interface ReturnStyles<T extends StyleInputType> extends Pick<CommonStyleUtils, 'cx'> {
+export interface ReturnStyles<T extends BaseReturnType> extends Pick<CommonStyleUtils, 'cx'> {
   styles: ReturnStyleToUse<T>;
   theme: Omit<Theme, 'prefixCls'>;
   prefixCls: string;
 }
 
 // 获取样式
-export type GetStyleFn<Input extends StyleInputType, Props> = (
+export type GetStyleFn<Input extends BaseReturnType, Props> = (
   theme: CreateStylesTheme,
   props: Props,
 ) => Input;
@@ -45,15 +50,15 @@ export type GetStyleFn<Input extends StyleInputType, Props> = (
 /**
  * 创建样式的函数或者对象
  */
-export type StyleOrGetStyleFn<Input extends StyleInputType, Props> =
+export type StyleOrGetStyleFn<Input extends BaseReturnType, Props> =
   | Input
   | GetStyleFn<Input, Props>;
 
 /**
- * 业务应用中创建样式基础写法
+ * 创建样式基础写法
  */
 export const createStyles =
-  <Props, Input extends StyleInputType = StyleInputType>(
+  <Props, Input extends BaseReturnType = BaseReturnType>(
     styleOrGetStyle: StyleOrGetStyleFn<Input, Props>,
   ) =>
   (props?: Props): ReturnStyles<Input> => {
@@ -73,8 +78,11 @@ export const createStyles =
           cx(...classNames.map((c) => (isReactCssResult(c) ? css(c) : c)));
 
         // 创建响应式断点选择器的工具函数
+        // @ts-ignore
         const responsive: ResponsiveStyleUtil = (styles) =>
           convertResponsiveStyleToString(styles, responsiveMap);
+        // 并赋予其相应的断点工具
+        Object.assign(responsive, responsiveMap);
 
         tempStyles = styleOrGetStyle(
           {
@@ -85,6 +93,7 @@ export const createStyles =
             prefixCls,
             // 工具函数们
             cx: reactCx,
+            // @ts-ignore
             css: reactCss,
             r: responsive,
           },

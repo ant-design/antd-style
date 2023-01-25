@@ -17,6 +17,6 @@ export const {
   getRegisteredStyles,
   cache,
 } = emotion;
-export { type CSSObject } from '@emotion/css';
+
 export type { Emotion } from '@emotion/css/create-instance';
 export { createEmotion };

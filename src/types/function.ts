@@ -1,7 +1,8 @@
 import { ClassNamesArg } from '@emotion/css/create-instance';
-import { CSSInterpolation, CSSObject, SerializedStyles } from '@emotion/serialize';
+import { CSSInterpolation, SerializedStyles } from '@emotion/serialize';
 import { ThemeConfig } from 'antd/es/config-provider/context';
 
+import { AtomInputType } from 'antd-style/src';
 import { ThemeAppearance } from './appearance';
 import { ResponsiveKey } from './response';
 import type { AntdStylish, AntdToken, AppearanceState, FullToken } from './theme';
@@ -10,11 +11,19 @@ export interface EmotionReactCss {
   (template: TemplateStringsArray, ...args: Array<CSSInterpolation>): SerializedStyles;
   (...args: Array<CSSInterpolation>): SerializedStyles;
 }
+
+export interface UtilReactCss {
+  (template: TemplateStringsArray, ...args: Array<CSSInterpolation>): string;
+  (...args: Array<CSSInterpolation>): string;
+}
+
 export type EmotionCX = (...classNames: ClassNamesArg[]) => string;
 
-export type ResponsiveStyleUtil = (
-  breakpoints: Partial<Record<ResponsiveKey, CSSObject | SerializedStyles>>,
-) => any;
+export type BreakpointMapParams = Partial<Record<ResponsiveKey, AtomInputType>>;
+
+export interface ResponsiveStyleUtil extends Record<ResponsiveKey, string> {
+  (breakpoints: BreakpointMapParams): any;
+}
 
 export interface CommonStyleUtils {
   cx: EmotionCX;
