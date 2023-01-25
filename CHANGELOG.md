@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.0.0-alpha.39](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.38...v3.0.0-alpha.39) (2023-01-25)
+
+### 🐛 Bug Fixes
+
+- 修正 reactCss 构建产物判断逻辑问题 ([a8288c2](https://github.com/arvinxx/antd-style/commit/a8288c2))
+
 # [3.0.0-alpha.38](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.37...v3.0.0-alpha.38) (2023-01-25)
 
 ### ✨ Features
