@@ -229,4 +229,35 @@ describe('createStyles：响应式工具函数', () => {
       </div>
     `);
   });
+  it('使用了不存在的断点，不输出样式', () => {
+    const useStyles = createStyles(
+      ({ css, r }) => css`
+        background-color: blue;
+        ${r({
+          xxx: css`
+            background-color: red;
+          `,
+        })}
+      `,
+    );
+
+    const App = () => {
+      const { styles } = useStyles();
+      return <div className={styles}>container</div>;
+    };
+
+    const { container } = render(<App />);
+
+    expect(container.firstChild).toMatchInlineSnapshot(`
+      .emotion-0 {
+        background-color: blue;
+      }
+
+      <div
+        class="emotion-0"
+      >
+        container
+      </div>
+    `);
+  });
 });
