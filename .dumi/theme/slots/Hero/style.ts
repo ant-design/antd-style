@@ -6,12 +6,6 @@ export const useStyles = createStyles(({ css, token, stylish, isDarkMode }) => (
     text-align: center;
     box-sizing: border-box;
 
-    @media @mobile {
-      //margin-top: -@s-header-height-m - 20;
-      padding-top: 160px;
-      height: 660px;
-    }
-
     + * {
       position: relative;
     }
@@ -22,7 +16,7 @@ export const useStyles = createStyles(({ css, token, stylish, isDarkMode }) => (
       font-size: 20px;
       line-height: 1.6;
 
-      @media @mobile {
+      @media (max-width: ${token.screenXSMax}px) {
         font-size: 16px;
       }
     }
@@ -37,6 +31,10 @@ export const useStyles = createStyles(({ css, token, stylish, isDarkMode }) => (
     color: transparent;
     margin: 0;
     font-family: AliPuHui, ${token.fontFamily};
+
+    @media (max-width: ${token.screenXSMax}px) {
+      font-size: 40px;
+    }
 
     b {
       position: relative;
@@ -56,8 +54,10 @@ export const useStyles = createStyles(({ css, token, stylish, isDarkMode }) => (
     top: 0;
     left: 0;
     font-size: 68px;
-
     font-family: AliPuHui, ${token.fontFamily};
+    @media (max-width: ${token.screenXSMax}px) {
+      font-size: 40px;
+    }
 
     ${stylish.heroTextShadow}
 
@@ -69,12 +69,20 @@ export const useStyles = createStyles(({ css, token, stylish, isDarkMode }) => (
   desc: css`
     font-size: ${token.fontSizeHeading3}px;
     color: ${token.colorTextSecondary};
+
+    @media (max-width: ${token.screenXSMax}px) {
+      font-size: ${token.fontSizeHeading5}px;
+    }
   `,
 
   actions: css`
     margin-top: 48px;
     display: flex;
     justify-content: center;
+
+    @media (max-width: ${token.screenXSMax}px) {
+      margin-top: 24px;
+    }
   `,
   canvas: css`
     z-index: 10;
