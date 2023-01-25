@@ -8,18 +8,19 @@ import Logo from 'dumi/theme/slots/Logo';
 import Navbar from 'dumi/theme/slots/Navbar';
 import SearchBar from 'dumi/theme/slots/SearchBar';
 
-import ColorSwitch from '../../components/ThemeSwitch';
+import Burger from '../../components/Burger';
+import GithubButton from '../../components/GithubButton';
+import ThemeSwitch from '../../components/ThemeSwitch';
 
-import { GithubFilled } from '@ant-design/icons';
-import { Button } from 'antd';
+import { useResponsive } from 'antd-style';
 import { useSiteStore } from '../../store/useSiteStore';
 import { useStyle } from './style';
 
 const Header: FC = () => {
   const [showMenu, setShowMenu] = useState(false);
   const frontmatter = useSiteStore((s) => s.routeMeta.frontmatter, isEqual);
-  const repoUrl = useSiteStore((s) => s.siteData.themeConfig?.repoUrl);
 
+  const { mobile } = useResponsive();
   const { styles } = useStyle();
 
   return (
@@ -30,40 +31,50 @@ const Header: FC = () => {
         data-mobile-active={showMenu || undefined}
         onClick={() => setShowMenu(false)}
       >
-        <Flexbox horizontal distribution={'space-between'} className={styles.content}>
-          <Flexbox gap={48} horizontal className={styles.left}>
-            <Logo />
-          </Flexbox>
+        <Flexbox
+          horizontal
+          distribution={'space-between'}
+          align={'center'}
+          width={'auto'}
+          className={styles.content}
+        >
+          {mobile ? (
+            <>
+              <Flexbox>
+                <Burger />
+              </Flexbox>
+              <Flexbox horizontal className={styles.left}>
+                <Logo />
+              </Flexbox>
+              <Flexbox>
+                <ThemeSwitch />
+              </Flexbox>
+            </>
+          ) : (
+            <>
+              <Flexbox horizontal className={styles.left}>
+                <Logo />
+              </Flexbox>
 
-          <Flexbox style={{ marginLeft: 48, alignSelf: 'end' }}>
-            <Navbar />
-          </Flexbox>
-          <section className={styles.right}>
-            <div />
-            <Flexbox
-              gap={16}
-              horizontal
-              align={'center'}
-              className="dumi-default-header-right-aside"
-            >
-              <SearchBar />
-              <LangSwitch />
-              <a href={repoUrl} target={'_blank'}>
-                <Button icon={<GithubFilled />} />
-              </a>
-              <ColorSwitch />
-            </Flexbox>
-          </section>
-          {/*<button*/}
-          {/*  type="button"*/}
-          {/*  className="dumi-default-header-menu-btn"*/}
-          {/*  onClick={(ev) => {*/}
-          {/*    ev.stopPropagation();*/}
-          {/*    setShowMenu((v) => !v);*/}
-          {/*  }}*/}
-          {/*>*/}
-          {/*  /!*{showMenu ? <IconClose /> : <IconMenu />}*!/*/}
-          {/*</button>*/}
+              <Flexbox style={{ marginLeft: 48, alignSelf: 'end' }}>
+                <Navbar />
+              </Flexbox>
+              <section className={styles.right}>
+                <div />
+                <Flexbox
+                  gap={16}
+                  horizontal
+                  align={'center'}
+                  className="dumi-default-header-right-aside"
+                >
+                  <SearchBar />
+                  <LangSwitch />
+                  <GithubButton />
+                  <ThemeSwitch />
+                </Flexbox>
+              </section>
+            </>
+          )}
         </Flexbox>
       </div>
     )

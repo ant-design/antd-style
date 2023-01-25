@@ -1,10 +1,10 @@
 import { Tabs } from 'antd';
-import { createStyles } from 'antd-style';
+import { createStyles, useResponsive } from 'antd-style';
 import { history, Link, useLocation, useNavData } from 'dumi';
 import NavbarExtra from 'dumi/theme-default/slots/NavbarExtra';
 import { memo, type FC } from 'react';
 
-const useStyles = createStyles(({ css, token, stylish, prefixCls }) => {
+const useStyles = createStyles(({ css, r, token, stylish, prefixCls }) => {
   const prefix = `.${prefixCls}-tabs`;
 
   const marginHoriz = 16;
@@ -12,7 +12,6 @@ const useStyles = createStyles(({ css, token, stylish, prefixCls }) => {
 
   return {
     tabs: css`
-      //align-self: end;
       ${prefix}-tab + ${prefix}-tab {
         margin: ${marginHoriz}px 4px !important;
         padding: 0 12px !important;
@@ -37,6 +36,10 @@ const useStyles = createStyles(({ css, token, stylish, prefixCls }) => {
       ${prefix}-nav {
         margin-bottom: 0;
       }
+
+      ${r.mobile} {
+        display: none;
+      }
     `,
 
     link: css`
@@ -49,11 +52,21 @@ const Navbar: FC = () => {
   const { pathname } = useLocation();
   const { styles } = useStyles();
 
+  const { mobile } = useResponsive();
   const activePath = nav.find((i) => pathname.startsWith(i.activePath!))?.activePath;
 
-  return (
+  return mobile ? (
+    <div></div>
+  ) : (
     <>
       <Tabs
+        onChange={(path) => {
+          const url = nav.find((i) => i.activePath === path)?.link;
+          if (!url) return;
+          history.push(url);
+        }}
+        activeKey={activePath}
+        className={styles.tabs}
         items={nav.map((item) => ({
           label: (
             <Link className={styles.link} to={item.link}>
@@ -62,14 +75,6 @@ const Navbar: FC = () => {
           ),
           key: item.activePath!,
         }))}
-        onChange={(path) => {
-          const url = nav.find((i) => i.activePath === path)?.link;
-          if (!url) return;
-
-          history.push(url);
-        }}
-        activeKey={activePath}
-        className={styles.tabs}
       />
 
       <NavbarExtra />

@@ -1,6 +1,6 @@
 import { createStyles } from 'antd-style';
 
-export const useStyle = createStyles(({ css, token }) => ({
+export const useStyle = createStyles(({ css, r, token }) => ({
   header: css`
     position: relative;
     z-index: ${token.zIndexPopupBase - 50};
@@ -14,46 +14,34 @@ export const useStyle = createStyles(({ css, token }) => ({
       position: sticky;
       background-color: transparent;
       backdrop-filter: blur(6px);
-
-      // to avoid backdrop filter conflict with navbar overlay
-      &[data-mobile-active] {
-        background-color: ${token.colorBgLayout};
-        backdrop-filter: none;
-      }
     }
   `,
   content: css`
-    display: flex;
-    align-items: center;
-    margin: 0 auto;
     padding: 0 24px;
-    //max-width: @s-content-width;
     height: 64px;
-    box-sizing: border-box;
 
-    //@media @mobile {
-    //  height: @s-header-height-m;
-    //}
+    ${r.mobile} {
+      padding: 0 16px;
+    }
   `,
-  left: css`
-    //width: @s-sidebar-width;
-  `,
+  left: css``,
   right: css`
 
     flex: 1;
     display: flex;
     justify-content: space-between;
 
+
+
     &-aside {
       display: flex;
       align-items: center;
 
-      @media @mobile {
+      ${r.mobile} {
         margin: 8px 16px;
         padding-top: 24px;
         justify-content: center;
         border-top: 1px solid ${token.colorBorder};
-
       }
     }
 
@@ -80,6 +68,6 @@ export const useStyle = createStyles(({ css, token }) => ({
     //    visibility: hidden;
     //    padding-top: 20px;
     //  }
-    }
+  }
   `,
 }));

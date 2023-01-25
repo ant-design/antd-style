@@ -112,5 +112,8 @@ export const useStyles = createStyles(({ token, r, css, stylish, isDarkMode }) =
     ${stylish.heroBlurBall};
     scale: 2;
     opacity: 0.05;
+    ${r.mobile} {
+      display: none;
+    }
   `,
 }));

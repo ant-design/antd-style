@@ -5,7 +5,7 @@ import { type FC } from 'react';
 import { Center, Flexbox } from 'react-layout-kit';
 
 const useStyles = createStyles(
-  ({ css, token }) => css`
+  ({ css, r, token }) => css`
     grid-area: footer;
     border-top: 1px solid ${token.colorSplit};
     color: ${token.colorTextDescription};
@@ -14,6 +14,9 @@ const useStyles = createStyles(
     text-align: center;
     padding: 24px 0;
     align-self: stretch;
+    ${r.mobile} {
+      flex-direction: column;
+    }
   `,
 );
 

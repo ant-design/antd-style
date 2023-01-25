@@ -55,7 +55,7 @@ export const useStyles = createStyles(({ css, r, token, stylish, isDarkMode }) =
     left: 0;
     font-size: 68px;
     font-family: AliPuHui, ${token.fontFamily};
-
+    font-weight: bold;
     ${r({
       mobile: { fontSize: 40 },
     })}
@@ -97,5 +97,10 @@ export const useStyles = createStyles(({ css, r, token, stylish, isDarkMode }) =
     height: 400px;
     opacity: 0.2;
     ${stylish.heroBlurBall}
+
+    ${r.mobile} {
+      width: 200px;
+      height: 300px;
+    }
   `,
 }));

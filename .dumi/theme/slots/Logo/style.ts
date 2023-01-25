@@ -4,6 +4,7 @@ export const useStyles = createStyles(
   ({ css, stylish, r, token }) => css`
     display: inline-flex;
     align-items: center;
+    font-family: AliPuHui, ${token.fontFamily};
     color: ${token.colorText};
     font-size: 22px;
     line-height: 1;

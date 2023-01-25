@@ -1,12 +1,12 @@
 import { createStyles } from 'antd-style';
 
-export const useStyles = createStyles(({ token, css, cx }) => {
+export const useStyles = createStyles(({ token, r, css, cx }) => {
   return {
     container: css`
       position: relative;
 
-      @media @mobile {
-        // TODO: support search for mobile devices
+      // TODO: support search for mobile devices
+      ${r.mobile} {
         display: none;
       }
     `,
@@ -29,7 +29,7 @@ export const useStyles = createStyles(({ token, css, cx }) => {
         transition: all 0.3s;
         pointer-events: none;
 
-        @media @mobile {
+        ${r.mobile} {
           display: none;
         }
       `,
@@ -47,7 +47,6 @@ export const useStyles = createStyles(({ token, css, cx }) => {
       border-radius: 8px;
       box-shadow: 0 4px 30px rgba(0, 0, 0, 20%);
 
-
       &::before {
         content: '';
         position: absolute;
@@ -58,10 +57,6 @@ export const useStyles = createStyles(({ token, css, cx }) => {
         height: 0;
         border: 8px solid transparent;
         border-bottom-color: #fff;
-
-        @{dark-selector} & {
-          border-bottom-color: lighten(@c-site-bg-dark, 6%);
-        }
       }
 
       > section {
@@ -71,7 +66,8 @@ export const useStyles = createStyles(({ token, css, cx }) => {
         overscroll-behavior: contain;
         -webkit-overflow-scrolling: touch;
         border-radius: inherit;
-      }`,
+      }
+    `,
 
     svg: cx(
       css`
