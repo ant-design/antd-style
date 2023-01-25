@@ -1,6 +1,6 @@
 import { createStyles } from 'antd-style';
 
-export const useStyles = createStyles(({ css, token, stylish, isDarkMode }) => ({
+export const useStyles = createStyles(({ css, r, token, stylish, isDarkMode }) => ({
   container: css`
     position: relative;
     text-align: center;
@@ -16,9 +16,9 @@ export const useStyles = createStyles(({ css, token, stylish, isDarkMode }) => (
       font-size: 20px;
       line-height: 1.6;
 
-      @media (max-width: ${token.screenXSMax}px) {
-        font-size: 16px;
-      }
+      ${r({
+        mobile: { fontSize: 16 },
+      })}
     }
   `,
 
@@ -32,9 +32,9 @@ export const useStyles = createStyles(({ css, token, stylish, isDarkMode }) => (
     margin: 0;
     font-family: AliPuHui, ${token.fontFamily};
 
-    @media (max-width: ${token.screenXSMax}px) {
-      font-size: 40px;
-    }
+    ${r({
+      mobile: { fontSize: 40 },
+    })}
 
     b {
       position: relative;
@@ -55,9 +55,10 @@ export const useStyles = createStyles(({ css, token, stylish, isDarkMode }) => (
     left: 0;
     font-size: 68px;
     font-family: AliPuHui, ${token.fontFamily};
-    @media (max-width: ${token.screenXSMax}px) {
-      font-size: 40px;
-    }
+
+    ${r({
+      mobile: { fontSize: 40 },
+    })}
 
     ${stylish.heroTextShadow}
 
@@ -70,8 +71,9 @@ export const useStyles = createStyles(({ css, token, stylish, isDarkMode }) => (
     font-size: ${token.fontSizeHeading3}px;
     color: ${token.colorTextSecondary};
 
-    @media (max-width: ${token.screenXSMax}px) {
+    ${r.mobile} {
       font-size: ${token.fontSizeHeading5}px;
+      margin: 24px 16px;
     }
   `,
 
@@ -80,9 +82,9 @@ export const useStyles = createStyles(({ css, token, stylish, isDarkMode }) => (
     display: flex;
     justify-content: center;
 
-    @media (max-width: ${token.screenXSMax}px) {
-      margin-top: 24px;
-    }
+    ${r({
+      mobile: { marginTop: 24 },
+    })}
   `,
   canvas: css`
     z-index: 10;

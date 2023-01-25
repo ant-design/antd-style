@@ -1,33 +1,7 @@
 import { createStyles } from 'antd-style';
 import chroma from 'chroma-js';
 
-export type Breakpoint =
-  | 'xxl'
-  | 'xl'
-  | 'lg'
-  | 'md'
-  /**
-   *
-   */
-  | 'sm'
-  /**
-   * 最小断点，可以作为移动端的判断断点
-   */
-  | 'xs';
-
-export type ResponseKey = Breakpoint | 'mobile' | 'tablet' | 'desktop' | 'wide';
-
-// const r = {
-//   xs: `@media (max-width: ${token.screenXSMax}px)`,
-//   mobile: `@media (max-width: ${token.screenXSMax}px)`,
-//   sm: `@media (max-width: ${token.screenSMMax}px)`,
-//   md: `@media (max-width: ${token.screenMDMax}px)`,
-//   lg: `@media (max-width: ${token.screenLGMax}px)`,
-//   xl: `@media (max-width: ${token.screenXLMax}px)`,
-//   xxl: `@media (min-width: ${token.screenXXLMin}px)`,
-// };
-
-export const useStyles = createStyles(({ token, css, stylish, isDarkMode }) => ({
+export const useStyles = createStyles(({ token, r, css, stylish, isDarkMode }) => ({
   container: css`
     max-width: ${token.contentMaxWidth}px;
 
@@ -36,21 +10,21 @@ export const useStyles = createStyles(({ token, css, stylish, isDarkMode }) => (
     grid-auto-flow: row dense;
     grid-auto-rows: 24px;
     gap: 16px;
+
     margin: 0 16px;
 
-    @media (max-width: ${token.screenXSMax}px) {
-      flex-direction: column;
-      display: flex;
-    }
-
-    @media (max-width: ${token.screenMDMax}px) {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    // @media (min-width: ${token.screenXXLMin}px) {
-    //   grid-template-columns: repeat(4, 1fr);
-    //   max-width: 1540px;
-    // }
+    ${r({
+      mobile: css`
+        flex-direction: column;
+        display: flex;
+      `,
+      laptop: {
+        gridTemplateColumns: 'repeat(2, 1fr)',
+      },
+      // desktop: {
+      //   gridTemplateColumns: 'repeat(3, 1fr)',
+      // },
+    })}
   `,
 
   cell: css`

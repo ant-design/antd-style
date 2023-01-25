@@ -1,7 +1,7 @@
 import { createStyles } from 'antd-style';
 
 export const useStyles = createStyles(
-  ({ css, stylish, token }) => css`
+  ({ css, stylish, r, token }) => css`
     display: inline-flex;
     align-items: center;
     color: ${token.colorText};
@@ -12,19 +12,15 @@ export const useStyles = createStyles(
 
     ${stylish.clickableText};
 
-    @media @mobile {
+    ${r.mobile} {
       font-size: 18px;
-
-      img {
-        height: 32px;
-      }
     }
 
     img {
       margin-inline-end: 10px;
       height: 40px;
 
-      @media @mobile {
+      ${r.mobile} {
         height: 32px;
       }
     }
