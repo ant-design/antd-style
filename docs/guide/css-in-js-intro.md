@@ -12,6 +12,7 @@ group: 基础知识
 
 - [拥抱 css in js](https://www.yuque.com/chenshuai/web/hea6tm)
 - [CSS-in-JS：一个充满争议的技术方案](https://mp.weixin.qq.com/s/8gMg8pL1d89ofvc8FMiMBA)
+- [深入分析 CSS-in-JS](https://juejin.cn/post/7172360607201493029)
 
 > 如果有更好的学习资料，欢迎提 PR。
 
@@ -109,7 +110,7 @@ const App: FC = ({ list }) => {
 
 ### 方式 3. `css` props
 
-在 `@emotion/react` 中还额外提供了 `css` props 的写法。这是第三种方式，也是 emotion 的前维护者 Sam Magura 在业务中使用的方式（详见：[Why We're Breaking Up with CSS-in-JS](https://dev.to/srmagura/why-were-breaking-up-wiht-css-in-js-4g9b)）。
+在 `@emotion/react` 中还额外提供了 `css` props 的写法。这是第三种方式，也是 emotion 推荐的在 React 中使用的方式。
 
 ```tsx | pure
 /** @jsx jsx */

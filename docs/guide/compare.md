@@ -75,7 +75,7 @@ export default () => {
 
 ## 2. css props 写法
 
-这种写法似乎是 emotion 推荐的方案，而且 emotion 的核心维护者在自己的业务中也大量使用这种写法。这种写法存在两个很大的问题：1）样式代码耦合 ，2）性能缺陷。
+这种写法似乎是 emotion 推荐的方案，而且 emotion 的核心维护者在自己的业务中也大量使用这种写法（详见：[Why We're Breaking Up with CSS-in-JS](https://dev.to/srmagura/why-were-breaking-up-wiht-css-in-js-4g9b)）。这种写法存在两个很大的问题：1）样式代码耦合 ，2）性能缺陷。
 
 css props 的写法会让样式代码直接与逻辑代码直接耦合在了一起，这样会导致样式代码的可维护性降低，而且在代码中难以区分出哪些是样式代码，哪些是逻辑代码（如下所示）。
 
