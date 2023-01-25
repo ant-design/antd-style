@@ -181,3 +181,52 @@ describe('createStyles', () => {
     });
   });
 });
+
+describe('createStyles：响应式工具函数', () => {
+  it('断点与设备查询', () => {
+    const useStyles = createStyles(({ css, r }) => ({
+      container: css`
+        background-color: blue;
+        ${r({
+          xs: css`
+            background-color: red;
+          `,
+          desktop: {
+            backgroundColor: 'green',
+          },
+        })}
+      `,
+    }));
+
+    const App = () => {
+      const { styles } = useStyles();
+      return <div className={styles.container}>container</div>;
+    };
+
+    const { container } = render(<App />);
+
+    expect(container.firstChild).toMatchInlineSnapshot(`
+      .emotion-0 {
+        background-color: blue;
+      }
+
+      @media (max-width: 575px) {
+        .emotion-0 {
+          background-color: red;
+        }
+      }
+
+      @media (min-width: 1600px) {
+        .emotion-0 {
+          background-color: green;
+        }
+      }
+
+      <div
+        class="emotion-0"
+      >
+        container
+      </div>
+    `);
+  });
+});
