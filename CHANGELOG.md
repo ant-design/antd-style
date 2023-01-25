@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.0.0-alpha.36](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.35...v3.0.0-alpha.36) (2023-01-25)
+
+### ✨ Features
+
+- 使用 reactCss 替换 css 对象 ([0b42a0a](https://github.com/arvinxx/antd-style/commit/0b42a0a))
+
 # [3.0.0-alpha.35](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.34...v3.0.0-alpha.35) (2023-01-23)
 
 ### ✨ Features
