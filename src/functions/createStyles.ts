@@ -3,6 +3,7 @@ import { useMemo } from 'react';
 import { useEmotion, useTheme } from '@/hooks';
 import type {
   CommonStyleUtils,
+  EmotionCX,
   FullStylish,
   FullToken,
   ReturnStyleToUse,
@@ -10,8 +11,10 @@ import type {
   Theme,
   ThemeAppearance,
 } from '@/types';
+import { isReactCssResult } from '@/utils';
 
 import { type CSSObject } from './css';
+import { reactCss } from './react';
 
 export interface CreateStylesTheme extends CommonStyleUtils {
   token: FullToken;
@@ -61,8 +64,12 @@ export const createStyles =
       if (styleOrGetStyleFn instanceof Function) {
         const { stylish, appearance, isDarkMode, prefixCls, ...token } = theme;
 
+        // 由于使用了 reactCss 作为基础样式工具，因此在使用 cx 级联 className 时需要使用特殊处理的 cx，要将 reactCss 的产出转为 css 产物
+        const reactCx: EmotionCX = (...classNames) =>
+          cx(...classNames.map((c) => (isReactCssResult(c) ? css(c) : c)));
+
         tempStyles = styleOrGetStyleFn(
-          { token, stylish, appearance, cx, css, isDarkMode, prefixCls },
+          { token, stylish, appearance, cx: reactCx, css: reactCss, isDarkMode, prefixCls },
           props!,
         ) as any;
       }
@@ -72,15 +79,24 @@ export const createStyles =
       }
 
       if (typeof tempStyles === 'object') {
-        tempStyles = Object.fromEntries(
-          Object.entries(tempStyles).map(([key, value]) => {
-            if (typeof value === 'object') {
-              return [key, css(value as CSSObject)];
-            }
+        // 判断是否是直接用 reactCSS 生成的
+        if (isReactCssResult(tempStyles)) {
+          tempStyles = css(tempStyles) as any;
+        } else {
+          // 不是的话就是直接是 css object，需要转换了
+          tempStyles = Object.fromEntries(
+            Object.entries(tempStyles).map(([key, value]) => {
+              // 这里有可能是 x:{ color:red } 也可能是 c:reactCss`color:red`;
+              // 但无论哪种，都可以直接用 css 包一下转换掉
+              if (typeof value === 'object') {
+                return [key, css(value as CSSObject)];
+              }
 
-            return [key, value];
-          }),
-        ) as any;
+              // 这里只可能是 c: css`color:red`; css 直接来自 antd-style
+              return [key, value];
+            }),
+          ) as any;
+        }
       }
 
       return tempStyles;

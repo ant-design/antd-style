@@ -6,9 +6,9 @@ import { createStyles, StyleOrGetStyleFn } from './createStyles';
 /**
  * 业务应用中创建复合通用样式的进阶
  */
-export function createStylish<Props, Styles extends StyleInputType>(
+export const createStylish = <Props, Styles extends StyleInputType>(
   cssStyleOrGetCssStyleFn: StyleOrGetStyleFn<Styles, Props>,
-) {
+): ((props?: Props) => ReturnStyleToUse<Styles>) => {
   const useStyles = createStyles(cssStyleOrGetCssStyleFn);
 
   return (props?: Props): ReturnStyleToUse<Styles> => {
@@ -16,4 +16,4 @@ export function createStylish<Props, Styles extends StyleInputType>(
 
     return styles;
   };
-}
+};
