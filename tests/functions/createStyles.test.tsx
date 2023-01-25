@@ -5,7 +5,7 @@ describe('createStyles', () => {
   describe('styles 对象的使用', () => {
     describe('createStyleFn 通过函数方式可以拿到 token 等信息', () => {
       it('字符串模板的对象模式用法', () => {
-        const useStyles = createStyles(({ token }) => ({
+        const useStyles = createStyles(({ token, css }) => ({
           container: css`
             background-color: ${token.colorBgLayout};
             padding: 24px;
@@ -33,7 +33,7 @@ describe('createStyles', () => {
 
       it('只返回一个 css 字符串，使用正常，类型定义也正常', () => {
         const useStyles = createStyles(
-          ({ token }) => css`
+          ({ token, css }) => css`
             background-color: ${token.colorBgContainer};
             padding: 24px;
           `,
@@ -124,6 +124,35 @@ describe('createStyles', () => {
         expect(container.firstChild).toMatchSnapshot();
         expect(container.firstChild).toHaveStyle({ backgroundColor: '#f5f5f5' });
       });
+    });
+
+    it('cx 的处理方式', () => {
+      const useStyles = createStyles(({ token, cx, css }) => ({
+        container: cx(
+          css`
+            background-color: ${token.colorBgLayout};
+            padding: 24px;
+          `,
+          'with-cx',
+        ),
+        card: css`
+          margin-top: ${token.marginLG}px;
+        `,
+      }));
+      const App = () => {
+        const { styles } = useStyles();
+        return (
+          <div className={styles.container}>
+            <div className={styles.card}>card</div>
+          </div>
+        );
+      };
+
+      const { container } = render(<App />);
+
+      expect(container.firstChild).toMatchSnapshot();
+
+      expect(container.firstChild).toHaveStyle({ backgroundColor: '#f5f5f5' });
     });
   });
 

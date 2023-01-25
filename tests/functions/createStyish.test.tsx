@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react';
+import { render, renderHook } from '@testing-library/react';
 import { createStylish } from 'antd-style';
 
 describe('createStylish', () => {
@@ -57,5 +57,17 @@ describe('createStylish', () => {
   it('默认快照', () => {
     const { result } = renderHook(useCommonStylish);
     expect(result.current).toMatchSnapshot();
+  });
+
+  it('渲染使用', () => {
+    const App = () => {
+      const stylish = useCommonStylish();
+      return <div className={stylish.containerBgL2}>bglayout</div>;
+    };
+
+    const { container } = render(<App />);
+
+    expect(container.firstChild).toMatchSnapshot();
+    expect(container.firstChild).toHaveStyle({ cursor: 'pointer' });
   });
 });
