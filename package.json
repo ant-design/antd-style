@@ -35,6 +35,7 @@
     "ci": "npm run lint && npm run type-check",
     "clean": "rm -rf es lib dist coverage .dumi/tmp .eslintcache",
     "dev": "dumi dev",
+    "docs:analyze": "ANALYZE=1 dumi build",
     "docs:build": "dumi build",
     "doctor": "father doctor",
     "lint": "eslint \"{src,test}/**/*.{js,jsx,ts,tsx}\"",
