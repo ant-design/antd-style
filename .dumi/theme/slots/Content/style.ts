@@ -1,6 +1,6 @@
 import { createStyles } from 'antd-style';
 
-export const useStyles = createStyles(({ token, isDarkMode, css }) => ({
+export const useStyles = createStyles(({ token, r, isDarkMode, css }) => ({
   content: css`
     min-height: 400px;
     flex: 1;
@@ -8,9 +8,13 @@ export const useStyles = createStyles(({ token, isDarkMode, css }) => ({
     box-sizing: border-box;
 
     padding: 24px 48px;
-    background-color: ${token.colorBgContainer};
     border-radius: 10px;
+    background-color: ${token.colorBgContainer};
     box-shadow: ${token.boxShadow};
+    ${r.mobile} {
+      padding: 8px 16px;
+      border-radius: 0;
+    }
 
     .markdown {
       color: ${token.colorTextSecondary};

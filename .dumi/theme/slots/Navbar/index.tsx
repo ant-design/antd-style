@@ -1,8 +1,10 @@
 import { Tabs } from 'antd';
-import { createStyles, useResponsive } from 'antd-style';
-import { history, Link, useLocation, useNavData } from 'dumi';
+import { createStyles } from 'antd-style';
+import { history, Link } from 'dumi';
 import NavbarExtra from 'dumi/theme-default/slots/NavbarExtra';
 import { memo, type FC } from 'react';
+import { shallow } from 'zustand/shallow';
+import { activePathSel, useSiteStore } from '../../store/useSiteStore';
 
 const useStyles = createStyles(({ css, r, token, stylish, prefixCls }) => {
   const prefix = `.${prefixCls}-tabs`;
@@ -48,16 +50,12 @@ const useStyles = createStyles(({ css, r, token, stylish, prefixCls }) => {
   };
 });
 const Navbar: FC = () => {
-  const nav = useNavData();
-  const { pathname } = useLocation();
   const { styles } = useStyles();
 
-  const { mobile } = useResponsive();
-  const activePath = nav.find((i) => pathname.startsWith(i.activePath!))?.activePath;
+  const nav = useSiteStore((s) => s.navData, shallow);
+  const activePath = useSiteStore(activePathSel);
 
-  return mobile ? (
-    <div></div>
-  ) : (
+  return (
     <>
       <Tabs
         onChange={(path) => {

@@ -1,6 +1,7 @@
 import { createStyles } from 'antd-style';
+import chroma from 'chroma-js';
 
-export const useStyles = createStyles(({ token, cx, css, stylish }) => {
+export const useStyles = createStyles(({ token, prefixCls, cx, css, stylish }) => {
   const offset = 6;
 
   return {
@@ -62,6 +63,40 @@ export const useStyles = createStyles(({ token, cx, css, stylish }) => {
       height: ${token.controlHeight}px;
       border-radius: ${token.borderRadius}px;
       cursor: pointer;
+    `,
+
+    drawerRoot: css`
+      top: ${token.headerHeight + 1}px;
+
+      :focus-visible {
+        outline: none;
+      }
+
+      .${prefixCls}-drawer {
+        &-mask {
+          background: transparent;
+          backdrop-filter: blur(7px);
+          background: ${chroma(token.colorBgBase).alpha(0.5).hex()};
+        }
+
+        &-content-wrapper {
+          box-shadow: none;
+        }
+      }
+    `,
+    drawer: css`
+      &.${prefixCls}-drawer-content {
+        background: transparent;
+      }
+    `,
+
+    menu: css`
+      background: transparent;
+      border-inline-end: transparent !important;
+
+      .${prefixCls}-menu-sub.${prefixCls}-menu-inline {
+        background: ${chroma(token.colorBgLayout).alpha(0.8).hex()} !important;
+      }
     `,
   };
 });

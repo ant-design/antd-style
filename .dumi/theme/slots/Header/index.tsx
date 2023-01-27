@@ -55,7 +55,6 @@ const Header: FC = () => {
               <Flexbox horizontal className={styles.left}>
                 <Logo />
               </Flexbox>
-
               <Flexbox style={{ marginLeft: 48, alignSelf: 'end' }}>
                 <Navbar />
               </Flexbox>

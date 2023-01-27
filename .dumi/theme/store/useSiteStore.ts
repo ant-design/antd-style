@@ -1,15 +1,20 @@
 import { AtomAsset } from 'dumi-assets-types';
 import {
   ILocalesConfig,
+  INavItem,
   IPreviewerProps,
   IRouteMeta,
   ISidebarGroup,
   IThemeConfig,
 } from 'dumi/dist/client/theme-api/types';
 import { PICKED_PKG_FIELDS } from 'dumi/dist/constants';
+import type { Location } from 'history';
+
 import { ComponentType } from 'react';
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
+
+export type NavData = (INavItem & { children?: INavItem[] | undefined })[];
 
 export interface SiteState {
   pkg: Partial<Record<keyof typeof PICKED_PKG_FIELDS, any>>;
@@ -22,6 +27,7 @@ export interface SiteState {
       routeId: string;
     }
   >;
+
   components: Record<string, AtomAsset>;
   locales: ILocalesConfig;
   themeConfig: IThemeConfig;
@@ -33,6 +39,8 @@ interface Store {
   siteData: SiteState;
   sidebar: ISidebarGroup[];
   routeMeta: IRouteMeta;
+  navData: NavData;
+  location: Location;
 }
 
 const initialState: Store = {
@@ -49,6 +57,16 @@ const initialState: Store = {
     themeConfig: {},
   },
   sidebar: [],
+  navData: [],
+
+  location: {
+    pathname: '',
+    state: '',
+    search: '',
+    hash: '',
+    key: '',
+  },
+
   routeMeta: {
     toc: [],
     texts: [],
@@ -67,5 +85,16 @@ export const useSiteStore = create<Store>()(
   ),
 );
 
+export const isApiPageSel = (s: Store) => s.location.pathname.startsWith('/api');
 export const isHeroPageSel = (s: Store) => !!s.routeMeta.frontmatter.hero;
 export const featuresSel = (s: Store) => s.routeMeta.frontmatter.features;
+
+export const activePathSel = (s: Store) => {
+  if (s.location.pathname === '/') return '/';
+
+  const item = s.navData
+    .filter((i) => i.link !== '/')
+    .find((i) => s.location.pathname.startsWith(i.activePath!));
+
+  return item?.activePath || '';
+};

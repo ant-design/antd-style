@@ -1,6 +1,6 @@
 import { createStyles } from 'antd-style';
 
-export const useStyles = createStyles(({ css, token }) => ({
+export const useStyles = createStyles(({ css, r, token }) => ({
   layout: css`
     background-color: ${token.colorBgLayout};
     background-image: linear-gradient(
@@ -17,6 +17,11 @@ export const useStyles = createStyles(({ css, token }) => ({
       'sidebar main toc'
       'sidebar footer footer';
     min-height: 100vh;
+
+    ${r.mobile} {
+      display: flex;
+      flex-direction: column;
+    }
   `,
 
   toc: css`
@@ -28,6 +33,13 @@ export const useStyles = createStyles(({ css, token }) => ({
     overflow: auto;
     margin-top: 48px;
 
+    ${r.mobile} {
+      z-index: 300;
+      top: ${token.headerHeight + 1}px;
+      margin-top: 0;
+      width: 100%;
+    }
+
     overscroll-behavior: contain;
     -webkit-overflow-scrolling: touch;
 
@@ -37,5 +49,17 @@ export const useStyles = createStyles(({ css, token }) => ({
       font-size: 12px;
       line-height: 1;
     }
+  `,
+
+  content: css`
+    max-width: ${token.contentMaxWidth}px;
+    width: 100%;
+    margin: 0 24px;
+
+
+    ${r.mobile} {
+      margin: 0;
+    }
+  }
   `,
 }));

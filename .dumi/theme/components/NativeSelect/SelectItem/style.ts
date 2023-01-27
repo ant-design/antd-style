@@ -16,6 +16,7 @@ export const useStyles = createStyles(({ css, cx, token }, prefixCls) => ({
       scroll-margin: 50px;
 
       font-weight: normal;
+      font-family: ${token.fontFamily};
       color: ${token.colorText};
       background: transparent;
       &:hover {
