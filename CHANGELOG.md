@@ -1,5 +1,7 @@
 # Changelog
 
+# [3.0.0-alpha.40](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.39...v3.0.0-alpha.40) (2023-01-27)
+
 # [3.0.0-alpha.39](https://github.com/arvinxx/antd-style/compare/v3.0.0-alpha.38...v3.0.0-alpha.39) (2023-01-25)
 
 ### 🐛 Bug Fixes
