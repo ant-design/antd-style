@@ -1,7 +1,7 @@
 import { createStyles } from 'antd-style';
 import chroma from 'chroma-js';
 
-export const useStyles = createStyles(({ token, r, css }) => {
+export const useStyles = createStyles(({ token, prefixCls, r, css }) => {
   const fixHeight = 36;
   return {
     container: css`
@@ -49,6 +49,10 @@ export const useStyles = createStyles(({ token, r, css }) => {
       box-shadow: ${token.boxShadowSecondary};
       width: 100%;
       z-index: 201;
+
+      .${prefixCls}-collapse-header {
+        padding: 8px 16px !important;
+      }
     `,
   };
 });
