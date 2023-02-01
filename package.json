@@ -11,13 +11,13 @@
     "token-system",
     "antd"
   ],
-  "homepage": "https://github.com/arvinxx/antd-style",
+  "homepage": "https://github.com/ant-design/antd-style",
   "bugs": {
-    "url": "https://github.com/arvinxx/antd-style"
+    "url": "https://github.com/ant-design/antd-style"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/arvinxx/antd-style.git"
+    "url": "https://github.com/ant-design/antd-style.git"
   },
   "license": "MIT",
   "author": "arvinxx(arvinx@foxmail.com)",
@@ -38,6 +38,7 @@
     "docs:analyze": "ANALYZE=1 dumi build",
     "docs:build": "dumi build",
     "docs:deploy": "gh-pages -d dist",
+    "docs:preview": "PREVIEW=1 dumi build",
     "doctor": "father doctor",
     "gh-pages": "npm run docs:build && npm run docs:deploy",
     "lint": "eslint \"{src,test}/**/*.{js,jsx,ts,tsx}\"",

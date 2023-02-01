@@ -1,14 +1,20 @@
 import { defineConfig } from 'dumi';
 
+// 不是预览模式 同时是生产环境
+const isProdSite = process.env.PREVIEW !== '1';
+
 export default defineConfig({
   themeConfig: {
     name: 'Ant Design Style',
     logo: 'https://gw.alipayobjects.com/zos/hitu-asset/c88e3678-6900-4289-8538-31367c2d30f2/hitu-1609235995955-image.png',
-    repoUrl: 'https://github.com/arvinxx/antd-style',
+    repoUrl: 'https://github.com/ant-design/antd-style',
   },
   favicons: [
     'https://gw.alipayobjects.com/zos/hitu-asset/c88e3678-6900-4289-8538-31367c2d30f2/hitu-1609235995955-image.png',
   ],
+  // 部署在非根目录时, base 和 publicPath 都需要配置
+  base: isProdSite ? '/antd-style/' : '/',
+  publicPath: isProdSite ? '/antd-style/' : '/',
   extraBabelPlugins: ['@emotion'],
   styles: [
     `html, body { background: transparent;  }
