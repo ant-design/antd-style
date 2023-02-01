@@ -1,4 +1,13 @@
-import { FC, memo, ReactNode, useCallback, useLayoutEffect, useMemo } from 'react';
+import {
+  FC,
+  memo,
+  ReactNode,
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useState,
+} from 'react';
 import useControlledState from 'use-merge-value';
 
 import { ThemeModeContext } from '@/context';
@@ -7,7 +16,48 @@ import { ThemeAppearance, ThemeMode } from '@/types';
 
 let darkThemeMatch: MediaQueryList;
 
-const matchThemeMode = (mode: ThemeAppearance) => matchMedia(`(prefers-color-scheme: ${mode})`);
+const matchThemeMode = (mode: ThemeAppearance) =>
+  matchMedia && matchMedia(`(prefers-color-scheme: ${mode})`);
+
+// 将适配
+const ThemeObserver: FC<{
+  themeMode: ThemeMode;
+  setAppearance: (value: ThemeAppearance) => void;
+}> = ({ themeMode, setAppearance }) => {
+  const matchBrowserTheme = useCallback(() => {
+    if (matchThemeMode('dark').matches) {
+      setAppearance('dark');
+    } else {
+      setAppearance('light');
+    }
+  }, [setAppearance]);
+
+  useLayoutEffect(() => {
+    // 如果是自动的话，则去做一次匹配
+    if (themeMode === 'auto') matchBrowserTheme();
+    // 否则就明确设定亮暗色
+    else setAppearance(themeMode);
+  }, [themeMode]);
+
+  // 自动监听系统主题变更
+  useLayoutEffect(() => {
+    if (!darkThemeMatch) {
+      darkThemeMatch = matchThemeMode('dark');
+    }
+
+    if (themeMode === 'auto') {
+      setTimeout(matchBrowserTheme, 1);
+    }
+
+    darkThemeMatch.addEventListener('change', matchBrowserTheme);
+
+    return () => {
+      darkThemeMatch.removeEventListener('change', matchBrowserTheme);
+    };
+  }, []);
+
+  return null;
+};
 
 export interface ThemeSwitcherProps {
   /**
@@ -48,36 +98,11 @@ const ThemeSwitcher: FC<ThemeSwitcherProps> = memo(
       onChange: onAppearanceChange,
     });
 
-    const matchBrowserTheme = useCallback(() => {
-      if (matchThemeMode('dark').matches) {
-        setAppearance('dark');
-      } else {
-        setAppearance('light');
-      }
-    }, [setAppearance]);
+    const [startObserver, setStartObserver] = useState(false);
 
-    useLayoutEffect(() => {
-      // 如果是自动的话，则去做一次匹配
-      if (themeMode === 'auto') matchBrowserTheme();
-      // 否则就明确设定亮暗色
-      else setAppearance(themeMode);
-    }, [themeMode]);
-
-    // 自动监听系统主题变更
-    useLayoutEffect(() => {
-      if (!darkThemeMatch) {
-        darkThemeMatch = matchThemeMode('dark');
-      }
-
-      if (themeMode === 'auto') {
-        setTimeout(matchBrowserTheme, 1);
-      }
-
-      darkThemeMatch.addEventListener('change', matchBrowserTheme);
-
-      return () => {
-        darkThemeMatch.removeEventListener('change', matchBrowserTheme);
-      };
+    // Wait until after client-side hydration to show
+    useEffect(() => {
+      setStartObserver(true);
     }, []);
 
     return (
@@ -88,6 +113,7 @@ const ThemeSwitcher: FC<ThemeSwitcherProps> = memo(
           isDarkMode: appearance === 'dark',
         }}
       >
+        {startObserver && <ThemeObserver themeMode={themeMode} setAppearance={setAppearance} />}
         {children}
       </ThemeModeContext.Provider>
     );
