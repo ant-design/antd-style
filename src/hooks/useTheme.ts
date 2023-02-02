@@ -16,7 +16,7 @@ export const useTheme = (): Theme => {
   );
 
   //  如果是个空值，说明没有套 Provider，返回 antdTheme 的默认值
-  if (Object.keys(defaultTheme).length === 0) {
+  if (!defaultTheme || Object.keys(defaultTheme).length === 0) {
     return initTheme;
   }
 

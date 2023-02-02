@@ -2,7 +2,7 @@ import { SerializedStyles } from '@emotion/serialize';
 import { ReactElement, useMemo } from 'react';
 
 import { useAntdTheme, useThemeMode } from '@/hooks';
-import { EmotionThemeProvider as Provider, reactCss } from '@/pedestal';
+import { PedestalProvider, reactCss } from '@/pedestal';
 import { convertStylishToString } from '@/utils/convertStylish';
 
 import { Theme } from '@/types';
@@ -62,7 +62,7 @@ const TokenContainer: <T, S>(props: TokenContainerProps<T, S>) => ReactElement |
     prefixCls,
   };
 
-  return <Provider theme={theme}>{children}</Provider>;
+  return <PedestalProvider theme={theme}>{children}</PedestalProvider>;
 };
 
 export default TokenContainer;
