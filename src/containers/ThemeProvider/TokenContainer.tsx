@@ -1,8 +1,8 @@
 import { SerializedStyles } from '@emotion/serialize';
 import { ReactElement, useMemo } from 'react';
 
-import { EmotionThemeProvider as Provider, reactCss } from '@/functions/react';
 import { useAntdTheme, useThemeMode } from '@/hooks';
+import { EmotionThemeProvider as Provider, reactCss } from '@/pedestal';
 import { convertStylishToString } from '@/utils/convertStylish';
 
 import { Theme } from '@/types';

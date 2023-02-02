@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 
 import { useEmotion, useTheme } from '@/hooks';
+import { reactCss } from '@/pedestal';
 import type {
   BaseReturnType,
   CommonStyleUtils,
@@ -16,8 +17,6 @@ import type {
 import { isReactCssResult } from '@/utils';
 
 import { convertResponsiveStyleToString, useMediaQueryMap } from './response';
-
-import { reactCss } from '../react';
 
 /**
  * 用户书写样式时使用的第一个参数

@@ -1,5 +1,5 @@
-import { reactCss } from '@/functions/react';
 import { useAntdToken } from '@/hooks';
+import { reactCss } from '@/pedestal';
 import type { Breakpoint, BreakpointMapParams, CSSObject, ResponsiveMap } from '@/types';
 import { isReactCssResult } from '@/utils';
 import { convertBreakpointToResponsive } from '@/utils/responsive';
