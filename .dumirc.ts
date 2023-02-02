@@ -1,7 +1,7 @@
 import { defineConfig } from 'dumi';
 
 // 不是预览模式 同时是生产环境
-const isProdSite = process.env.PREVIEW !== '1';
+const isProdSite = process.env.PREVIEW !== '1' && process.env.NODE_ENV === 'production';
 
 export default defineConfig({
   themeConfig: {

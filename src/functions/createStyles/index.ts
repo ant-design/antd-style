@@ -12,7 +12,6 @@ import type {
   ReturnStyleToUse,
   Theme,
   ThemeAppearance,
-  UtilReactCss,
 } from '@/types';
 import { isReactCssResult } from '@/utils';
 
@@ -23,13 +22,12 @@ import { reactCss } from '../react';
 /**
  * 用户书写样式时使用的第一个参数
  */
-export interface CreateStylesTheme extends Omit<CommonStyleUtils, 'css'> {
+export interface CreateStylesTheme extends CommonStyleUtils {
   token: FullToken;
   stylish: FullStylish;
   appearance: ThemeAppearance;
   isDarkMode: boolean;
   prefixCls: string;
-  css: UtilReactCss;
 }
 
 /**
@@ -93,7 +91,6 @@ export const createStyles =
             prefixCls,
             // 工具函数们
             cx: reactCx,
-            // @ts-ignore
             css: reactCss,
             r: responsive,
           },
