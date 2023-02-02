@@ -1,5 +1,15 @@
 # Changelog
 
+# [3.0.0-alpha.42](https://github.com/ant-design/antd-style/compare/v3.0.0-alpha.41...v3.0.0-alpha.42) (2023-02-02)
+
+### ✨ Features
+
+- styled 方法底层实现替换为 styled-component 以默认支持组件选择器 ([0ccbcaf](https://github.com/ant-design/antd-style/commit/0ccbcaf))
+
+### 💥 BREAKING CHANGES
+
+- 由于 emotion/react 版本的 styled 无法默认支持组件选择器。虽然可以用 babel-plugin 配置，但是太过于复杂，因此考虑直接替换为 styled-components
+
 # [3.0.0-alpha.41](https://github.com/ant-design/antd-style/compare/v3.0.0-alpha.40...v3.0.0-alpha.41) (2023-02-01)
 
 ### ✨ Features
