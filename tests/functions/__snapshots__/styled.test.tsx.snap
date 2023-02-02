@@ -21,7 +21,7 @@ exports[`styled 使用 antd 主题样式 带有外部传参的方式 1`] = `
   border-radius: 8px;
   padding: 24px;
   background: #ffffff;
-  color: rgba(0, 0, 0, 0.88);
+  color: rgba(0,0,0,0.88);
 }
 
 <div>
@@ -79,7 +79,7 @@ exports[`styled 嵌套组件选择 1`] = `
 .c2 {
   background: dodgerblue;
   color: white;
-  border: 0.4483809927850497px solid white;
+  border: 1px solid white;
 }
 
 .c2:focus,
