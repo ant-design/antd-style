@@ -1,4 +1,5 @@
 import '@testing-library/jest-dom';
+import 'jest-styled-components';
 
 // 关闭 antd 的 hash
 import { theme } from 'antd';
