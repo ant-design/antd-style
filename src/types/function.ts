@@ -12,11 +12,6 @@ export interface EmotionReactCss {
   (...args: Array<CSSInterpolation>): SerializedStyles;
 }
 
-export interface UtilReactCss {
-  (template: TemplateStringsArray, ...args: Array<CSSInterpolation>): string;
-  (...args: Array<CSSInterpolation>): string;
-}
-
 export type EmotionCX = (...classNames: ClassNamesArg[]) => string;
 
 export type BreakpointMapParams = Partial<Record<ResponsiveKey, AtomInputType>>;

@@ -3,7 +3,7 @@ import { reactCss } from '@/pedestal';
 import type { Breakpoint, BreakpointMapParams, CSSObject, ResponsiveMap } from '@/types';
 import { isReactCssResult } from '@/utils';
 import { convertBreakpointToResponsive } from '@/utils/responsive';
-import type { SerializedStyles } from '@emotion/react';
+import type { SerializedStyles } from '@emotion/serialize';
 import { useMemo } from 'react';
 
 export const useMediaQueryMap = (): ResponsiveMap => {
