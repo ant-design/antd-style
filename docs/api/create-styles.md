@@ -53,7 +53,26 @@ interface CreateStylesTheme {
 
 ### 写法三：结合外部传入 props
 
-TBD
+```tsx | pure
+const useStyles = createStyles(({ token, css }, props: { id: string; open: boolean }) => {
+  return {
+    select: props.open
+      ? css`
+          border-color: ${token.colorSuccess};
+        `
+      : undefined,
+  };
+});
+
+const Select = () => {
+  // 此处的入参会带有类型提示为 { id: string; open: boolean }
+  const styles = useStyles({ id: '1', open: true });
+
+  return <div className={styles.select} />;
+};
+```
+
+<code src="../demos/createStyles/withProps.tsx"></code>
 
 ## 代码组织文件拆分
 
