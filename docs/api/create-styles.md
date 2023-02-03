@@ -53,6 +53,8 @@ interface CreateStylesTheme {
 
 ### 写法三：结合外部传入 props
 
+`createStyles` 的第二个参数可以指定可传入的 props。
+
 ```tsx | pure
 const useStyles = createStyles(({ token, css }, props: { id: string; open: boolean }) => {
   return {
