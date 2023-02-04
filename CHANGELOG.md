@@ -1,5 +1,15 @@
 # Changelog
 
+# [3.0.0-alpha.43](https://github.com/ant-design/antd-style/compare/v3.0.0-alpha.42...v3.0.0-alpha.43) (2023-02-04)
+
+### ✨ Features
+
+- 将 r 改名为 responsive ([022c25b](https://github.com/ant-design/antd-style/commit/022c25b))
+
+### 💥 BREAKING CHANGES
+
+- 为了方便用户理解，将 r 改名为 responsive
+
 # [3.0.0-alpha.42](https://github.com/ant-design/antd-style/compare/v3.0.0-alpha.41...v3.0.0-alpha.42) (2023-02-02)
 
 ### ✨ Features
