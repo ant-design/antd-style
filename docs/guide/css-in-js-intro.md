@@ -8,7 +8,7 @@ group: 基础知识
 
 ## 什么是 CSS in JS
 
-简单来说，CSS in JS 和 JSX 差不多，就是用 JS 来写 CSS 相关的样式，利用 JS 本身的动态性，可以实现非常灵活的样式能力。本文不再做一些基础介绍，如果对 CSS in JS 缺乏前置了解的同学，可以在看一些社区上相关的文章：
+在思想上 CSSinJS 和 JSX 差不多，简单来说，就是在 JS 环境中写 CSS 相关的样式。利用 JS 本身的动态性，可以实现非常灵活的样式能力。本文不再做一些基础介绍，如果对 CSS in JS 缺乏前置了解的同学，可以在看一些社区上相关的文章：
 
 - [拥抱 css in js](https://www.yuque.com/chenshuai/web/hea6tm)
 - [CSS-in-JS：一个充满争议的技术方案](https://mp.weixin.qq.com/s/8gMg8pL1d89ofvc8FMiMBA)
@@ -18,11 +18,11 @@ group: 基础知识
 
 ## 常见写法
 
-我们来看看在 CSS in JS 的世界中，目前总共有的 4 种样式书写方式。我们先不对这些写法做任何评价，大家先了解一下一些主流的方案，对后续的介绍会更有体感。
+我们来看看在 CSS in JS 的世界中，目前总共有的 4 种样式书写方式。我们先不对这些写法做评价，通过了解一下一些主流的方案，你会对后续的介绍更有体感。
 
 ### 方式 1. styled
 
-`styled` 的写法由 [styled-components](https://styled-components.com/) 首创，写法如下：
+`styled` 由 [styled-components](https://styled-components.com/) 首创，写法如下：
 
 ```tsx | pure
 import styled from 'styled-component';
@@ -44,6 +44,8 @@ const App: FC = ({ list }) => {
 ```
 
 后续 emotion 在 `@emotion/styled`也做了跟进，因此主流 CSSinJS 库基本都支持这种写法。我们实测基于 styled 这种写法，将 `styled-component` 与 `@emotion/react` 两个包互切，样式没有任何影响，且性能相差无几。
+
+但需要注意的是，styled-component 中一些默认支持的语法（例如：组件选择器），在 `@emotion/react` 中需要配置 babel 插件才可支持。因此 styled-component 的包体积会相较于 `@emotion/react` 大上不少。但考虑到开发者上手配置的成本，我们选择了使用 styled-component 作为内置的 styled 语法引擎。
 
 ### 方式 2. `css` 搭配 className
 
@@ -108,7 +110,7 @@ const App: FC = ({ list }) => {
 };
 ```
 
-### 方式 3. `css` props
+### 方式 3. 在 React 中使用的 `css` props
 
 在 `@emotion/react` 中还额外提供了 `css` props 的写法。这是第三种方式，也是 emotion 推荐的在 React 中使用的方式。
 

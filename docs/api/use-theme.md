@@ -7,9 +7,9 @@ group: Hooks
 
 ## 简介
 
-配合容器组件进行使用（`ThemeProvider`），可以获取到容器下的主题信息。如果不添加 `ThemeProvider`，默认获取到的值为：
+配合容器组件进行使用（`ThemeProvider`），可以获取到容器下的主题信息。如果不添加 `ThemeProvider`，默认获取到的值为默认值。
 
-当 `useTheme` 放在 `ThemeProvider` 组件下使用，才可以获得动态的主题值。
+当 `useTheme` 放在 `ThemeProvider` 组件下使用，可以获得 ThemeProvider 中的主题值。
 
 <code src="../demos/api/useTheme.tsx"></code>
 

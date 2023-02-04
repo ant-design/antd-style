@@ -1,5 +1,5 @@
 /**
- * compact: true
+ * iframe: 500
  */
 import { App, Divider, Space } from 'antd';
 import { ThemeProvider, useTheme } from 'antd-style';
@@ -34,8 +34,9 @@ const Demo = () => {
 };
 
 export default () => {
+  const token = useTheme();
   return (
-    <div style={{ background: '#f1f2f5', padding: 24 }}>
+    <div style={{ background: token.colorBgLayout, padding: 24 }}>
       <ThemeProvider appearance={'dark'}>
         <App>
           <div style={{ background: '#000', padding: '24px 12px', borderRadius: 12 }}>
