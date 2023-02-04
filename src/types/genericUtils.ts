@@ -18,7 +18,11 @@ export type BaseReturnType = KVObject | AtomInputType;
 
 type KVObject = Record<string, CSSObject | string | SerializedStyles>;
 
-type StyleObjectOnly<T extends BaseReturnType> = T extends string ? never : T;
+type StyleObjectOnly<T extends BaseReturnType> = T extends string
+  ? never
+  : T extends SerializedStyles
+  ? never
+  : T;
 
 /**
  * 根据用户输入的样式对象，导出可以给用户使用消费的类型泛型
@@ -30,10 +34,12 @@ type DefinitionToResult<T, K extends keyof T = keyof T> = {
 };
 
 /**
- * 根据用户返回的样式对象，返回一个可以给用户使用的
- * 譬如用户输入为 { a: css`color: red;`, b: { color: 'red' }
+ * 根据用户返回的样式对象，返回一个可以给用户使用的类型定义
+ * 用户输入为 { a: css`color: red;`, b: { color: 'red' }
  * 输出的类型泛型为 { a:string; b:string }
  */
 export type ReturnStyleToUse<T extends BaseReturnType> = T extends string
   ? T
+  : T extends SerializedStyles
+  ? string
   : DefinitionToResult<StyleObjectOnly<T>>;
