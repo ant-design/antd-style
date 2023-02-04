@@ -1,33 +1,27 @@
 import { EditOutlined, GithubFilled } from '@ant-design/icons';
 import { Typography } from 'antd';
-import { styled } from 'antd-style';
+import { useResponsive } from 'antd-style';
 import { FC, memo } from 'react';
 import { Flexbox } from 'react-layout-kit';
 
 import Code from '../CodeSnippet';
 import NpmFilled from './NpmFilled';
 
-import { useStyles } from './style';
-
-const Label = styled(Typography.Text)`
-  width: 100px;
-`;
+import { useSiteStore } from '../../store/useSiteStore';
+import { Label, useStyles } from './style';
 
 interface ApiTitleProps {
   title: string;
   description?: string;
 }
-const REPO_BASE = `https://github.com/arvinxx/antd-style`;
 
 export const ApiHeader: FC<ApiTitleProps> = memo(({ title, description }) => {
-  const { styles, theme } = useStyles();
+  const { styles } = useStyles();
+  const { mobile } = useResponsive();
+
+  const REPO_BASE = useSiteStore((s) => s.siteData.themeConfig.repoUrl);
 
   const items = [
-    {
-      label: '引入方法',
-      import: true,
-      children: `import { ${title} } from "antd-style";`,
-    },
     {
       label: '源码',
       icon: <GithubFilled />,
@@ -58,20 +52,22 @@ export const ApiHeader: FC<ApiTitleProps> = memo(({ title, description }) => {
           </Typography.Text>
         </div>
       )}
-      <Flexbox style={{ marginTop: 24 }} gap={12}>
+      <Flexbox style={{ marginTop: 24 }} gap={mobile ? 16 : 12}>
+        <Flexbox horizontal={!mobile} gap={mobile ? 12 : 0}>
+          <Label type={'secondary'}>引入方法</Label>
+          <Code>{`import { ${title} } from "antd-style";`}</Code>
+        </Flexbox>
         {items.map((item) => (
           <Flexbox horizontal key={item.label}>
             <Label type={'secondary'}>{item.label}</Label>
-            {item.import ? (
-              <Code>{item.children}</Code>
-            ) : (
+            {
               <a href={item.url} target={'_blank'}>
                 <Flexbox horizontal align={'center'} gap={8} className={styles.text}>
                   <>{item.icon}</>
                   <>{item.children}</>
                 </Flexbox>
               </a>
-            )}
+            }
           </Flexbox>
         ))}
       </Flexbox>

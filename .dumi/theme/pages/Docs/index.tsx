@@ -33,10 +33,10 @@ const Docs: FC = memo(() => {
       {mobile ? null : <Sidebar />}
 
       {isApiPage ? (
-        <Flexbox style={{ gridArea: 'title' }}>
+        <Flexbox style={{ gridArea: 'title', paddingBlock: mobile ? 24 : undefined }}>
           <Center>
             <Flexbox style={{ maxWidth: theme.contentMaxWidth, width: '100%' }}>
-              <Flexbox padding={'0 48px'}>
+              <Flexbox style={{ paddingBlock: 0, paddingInline: mobile ? 16 : 48 }}>
                 <ApiHeader title={fm.title} description={fm.description} />
               </Flexbox>
             </Flexbox>

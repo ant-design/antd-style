@@ -1,5 +1,11 @@
-import { createStyles } from 'antd-style';
-import chroma from 'chroma-js';
+import { createStyles, styled } from 'antd-style';
+import { rgba } from 'polished';
+
+export const FillRect = styled.div`
+  background: ${(p) => rgba(p.theme.colorBgContainer, 0.8)};
+
+  width: 100%;
+`;
 
 export const useStyles = createStyles(({ token, prefixCls, cx, css, stylish }) => {
   const offset = 6;
@@ -76,7 +82,7 @@ export const useStyles = createStyles(({ token, prefixCls, cx, css, stylish }) =
         &-mask {
           background: transparent;
           backdrop-filter: blur(7px);
-          background: ${chroma(token.colorBgBase).alpha(0.5).hex()};
+          background: ${rgba(token.colorBgBase, 0.5)};
         }
 
         &-content-wrapper {
@@ -88,14 +94,31 @@ export const useStyles = createStyles(({ token, prefixCls, cx, css, stylish }) =
       &.${prefixCls}-drawer-content {
         background: transparent;
       }
+
+      .${prefixCls}-drawer-body {
+        display: flex;
+        flex-direction: column;
+      }
     `,
 
     menu: css`
       background: transparent;
       border-inline-end: transparent !important;
 
+      > .${prefixCls}-menu-item-only-child,.${prefixCls}-menu-submenu-title {
+        background: ${rgba(token.colorBgContainer, 0.8)};
+        border-radius: 0;
+        margin: 0;
+        width: 100%;
+        &:active {
+          margin-inline: 4px;
+          border-radius: ${token.borderRadius}px;
+        }
+      }
+
       .${prefixCls}-menu-sub.${prefixCls}-menu-inline {
-        background: ${chroma(token.colorBgLayout).alpha(0.8).hex()} !important;
+        //background: transparent !important;
+        background: ${rgba(token.colorBgContainer, 0.2)} !important;
       }
     `,
   };

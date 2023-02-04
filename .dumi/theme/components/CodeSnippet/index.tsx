@@ -5,16 +5,18 @@ import { FC } from 'react';
 
 import Highlighter from '../Highlighter';
 
+import { useResponsive } from 'antd-style';
 import { useCopied } from '../../hooks/useCopied';
 import { useStyles } from './style';
 
 const CodeSnippet: FC<{ children: string }> = ({ children }) => {
   const { styles, theme } = useStyles();
+  const { mobile } = useResponsive();
   const { copied, setCopied } = useCopied();
 
   return (
     <Tooltip
-      placement={'right'}
+      placement={mobile ? undefined : 'right'}
       title={
         copied ? (
           <>

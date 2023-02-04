@@ -120,6 +120,7 @@
     "jest-styled-components": "^7",
     "lint-staged": "^13",
     "lodash": "^4",
+    "polished": "^4.2.2",
     "prettier": "^2",
     "prettier-plugin-organize-imports": "^3",
     "prettier-plugin-packagejson": "^2",

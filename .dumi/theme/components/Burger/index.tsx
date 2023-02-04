@@ -5,7 +5,7 @@ import { uniq } from 'lodash';
 import { useState } from 'react';
 import { Center } from 'react-layout-kit';
 import { activePathSel, useSiteStore } from '../../store/useSiteStore';
-import { useStyles } from './style';
+import { FillRect, useStyles } from './style';
 
 const Burger = () => {
   const [opened, setOpened] = useState(false);
@@ -33,8 +33,9 @@ const Burger = () => {
         className={styles.drawer}
         width={'100vw'}
         headerStyle={{ display: 'none' }}
-        bodyStyle={{ padding: '24px 0' }}
+        bodyStyle={{ padding: 0 }}
       >
+        <FillRect style={{ height: 24 }} />
         <Menu
           mode={'inline'}
           selectedKeys={uniq([activePath, `s-${pathname}`])}
@@ -68,7 +69,8 @@ const Burger = () => {
                 );
               }),
           }))}
-        ></Menu>
+        />
+        <FillRect style={{ flex: 1 }} />
       </Drawer>
     </Center>
   );

@@ -21,7 +21,7 @@ export const useStyle = createStyles(({ css, responsive, token }) => ({
     height: 64px;
 
     ${responsive.mobile} {
-      padding: 0 16px;
+      padding: 0 12px;
     }
   `,
   left: css``,
