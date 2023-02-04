@@ -1,10 +1,11 @@
+import { SerializedStyles } from '@emotion/serialize';
 import { CSSObject } from './css';
 
 /**
- * 任何一组样式，最基础的入参就只有 string
+ * 任何一组样式，最基础的入参就只有 CSS Style 对象 / 或者
  */
 
-export type AtomInputType = string | CSSObject;
+export type AtomInputType = string | CSSObject | SerializedStyles;
 
 /**
  * getStyle 函数的的基础出参类型，我们需要将为这个类型提供准确定义，进而为开发者用户提供精准的类型提示
@@ -15,7 +16,7 @@ export type AtomInputType = string | CSSObject;
  */
 export type BaseReturnType = KVObject | AtomInputType;
 
-type KVObject = Record<string, CSSObject | string>;
+type KVObject = Record<string, CSSObject | string | SerializedStyles>;
 
 type StyleObjectOnly<T extends BaseReturnType> = T extends string ? never : T;
 

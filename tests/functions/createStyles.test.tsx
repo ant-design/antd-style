@@ -184,10 +184,10 @@ describe('createStyles', () => {
 
 describe('createStyles：响应式工具函数', () => {
   it('断点与设备查询', () => {
-    const useStyles = createStyles(({ css, r }) => ({
+    const useStyles = createStyles(({ css, responsive }) => ({
       container: css`
         background-color: blue;
-        ${r({
+        ${responsive({
           xs: css`
             background-color: red;
           `,
@@ -231,9 +231,9 @@ describe('createStyles：响应式工具函数', () => {
   });
   it('使用了不存在的断点，不输出样式', () => {
     const useStyles = createStyles(
-      ({ css, r }) => css`
+      ({ css, responsive }) => css`
         background-color: blue;
-        ${r({
+        ${responsive({
           xxx: css`
             background-color: red;
           `,

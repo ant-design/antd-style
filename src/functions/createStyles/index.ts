@@ -24,8 +24,19 @@ import { convertResponsiveStyleToString, useMediaQueryMap } from './response';
 export interface CreateStylesTheme extends CommonStyleUtils {
   token: FullToken;
   stylish: FullStylish;
+  /**
+   * ThemeProvider 下当前的主题模式
+   */
   appearance: ThemeAppearance;
+  /**
+   * appearance === 'dark' 的语法糖，可以直接使用 isDarkMode 来降低外观的判断成本
+   */
   isDarkMode: boolean;
+  /**
+   * 在 ThemeProvider 上标记的 prefix，可以拿到当前的 组件 prefix
+   * 便于更加灵活地响应组件 prefix
+   * @default ant
+   */
   prefixCls: string;
 }
 
@@ -46,6 +57,8 @@ export type GetStyleFn<Input extends BaseReturnType, Props> = (
 
 /**
  * 创建样式的函数或者对象
+ * 可以传入 StyleObject 或者 ()=> StyleObject 函数
+ * StyleObject 可以是
  */
 export type StyleOrGetStyleFn<Input extends BaseReturnType, Props> =
   | Input
@@ -91,7 +104,7 @@ export const createStyles =
             // 工具函数们
             cx: reactCx,
             css: reactCss,
-            r: responsive,
+            responsive,
           },
           props!,
         ) as any;

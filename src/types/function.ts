@@ -26,7 +26,7 @@ export interface CommonStyleUtils {
   /**
    * 可以快速创建响应式样式的工具函数
    */
-  r: ResponsiveStyleUtil;
+  responsive: ResponsiveStyleUtil;
 }
 
 /**
