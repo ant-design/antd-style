@@ -65,6 +65,5 @@ features:
   - title: 响应式轻松适配
     description: Ant Design Style 将为响应式应用提供便捷的工具函数，帮助开发者快速完成响应式主题开发。
     avatar: https://mdn.alipayobjects.com/huamei_rqvucu/afts/img/A*5H2ySLO-X4cAAAAAAAAAAAAADoN6AQ/original
-    imageStyle: soon
     row: 6
 ---

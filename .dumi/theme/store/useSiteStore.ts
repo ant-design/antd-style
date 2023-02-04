@@ -13,6 +13,7 @@ import type { Location } from 'history';
 import { ComponentType } from 'react';
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
+import { Feature } from '../components/Features';
 
 export type NavData = (INavItem & { children?: INavItem[] | undefined })[];
 
@@ -87,7 +88,7 @@ export const useSiteStore = create<Store>()(
 
 export const isApiPageSel = (s: Store) => s.location.pathname.startsWith('/api');
 export const isHeroPageSel = (s: Store) => !!s.routeMeta.frontmatter.hero;
-export const featuresSel = (s: Store) => s.routeMeta.frontmatter.features;
+export const featuresSel = (s: Store) => s.routeMeta.frontmatter.features as Feature[];
 
 export const activePathSel = (s: Store) => {
   if (s.location.pathname === '/') return '/';
