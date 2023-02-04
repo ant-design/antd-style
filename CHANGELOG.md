@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.0.0-alpha.45](https://github.com/ant-design/antd-style/compare/v3.0.0-alpha.44...v3.0.0-alpha.45) (2023-02-04)
+
+### 🐛 Bug Fixes
+
+- 修正类型定义调整后 ()=>css`` 的使用方式类型定义不正确的问题 ([823ea12](https://github.com/ant-design/antd-style/commit/823ea12))
+
 # [3.0.0-alpha.44](https://github.com/ant-design/antd-style/compare/v3.0.0-alpha.43...v3.0.0-alpha.44) (2023-02-04)
 
 ### ✨ Features
