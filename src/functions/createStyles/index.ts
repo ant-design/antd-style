@@ -4,12 +4,12 @@ import { useEmotion, useTheme } from '@/hooks';
 import { reactCss } from '@/pedestal';
 import type {
   BaseReturnType,
+  ClassNamesUtil,
   CommonStyleUtils,
   CSSObject,
-  EmotionCX,
   FullStylish,
   FullToken,
-  ResponsiveStyleUtil,
+  ResponsiveUtil,
   ReturnStyleToUse,
   Theme,
   ThemeAppearance,
@@ -19,9 +19,12 @@ import { isReactCssResult } from '@/utils';
 import { convertResponsiveStyleToString, useMediaQueryMap } from './response';
 
 /**
- * 用户书写样式时使用的第一个参数
+ * 书写样式时使用的第一个参数
  */
 export interface CreateStylesTheme extends CommonStyleUtils {
+  /**
+   * 包含 antd 的 token 和所有自定义 token
+   */
   token: FullToken;
   stylish: FullStylish;
   /**
@@ -76,6 +79,11 @@ export const createStyles =
     const responsiveMap = useMediaQueryMap();
     const { css, cx } = useEmotion();
 
+    // 由于使用了 reactCss 作为基础样式工具，因此在使用 cx 级联 className 时需要使用特殊处理的 cx
+    // 要将 reactCss 的产出转为 css 产物
+    const reactCx: ClassNamesUtil = (...classNames) =>
+      cx(...(classNames.map((c) => (isReactCssResult(c) ? css(c) : c)) as any[]));
+
     const styles = useMemo(() => {
       let tempStyles: ReturnStyleToUse<Input>;
 
@@ -83,13 +91,9 @@ export const createStyles =
       if (styleOrGetStyle instanceof Function) {
         const { stylish, appearance, isDarkMode, prefixCls, ...token } = theme;
 
-        // 由于使用了 reactCss 作为基础样式工具，因此在使用 cx 级联 className 时需要使用特殊处理的 cx，要将 reactCss 的产出转为 css 产物
-        const reactCx: EmotionCX = (...classNames) =>
-          cx(...classNames.map((c) => (isReactCssResult(c) ? css(c) : c)));
-
         // 创建响应式断点选择器的工具函数
         // @ts-ignore
-        const responsive: ResponsiveStyleUtil = (styles) =>
+        const responsive: ResponsiveUtil = (styles) =>
           convertResponsiveStyleToString(styles, responsiveMap);
         // 并赋予其相应的断点工具
         Object.assign(responsive, responsiveMap);
@@ -109,7 +113,6 @@ export const createStyles =
           props!,
         ) as any;
       }
-
       // 没有函数时直接就是 object 或者 string
       else {
         tempStyles = styleOrGetStyle as any;
@@ -142,6 +145,6 @@ export const createStyles =
 
     return useMemo(() => {
       const { prefixCls, ...res } = theme;
-      return { styles, cx, theme: res, prefixCls };
+      return { styles, cx: reactCx, theme: res, prefixCls };
     }, [styles, theme]);
   };

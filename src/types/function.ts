@@ -1,32 +1,31 @@
-import { ClassNamesArg } from '@emotion/css/create-instance';
-import { CSSInterpolation, SerializedStyles } from '@emotion/serialize';
 import { ThemeConfig } from 'antd/es/config-provider/context';
 
-import { AtomInputType } from 'antd-style/src';
 import { ThemeAppearance } from './appearance';
+import { ClassNamesUtil, CssUtil, SerializedStyles } from './css';
+import { AtomInputType } from './genericUtils';
 import { ResponsiveKey } from './response';
 import type { AntdStylish, AntdToken, AppearanceState, FullToken } from './theme';
 
-export interface EmotionReactCss {
-  (template: TemplateStringsArray, ...args: Array<CSSInterpolation>): SerializedStyles;
-  (...args: Array<CSSInterpolation>): SerializedStyles;
-}
-
-export type EmotionCX = (...classNames: ClassNamesArg[]) => string;
-
 export type BreakpointMapParams = Partial<Record<ResponsiveKey, AtomInputType>>;
 
-export interface ResponsiveStyleUtil extends Record<ResponsiveKey, string> {
-  (breakpoints: BreakpointMapParams): any;
+/**
+ * 响应式断点工具函数
+ */
+export interface ResponsiveUtil extends Record<ResponsiveKey, string> {
+  /**
+   * 支持使用函数表达式
+   * @param breakpoints
+   */
+  (breakpoints: BreakpointMapParams): SerializedStyles;
 }
 
 export interface CommonStyleUtils {
-  cx: EmotionCX;
-  css: EmotionReactCss;
+  cx: ClassNamesUtil;
+  css: CssUtil;
   /**
-   * 可以快速创建响应式样式的工具函数
+   * 可以快速创建响应式媒体查询的工具函数
    */
-  responsive: ResponsiveStyleUtil;
+  responsive: ResponsiveUtil;
 }
 
 /**
@@ -36,7 +35,7 @@ export type GetAntdThemeConfig = (appearance: ThemeAppearance) => ThemeConfig | 
 
 export interface AntdStylishParams extends AppearanceState {
   token: AntdToken;
-  css: EmotionReactCss;
+  css: CssUtil;
 }
 
 /**
@@ -58,7 +57,7 @@ export type GetCustomToken<T> = (theme: CustomTokenParams) => T;
 export interface CustomStylishParams extends AppearanceState {
   token: FullToken;
   stylish: AntdStylish;
-  css: EmotionReactCss;
+  css: CssUtil;
 }
 
 /**

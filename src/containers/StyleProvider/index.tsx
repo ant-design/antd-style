@@ -2,7 +2,6 @@ import { EmotionContext } from '@/context/EmotionContext';
 import { createEmotion } from '@/functions';
 import { StylisPlugin } from '@emotion/cache';
 import { Emotion } from '@emotion/css/create-instance';
-import * as process from 'process';
 import { FC, memo, ReactNode, useEffect, useMemo } from 'react';
 
 interface StyleProviderProps {

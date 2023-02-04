@@ -1,9 +1,14 @@
 import { useAntdToken } from '@/hooks';
 import { reactCss } from '@/pedestal';
-import type { Breakpoint, BreakpointMapParams, CSSObject, ResponsiveMap } from '@/types';
+import type {
+  Breakpoint,
+  BreakpointMapParams,
+  CSSObject,
+  ResponsiveMap,
+  SerializedStyles,
+} from '@/types';
 import { isReactCssResult } from '@/utils';
 import { convertBreakpointToResponsive } from '@/utils/responsive';
-import type { SerializedStyles } from '@emotion/serialize';
 import { useMemo } from 'react';
 
 export const useMediaQueryMap = (): ResponsiveMap => {
@@ -22,7 +27,7 @@ export const useMediaQueryMap = (): ResponsiveMap => {
 };
 
 /**
- * 将响应式对象转换为
+ * 将响应式对象转换为字符串
  * @param obj
  * @param map
  */

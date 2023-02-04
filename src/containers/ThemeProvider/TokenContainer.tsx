@@ -1,11 +1,10 @@
-import { SerializedStyles } from '@emotion/serialize';
 import { ReactElement, useMemo } from 'react';
 
 import { useAntdTheme, useThemeMode } from '@/hooks';
 import { PedestalProvider, reactCss } from '@/pedestal';
+import { SerializedStyles, Theme } from '@/types';
 import { convertStylishToString } from '@/utils/convertStylish';
 
-import { Theme } from '@/types';
 import type { ThemeProviderProps } from './type';
 
 type TokenContainerProps<T, S = Record<string, string>> = Pick<
