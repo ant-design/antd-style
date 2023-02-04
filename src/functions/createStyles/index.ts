@@ -14,7 +14,7 @@ import type {
   Theme,
   ThemeAppearance,
 } from '@/types';
-import { isReactCssResult } from '@/utils';
+import { createCX, isReactCssResult } from '@/utils';
 
 import { convertResponsiveStyleToString, useMediaQueryMap } from './response';
 
@@ -81,8 +81,7 @@ export const createStyles =
 
     // 由于使用了 reactCss 作为基础样式工具，因此在使用 cx 级联 className 时需要使用特殊处理的 cx
     // 要将 reactCss 的产出转为 css 产物
-    const reactCx: ClassNamesUtil = (...classNames) =>
-      cx(...(classNames.map((c) => (isReactCssResult(c) ? css(c) : c)) as any[]));
+    const cxUtil: ClassNamesUtil = createCX(css, cx);
 
     const styles = useMemo(() => {
       let tempStyles: ReturnStyleToUse<Input>;
@@ -106,7 +105,7 @@ export const createStyles =
             isDarkMode,
             prefixCls,
             // 工具函数们
-            cx: reactCx,
+            cx: cxUtil,
             css: reactCss,
             responsive,
           },
@@ -145,6 +144,6 @@ export const createStyles =
 
     return useMemo(() => {
       const { prefixCls, ...res } = theme;
-      return { styles, cx: reactCx, theme: res, prefixCls };
+      return { styles, cx: cxUtil, theme: res, prefixCls };
     }, [styles, theme]);
   };

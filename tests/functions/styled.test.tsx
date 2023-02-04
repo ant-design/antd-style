@@ -60,7 +60,7 @@ describe('styled', () => {
 
       expect(container).toMatchSnapshot();
 
-      rerender(<Card primary>卡片</Card>);
+      rerender(<Card primary={true}>卡片</Card>);
 
       expect(content).toHaveStyleRule('border-radius', '8px');
       expect(content).toHaveStyleRule('padding', '24px');

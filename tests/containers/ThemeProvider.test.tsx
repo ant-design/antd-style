@@ -1,6 +1,6 @@
 import { act, render, renderHook } from '@testing-library/react';
 import { App, theme } from 'antd';
-import { css, GetCustomToken, ThemeProvider, useTheme, useThemeMode } from 'antd-style';
+import { css, cx, GetCustomToken, ThemeProvider, useTheme, useThemeMode } from 'antd-style';
 import { MappingAlgorithm } from 'antd/es/config-provider/context';
 import { MessageInstance } from 'antd/es/message/interface';
 import { NotificationInstance } from 'antd/es/notification/interface';
@@ -100,7 +100,7 @@ describe('ThemeProvider', () => {
     it('自定义 Stylish', () => {
       const App = () => {
         const theme = useTheme();
-        return <div className={css(theme.stylish.defaultText)}>普通文本</div>;
+        return <div className={cx(css(theme.stylish.defaultText))}>普通文本</div>;
       };
 
       const { container } = render(
@@ -198,11 +198,11 @@ describe('ThemeProvider', () => {
         <Demo id={'without'} />
         <ThemeProvider>
           <App
-            className={css`
+            className={cx(css`
               .container {
                 color: red;
               }
-            `}
+            `)}
           >
             <Demo id={'within'} />
           </App>
