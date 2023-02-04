@@ -1,5 +1,17 @@
 # Changelog
 
+# [3.0.0-alpha.46](https://github.com/ant-design/antd-style/compare/v3.0.0-alpha.45...v3.0.0-alpha.46) (2023-02-04)
+
+### ✨ Features
+
+- 替换默认的 css 导出 ([8124791](https://github.com/ant-design/antd-style/commit/8124791))
+
+### 💥 BREAKING CHANGES
+
+- 将 antd-style 中导出的 css 都替换为 `@emotion/react` 的 css，建立起 css`` -> styleObject 的心智。
+
+原因：由于 emotion/css 的 css`` 只产出 className，因此无法做一些复杂操作，例如样式片段复用，需要替换为 react 的版本
+
 # [3.0.0-alpha.45](https://github.com/ant-design/antd-style/compare/v3.0.0-alpha.44...v3.0.0-alpha.45) (2023-02-04)
 
 ### 🐛 Bug Fixes
