@@ -9,8 +9,8 @@ export const useStyles = createStyles(({ css, responsive, token }) => ({
       rgba(255, 255, 255, 0) 10%
     );
     display: grid;
-    grid-template-columns: ${token.sidebarWidth}px 1fr ${token.tocWidth}px;
-    grid-template-rows: ${token.headerHeight}px auto 1fr 80px;
+    grid-template-columns: ${token.sidebarWidth}px 1fr ${token.tocWidth + 24}px;
+    grid-template-rows: ${token.headerHeight}px auto 1fr ${token.footerHeight}px;
     grid-template-areas:
       'head head head'
       'sidebar title .'

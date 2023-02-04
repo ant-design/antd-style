@@ -7,6 +7,7 @@ declare module 'antd-style' {
 
 interface SiteToken {
   headerHeight: number;
+  footerHeight: number;
   sidebarWidth: number;
   tocWidth: number;
   /**
@@ -32,6 +33,7 @@ export const getCustomToken: GetCustomToken<SiteToken> = ({ isDarkMode, token })
 
   return {
     headerHeight: 64,
+    footerHeight: 300,
     sidebarWidth: 240,
     tocWidth: 176,
     contentMaxWidth: 1152,
