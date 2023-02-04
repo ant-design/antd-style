@@ -18,7 +18,7 @@ export const useStyles = createStyles(({ token, responsive, isDarkMode, css }) =
     }
 
     .markdown {
-      color: ${token.colorText};
+      color: ${isDarkMode ? token.colorTextSecondary : token.colorText};
 
       h1,
       h2,

@@ -64,6 +64,8 @@ export const getCustomStylish: GetCustomStylish<SiteStylish> = ({ css, token, is
       }
     `,
     heroTextShadow: css`
+      will-change: transform;
+
       text-shadow: 0 8px 20px ${chroma(token.gradientColor2).alpha(0.2).hex()},
         0 8px 60px ${chroma(token.gradientColor3).alpha(0.2).hex()},
         0 8px 80px
@@ -73,6 +75,7 @@ export const getCustomStylish: GetCustomStylish<SiteStylish> = ({ css, token, is
     `,
     heroBlurBall: css`
       filter: blur(69px);
+      will-change: transform;
       background: linear-gradient(
         135deg,
         ${token.gradientColor3} 0%,

@@ -8,7 +8,7 @@ interface Store {
 export const useThemeStore = create<Store>()(
   persist(
     () => ({
-      themeMode: 'auto',
+      themeMode: 'auto' as ThemeMode,
     }),
     { name: 'ANTD_STYLE_DOC_STORE' },
   ),

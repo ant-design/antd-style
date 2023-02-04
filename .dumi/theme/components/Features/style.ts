@@ -19,9 +19,6 @@ export const useStyles = createStyles(({ token, responsive, css, stylish, isDark
       laptop: {
         gridTemplateColumns: 'repeat(2, 1fr)',
       },
-      // desktop: {
-      //   gridTemplateColumns: 'repeat(3, 1fr)',
-      // },
     })}
   `,
 
@@ -109,7 +106,7 @@ export const useStyles = createStyles(({ token, responsive, css, stylish, isDark
     left: 0;
     ${stylish.heroBlurBall};
     scale: 2;
-    opacity: 0.05;
+    opacity: ${isDarkMode ? 0.05 : 0.08};
     ${responsive.mobile} {
       display: none;
     }
