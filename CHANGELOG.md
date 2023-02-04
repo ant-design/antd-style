@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.0.0-alpha.44](https://github.com/ant-design/antd-style/compare/v3.0.0-alpha.43...v3.0.0-alpha.44) (2023-02-04)
+
+### ✨ Features
+
+- 优化类型定义使用 ([d4a57ae](https://github.com/ant-design/antd-style/commit/d4a57ae))
+
 # [3.0.0-alpha.43](https://github.com/ant-design/antd-style/compare/v3.0.0-alpha.42...v3.0.0-alpha.43) (2023-02-04)
 
 ### ✨ Features
