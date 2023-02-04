@@ -46,7 +46,7 @@ const Demo: FC<AppProps> = ({ extra }) => {
           </Flexbox>
           <Card>卡片效果</Card>
           <Flexbox horizontal gap={8}>
-            <StaticModal type={'success'} title={'成功'}>
+            <StaticModal autoFocusButton={null} type={'success'} title={'成功'}>
               这是一个静态化呈现的成功弹窗
             </StaticModal>
             <StaticMessage type={'error'} content={'失败提示'}></StaticMessage>

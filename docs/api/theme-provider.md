@@ -83,7 +83,7 @@ export default () => {
 
 <code src="../demos/ThemeProvider/customToken.tsx"></code>
 
-### Typescript 类型支持
+## Typescript 类型支持
 
 通过给 `antd-style` 扩展 `CustomToken` 接口的类型定义，可以为 `useTheme` hooks 中增加相应的 token 类型定义。
 
@@ -125,7 +125,7 @@ export default () => (
 <code src="../demos/ThemeProvider/WithApp.tsx"></code>
 <code src="../demos/ThemeProvider/WithProvider.tsx"></code>
 
-### 消费静态实例方法
+## 消费静态实例方法
 
 v5 中由于 react 生命周期的问题移除了静态方法，因此如果使用 antd 默认导出的 message 等静态方法，会无法响应动态主题。因此 ThemeProvider 中提供了一个 `getStaticInstance` 接口，将响应动态主题的静态方法实例提供给外部使用。
 
@@ -163,18 +163,17 @@ export default () => {
 <code src="../demos/ThemeProvider/AppGlobalStyle.tsx"></code>
 
 :::info{title=全局样式作用域}
-在 css-in-js 的世界中，局部作用域非常容易实现。因此应该尽量减少全局作用域的使用（实在不行才用全局作用域）。 这也是 antd v5 中推荐的用法。
-但如果仍然需全局作用域层面的样式注入，可以使用 [createGlobalStyles](/usage/global-styles)
+在 css-in-js 的世界中，局部作用域非常容易实现。因此应该尽量减少全局作用域的使用（实在不行才用全局作用域）。 这也是 antd v5 中推荐的用法。但如果仍然需全局作用域层面的样式注入，可以使用 [createGlobalStyles](/usage/global-styles) 来完成。
 :::
 
 ## API
 
-| 名称               | 默认值                             | 描述                                                                                  |
-| ------------------ | ---------------------------------- | ------------------------------------------------------------------------------------- |
-| customToken        | `undefined`                        | 自定义 token， 可在 antd v5 token 规范基础上扩展和新增自己需要的 token                |
-| customStylish      | `undefined`                        | 自定义 Stylish 变量                                                                   |
-| appearance         | `light`                            | 应用的展示外观主题，只存在亮色和暗色两种                                              |
-| defaultAppearance  |                                    |                                                                                       |
-| onAppearanceChange | (appearance:ThemeAppearance)=>void | 外观主题的回调                                                                        |
-| themeMode          | `light`                            | 主题的展示模式，有三种配置：跟随系统、亮色、暗色 默认不开启自动模式，需要手动进行配置 |
-| defaultThemeMode   | `n/a`                              |                                                                                       |
+| 名称               | 默认值                                 | 描述                                                                                  |
+| ------------------ | -------------------------------------- | ------------------------------------------------------------------------------------- |
+| customToken        | `undefined`                            | 自定义 token， 可在 antd v5 token 规范基础上扩展和新增自己需要的 token                |
+| customStylish      | `undefined`                            | 自定义 Stylish 变量                                                                   |
+| appearance         | `light`                                | 应用的展示外观主题，只存在亮色和暗色两种                                              |
+| defaultAppearance  |                                        |                                                                                       |
+| onAppearanceChange | `(appearance:ThemeAppearance) => void` | 外观主题的回调                                                                        |
+| themeMode          | `light`                                | 主题的展示模式，有三种配置：跟随系统、亮色、暗色 默认不开启自动模式，需要手动进行配置 |
+| defaultThemeMode   | `n/a`                                  |                                                                                       |

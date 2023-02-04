@@ -6,14 +6,13 @@ order: 2
 
 # 主题切换
 
-如今亮暗色主题切换的能力已经逐渐成为 PC、手机等默认支持得功能。浏览器也提供了媒体查询的能力来帮助我们快速适配亮色主题。在
-Ant Design V5 中，基于 Css in Js 的能力我们实现了更加优雅的运行时主题切换能力。
+如今亮暗色主题切换的能力已经逐渐成为 PC、手机等默认支持得功能。浏览器也提供了媒体查询的能力来帮助我们快速适配亮色主题。在 Ant Design V5 中，基于 Css in Js 的能力我们实现了更加优雅的运行时主题切换能力。
 
 但是由于 antd 作为基础组件的定位，在主题能力方面只提供了基础的 api ，并没有提供应用级开箱即用的方案。 所以 `antd-style` 在 antd 动态主题基础上，提供了一套完整的应用级动态主题方案。
 
 ## 1. 亮暗色主题切换
 
-通过在容器组件 [ThemeProvider](/usage/theme-provider) 上修改 `apperance` 这个 props，既可非常简单地实现主题切换，那这是也是动态主题最简单的使用方式。
+通过在容器组件 [ThemeProvider](/usage/theme-provider) 上修改 `apperance` props，即可实现主题切换，这是也是动态主题最简单的使用方式。
 
 ```tsx | pure
 import { ThemeProvider } from 'antd-style';
@@ -35,8 +34,7 @@ export default () => {
 介绍完上述方案后，有心人应该会发现，这种方案会强依赖用户对主题的手动切换。但手机、电脑的系统级主题切换一般都是能跟随时间自动完成的，一般不需要用户手动操作。 因此一个现代化的主题切换能力，应该是像 macOS 这样，提供一个「自动」模式。
 ![](https://gw.alipayobjects.com/zos/kitchen/bSG%26I1A8I/bianzu.png)
 
-而在 ThemeProvider 中，我们提供了 `themeMode` 这个 props。对于不需要用户手动控制主题的场景，可以直接设置 `themeMode="auto"`
-一键实现系统主题模式的自动。
+在 `ThemeProvider` 中，我们提供了 `themeMode` 这个 props。对于不需要用户手动控制主题的场景，可以直接设置 `themeMode="auto"` 一键实现系统主题模式的自动切换。
 
 ```tsx | pure
 import { ThemeProvider } from 'antd-style';
@@ -64,7 +62,7 @@ export default () => {
 
 :::
 
-## 4. 如果传入 antd 的 theme
+## 4. 结合 theme 配置进行主题自定义
 
 antd v5 的 ConfigProvider 提供了 theme 配置，可以传入自定义的 theme 对象来实现自定义主题。
 

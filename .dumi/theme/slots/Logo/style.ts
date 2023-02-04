@@ -11,8 +11,6 @@ export const useStyles = createStyles(
     font-weight: 500;
     text-decoration: none;
 
-    ${stylish.clickableText};
-
     ${responsive.mobile} {
       font-size: 18px;
     }

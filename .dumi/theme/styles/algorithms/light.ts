@@ -16,7 +16,7 @@ export const lightAlgorithm: MappingAlgorithm = (seedToken, mapToken) => {
   ];
 
   return {
-    ...mapToken,
+    ...mapToken!,
 
     colorBgLayout: 'hsl(220,23%,97%)', // Layout 颜色
 
