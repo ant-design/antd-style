@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.0.0-alpha.47](https://github.com/ant-design/antd-style/compare/v3.0.0-alpha.46...v3.0.0-alpha.47) (2023-02-06)
+
+### 🐛 Bug Fixes
+
+- 修正自定义 stylish 的问题 ([61f195e](https://github.com/ant-design/antd-style/commit/61f195e))
+
 # [3.0.0-alpha.46](https://github.com/ant-design/antd-style/compare/v3.0.0-alpha.45...v3.0.0-alpha.46) (2023-02-04)
 
 ### ✨ Features
