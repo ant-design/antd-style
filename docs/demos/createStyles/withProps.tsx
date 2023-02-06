@@ -14,7 +14,7 @@ const useStyles = createStyles(
       &.${prefixCls}-select-single {
         .${prefixCls}-select-selector {
           background: ${token.colorPrimary};
-          color: ${token.colorTextLightSolid};
+          color: ${token.colorFillContent};
           border-color: transparent;
         }
       }
