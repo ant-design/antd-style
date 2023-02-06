@@ -2,17 +2,18 @@ import { SerializedStyles } from '@emotion/serialize';
 import { CSSObject } from './css';
 
 /**
- * 任何一组样式，最基础的入参就只有 CSS Style 对象 / 或者
+ * 任何一组样式，最基础的入参有三种 CSS Style 对象
+ * 第一种: css` color: red; ` -> SerializedStyles
+ * 第二种：cx('abc-xxx',css` color:blue; `) -> string
+ * 第三种: { color:"red" } -> CSSObject
  */
-
 export type AtomInputType = string | CSSObject | SerializedStyles;
 
 /**
  * getStyle 函数的的基础出参类型，我们需要将为这个类型提供准确定义，进而为开发者用户提供精准的类型提示
- *
- * 其中用户输入的原子级样式类型有
- * CSSObject           :   { color: "red" }
- * string              :   css` color: red; `
+ * 用户输入的类型有两类
+ * KvObject: 以键值对形态记录的样式 { a: css``,b: css``, c: { ... }}
+ * AtomInput: css`` 或 { } 的CSSObject
  */
 export type BaseReturnType = KVObject | AtomInputType;
 
