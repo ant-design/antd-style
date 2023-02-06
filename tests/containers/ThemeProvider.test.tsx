@@ -149,11 +149,11 @@ describe('ThemeProvider', () => {
 
     it('注入自定义 stylish 方法', () => {
       const Wrapper: FC<PropsWithChildren> = ({ children }) => (
-        <ThemeProvider customStylish={() => ({ x: '' })}>{children}</ThemeProvider>
+        <ThemeProvider customStylish={({ css }) => ({ x: css`` })}>{children}</ThemeProvider>
       );
 
       const { result } = renderHook(useTheme, { wrapper: Wrapper });
-      expect(result.current.stylish.x).toBeUndefined();
+      expect(result.current.stylish.x.styles).toEqual('');
     });
   });
 

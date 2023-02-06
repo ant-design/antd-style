@@ -10,7 +10,6 @@ const useStyles = createStyles(({ stylish, cx, css, token }) => {
         padding: 24px;
         border-radius: 24px;
         width: 64px;
-        //background: white;
         color: ${token.colorPrimary};
         background: ${token.colorPrimaryBgHover};
       `,

@@ -2,8 +2,7 @@ import { ReactElement, useMemo } from 'react';
 
 import { useAntdTheme, useThemeMode } from '@/hooks';
 import { PedestalProvider, reactCss } from '@/pedestal';
-import { SerializedStyles, Theme } from '@/types';
-import { convertStylishToString } from '@/utils/convertStylish';
+import { Theme } from '@/types';
 
 import type { ThemeProviderProps } from './type';
 
@@ -35,17 +34,13 @@ const TokenContainer: <T, S>(props: TokenContainerProps<T, S>) => ReactElement |
   const customStylish = useMemo(() => {
     if (!stylishOrGetStylish) return {};
 
-    let rawStylish: Record<string, SerializedStyles>;
-
-    rawStylish = stylishOrGetStylish({
+    return stylishOrGetStylish({
       token: { ...token, ...customToken },
       stylish: antdStylish,
       appearance,
       isDarkMode,
       css: reactCss,
     });
-
-    return convertStylishToString(rawStylish);
   }, [stylishOrGetStylish, token, customToken, antdStylish, appearance]);
 
   const stylish = useMemo(
