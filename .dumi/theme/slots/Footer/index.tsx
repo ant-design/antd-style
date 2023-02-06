@@ -1,4 +1,4 @@
-import { Divider, Typography } from 'antd';
+import { Divider } from 'antd';
 import { useResponsive } from 'antd-style';
 import RcFooter from 'rc-footer';
 import { type FC } from 'react';
@@ -21,21 +21,7 @@ const Footer: FC = () => {
   const { mobile } = useResponsive();
   if (!themeConfig.footer) return null;
 
-  return mobile ? (
-    <Center horizontal className={styles.container}>
-      Copyright © 2022-{new Date().getFullYear()}
-      <Flexbox align={'center'} horizontal>
-        Powered by
-        <Typography.Link href="https://d.umijs.org/" style={{ marginLeft: 8 }}>
-          dumi
-        </Typography.Link>
-        <Divider type={'vertical'} style={{ margin: '0 8px' }} />
-        <Typography.Link href="https://ant.design/">antd</Typography.Link>
-        <Divider type={'vertical'} style={{ margin: '0 8px' }} />
-        <Typography.Link href="https://kitchen.alipay.com/">kitchen</Typography.Link>
-      </Flexbox>
-    </Center>
-  ) : (
+  return (
     <div className={styles.container}>
       <RcFooter
         theme={theme.appearance}
@@ -175,10 +161,19 @@ const Footer: FC = () => {
           },
         ]}
         bottom={
-          <Center horizontal>
-            Copyright © 2022-{new Date().getFullYear()} <Divider type={'vertical'} />
-            Made with ❤️ by 蚂蚁集团 - AFX & 数字科技
-          </Center>
+          mobile ? (
+            <Center className={styles.container}>
+              Copyright © 2022-{new Date().getFullYear()}
+              <Flexbox align={'center'} horizontal>
+                Made with ❤️ by 蚂蚁集团 - AFX & 数字科技
+              </Flexbox>
+            </Center>
+          ) : (
+            <Center horizontal>
+              Copyright © 2022-{new Date().getFullYear()} <Divider type={'vertical'} />
+              Made with ❤️ by 蚂蚁集团 - AFX & 数字科技
+            </Center>
+          )
         }
       />
     </div>
