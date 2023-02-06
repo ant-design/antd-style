@@ -1,5 +1,5 @@
 ---
-title: styled
+title: styled 样式组件
 order: 2
 group:
   title: 进阶使用
@@ -8,12 +8,14 @@ group:
 
 # 使用 styled 组织样式组件
 
-TBD
+antd-style 的 `styled` 采用了 `styled-component` 作为样式引擎。
 
-antd-style 中 styled 的 `styled` 方法和 `styled-component` 基本一致
-
-适用场景：看上去像是一个自定义样式组件的场景，且可能会有相应的入参
-
-推荐使用 styled 将其包裹为一个样式组件
+:::info{title=适用场景}
+看上去像是一个自定义样式的组件，且可能会有相应的控制入参。
+:::
 
 <code src='../demos/styled/basic.tsx'></code>
+
+使用 styled 的优点有以下几条：
+
+- 默认

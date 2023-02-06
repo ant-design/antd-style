@@ -10,7 +10,7 @@ createStyle 可以非常简单地创建和书写样式代码，且能够获得�
 
 ## 组件代码迁移
 
-下方的组件 Demo 来自 procomponents 中的 ProCard 的[Static 子组件](https://github.com/ant-design/pro-components/blob/v1/packages/card/src/components/Statistic/index.less)。
+下方的组件 Demo 来自 procomponents 中的 ProCard 的 [Static 组件](https://github.com/ant-design/pro-components/blob/v1/packages/card/src/components/Statistic/index.less)。
 
 <code src="../demos/migration/ProComponentsStatic/less.tsx"></code>
 
@@ -120,7 +120,7 @@ export const useStyles = createStyles(({ css, prefixCls })=>{
 })
 ```
 
-迁移后效果如下所示。可以看到，在付出较低的迁移成本后，新的组件写法就已经默认支持了响应主题的能力，并或得 cssinjs 后的所有动态化能力。
+迁移后效果如下所示。可以看到，在付出较低的迁移成本后，新的组件写法就已经默认支持了响应主题的能力，并获得 cssinjs 化后的所有动态能力。
 
 <code src="../demos/migration/ProComponentsStatic/CSSinJS.tsx"></code>
 
