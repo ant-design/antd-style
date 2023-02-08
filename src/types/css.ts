@@ -27,3 +27,5 @@ export type ClassNamesArg =
  * 支持入参：{SerializedStyles} | string
  */
 export type ClassNamesUtil = (...classNames: ClassNamesArg[]) => string;
+
+export type HashPriority = 'low' | 'high';
