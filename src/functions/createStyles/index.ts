@@ -16,6 +16,7 @@ import type {
 } from '@/types';
 import { createCX, isReactCssResult } from '@/utils';
 
+import { useCss } from '@/functions/createStyles/css';
 import { convertResponsiveStyleToString, useMediaQueryMap } from './response';
 
 /**
@@ -77,7 +78,8 @@ export const createStyles =
   (props?: Props): ReturnStyles<Input> => {
     const theme = useTheme();
     const responsiveMap = useMediaQueryMap();
-    const { css, cx } = useEmotion();
+    const { cx } = useEmotion();
+    const css = useCss();
 
     // 由于使用了 reactCss 作为基础样式工具，因此在使用 cx 级联 className 时需要使用特殊处理的 cx
     // 要将 reactCss 的产出转为 css 产物
