@@ -1,6 +1,7 @@
-import { HashPriority } from '@/types';
-import { EmotionCache } from '@emotion/css/create-instance';
-import { SerializedStyles } from '@emotion/serialize';
+// copied from https://github.com/emotion-js/emotion/blob/main/packages/utils/src/index.js
+import type { HashPriority } from '@/types';
+import type { EmotionCache } from '@emotion/css/create-instance';
+import type { SerializedStyles } from '@emotion/serialize';
 
 const isBrowser = typeof document !== 'undefined';
 
