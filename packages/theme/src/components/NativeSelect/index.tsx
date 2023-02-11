@@ -19,7 +19,6 @@ import {
   useTypeahead,
 } from '@floating-ui/react';
 import { FC, ReactNode, useEffect, useRef, useState } from 'react';
-import { flushSync } from 'react-dom';
 import useControlledState from 'use-merge-value';
 
 import SelectItem from './SelectItem';
@@ -64,7 +63,6 @@ const NativeSelect: FC<NativeSelectProps> = ({
   const [fallback, setFallback] = useState(false);
   const [innerOffset, setInnerOffset] = useState(0);
   const [touch, setTouch] = useState(false);
-  const [scrollTop, setScrollTop] = useState(0);
   const [blockSelection, setBlockSelection] = useState(false);
 
   if (!open) {
@@ -73,7 +71,7 @@ const NativeSelect: FC<NativeSelectProps> = ({
     if (blockSelection) setBlockSelection(false);
   }
 
-  const { x, y, strategy, refs, context, isPositioned } = useFloating({
+  const { x, y, strategy, refs, context } = useFloating({
     placement: 'bottom-start',
     open,
     onOpenChange: setOpen,
@@ -145,32 +143,12 @@ const NativeSelect: FC<NativeSelectProps> = ({
     }
   }, [open]);
 
-  const handleArrowScroll = (amount: number) => {
-    if (fallback) {
-      if (scrollRef.current) {
-        scrollRef.current.scrollTop -= amount;
-        flushSync(() => setScrollTop(scrollRef.current?.scrollTop ?? 0));
-      }
-    } else {
-      flushSync(() => setInnerOffset((value) => value - amount));
-    }
-  };
-
-  const handleArrowHide = () => {
-    if (touch) {
-      clearTimeout(selectTimeoutRef.current);
-      setBlockSelection(true);
-      selectTimeoutRef.current = setTimeout(() => {
-        setBlockSelection(false);
-      }, 400);
-    }
-  };
-
   const { label } = options[selectedIndex] || {};
 
   return (
     <>
       <button
+        type={'button'}
         ref={refs.setReference}
         className={styles.button}
         {...getReferenceProps({
@@ -204,9 +182,6 @@ const NativeSelect: FC<NativeSelectProps> = ({
                   style={{ overflowY: 'auto' }}
                   ref={scrollRef}
                   {...getFloatingProps({
-                    onScroll({ currentTarget }) {
-                      setScrollTop(currentTarget.scrollTop);
-                    },
                     onContextMenu(e) {
                       e.preventDefault();
                     },

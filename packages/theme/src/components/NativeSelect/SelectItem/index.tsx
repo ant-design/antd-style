@@ -18,6 +18,7 @@ const SelectItem: FC<SelectItemProps> = forwardRef(
 
     return (
       <button
+        type={'button'}
         key={value}
         disabled={disabled}
         aria-selected={isSelected}

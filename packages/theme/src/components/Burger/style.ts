@@ -7,7 +7,7 @@ export const FillRect = styled.div`
   width: 100%;
 `;
 
-export const useStyles = createStyles(({ token, prefixCls, cx, css, stylish }) => {
+export const useStyles = createStyles(({ token, prefixCls, cx, css }) => {
   const offset = 6;
 
   return {

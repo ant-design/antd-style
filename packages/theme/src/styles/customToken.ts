@@ -2,7 +2,7 @@ import type { GetCustomToken } from 'antd-style';
 import chroma from 'chroma-js';
 
 declare module 'antd-style' {
-  interface CustomToken extends SiteToken {}
+  type CustomToken = SiteToken;
 }
 
 interface SiteToken {

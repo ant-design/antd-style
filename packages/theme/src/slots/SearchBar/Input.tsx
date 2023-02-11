@@ -1,6 +1,5 @@
 import { useIntl } from 'dumi';
 import React, { forwardRef, useImperativeHandle, useRef } from 'react';
-import { useStyles } from './style';
 
 type NativeInputProps = React.DetailedHTMLProps<
   React.InputHTMLAttributes<HTMLInputElement>,
@@ -13,7 +12,6 @@ type InputProps = {
 } & Pick<NativeInputProps, 'onFocus' | 'onBlur'>;
 
 export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
-  const { styles } = useStyles();
   const intl = useIntl();
 
   const imeWaiting = useRef(false);

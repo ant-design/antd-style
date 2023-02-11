@@ -2,7 +2,7 @@ import { GetCustomStylish } from 'antd-style';
 import chroma from 'chroma-js';
 
 declare module 'antd-style' {
-  interface CustomStylish extends SiteStylish {}
+  type CustomStylish = SiteStylish;
 }
 
 export interface SiteStylish {

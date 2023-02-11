@@ -1,0 +1,4 @@
+packages:
+  # 所有在 packages/ 和 components/ 子目录下的 package
+  - 'packages/**'
+  - .

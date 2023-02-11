@@ -2,20 +2,6 @@ import { theme } from 'antd';
 import { MappingAlgorithm } from 'antd-style';
 
 // 这一版的暗色浅色系列已经差不多了
-const primaryColorsA = [
-  '#001736',
-  '#002653',
-  '#003572',
-  '#004593',
-  '#0055b6',
-  '#0066dc',
-  '#1677ff',
-  '#0f77f8',
-  '#0777f0',
-  '#0176e9',
-  '#0076e1',
-];
-
 const primaryColors = [
   '#001736',
   '#002653',

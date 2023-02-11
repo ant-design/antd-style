@@ -61,7 +61,7 @@ export const ApiHeader: FC<ApiTitleProps> = memo(({ title, description }) => {
           <Flexbox horizontal key={item.label}>
             <Label type={'secondary'}>{item.label}</Label>
             {
-              <a href={item.url} target={'_blank'}>
+              <a href={item.url} target={'_blank'} rel="noreferrer">
                 <Flexbox horizontal align={'center'} gap={8} className={styles.text}>
                   <>{item.icon}</>
                   <>{item.children}</>

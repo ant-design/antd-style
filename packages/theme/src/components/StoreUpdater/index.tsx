@@ -17,8 +17,11 @@ export const StoreUpdater = memo(() => {
   const location = useLocation();
 
   useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { setLoading, ...data } = siteData;
+
     const {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       siteData: { setLoading: _, ...prevData },
     } = useSiteStore.getState();
 

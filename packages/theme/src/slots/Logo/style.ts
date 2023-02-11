@@ -1,7 +1,7 @@
 import { createStyles } from 'antd-style';
 
 export const useStyles = createStyles(
-  ({ css, stylish, responsive, token }) => css`
+  ({ css, responsive, token }) => css`
     display: inline-flex;
     align-items: center;
     font-family: AliPuHui, ${token.fontFamily};

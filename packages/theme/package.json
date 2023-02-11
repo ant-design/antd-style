@@ -1,0 +1,56 @@
+{
+  "name": "dumi-theme-antd-style",
+  "version": "1.0.0",
+  "description": "dumi-theme for antd-style site",
+  "keywords": [
+    "dumi",
+    "dumi theme",
+    "antd-style"
+  ],
+  "homepage": "https://github.com/ant-design/antd-style/tree/master/packages/theme/#readme",
+  "bugs": "https://github.com/ant-design/antd-style/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ant-design/antd-style",
+    "directory": "packages/theme"
+  },
+  "license": "MIT",
+  "author": "arvinxx(arvinx@foxmail.com)",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "father build",
+    "dev": "father dev",
+    "doctor": "father doctor",
+    "prepublishOnly": "npm run doctor && npm run build"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^4",
+    "@babel/runtime": "^7",
+    "@floating-ui/react": "^0.17",
+    "animated-scroll-to": "^2",
+    "antd": "^5",
+    "antd-style": "alpha",
+    "chroma-js": "^2",
+    "copy-to-clipboard": "^3",
+    "fast-deep-equal": "^3",
+    "lodash": "^4",
+    "polished": "^4.2.2",
+    "rc-footer": "^0.6",
+    "react-layout-kit": "^1",
+    "react-syntax-highlighter": "^15",
+    "use-merge-value": "^1",
+    "zustand": "^4"
+  },
+  "devDependencies": {
+    "dumi": "^2",
+    "father-plugin-dumi-theme": "^1.0.0-rc.1"
+  },
+  "peerDependencies": {
+    "dumi": "^2.0.0",
+    "react": ">=16.8",
+    "react-dom": ">=16.8"
+  }
+}

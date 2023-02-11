@@ -1,10 +1,10 @@
 {
-  "extends": "../tsconfig.json",
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
     "jsx": "react-jsx",
     "esModuleInterop": true,
     "resolveJsonModule": true,
-    "baseUrl": "..",
+    "baseUrl": "../..",
     "paths": {
       "@@/*": ["./.dumi/tmp/*"],
       "dumi/theme/slots/*": ["./.dumi/theme/slots/*"],
@@ -13,5 +13,5 @@
       "antd-style": ["es"]
     }
   },
-  "include": ["./**/*"]
+  "include": ["src"]
 }
