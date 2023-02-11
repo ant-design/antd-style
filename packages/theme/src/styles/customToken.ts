@@ -2,7 +2,8 @@ import type { GetCustomToken } from 'antd-style';
 import chroma from 'chroma-js';
 
 declare module 'antd-style' {
-  type CustomToken = SiteToken;
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  interface CustomToken extends SiteToken {}
 }
 
 interface SiteToken {
