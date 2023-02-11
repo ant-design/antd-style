@@ -24,7 +24,6 @@
     "build": "father build",
     "dev": "father dev",
     "doctor": "father doctor",
-    "postinstall": "npm run build",
     "prepublishOnly": "npm run doctor && npm run build"
   },
   "dependencies": {
@@ -32,8 +31,7 @@
     "@babel/runtime": "^7",
     "@floating-ui/react": "^0.17",
     "animated-scroll-to": "^2",
-    "antd": "^5",
-    "antd-style": "alpha",
+    "antd-style": "3.0.0-alpha.47",
     "chroma-js": "^2",
     "copy-to-clipboard": "^3",
     "fast-deep-equal": "^3",
@@ -46,11 +44,16 @@
     "zustand": "^4"
   },
   "devDependencies": {
+    "@types/chroma-js": "^2.1.4",
+    "@types/react-syntax-highlighter": "^15",
+    "antd": "^5",
     "dumi": "^2",
     "dumi-assets-types": "^1",
+    "father": "^4",
     "father-plugin-dumi-theme": "^1.0.0-rc.1"
   },
   "peerDependencies": {
+    "antd": "^5",
     "dumi": "^2.0.0",
     "react": ">=16.8",
     "react-dom": ">=16.8"
