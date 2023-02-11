@@ -24,6 +24,7 @@
     "build": "father build",
     "dev": "father dev",
     "doctor": "father doctor",
+    "postinstall": "npm run build",
     "prepublishOnly": "npm run doctor && npm run build"
   },
   "dependencies": {
@@ -37,7 +38,7 @@
     "copy-to-clipboard": "^3",
     "fast-deep-equal": "^3",
     "lodash": "^4",
-    "polished": "^4.2.2",
+    "polished": "^4",
     "rc-footer": "^0.6",
     "react-layout-kit": "^1",
     "react-syntax-highlighter": "^15",
@@ -46,6 +47,7 @@
   },
   "devDependencies": {
     "dumi": "^2",
+    "dumi-assets-types": "^1",
     "father-plugin-dumi-theme": "^1.0.0-rc.1"
   },
   "peerDependencies": {
