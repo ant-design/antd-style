@@ -32,29 +32,25 @@ const ThemeObserver: FC<{
     }
   }, [setAppearance]);
 
-  useLayoutEffect(() => {
-    // 如果是自动的话，则去做一次匹配
-    if (themeMode === 'auto') matchBrowserTheme();
-    // 否则就明确设定亮暗色
-    else setAppearance(themeMode);
-  }, [themeMode]);
-
   // 自动监听系统主题变更
   useLayoutEffect(() => {
+    // 如果不是自动，就明确设定亮暗色
+    if (themeMode !== 'auto') {
+      setAppearance(themeMode);
+      return;
+    }
+    // 如果是自动的话，则去做一次匹配，并开始监听
+    setTimeout(matchBrowserTheme, 1);
+
     if (!darkThemeMatch) {
       darkThemeMatch = matchThemeMode('dark');
     }
-
-    if (themeMode === 'auto') {
-      setTimeout(matchBrowserTheme, 1);
-    }
-
     darkThemeMatch.addEventListener('change', matchBrowserTheme);
 
     return () => {
       darkThemeMatch.removeEventListener('change', matchBrowserTheme);
     };
-  }, []);
+  }, [themeMode]);
 
   return null;
 };
