@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.0.0-alpha.49](https://github.com/ant-design/antd-style/compare/v3.0.0-alpha.48...v3.0.0-alpha.49) (2023-02-13)
+
+### 🐛 Bug Fixes
+
+- 修正设定主题后仍然响应系统主题的 bug ([b44be0c](https://github.com/ant-design/antd-style/commit/b44be0c))
+
 # [3.0.0-alpha.48](https://github.com/ant-design/antd-style/compare/v3.0.0-alpha.47...v3.0.0-alpha.48) (2023-02-12)
 
 ### 🐛 Bug Fixes
