@@ -1,4 +1,4 @@
-import Features from '../../components/Features';
+import { Features } from 'dumi-theme-antd-style';
 
 export default () => (
   <Features

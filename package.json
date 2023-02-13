@@ -107,6 +107,7 @@
     "cross-env": "^7",
     "dumi": "^2",
     "dumi-assets-types": "^1",
+    "dumi-theme-antd-style": "^0.3.0",
     "eslint": "^8",
     "fast-deep-equal": "^3",
     "father": "^4",
