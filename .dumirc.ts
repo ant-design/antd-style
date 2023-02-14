@@ -1,4 +1,5 @@
 import { defineConfig } from 'dumi';
+import { name } from './package.json';
 
 // 不是预览模式 同时是生产环境
 const isProdSite = process.env.PREVIEW !== '1' && process.env.NODE_ENV === 'production';
@@ -8,6 +9,10 @@ export default defineConfig({
     name: 'Ant Design Style',
     logo: 'https://gw.alipayobjects.com/zos/hitu-asset/c88e3678-6900-4289-8538-31367c2d30f2/hitu-1609235995955-image.png',
     github: 'https://github.com/ant-design/antd-style',
+    apiHeader: {
+      pkg: name,
+      docUrl: '{github}/blob/master/docs/api/{title}.md',
+    },
   },
   favicons: [
     'https://gw.alipayobjects.com/zos/hitu-asset/c88e3678-6900-4289-8538-31367c2d30f2/hitu-1609235995955-image.png',
