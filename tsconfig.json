@@ -1,5 +1,5 @@
 {
-  "include": ["src", ".dumi/tmp/**/*", ".dumirc.ts", "*.ts"],
+  "include": ["src", ".dumi/**/*", ".dumirc.ts", "*.ts"],
   "compilerOptions": {
     "strict": true,
     "declaration": true,

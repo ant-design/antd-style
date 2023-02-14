@@ -3,14 +3,6 @@ import { Features } from 'dumi-theme-antd-style';
 export default () => (
   <Features
     items={[
-      // {
-      //   title: '基于 Emotion 构建',
-      //   avatar:
-      //     'https://mdn.alipayobjects.com/huamei_rqvucu/afts/img/A*MvKkQqXEyfQAAAAAAAAAAAAADoN6AQ/original',
-      //   description: 'Ant Design Style 的底层实现基于 Emotion 实现，兼具丰富的写法能力与性能表现',
-      //   imageStyle: 'light',
-      //   row: 6,
-      // },
       {
         title: '内置 antd token',
         link: '/guide/switch-theme',
