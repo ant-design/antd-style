@@ -1,5 +1,19 @@
 # Changelog
 
+# [3.0.0-alpha.50](https://github.com/ant-design/antd-style/compare/v3.0.0-alpha.49...v3.0.0-alpha.50) (2023-02-15)
+
+# [3.0.0-alpha.49](https://github.com/ant-design/antd-style/compare/v3.0.0-alpha.48...v3.0.0-alpha.49) (2023-02-13)
+
+### 🐛 Bug Fixes
+
+- 修正设定主题后仍然响应系统主题的 bug ([b44be0c](https://github.com/ant-design/antd-style/commit/b44be0c))
+
+# [3.0.0-alpha.48](https://github.com/ant-design/antd-style/compare/v3.0.0-alpha.47...v3.0.0-alpha.48) (2023-02-12)
+
+### 🐛 Bug Fixes
+
+- 修正 styled 类型导出的问题 ([74551ed](https://github.com/ant-design/antd-style/commit/74551ed))
+
 # [3.0.0-alpha.47](https://github.com/ant-design/antd-style/compare/v3.0.0-alpha.46...v3.0.0-alpha.47) (2023-02-06)
 
 ### 🐛 Bug Fixes

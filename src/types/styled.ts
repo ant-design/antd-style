@@ -92,4 +92,5 @@ export interface CreateStyled {
   ): CreateStyledComponent<{ theme?: Theme; as?: React.ElementType }, JSX.IntrinsicElements[Tag]>;
 }
 
+export type { BaseCreateStyled };
 export interface CreateStyled extends BaseCreateStyled, StyledTags {}
