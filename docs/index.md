@@ -35,7 +35,7 @@ features:
     image: https://gw.alipayobjects.com/zos/hitu-asset/c88e3678-6900-4289-8538-31367c2d30f2/hitu-1609235995955-image.png
     imageType: light
     row: 7
-    center: true
+    hero: true
 
   - title: 复合样式 —— Stylish
     description: Ant Design Style 提供了复合样式的能力，我们称它为 Stylish。Stylish 可以通过组合多个原子 token 来组织形成复杂的交互样式，实现极高的复用度。<quotient> 感觉很熟悉？没错，它和 tailwindcss 的思想高度一致，但 stylish 将会具有更加明确的设计语义，维护也会更加轻松。</quotient>
