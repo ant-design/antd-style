@@ -1,5 +1,7 @@
 # Changelog
 
+# [3.0.0-alpha.50](https://github.com/ant-design/antd-style/compare/v3.0.0-alpha.49...v3.0.0-alpha.50) (2023-02-15)
+
 # [3.0.0-alpha.49](https://github.com/ant-design/antd-style/compare/v3.0.0-alpha.48...v3.0.0-alpha.49) (2023-02-13)
 
 ### 🐛 Bug Fixes
