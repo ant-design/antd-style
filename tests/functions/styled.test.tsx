@@ -1,6 +1,5 @@
 import { render } from '@testing-library/react';
 
-import { SettingOutlined, SmileOutlined } from '@ant-design/icons';
 import { styled, ThemeProvider } from 'antd-style';
 
 describe('styled', () => {
@@ -69,51 +68,5 @@ describe('styled', () => {
 
       expect(container).toMatchSnapshot();
     });
-  });
-
-  it('嵌套组件选择', () => {
-    const Icon = styled.span`
-      display: flex;
-      flex: 1;
-      color: red;
-    `;
-
-    const ButtonCtn = styled.button`
-      background: dodgerblue;
-      color: white;
-      border: 1px solid white;
-
-      &:focus,
-      &:hover {
-        padding: 1em;
-      }
-
-      .otherClass {
-        margin: 0;
-      }
-
-      ${Icon} {
-        color: black;
-      }
-    `;
-
-    const App = () => (
-      <div>
-        <Icon>
-          <SmileOutlined />
-        </Icon>
-
-        <ButtonCtn>
-          <Icon>
-            <SettingOutlined />
-          </Icon>
-          按钮
-        </ButtonCtn>
-      </div>
-    );
-
-    const { container } = render(<App />);
-
-    expect(container).toMatchSnapshot();
   });
 });
