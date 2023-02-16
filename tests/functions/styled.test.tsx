@@ -21,8 +21,8 @@ describe('styled', () => {
       const { container } = render(<App>自定义样式</App>);
 
       expect(container.firstChild).toHaveStyleRule('width', '30px');
-      expect(container.firstChild).toHaveStyleRule('color', undefined);
-      expect(container.firstChild).toHaveStyleRule('background', undefined);
+      expect(container.firstChild).toHaveStyle('color: undefined');
+      expect(container.firstChild).toHaveStyle('background: undefined');
       expect(container).toMatchSnapshot();
     });
 
