@@ -134,5 +134,10 @@
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org"
+  },
+  "pnpm": {
+    "overrides": {
+      "esquery": "1.4.0"
+    }
   }
 }
