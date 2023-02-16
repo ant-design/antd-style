@@ -2,6 +2,7 @@
 title: createStyles
 description: 创建具有作用域的样式
 order: 1
+sourceUrl: '{github}/blob/master/src/functions/createStyles/index.ts'
 group:
   title: 创建样式
   order: 0
