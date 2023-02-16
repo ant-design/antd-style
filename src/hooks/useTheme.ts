@@ -1,4 +1,4 @@
-import { useTheme as _useTheme } from '@/pedestal';
+import { useTheme as _useTheme } from '@/core/engine';
 import { Theme } from '@/types';
 import { useMemo } from 'react';
 

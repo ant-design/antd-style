@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import { reactCss } from '@/pedestal';
+import { reactCss } from '@/core/engine';
 import { createAntdStylish } from '@/stylish/button';
 import { AntdStylish } from '@/types';
 

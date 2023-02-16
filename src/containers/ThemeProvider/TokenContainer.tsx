@@ -1,7 +1,7 @@
 import { ReactElement, useMemo } from 'react';
 
+import { PedestalProvider, reactCss } from '@/core/engine';
 import { useAntdTheme, useThemeMode } from '@/hooks';
-import { PedestalProvider, reactCss } from '@/pedestal';
 import { Theme } from '@/types';
 
 import type { ThemeProviderProps } from './type';

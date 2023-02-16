@@ -32,15 +32,11 @@ antd-style 在构建之初，我们有两个基本假设：
 
 ## 当前 antd-style 选择的样式引擎
 
-基于目前的社区方案发展情况，我们选择了 `styled-component` 作为 `styled` 语法的样式引擎，选择了 `emotion` 作为 `css` 语法的样式引擎。决策原因如下：
+基于目前的社区方案发展情况，我们选择了 `@emotion/styled` 作为 `styled` 语法的样式引擎，选择了 `emotion` 作为 `css` 语法的样式引擎。决策原因如下：
 
-### styled: 为什么选择 styled-component
+### styled: 为什么选择 @emotion/styled
 
-styled 的语法候选池中有两个库： `styled-component` 和 `emotion`。一开始时我们使用的是 emotion 的方案，但在实际应用落地验证时，我们发现 emotion 的 styled 默认不支持组件作为选择器的写法，需要配置 babel 插件才可达成，而我们一旦 re-export 了 styled 对象，babel 插件的配置将会变得很复杂，大部分开发者可能都无法正确配置。
-
-因此在 styled 写法上最终选择了 styled-component，为此我们将需多付出 Gzip 后 10 KB+ 大小的体积（对比 emotion/styled ）。
-
-对比如下：
+styled 的语法候选池中有两个库： `styled-component` 和 `emotion`。 它们的能力对比如下：
 
 | 特性                  | Styled Components | Emotion                                                          |
 | --------------------- | ----------------- | ---------------------------------------------------------------- |
@@ -58,11 +54,27 @@ styled 的语法候选池中有两个库： `styled-component` 和 `emotion`。�
 | Dynamic styles        | ✅                | ✅                                                               |
 | Component as Selector | ✅                | 需要 [Babel 插件](https://emotion.sh/docs/@emotion/babel-plugin) |
 
+一开始时我们使用的是 emotion 的方案，但在实际应用落地验证时，我们发现 emotion 的 styled 默认不支持组件作为选择器的写法，需要配置 babel 插件才能实现。
+
+而我们最初的实现 re-export 了 `styled` 对象，这会使得 babel 插件的配置变得很复杂，大部分开发者可能都无法正确配置。
+
+所以我们又尝试默认集成 `styled-components`, 但此时发现，如果要为了默认兼容组件选择器的写法来集成 styled-components，为此将需多付出压缩后 10 KB+ 大小的体积（对比 `@emotion/styled` ）。
+
+| 集成 `styled-components` 的版本（[3.0.0-alpha.42](https://bundlephobia.com/package/antd-style@3.0.0-alpha.42)） | 集成 `@emotion/styled` 的版本（[3.0.0-alpha.41](https://bundlephobia.com/package/antd-style@3.0.0-alpha.41)） |
+| --------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| ![](https://mdn.alipayobjects.com/huamei_rqvucu/afts/img/A*uuRsQKLILmIAAAAAAAAAAAAADoN6AQ/fmt.webp)             | ![](https://mdn.alipayobjects.com/huamei_rqvucu/afts/img/A*uuRsQKLILmIAAAAAAAAAAAAADoN6AQ/fmt.webp)           |
+
+因此而在我们实际业务落地测试中发现，95% 的样式书写场景都不会用到组件选择器的语法。只有在需要动画、复合选择器等场景才会用到， 而在这种场景下 `createStyles` 的写法将会更加自然易用。
+
+在我们看来，组件选择器的语法本质上是因为 styled-components 不支持创建 className 才不得已提供的补救措施。而为了这 5% 的使用场景再去额外增大 10kb+ 的体积，完全不划算。同时在最终定稿的实现方案中，也明确产出了 styled-components 的语法替换能力方案。详见：[createInstance-兼容 styled-components](/api/create-instance#兼容-styled-主题方案)。
+
+因此综合实践案例，结合包体积、使用场景，我们在多次摇摆下最终选择了 `@emotion/styled` 作为 `styled` 语法的样式引擎。
+
 ### css: 为什么选择 emotion
 
 css 的语法候选池中也是上述两个库： `styled-component` 和 `emotion`。
 
-在决策 css 方案时，基本上没有太多额外判断，我们直接才采用了 emotion。原因是 styled-component 所提供的 `css` 方法无法直接转为 className 因此在转为 className 方面 styled-component 的能力是缺失的。而 `css` props 我们已经在上一节中解释过，它不是我们期望的 api。因此 `css` 采用了 emotion 作为样式引擎。
+在决策 css 方案时，基本上没有太多额外判断，我们直接才采用了 emotion。原因是 styled-component 所提供的 `css` 方法无法直接转为 className 因此在转为 className 方面 styled-components 的能力是缺失的。而 `css` props 我们已经在上一节中解释过，它不是我们期望的 api。因此 `css` 采用了 emotion 作为样式引擎。
 
 | 特性           | Styled Components   | Emotion             |
 | -------------- | ------------------- | ------------------- |
@@ -75,9 +87,6 @@ css 的语法候选池中也是上述两个库： `styled-component` 和 `emotio
 | Object styles  | ✅                  | ✅                  |
 | Dynamic styles | ✅                  | ✅                  |
 
-## 体积优化
+## 体积优化建议
 
-由于 antd-style 同时采用了 styled-component 和 emotion，它的体积势必会比单一库更大。
-
-![](https://mdn.alipayobjects.com/huamei_rqvucu/afts/img/A*uuRsQKLILmIAAAAAAAAAAAAADoN6AQ/fmt.webp)
-因此在实际使用中，我们建议采用 `styled` 或 `css` 中的一种写法，而不是两种写法混着写。如果不使用相应的方法，打包器能自动 TreeShaking 掉没有用到的方法。实测体积可以降到个位数 kb。
+在实际使用中，我们建议采用 `styled` 或 `css` 中的一种写法，而不是两种写法混着写。如果不使用相应的方法，打包器能自动 TreeShaking 掉没有用到的方法。实测体积可以降到个位数 kb。

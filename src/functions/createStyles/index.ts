@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 
+import { reactCss } from '@/core/engine';
 import { useEmotion, useTheme } from '@/hooks';
-import { reactCss } from '@/pedestal';
 import type {
   BaseReturnType,
   ClassNamesUtil,

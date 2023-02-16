@@ -1,5 +1,5 @@
+import { reactCss } from '@/core/engine';
 import { useAntdToken } from '@/hooks';
-import { reactCss } from '@/pedestal';
 import type {
   Breakpoint,
   BreakpointMapParams,
