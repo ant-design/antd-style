@@ -1,5 +1,8 @@
 import '@testing-library/jest-dom';
-import 'jest-styled-components';
+
+// 补充 toHaveStyleRule 的 matcher
+import { matchers } from '@emotion/jest';
+expect.extend(matchers);
 
 // 关闭 antd 的 hash
 import { theme } from 'antd';
