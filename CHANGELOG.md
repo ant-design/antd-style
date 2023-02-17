@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.0.0-alpha.52](https://github.com/ant-design/antd-style/compare/v3.0.0-alpha.51...v3.0.0-alpha.52) (2023-02-17)
+
+### 🐛 Bug Fixes
+
+- 修正相关类型导出丢失的问题 ([1cb24d9](https://github.com/ant-design/antd-style/commit/1cb24d9))
+
 # [3.0.0-alpha.51](https://github.com/ant-design/antd-style/compare/v3.0.0-alpha.50...v3.0.0-alpha.51) (2023-02-17)
 
 ### ♻ Code Refactoring
