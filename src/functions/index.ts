@@ -2,7 +2,7 @@ import { createInstance } from './createInstance';
 
 export { createInstance };
 
-const styleInstance = createInstance({ key: 'ant-css', speedy: false, hashPriority: 'high' });
+const styleInstance = createInstance({ key: 'ant-css', speedy: false });
 
 export const {
   // **** 样式生成相关 **** //

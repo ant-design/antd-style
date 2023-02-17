@@ -1,13 +1,4 @@
-import {
-  FC,
-  memo,
-  ReactNode,
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useMemo,
-  useState,
-} from 'react';
+import { FC, memo, ReactNode, useEffect, useLayoutEffect, useMemo, useState } from 'react';
 import useControlledState from 'use-merge-value';
 
 import { ThemeModeContext } from '@/context';
@@ -23,13 +14,13 @@ const ThemeObserver: FC<{
   themeMode: ThemeMode;
   setAppearance: (value: ThemeAppearance) => void;
 }> = ({ themeMode, setAppearance }) => {
-  const matchBrowserTheme = useCallback(() => {
+  const matchBrowserTheme = () => {
     if (matchThemeMode('dark').matches) {
       setAppearance('dark');
     } else {
       setAppearance('light');
     }
-  }, [setAppearance]);
+  };
 
   // 自动监听系统主题变更
   useLayoutEffect(() => {
