@@ -79,6 +79,7 @@
   "devDependencies": {
     "@ant-design/icons": "^5",
     "@commitlint/cli": "^17",
+    "@emotion/babel-plugin": "^11",
     "@emotion/jest": "^11",
     "@floating-ui/react": "^0.17",
     "@react-three/fiber": "^8",
