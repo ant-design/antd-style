@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.0.0-alpha.53](https://github.com/ant-design/antd-style/compare/v3.0.0-alpha.52...v3.0.0-alpha.53) (2023-02-17)
+
+### 🐛 Bug Fixes
+
+- 修正 ThemeProvider 子组件类型定义问题 ([3066b81](https://github.com/ant-design/antd-style/commit/3066b81))
+
 # [3.0.0-alpha.52](https://github.com/ant-design/antd-style/compare/v3.0.0-alpha.51...v3.0.0-alpha.52) (2023-02-17)
 
 ### 🐛 Bug Fixes
