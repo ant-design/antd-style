@@ -1,5 +1,24 @@
 # Changelog
 
+# [3.0.0-alpha.51](https://github.com/ant-design/antd-style/compare/v3.0.0-alpha.50...v3.0.0-alpha.51) (2023-02-17)
+
+### ♻ Code Refactoring
+
+- 将 styled 语法替换回 @emotion/styled ([4733e00](https://github.com/ant-design/antd-style/commit/4733e00))
+
+### ✨ Features
+
+- 新增 createInstance 方法，并用 createInstance 重构相关功能导出 ([39a05ae](https://github.com/ant-design/antd-style/commit/39a05ae))
+
+### 🐛 Bug Fixes
+
+- 修正 styled 导出问题 ([8141d78](https://github.com/ant-design/antd-style/commit/8141d78))
+- 修正类型定义不匹配的问题 ([788a3ec](https://github.com/ant-design/antd-style/commit/788a3ec))
+
+### 💥 BREAKING CHANGES
+
+- 不再计划默认支持组件选择器
+
 # [3.0.0-alpha.50](https://github.com/ant-design/antd-style/compare/v3.0.0-alpha.49...v3.0.0-alpha.50) (2023-02-15)
 
 # [3.0.0-alpha.49](https://github.com/ant-design/antd-style/compare/v3.0.0-alpha.48...v3.0.0-alpha.49) (2023-02-13)
