@@ -49,3 +49,7 @@ const App = () => {
 实例演示：
 
 <code src="../demos/createStyles/AntdToken.tsx"></code>
+
+## API
+
+关于 `createStyles` 方法的详细 API 说明，可以参阅 [createStyles API 文档](/api/create-styles)。

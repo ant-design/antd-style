@@ -1,5 +1,5 @@
 ---
-title: 复合样式 stylish
+title: stylish 复合样式
 order: 3
 group: 进阶使用
 ---

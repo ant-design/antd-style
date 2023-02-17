@@ -45,7 +45,7 @@ const App: FC = ({ list }) => {
 
 后续 emotion 在 `@emotion/styled`也做了跟进，因此主流 CSSinJS 库基本都支持这种写法。我们实测基于 styled 这种写法，将 `styled-component` 与 `@emotion/react` 两个包互切，样式没有任何影响，且性能相差无几。
 
-但需要注意的是，styled-component 中一些默认支持的语法（例如：组件选择器），在 `@emotion/react` 中需要配置 babel 插件才可支持。因此 styled-component 的包体积会相较于 `@emotion/react` 大上不少。但考虑到开发者上手配置的成本，我们选择了使用 styled-component 作为内置的 styled 语法引擎。
+但需要注意的是，styled-component 中一些默认支持的语法（例如：组件选择器），在 `@emotion/react` 中需要配置 babel 插件才可支持。因此 `styled-components` 的包体积会相较于 `@emotion/react` 大上不少。
 
 ### 方式 2. `css` 搭配 className
 
@@ -150,4 +150,12 @@ CSS in JS 技术经过四五年的发展，目前大部分 IDE 都已经对 CSS 
 
 ### Webstorm
 
-Webstorm 对 CSS in JS 提供了默认支持。如果你是 Webstorm 用户，什么也不需要做，默认就有 CSS in JS 的所有智能提示和代码补全。
+Webstorm 对 CSS in JS 提供了默认支持。如果你是 Webstorm 用户，什么也不需要做， CSS in JS 的所有智能提示和代码补全开箱即用。
+
+### Ant Design Token VSCode 插件
+
+社区同学 [shezhangzhang](https://github.com/shezhangzhang) 为 Ant Design V5 的 Token 系统研发了 VSCode 插件，可以在 VSCode 中直接看到 Token 提示。
+
+![](https://raw.githubusercontent.com/shezhangzhang/antd-design-token/master/assets/decorations.gif)
+
+项目地址：[shezhangzhang/antd-design-token](https://github.com/shezhangzhang/antd-design-token)

@@ -1,7 +1,7 @@
 ---
 title: 从 Less 迁移
 order: 3
-group: 快速上手
+group: 进阶使用
 ---
 
 # 从 Less 迁移到 CSS in JS
