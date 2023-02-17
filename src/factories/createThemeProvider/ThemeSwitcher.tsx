@@ -11,7 +11,7 @@ import {
 import useControlledState from 'use-merge-value';
 
 import { ThemeModeContext } from '@/context';
-import { Theme, ThemeAppearance, ThemeMode } from '@/types';
+import { ThemeAppearance, ThemeMode, UseTheme } from '@/types';
 
 let darkThemeMatch: MediaQueryList;
 
@@ -70,7 +70,7 @@ export interface ThemeSwitcherProps {
   themeMode?: ThemeMode;
 
   children: ReactNode;
-  useTheme: () => Theme;
+  useTheme: UseTheme;
 }
 
 const ThemeSwitcher: FC<ThemeSwitcherProps> = memo(

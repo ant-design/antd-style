@@ -5,40 +5,48 @@ import type {
   BaseReturnType,
   ClassNamesUtil,
   CSSObject,
+  HashPriority,
   ResponsiveUtil,
   ReturnStyleToUse,
+  UseTheme,
 } from '@/types';
 import { isReactCssResult } from '@/utils';
 
-import { Emotion } from '@emotion/css/create-instance';
+import { createUseTheme } from '@/factories/createUseTheme';
+import { Emotion, EmotionCache } from '@emotion/css/create-instance';
 import { convertResponsiveStyleToString, useMediaQueryMap } from './response';
 import { ReturnStyles, StyleOrGetStyleFn } from './types';
 
 interface CreateStylesFactory {
-  useEmotion: () => Emotion;
-  useTheme?: any;
-  initParams?: any;
+  cache: EmotionCache;
+  cx: Emotion['cx'];
+  styledUseTheme?: UseTheme;
+  hashPriority?: HashPriority;
+}
+
+export interface CreateStyleOptions {
+  hashPriority?: HashPriority;
 }
 
 /**
  * 创建样式基础写法
  */
 export const createStylesFactory =
-  ({ useEmotion, useTheme, initParams }: CreateStylesFactory) =>
+  ({ styledUseTheme, hashPriority, cache, cx: emotionCX }: CreateStylesFactory) =>
   <Props, Input extends BaseReturnType = BaseReturnType>(
     styleOrGetStyle: StyleOrGetStyleFn<Input, Props>,
   ) =>
-  (props?: Props, options?: any): ReturnStyles<Input> => {
+  (props?: Props, options?: CreateStyleOptions): ReturnStyles<Input> => {
+    const useTheme = createUseTheme(styledUseTheme);
     const theme = useTheme();
 
     const responsiveMap = useMediaQueryMap();
-    const { cx, cache } = useEmotion();
 
-    const css = createClassNameGenerator(cache, options?.hashPriority || initParams?.hashPriority);
+    const css = createClassNameGenerator(cache, options?.hashPriority || hashPriority);
 
     // 由于使用了 reactCss 作为基础样式工具，因此在使用 cx 级联 className 时需要使用特殊处理的 cx
     // 要将 reactCss 的产出转为 css 产物
-    const cxUtil: ClassNamesUtil = createCX(css, cx);
+    const cxUtil: ClassNamesUtil = createCX(css, emotionCX);
 
     const styles = useMemo(() => {
       let tempStyles: ReturnStyleToUse<Input>;

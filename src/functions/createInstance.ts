@@ -45,7 +45,7 @@ interface CreateOptions<T = any> {
 export const createInstance = <T = any>(options: CreateOptions<T>) => {
   const defaultKey = options.key || 'ant-css';
 
-  const innerUseTheme = (options.styled?.useTheme || defaultUseTheme) as () => Theme;
+  const styledUseTheme = (options.styled?.useTheme || defaultUseTheme) as () => Theme;
 
   const defaultThemeProvider = (options.styled?.ThemeProvider ||
     PedestalProvider) as StyledThemeProvider;
@@ -60,12 +60,14 @@ export const createInstance = <T = any>(options: CreateOptions<T>) => {
   const classNameGenerator = createClassNameGenerator(cache, options.hashPriority);
   const cx = createCX(classNameGenerator, emotion.cx);
 
-  const useTheme = createUseTheme(innerUseTheme);
+  const useTheme = createUseTheme(styledUseTheme);
 
   const createStyles = createStylesFactory({
-    useEmotion: () => emotion,
-    initParams: { hashPriority: options.hashPriority },
-    useTheme,
+    cache,
+    cx: emotion.cx,
+    styledUseTheme,
+
+    hashPriority: options.hashPriority,
   });
 
   const createGlobalStyle = createGlobalStyleFactory(useTheme);

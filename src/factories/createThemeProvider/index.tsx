@@ -1,5 +1,6 @@
 import { ReactElement } from 'react';
 
+import { UseTheme } from '@/types';
 import AntdProvider from './AntdProvider';
 import ThemeSwitcher from './ThemeSwitcher';
 import TokenContainer from './TokenContainer';
@@ -10,7 +11,7 @@ export * from './type';
 export const createThemeProvider =
   (
     defaultStyledThemeProvider: StyledThemeProvider,
-    defaultUseTheme,
+    defaultUseTheme: UseTheme,
   ): (<T = any, S = any>(props: ThemeProviderProps<T, S>) => ReactElement | null) =>
   ({
     children,

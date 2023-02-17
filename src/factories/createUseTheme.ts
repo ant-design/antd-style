@@ -1,13 +1,13 @@
-import { Theme } from '@/types';
+import { Theme, UseTheme } from '@/types';
 import { useMemo } from 'react';
 
 import { useAntdTheme } from '@/hooks/useAntdTheme';
 import { useThemeMode } from '@/hooks/useThemeMode';
 
-export const createUseTheme = (useDefaultTheme: () => any) => (): Theme => {
+export const createUseTheme = (useDefaultTheme?: UseTheme) => (): Theme => {
   const antdTheme = useAntdTheme();
   const themeState = useThemeMode();
-  const defaultTheme = useDefaultTheme();
+  const defaultTheme = useDefaultTheme ? useDefaultTheme() : {};
 
   const initTheme = useMemo<Theme>(
     () => ({ ...antdTheme, ...themeState, prefixCls: 'ant' }),
