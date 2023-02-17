@@ -4,12 +4,15 @@ import { serializeCSS } from '@/core';
 import { useAntdTheme, useThemeMode } from '@/hooks';
 import { Theme } from '@/types';
 
-import type { ThemeProviderProps } from './type';
+import type { StyledThemeProvider, ThemeProviderProps } from './type';
 
-type TokenContainerProps<T, S = Record<string, string>> = Pick<
-  ThemeProviderProps<T, S>,
-  'children' | 'customToken' | 'customStylish' | 'prefixCls' | 'StyledThemeProvider'
->;
+interface TokenContainerProps<T, S = Record<string, string>>
+  extends Pick<
+    ThemeProviderProps<T, S>,
+    'children' | 'customToken' | 'customStylish' | 'prefixCls'
+  > {
+  StyledThemeProvider: StyledThemeProvider;
+}
 
 const TokenContainer: <T, S>(props: TokenContainerProps<T, S>) => ReactElement | null = ({
   children,
