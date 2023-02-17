@@ -1,14 +1,14 @@
 import { ReactElement, useMemo } from 'react';
 
+import { serializeCSS } from '@/core';
 import { useAntdTheme, useThemeMode } from '@/hooks';
-import { PedestalProvider, reactCss } from '@/pedestal';
 import { Theme } from '@/types';
 
 import type { ThemeProviderProps } from './type';
 
 type TokenContainerProps<T, S = Record<string, string>> = Pick<
   ThemeProviderProps<T, S>,
-  'children' | 'customToken' | 'customStylish' | 'prefixCls'
+  'children' | 'customToken' | 'customStylish' | 'prefixCls' | 'StyledThemeProvider'
 >;
 
 const TokenContainer: <T, S>(props: TokenContainerProps<T, S>) => ReactElement | null = ({
@@ -16,6 +16,7 @@ const TokenContainer: <T, S>(props: TokenContainerProps<T, S>) => ReactElement |
   customToken: customTokenOrFn,
   customStylish: stylishOrGetStylish,
   prefixCls = 'ant',
+  StyledThemeProvider,
 }) => {
   const themeState = useThemeMode();
   const { appearance, isDarkMode } = themeState;
@@ -39,7 +40,7 @@ const TokenContainer: <T, S>(props: TokenContainerProps<T, S>) => ReactElement |
       stylish: antdStylish,
       appearance,
       isDarkMode,
-      css: reactCss,
+      css: serializeCSS,
     });
   }, [stylishOrGetStylish, token, customToken, antdStylish, appearance]);
 
@@ -56,7 +57,7 @@ const TokenContainer: <T, S>(props: TokenContainerProps<T, S>) => ReactElement |
     prefixCls,
   };
 
-  return <PedestalProvider theme={theme}>{children}</PedestalProvider>;
+  return <StyledThemeProvider theme={theme}>{children}</StyledThemeProvider>;
 };
 
 export default TokenContainer;

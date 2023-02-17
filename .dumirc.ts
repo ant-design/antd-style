@@ -12,6 +12,11 @@ export default defineConfig({
       pkg: 'antd-style',
       docUrl: '{github}/blob/master/docs/api/{title}.md',
     },
+    syntaxTheme: {
+      shiki: {
+        dark: 'one-dark-pro',
+      },
+    },
   },
   favicons: [
     'https://gw.alipayobjects.com/zos/hitu-asset/c88e3678-6900-4289-8538-31367c2d30f2/hitu-1609235995955-image.png',

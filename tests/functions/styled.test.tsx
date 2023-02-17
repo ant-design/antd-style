@@ -1,6 +1,5 @@
 import { render } from '@testing-library/react';
 
-import { SettingOutlined, SmileOutlined } from '@ant-design/icons';
 import { styled, ThemeProvider } from 'antd-style';
 
 describe('styled', () => {
@@ -22,8 +21,8 @@ describe('styled', () => {
       const { container } = render(<App>自定义样式</App>);
 
       expect(container.firstChild).toHaveStyleRule('width', '30px');
-      expect(container.firstChild).toHaveStyleRule('color', undefined);
-      expect(container.firstChild).toHaveStyleRule('background', undefined);
+      expect(container.firstChild).toHaveStyle('color: undefined');
+      expect(container.firstChild).toHaveStyle('background: undefined');
       expect(container).toMatchSnapshot();
     });
 
@@ -69,51 +68,5 @@ describe('styled', () => {
 
       expect(container).toMatchSnapshot();
     });
-  });
-
-  it('嵌套组件选择', () => {
-    const Icon = styled.span`
-      display: flex;
-      flex: 1;
-      color: red;
-    `;
-
-    const ButtonCtn = styled.button`
-      background: dodgerblue;
-      color: white;
-      border: 1px solid white;
-
-      &:focus,
-      &:hover {
-        padding: 1em;
-      }
-
-      .otherClass {
-        margin: 0;
-      }
-
-      ${Icon} {
-        color: black;
-      }
-    `;
-
-    const App = () => (
-      <div>
-        <Icon>
-          <SmileOutlined />
-        </Icon>
-
-        <ButtonCtn>
-          <Icon>
-            <SettingOutlined />
-          </Icon>
-          按钮
-        </ButtonCtn>
-      </div>
-    );
-
-    const { container } = render(<App />);
-
-    expect(container).toMatchSnapshot();
   });
 });

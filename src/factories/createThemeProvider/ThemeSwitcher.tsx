@@ -1,18 +1,8 @@
-import {
-  FC,
-  memo,
-  ReactNode,
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useMemo,
-  useState,
-} from 'react';
+import { FC, memo, ReactNode, useEffect, useLayoutEffect, useMemo, useState } from 'react';
 import useControlledState from 'use-merge-value';
 
 import { ThemeModeContext } from '@/context';
-import { useTheme } from '@/hooks';
-import { ThemeAppearance, ThemeMode } from '@/types';
+import { ThemeAppearance, ThemeMode, UseTheme } from '@/types';
 
 let darkThemeMatch: MediaQueryList;
 
@@ -24,13 +14,13 @@ const ThemeObserver: FC<{
   themeMode: ThemeMode;
   setAppearance: (value: ThemeAppearance) => void;
 }> = ({ themeMode, setAppearance }) => {
-  const matchBrowserTheme = useCallback(() => {
+  const matchBrowserTheme = () => {
     if (matchThemeMode('dark').matches) {
       setAppearance('dark');
     } else {
       setAppearance('light');
     }
-  }, [setAppearance]);
+  };
 
   // 自动监听系统主题变更
   useLayoutEffect(() => {
@@ -71,6 +61,7 @@ export interface ThemeSwitcherProps {
   themeMode?: ThemeMode;
 
   children: ReactNode;
+  useTheme: UseTheme;
 }
 
 const ThemeSwitcher: FC<ThemeSwitcherProps> = memo(
@@ -80,6 +71,7 @@ const ThemeSwitcher: FC<ThemeSwitcherProps> = memo(
     defaultAppearance,
     onAppearanceChange,
     themeMode: themeModeProps,
+    useTheme,
   }) => {
     const { appearance: upperAppearance, themeMode: upperThemeMode } = useTheme();
 

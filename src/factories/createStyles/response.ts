@@ -1,5 +1,5 @@
+import { serializeCSS } from '@/core';
 import { useAntdToken } from '@/hooks';
-import { reactCss } from '@/pedestal';
 import type {
   Breakpoint,
   BreakpointMapParams,
@@ -40,7 +40,7 @@ export const convertResponsiveStyleToString = (
       let str = value as SerializedStyles | CSSObject;
 
       if (!isReactCssResult(value)) {
-        str = reactCss(value);
+        str = serializeCSS(value);
       }
 
       // @ts-ignore

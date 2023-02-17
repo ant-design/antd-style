@@ -1,13 +1,14 @@
-import { ThemeConfig } from 'antd/es/config-provider/context';
+import { ThemeConfig } from 'antd';
 
 import { ThemeAppearance } from './appearance';
 import { ClassNamesUtil, CssUtil, SerializedStyles } from './css';
 import { AtomInputType } from './genericUtils';
 import { ResponsiveKey } from './response';
-import type { AntdStylish, AntdToken, AppearanceState, FullToken } from './theme';
+import type { AntdStylish, AntdToken, AppearanceState, FullToken, Theme } from './theme';
 
 export type BreakpointMapParams = Partial<Record<ResponsiveKey, AtomInputType>>;
 
+export type UseTheme = () => Theme;
 /**
  * 响应式断点工具函数
  */
