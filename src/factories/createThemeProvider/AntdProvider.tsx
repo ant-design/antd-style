@@ -1,9 +1,9 @@
 import { ConfigProvider, message, Modal, notification, theme } from 'antd';
 import { memo, useEffect, useMemo, type FC } from 'react';
 
-import { ThemeProviderProps } from '@/containers';
 import { useThemeMode } from '@/hooks';
 import { ThemeConfig } from 'antd/es/config-provider/context';
+import type { ThemeProviderProps } from './index';
 
 type AntdProviderProps = Pick<
   ThemeProviderProps<any>,

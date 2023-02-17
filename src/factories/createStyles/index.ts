@@ -1,85 +1,40 @@
 import { useMemo } from 'react';
 
-import { reactCss } from '@/core/engine';
-import { useEmotion, useTheme } from '@/hooks';
+import { createClassNameGenerator, createCX, serializeCSS } from '@/core';
 import type {
   BaseReturnType,
   ClassNamesUtil,
-  CommonStyleUtils,
   CSSObject,
-  FullStylish,
-  FullToken,
   ResponsiveUtil,
   ReturnStyleToUse,
-  Theme,
-  ThemeAppearance,
 } from '@/types';
-import { createCX, isReactCssResult } from '@/utils';
+import { isReactCssResult } from '@/utils';
 
-import { useCss } from '@/functions/createStyles/css';
+import { Emotion } from '@emotion/css/create-instance';
 import { convertResponsiveStyleToString, useMediaQueryMap } from './response';
+import { ReturnStyles, StyleOrGetStyleFn } from './types';
 
-/**
- * 书写样式时使用的第一个参数
- */
-export interface CreateStylesTheme extends CommonStyleUtils {
-  /**
-   * 包含 antd 的 token 和所有自定义 token
-   */
-  token: FullToken;
-  stylish: FullStylish;
-  /**
-   * ThemeProvider 下当前的主题模式
-   */
-  appearance: ThemeAppearance;
-  /**
-   * appearance === 'dark' 的语法糖，可以直接使用 isDarkMode 来降低外观的判断成本
-   */
-  isDarkMode: boolean;
-  /**
-   * 在 ThemeProvider 上标记的 prefix，可以拿到当前的 组件 prefix
-   * 便于更加灵活地响应组件 prefix
-   * @default ant
-   */
-  prefixCls: string;
+interface CreateStylesFactory {
+  useEmotion: () => Emotion;
+  useTheme?: any;
+  initParams?: any;
 }
-
-/**
- * 最终返回 styles 对象的类型定义
- */
-export interface ReturnStyles<T extends BaseReturnType> extends Pick<CommonStyleUtils, 'cx'> {
-  styles: ReturnStyleToUse<T>;
-  theme: Omit<Theme, 'prefixCls'>;
-  prefixCls: string;
-}
-
-// 获取样式
-export type GetStyleFn<Input extends BaseReturnType, Props> = (
-  theme: CreateStylesTheme,
-  props: Props,
-) => Input;
-
-/**
- * 创建样式的函数或者对象
- * 可以传入 StyleObject 或者 ()=> StyleObject 函数
- * StyleObject 可以是
- */
-export type StyleOrGetStyleFn<Input extends BaseReturnType, Props> =
-  | Input
-  | GetStyleFn<Input, Props>;
 
 /**
  * 创建样式基础写法
  */
-export const createStyles =
+export const createStylesFactory =
+  ({ useEmotion, useTheme, initParams }: CreateStylesFactory) =>
   <Props, Input extends BaseReturnType = BaseReturnType>(
     styleOrGetStyle: StyleOrGetStyleFn<Input, Props>,
   ) =>
-  (props?: Props): ReturnStyles<Input> => {
+  (props?: Props, options?: any): ReturnStyles<Input> => {
     const theme = useTheme();
+
     const responsiveMap = useMediaQueryMap();
-    const { cx } = useEmotion();
-    const css = useCss();
+    const { cx, cache } = useEmotion();
+
+    const css = createClassNameGenerator(cache, options?.hashPriority || initParams?.hashPriority);
 
     // 由于使用了 reactCss 作为基础样式工具，因此在使用 cx 级联 className 时需要使用特殊处理的 cx
     // 要将 reactCss 的产出转为 css 产物
@@ -108,7 +63,7 @@ export const createStyles =
             prefixCls,
             // 工具函数们
             cx: cxUtil,
-            css: reactCss,
+            css: serializeCSS,
             responsive,
           },
           props!,

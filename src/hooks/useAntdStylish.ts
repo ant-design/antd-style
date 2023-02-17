@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import { reactCss } from '@/core/engine';
+import { serializeCSS } from '@/core';
 import { createAntdStylish } from '@/stylish/button';
 import { AntdStylish } from '@/types';
 
@@ -14,7 +14,9 @@ export const useAntdStylish = (): AntdStylish => {
 
   return useMemo(
     () =>
-      convertStylishToString(createAntdStylish({ token, css: reactCss, appearance, isDarkMode })),
+      convertStylishToString(
+        createAntdStylish({ token, css: serializeCSS, appearance, isDarkMode }),
+      ),
     [token, appearance, isDarkMode],
   );
 };

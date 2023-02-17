@@ -1,15 +1,17 @@
-import { GetCustomStylish, GetCustomToken, ThemeAppearance, ThemeMode } from '@/types';
+import { GetCustomStylish, GetCustomToken, Theme, ThemeAppearance, ThemeMode } from '@/types';
 import { MappingAlgorithm, ThemeConfig } from 'antd/es/config-provider/context';
 import { ConfigOptions as MessageConfig, MessageInstance } from 'antd/es/message/interface';
 import { ModalStaticFunctions } from 'antd/es/modal/confirm';
 import { NotificationConfig, NotificationInstance } from 'antd/es/notification/interface';
-import { ReactNode } from 'react';
+import { FC, ReactNode } from 'react';
 
 export type { ThemeConfig, MappingAlgorithm };
 
 export interface GetAntdTheme {
   (appearance: ThemeAppearance): ThemeConfig | undefined;
 }
+
+export type StyledThemeProvider = FC<{ theme: Theme; children: ReactNode }>;
 
 export interface ThemeProviderProps<T, S = Record<string, string>> {
   children: ReactNode;
@@ -22,6 +24,9 @@ export interface ThemeProviderProps<T, S = Record<string, string>> {
    * 自定义 Stylish
    */
   customStylish?: GetCustomStylish<S>;
+  StyledThemeProvider: StyledThemeProvider;
+  useTheme?: () => Theme;
+
   // --------------------- antd 主题 --------------------- //
   prefixCls?: string;
   /**

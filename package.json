@@ -73,6 +73,7 @@
     "@emotion/react": "^11",
     "@emotion/serialize": "^1",
     "@emotion/styled": "^11",
+    "@emotion/utils": "^1",
     "use-merge-value": "^1"
   },
   "devDependencies": {
