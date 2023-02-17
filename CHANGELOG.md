@@ -1,5 +1,12 @@
 # Changelog
 
+# [3.0.0-alpha.55](https://github.com/ant-design/antd-style/compare/v3.0.0-alpha.54...v3.0.0-alpha.55) (2023-02-17)
+
+### 🐛 Bug Fixes
+
+- ThemeAppearance 字段支持自定义字符 ([2bd7007](https://github.com/ant-design/antd-style/commit/2bd7007))
+- 移除不需使用类型定义 ([f9ee190](https://github.com/ant-design/antd-style/commit/f9ee190))
+
 # [3.0.0-alpha.54](https://github.com/ant-design/antd-style/compare/v3.0.0-alpha.53...v3.0.0-alpha.54) (2023-02-17)
 
 ### ✨ Features
