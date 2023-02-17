@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.0.0-alpha.54](https://github.com/ant-design/antd-style/compare/v3.0.0-alpha.53...v3.0.0-alpha.54) (2023-02-17)
+
+### ✨ Features
+
+- 添加 styled api，支持 styled 方法响应自定义 token ([a152c33](https://github.com/ant-design/antd-style/commit/a152c33))
+
 # [3.0.0-alpha.53](https://github.com/ant-design/antd-style/compare/v3.0.0-alpha.52...v3.0.0-alpha.53) (2023-02-17)
 
 ### 🐛 Bug Fixes
