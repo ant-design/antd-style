@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import { memo, ReactElement } from 'react';
 
 import { createUseTheme } from '@/factories/createUseTheme';
 import { UseTheme } from '@/types';
@@ -9,39 +9,34 @@ import { StyledThemeProvider, ThemeProviderProps } from './type';
 
 export * from './type';
 
-export const createThemeProvider =
-  (
-    defaultStyledThemeProvider: StyledThemeProvider,
-    defaultUseTheme: UseTheme,
-  ): (<T = any, S = any>(props: ThemeProviderProps<T, S>) => ReactElement | null) =>
-  ({
-    children,
+export const createThemeProvider = (
+  defaultStyledThemeProvider: StyledThemeProvider,
+  defaultUseTheme: UseTheme,
+): (<T = any, S = any>(props: ThemeProviderProps<T, S>) => ReactElement | null) =>
+  memo(
+    ({
+      children,
 
-    customToken,
-    customStylish,
+      customToken,
+      customStylish,
 
-    theme,
-    getStaticInstance,
-    prefixCls,
-    staticInstanceConfig,
+      theme,
+      getStaticInstance,
+      prefixCls,
+      staticInstanceConfig,
 
-    appearance,
-    defaultAppearance,
-    onAppearanceChange,
-    themeMode,
-    styled,
-  }) => {
-    const StyledThemeProvider = styled?.ThemeProvider || defaultStyledThemeProvider;
-
-    const useTheme = createUseTheme(styled?.useTheme || defaultUseTheme);
-
-    return (
+      appearance,
+      defaultAppearance,
+      onAppearanceChange,
+      themeMode,
+      styled,
+    }) => (
       <ThemeSwitcher
         themeMode={themeMode}
         defaultAppearance={defaultAppearance}
         appearance={appearance}
         onAppearanceChange={onAppearanceChange}
-        useTheme={useTheme}
+        useTheme={createUseTheme(styled?.useTheme || defaultUseTheme)}
       >
         <AntdProvider
           prefixCls={prefixCls}
@@ -53,11 +48,11 @@ export const createThemeProvider =
             prefixCls={prefixCls}
             customToken={customToken}
             customStylish={customStylish}
-            StyledThemeProvider={StyledThemeProvider}
+            StyledThemeProvider={styled?.ThemeProvider || defaultStyledThemeProvider}
           >
             {children}
           </TokenContainer>
         </AntdProvider>
       </ThemeSwitcher>
-    );
-  };
+    ),
+  );
