@@ -25,6 +25,10 @@ export interface ThemeProviderProps<T, S = Record<string, string>> {
    * 自定义 Stylish
    */
   customStylish?: GetCustomStylish<S>;
+  styled?: {
+    ThemeProvider?: StyledThemeProvider;
+    useTheme?: () => any;
+  };
   StyledThemeProvider?: StyledThemeProvider;
   useTheme?: () => Theme;
 

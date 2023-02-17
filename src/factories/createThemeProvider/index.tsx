@@ -1,5 +1,6 @@
 import { ReactElement } from 'react';
 
+import { createUseTheme } from '@/factories/createUseTheme';
 import { UseTheme } from '@/types';
 import AntdProvider from './AntdProvider';
 import ThemeSwitcher from './ThemeSwitcher';
@@ -28,9 +29,12 @@ export const createThemeProvider =
     defaultAppearance,
     onAppearanceChange,
     themeMode,
-    StyledThemeProvider = defaultStyledThemeProvider,
-    useTheme = defaultUseTheme,
+    styled,
   }) => {
+    const StyledThemeProvider = styled?.ThemeProvider || defaultStyledThemeProvider;
+
+    const useTheme = createUseTheme(styled?.useTheme || defaultUseTheme);
+
     return (
       <ThemeSwitcher
         themeMode={themeMode}
