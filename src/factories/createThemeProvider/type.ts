@@ -29,8 +29,6 @@ export interface ThemeProviderProps<T, S = Record<string, string>> {
     ThemeProvider?: StyledThemeProvider;
     useTheme?: () => any;
   };
-  StyledThemeProvider?: StyledThemeProvider;
-  useTheme?: () => Theme;
 
   // --------------------- antd 主题 --------------------- //
   prefixCls?: string;
@@ -54,7 +52,7 @@ export interface ThemeProviderProps<T, S = Record<string, string>> {
   };
   // --------------------- 主题切换 --------------------- //
   /**
-   * 应用的展示外观主题，只存在亮色和暗色两种
+   * 应用的展示外观主题，默认提供亮色和暗色两种，用户可以自行扩展
    * @default light
    */
   appearance?: ThemeAppearance;
