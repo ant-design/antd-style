@@ -1,3 +1,5 @@
+import { ThemeConfig } from 'antd';
+import { MappingAlgorithm } from 'antd/es/config-provider/context';
 import { AliasToken } from 'antd/es/theme/interface';
 
 import { ThemeAppearance, ThemeMode } from './appearance';
@@ -18,6 +20,11 @@ export type AntdToken = AliasToken;
 export interface AntdStylish {
   buttonDefaultHover: string;
 }
+
+export interface GetAntdTheme {
+  (appearance: ThemeAppearance): ThemeConfig | undefined;
+}
+export type { MappingAlgorithm };
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface CustomToken {}
