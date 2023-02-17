@@ -54,9 +54,7 @@ styled 的语法候选池中有两个库： `styled-component` 和 `emotion`。 
 | Dynamic styles        | ✅                | ✅                                                               |
 | Component as Selector | ✅                | 需要 [Babel 插件](https://emotion.sh/docs/@emotion/babel-plugin) |
 
-一开始时我们使用的是 emotion 的方案，但在实际应用落地验证时，我们发现 emotion 的 styled 默认不支持组件作为选择器的写法，需要配置 babel 插件才能实现。
-
-而我们最初的实现 re-export 了 `styled` 对象，这会使得 babel 插件的配置变得很复杂，大部分开发者可能都无法正确配置。
+一开始时我们使用的是 emotion 的方案，但在实际应用落地验证时，我们发现 emotion 的 styled 默认不支持组件作为选择器的写法，需要配置 babel 插件才能实现。 而我们最初的实现 re-export 了 `styled` 对象，这会使得 babel 插件的配置变得很复杂，大部分开发者可能都无法正确配置。
 
 所以我们又尝试默认集成 `styled-components`, 但此时发现，如果要为了默认兼容组件选择器的写法来集成 styled-components，为此将需多付出压缩后 10 KB+ 大小的体积（对比 `@emotion/styled` ）。
 
@@ -64,9 +62,9 @@ styled 的语法候选池中有两个库： `styled-component` 和 `emotion`。 
 | --------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
 | ![](https://mdn.alipayobjects.com/huamei_rqvucu/afts/img/A*uuRsQKLILmIAAAAAAAAAAAAADoN6AQ/fmt.webp)             | ![](https://mdn.alipayobjects.com/huamei_rqvucu/afts/img/A*uuRsQKLILmIAAAAAAAAAAAAADoN6AQ/fmt.webp)           |
 
-因此而在我们实际业务落地测试中发现，95% 的样式书写场景都不会用到组件选择器的语法。只有在需要动画、复合选择器等场景才会用到， 而在这种场景下 `createStyles` 的写法将会更加自然易用。
+此外，在我们实际业务落地测试中发现，95% 的样式书写场景都不会用到组件选择器的语法。只有在需要动画、复合选择器等场景才会用到， 而在这种场景下 `createStyles` 的写法将会更加自然易用。
 
-在我们看来，组件选择器的语法本质上是因为 styled-components 不支持创建 className 才不得已提供的补救措施。而为了这 5% 的使用场景再去额外增大 10kb+ 的体积，完全不划算。同时在最终定稿的实现方案中，也明确产出了 styled-components 的语法替换能力方案。详见：[createInstance-兼容 styled-components](/api/create-instance#兼容-styled-主题方案)。
+而在我们看来，组件选择器的语法本质上是因为 styled 不支持创建 className ，才不得已提供的补救措施。而为了这 5% 的使用场景再去额外增大 40% 的体积（10kb+），完全不划算。同时，在最终定稿的实现方案中也明确产出了 styled 的语法替换能力方案。详见：[createInstance-兼容 styled-components](/api/create-instance#兼容-styled-主题方案)。
 
 因此综合实践案例，结合包体积、使用场景，我们在多次摇摆下最终选择了 `@emotion/styled` 作为 `styled` 语法的样式引擎。
 
