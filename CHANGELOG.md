@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.0.0-alpha.57](https://github.com/ant-design/antd-style/compare/v3.0.0-alpha.56...v3.0.0-alpha.57) (2023-02-18)
+
+### ✨ Features
+
+- 实现 setupStyled ([d66d50d](https://github.com/ant-design/antd-style/commit/d66d50d))
+
 # [3.0.0-alpha.56](https://github.com/ant-design/antd-style/compare/v3.0.0-alpha.55...v3.0.0-alpha.56) (2023-02-18)
 
 ### 🐛 Bug Fixes
