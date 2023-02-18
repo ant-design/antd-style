@@ -1,6 +1,6 @@
 /**
- * title: styled-components
- * description: 只有注入了 styled-components 的 ThemeProvider ，才能响应自定义 token
+ * title: 全局设定 Styled 配置
+ * description: 在入口文件中设定 styled 配置，可以让所有 ThemeProvider 都能响应自定义 token
  * iframe: 100
  */
 import { setupStyled } from 'antd-style';

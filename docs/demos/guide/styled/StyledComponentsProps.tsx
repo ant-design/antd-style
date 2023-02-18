@@ -10,7 +10,9 @@ import { styled, ThemeProvider as StyledThemeProvider, useTheme } from 'styled-c
 const StyledButton = styled.button`
   color: ${(p) => p.theme.text};
   background: ${(p) => p.theme.colorPrimary};
+  border: 4px solid ${(p) => p.theme.border};
   padding: 8px;
+  border-radius: ${(p) => p.theme.borderRadius}px;
 `;
 
 export default () => {
@@ -19,7 +21,8 @@ export default () => {
       <ThemeProvider
         customToken={{
           text: 'white',
-          border: 'green',
+          border: 'cyan',
+          borderRadius: 8,
         }}
         styled={{
           ThemeProvider: StyledThemeProvider,
@@ -33,6 +36,7 @@ export default () => {
         customToken={{
           text: 'white',
           border: 'green',
+          borderRadius: 8,
         }}
       >
         <StyledButton>只包裹 ThemeProvider</StyledButton>

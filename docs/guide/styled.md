@@ -10,7 +10,7 @@ demo:
 
 # 搭配 styled 消费
 
-经过完整的调研与大量业务实践后，我们决定不在 `antd-style` 中内置 `styled` 的语法，而是为用户提供相应的主题兼容方案。
+经过详尽调研与大量业务实践后，我们决定不在 `antd-style` 中内置 `styled` 的方法，而是为 styled 的用户提供主题兼容方案。
 
 :::info{title=温馨提示}
 如果你对 styled 不太了解，建议先查阅 [styled-components](https://styled-components.com/) 了解它的使用方式
@@ -41,7 +41,9 @@ const App = () => {
 
 也就是说 `styled` 方法和 `ThemeProvider`（以及配套的`useTheme`）必须成对出现。 styled-components 的 styled 无法响应 @emotion/styled 的 ThemeProvider， @emotion/styled 的 useTheme 也不能响应 styled-components 的 ThemeProvider。
 
-通过分别阅读二者的源码( [styled-components](https://github.com/styled-components/styled-components/blob/main/packages/styled-components/src/models/StyledComponent.ts)、[@emotion/styled](https://github.com/emotion-js/emotion/blob/main/packages/styled/src/base.js#LL117C53-L117C53) )，我们发现这些 styled 的实现都耦合了各自创建的 Context，使得想要外部传入 Context 变得不可能，这就使得如果使用 styled 来创建样式组件，每个组件的使用就必须要在外部套一层 ThemeProvider ，而不是像普通组件一样直接引入。
+通过分别阅读二者的源码( [styled-components](https://github.com/styled-components/styled-components/blob/main/packages/styled-components/src/models/StyledComponent.ts)、[@emotion/styled](https://github.com/emotion-js/emotion/blob/main/packages/styled/src/base.js#LL117C53-L117C53) )，我们发现这些 styled 的实现都耦合了各自创建的 Context，因此外部不能传入自定义的 Context。
+
+这就使得如果使用 styled 来创建样式组件，每个组件的使用就必须要在外部套一层 ThemeProvider ，而不是像普通组件一样直接引入即可。
 
 ```tsx | pure
 // 单独使用，样式会丢
@@ -64,15 +66,13 @@ StyledButton.defaultProps = {
 
 那这些麻烦操作的根源都在于 styled 使用的 ThemeProvider 不提供自定义 Context 注入。目前来看，styled-components 应该不会实现该特性（[issue](https://github.com/styled-components/styled-components/issues/3612)）。
 
-这也就意味如果想要自定义一个 ThemeContext 作为组件的全局主题，并在 styled 的写法中获取到，就必须要自己实现一个 styled 的方法。
+这也就意味如果想要自定义一个 ThemeContext 作为组件的默认主题，并在 styled 的写法中获取到，就必须要自己实现自己的 styled 方法，但这对于绝大多数组件开发者来说并不现实。
 
-在 [CSS in JS 写法对比](/guide/compare) 这一章节中，我们认为 styled 由于设计缺陷，在未来将会没落。所以在 antd-style 中将只会提供 styled 的 ThemeProvider 和 useTheme 的兼容方案。
+在 [CSS in JS 写法对比](/guide/compare) 这一章节中，我们认为 styled 这个 api 由于设计缺陷，在未来将会没落。所以我们在 antd-style 中也将只提供 styled 的 ThemeProvider 和 useTheme 的兼容使用方案。
 
-## styled 的主题集成方案
+## styled 与 ThemeProvider 集成
 
-### ThemeProvider
-
-在 antd-style 的 ThemeProvider 中，我们提供了一个 styledThemeProvider 属性，用于接收外部 styled 的 ThemeProvider，进而让 styled 方法可以响应到 antd-style 的 ThemeProvider 内容。
+在 antd-style 的 ThemeProvider 中，我们提供了一个 `styled` 的 props ，用于接收外部 styled 的 ThemeProvider 和 useTheme ，进而让 styled 方法可以响应到 antd-style 的 ThemeProvider 内容。
 
 ```tsx | pure
 import { ThemeProvider } from 'antd-style';
@@ -88,9 +88,11 @@ render(
 <code src="../demos/guide/styled/StyledComponentsProps"></code>
 <code src="../demos/guide/styled/EmotionStyledProps.tsx"></code>
 
-### 全局注入: setupStyled
+关于 ThemeProvider 的 styled API 文档，详见: [ThemeProvider - styled 集成配置](/api/theme-provider#styled-集成)
 
-在 antd-style 中，我们提供了一个 `setupStyled` 方法，用于将外部 styled 的 ThemeProvider 和 useTheme 注入到 antd-style 的 ThemeProvider 里，进而让 styled 方法可以响应到所有的 ThemeProvider 内容。
+## 全局统一集成 styled
+
+在 antd-style 中，我们提供了一个 `setupStyled` 方法，用于将外部 styled 的 ThemeProvider 和 useTheme 统一注入到 antd-style 的 ThemeProvider 里，进而让 styled 方法可以响应到所有的 ThemeProvider 内容。
 
 ```tsx | pure
 import { setupStyled, ThemeProvider } from 'antd-style';
@@ -110,3 +112,23 @@ render(
 ```
 
 <code src="../demos/guide/styled/SetupStyled/index.tsx"></code>
+
+## Typescript 类型定义支持
+
+同 antd-style 的主题类型扩展一样，如果需要让各自的 styled 方法能够获取到 antd-style 的主题类型，需要在项目中全局补充 styled-components 或 @emotion/styled 的类型定义。
+
+```tsx | pure
+import { Theme as AntdStyleTheme } from 'antd-style';
+
+// 为 styled-components 的 styled 注入 antd-style 的主题类型
+declare module 'styled-components' {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  export interface DefaultTheme extends AntdStyleTheme {}
+}
+
+// 为 emotion 的 styled 注入 antd-style 的主题类型
+declare module '@emotion/react' {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  export interface Theme extends AntdStyleTheme {}
+}
+```

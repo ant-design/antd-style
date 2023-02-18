@@ -171,6 +171,21 @@ export default () => {
 在 css-in-js 的世界中，局部作用域非常容易实现。因此应该尽量减少全局作用域的使用（实在不行才用全局作用域）。 这也是 antd v5 中推荐的用法。但如果仍然需全局作用域层面的样式注入，可以使用 [createGlobalStyles](/usage/global-styles) 来完成。
 :::
 
+## styled 集成
+
+antd-style 通过 `styled` 方法提供了 styled-components 的 ThemeProvider 兼容能力，进而使用 antd-style 的 ThemeProvider 为 styled-components 或 emotion/styled 库提供主题消费。
+
+```tsx | pure
+export interface StyledConfig {
+  ThemeProvider?: StyledThemeProvider;
+  useTheme?: () => any;
+}
+
+export interface ThemeProviderProps {
+  styled?: StyledConfig;
+}
+```
+
 ## API
 
 | 名称               | 默认值                                 | 描述                                                                                  |
