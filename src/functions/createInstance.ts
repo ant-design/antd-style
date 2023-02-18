@@ -39,10 +39,7 @@ export const createInstance = (options: CreateOptions) => {
 
   const styledUseTheme = options.styled?.useTheme as () => Theme;
 
-  const emotion = createEmotion({
-    key: defaultKey,
-    speedy: options.speedy,
-  });
+  const emotion = createEmotion({ key: defaultKey, speedy: options.speedy });
 
   const { cache, sheet, hydrate, injectGlobal, keyframes, flush, merge, getRegisteredStyles } =
     emotion;
