@@ -1,5 +1,6 @@
 import { createInstance } from './createInstance';
 
+export { setupStyled } from './setupStyled';
 export { createInstance };
 
 const styleInstance = createInstance({ key: 'ant-css', speedy: false });

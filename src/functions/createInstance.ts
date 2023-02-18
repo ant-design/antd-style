@@ -1,23 +1,18 @@
-import { FC, useContext } from 'react';
+import { useContext } from 'react';
 
-import {
-  createClassNameGenerator,
-  createCX,
-  createEmotion,
-  PedestalProvider,
-  serializeCSS,
-  useTheme as defaultUseTheme,
-} from '@/core';
+import { createClassNameGenerator, createCX, createEmotion, serializeCSS } from '@/core';
+
 import { createEmotionContext } from '@/factories/createEmotionContext';
 import { createGlobalStyleFactory } from '@/factories/createGlobalStyle';
 import { createStylishFactory } from '@/factories/createStyish';
 import { createStyleProvider } from '@/factories/createStyleProvider';
 import { createStylesFactory } from '@/factories/createStyles';
-import { createThemeProvider, StyledThemeProvider } from '@/factories/createThemeProvider';
+import { createThemeProvider } from '@/factories/createThemeProvider';
 import { createUseTheme } from '@/factories/createUseTheme';
-import { HashPriority, Theme } from '@/types';
 
-interface CreateOptions<T = any> {
+import { HashPriority, StyledConfig, Theme } from '@/types';
+
+export interface CreateOptions {
   /**
    * 生成的 css 关键词
    * @default ant-css
@@ -32,23 +27,17 @@ interface CreateOptions<T = any> {
   hashPriority?: HashPriority;
 
   ThemeProvider?: any;
-  styled?: {
-    ThemeProvider?: FC<{ theme: T }>;
-    useTheme?: () => T;
-  };
+  styled?: StyledConfig;
 }
 
 /**
  * Creates a new instance of antd-style
  * 创建一个新的 antd-style 实例
  */
-export const createInstance = <T = any>(options: CreateOptions<T>) => {
+export const createInstance = (options: CreateOptions) => {
   const defaultKey = options.key || 'ant-css';
 
-  const styledUseTheme = (options.styled?.useTheme || defaultUseTheme) as () => Theme;
-
-  const defaultThemeProvider = (options.styled?.ThemeProvider ||
-    PedestalProvider) as StyledThemeProvider;
+  const styledUseTheme = options.styled?.useTheme as () => Theme;
 
   const emotion = createEmotion({
     key: defaultKey,
@@ -82,7 +71,7 @@ export const createInstance = <T = any>(options: CreateOptions<T>) => {
     prefix: defaultKey,
   });
 
-  const ThemeProvider = createThemeProvider(defaultThemeProvider, useTheme);
+  const ThemeProvider = createThemeProvider(options.styled);
 
   const useEmotion = () => useContext(EmotionContext);
   return {

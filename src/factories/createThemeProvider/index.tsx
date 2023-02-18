@@ -1,17 +1,18 @@
 import { memo, ReactElement } from 'react';
 
 import { createUseTheme } from '@/factories/createUseTheme';
-import { UseTheme } from '@/types';
+import { DEFAULT_THEME_PROVIDER, DEFAULT_USE_THEME } from '@/functions/setupStyled';
+import { StyledConfig } from '@/types';
+
 import AntdProvider from './AntdProvider';
 import ThemeSwitcher from './ThemeSwitcher';
 import TokenContainer from './TokenContainer';
-import { StyledThemeProvider, ThemeProviderProps } from './type';
+import { ThemeProviderProps } from './type';
 
 export * from './type';
 
 export const createThemeProvider = (
-  defaultStyledThemeProvider: StyledThemeProvider,
-  defaultUseTheme: UseTheme,
+  styledConfig?: StyledConfig,
 ): (<T = any, S = any>(props: ThemeProviderProps<T, S>) => ReactElement | null) =>
   memo(
     ({
@@ -36,7 +37,7 @@ export const createThemeProvider = (
         defaultAppearance={defaultAppearance}
         appearance={appearance}
         onAppearanceChange={onAppearanceChange}
-        useTheme={createUseTheme(styled?.useTheme || defaultUseTheme)}
+        useTheme={createUseTheme(styled?.useTheme || styledConfig?.useTheme || DEFAULT_USE_THEME)}
       >
         <AntdProvider
           prefixCls={prefixCls}
@@ -48,7 +49,9 @@ export const createThemeProvider = (
             prefixCls={prefixCls}
             customToken={customToken}
             customStylish={customStylish}
-            StyledThemeProvider={styled?.ThemeProvider || defaultStyledThemeProvider}
+            StyledThemeProvider={
+              styled?.ThemeProvider || styledConfig?.ThemeProvider || DEFAULT_THEME_PROVIDER
+            }
           >
             {children}
           </TokenContainer>

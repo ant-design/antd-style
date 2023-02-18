@@ -2,7 +2,7 @@ import {
   GetAntdTheme,
   GetCustomStylish,
   GetCustomToken,
-  Theme,
+  StyledConfig,
   ThemeAppearance,
   ThemeMode,
 } from '@/types';
@@ -10,9 +10,7 @@ import { ThemeConfig } from 'antd/es/config-provider/context';
 import { ConfigOptions as MessageConfig, MessageInstance } from 'antd/es/message/interface';
 import { ModalStaticFunctions } from 'antd/es/modal/confirm';
 import { NotificationConfig, NotificationInstance } from 'antd/es/notification/interface';
-import { FC, ReactNode } from 'react';
-
-export type StyledThemeProvider = FC<{ theme: Theme; children: ReactNode }>;
+import { ReactNode } from 'react';
 
 export interface ThemeProviderProps<T, S = Record<string, string>> {
   children: ReactNode;
@@ -25,10 +23,7 @@ export interface ThemeProviderProps<T, S = Record<string, string>> {
    * 自定义 Stylish
    */
   customStylish?: GetCustomStylish<S>;
-  styled?: {
-    ThemeProvider?: StyledThemeProvider;
-    useTheme?: () => any;
-  };
+  styled?: StyledConfig;
 
   // --------------------- antd 主题 --------------------- //
   prefixCls?: string;
