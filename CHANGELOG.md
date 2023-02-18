@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.0.0-alpha.56](https://github.com/ant-design/antd-style/compare/v3.0.0-alpha.55...v3.0.0-alpha.56) (2023-02-18)
+
+### 🐛 Bug Fixes
+
+- 补回 injectGlobal 方法丢失的问题 ([111bcc7](https://github.com/ant-design/antd-style/commit/111bcc7))
+
 # [3.0.0-alpha.55](https://github.com/ant-design/antd-style/compare/v3.0.0-alpha.54...v3.0.0-alpha.55) (2023-02-17)
 
 ### 🐛 Bug Fixes
