@@ -39,7 +39,7 @@ const App = () => {
 
 可以看到，styled 的主题响应是通过 `ThemeProvider` 来提供的，它会将 theme 作为 props 传递给 StyledButton，进而实现主题的响应。在底层，无论是 styled-components 还是 @emotion/styled 的 ThemeProvider，都是通过 React 的 `Context` 来创建 Provider 容器和 hooks 方法。
 
-也就是说 `styled` 方法和 `ThemeProvider`（以及配套的`useTheme`）必须成对出现。 styled-components 的 styled 无法响应 @emotion/styled 的 ThemeProvider。
+也就是说 `styled` 方法和 `ThemeProvider`（以及配套的`useTheme`）必须成对出现。 styled-components 的 styled 无法响应 @emotion/styled 的 ThemeProvider， @emotion/styled 的 useTheme 也不能响应 styled-components 的 ThemeProvider。
 
 通过分别阅读二者的源码( [styled-components](https://github.com/styled-components/styled-components/blob/main/packages/styled-components/src/models/StyledComponent.ts)、[@emotion/styled](https://github.com/emotion-js/emotion/blob/main/packages/styled/src/base.js#LL117C53-L117C53) )，我们发现这些 styled 的实现都耦合了各自创建的 Context，使得想要外部传入 Context 变得不可能，这就使得如果使用 styled 来创建样式组件，每个组件的使用就必须要在外部套一层 ThemeProvider ，而不是像普通组件一样直接引入。
 
@@ -90,7 +90,7 @@ render(
 
 ### 全局注入: setupStyled
 
-在 antd-style 中，我们提供了一个 `setupStyled` 方法，用于将外部 styled 的 ThemeProvider 和 useTheme 注入到 antd-style 的 ThemeProvider 里，进而让 styled 方法可以响应到 antd-style 的 ThemeProvider 内容。
+在 antd-style 中，我们提供了一个 `setupStyled` 方法，用于将外部 styled 的 ThemeProvider 和 useTheme 注入到 antd-style 的 ThemeProvider 里，进而让 styled 方法可以响应到所有的 ThemeProvider 内容。
 
 ```tsx | pure
 import { setupStyled, ThemeProvider } from 'antd-style';
@@ -108,3 +108,5 @@ render(
   </ThemeProvider>,
 );
 ```
+
+<code src="../demos/guide/styled/SetupStyled/index.tsx"></code>
