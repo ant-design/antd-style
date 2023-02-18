@@ -14,7 +14,11 @@ export const {
   cx,
   keyframes,
   //****  样式表管理  **** //
-  emotion,
+  styleInstance: emotion,
+  /**
+   * @deprecated
+   */
+  injectGlobal,
   flush,
   hydrate,
   sheet,

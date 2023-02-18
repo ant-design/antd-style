@@ -55,7 +55,8 @@ export const createInstance = <T = any>(options: CreateOptions<T>) => {
     speedy: options.speedy,
   });
 
-  const { cache, sheet, hydrate, keyframes, flush, merge, getRegisteredStyles } = emotion;
+  const { cache, sheet, hydrate, injectGlobal, keyframes, flush, merge, getRegisteredStyles } =
+    emotion;
 
   const classNameGenerator = createClassNameGenerator(cache, options.hashPriority);
   const cx = createCX(classNameGenerator, emotion.cx);
@@ -97,6 +98,10 @@ export const createInstance = <T = any>(options: CreateOptions<T>) => {
     css: serializeCSS,
     cx,
     keyframes,
+    /**
+     * @deprecated
+     */
+    injectGlobal,
 
     //******************** //
     //****  样式表管理  **** //
@@ -107,7 +112,7 @@ export const createInstance = <T = any>(options: CreateOptions<T>) => {
     merge,
     hydrate,
     getRegisteredStyles,
-    emotion,
+    styleInstance: emotion,
     // ******************** //
     // ***** 主题相关 ***** //
     // ******************** //
