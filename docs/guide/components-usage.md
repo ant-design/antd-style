@@ -65,9 +65,9 @@ const useStyles = createStyles(getStyleFn, { hashPriority: 'low' });
 // useStyles 里的样式将都会使用 where 选择器
 ```
 
-当然如果你不希望给每个 createStyles 设置一遍 `{ hashPriority: 'low' }`，你可以往下阅读，了解如何为组件库设定一个自己的样式方法。
+当然如果你不希望给每个 createStyles 设置一遍 `{ hashPriority: 'low' }`，你可以往下阅读，了解如何为组件库设定一个自己的样式实例方法。
 
-## 独立样式方案
+## 独立样式实例
 
 其实，除了 where 以外，组件研发的场景和应用研发的场景还有一些不同之处。比如：
 
@@ -75,7 +75,7 @@ const useStyles = createStyles(getStyleFn, { hashPriority: 'low' });
 - 可能会希望让组件库的前缀可以默认变成自定义的前缀；
 - 同样希望组件库可以响应应用传入的主题配置；
 
-这些场景，都可以通过 antd-style 提供的创建独立样式方法 `createInstance` 来实现。
+这些场景，都可以通过 antd-style 提供的创建独立样式实例 `createInstance` 来实现。
 
 ```ts
 import { createInstance } from 'antd-style';
