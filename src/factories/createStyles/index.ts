@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import { createClassNameGenerator, createCX, serializeCSS } from '@/core';
+import { createCSS, serializeCSS } from '@/core';
 import { createUseTheme } from '@/factories/createUseTheme';
 import type {
   BaseReturnType,
@@ -36,8 +36,7 @@ export const createStylesFactory =
     options?: CreateStyleOptions,
   ) => {
     // 由于 toClassName 方法依赖了用户给 createStyle 传递的 hashPriority，所以需要在这里重新生成 cx 和 toClassName 方法
-    const toClassName = createClassNameGenerator(cache, options?.hashPriority || hashPriority);
-    const cx = createCX(cache, toClassName);
+    const { cx, css: toClassName } = createCSS(cache, options?.hashPriority || hashPriority);
 
     const useTheme = createUseTheme(styledUseTheme);
 

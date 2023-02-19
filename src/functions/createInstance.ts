@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 
-import { createClassNameGenerator, createCX, createEmotion, serializeCSS } from '@/core';
+import { createCSS, createEmotion, serializeCSS } from '@/core';
 
 import { createEmotionContext } from '@/factories/createEmotionContext';
 import { createGlobalStyleFactory } from '@/factories/createGlobalStyle';
@@ -43,8 +43,7 @@ export const createInstance = <T = any>(options: CreateOptions<T>) => {
 
   const { cache, injectGlobal, keyframes } = emotion;
 
-  const classNameGenerator = createClassNameGenerator(cache, options.hashPriority);
-  const cx = createCX(cache, classNameGenerator);
+  const { cx } = createCSS(cache, options.hashPriority);
 
   const useTheme = createUseTheme(styledUseTheme);
 
