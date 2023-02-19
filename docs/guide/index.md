@@ -26,3 +26,9 @@ antd 作为一个组件库，它的职责和边界只在于提供高品质的基
 它具备以下特性：
 
 <Features></Feature>
+
+## 它和 @ant-design/cssinjs 的区别是什么？
+
+`@ant-design/cssinjs` 是实现 antd 组件库的一套 cssinjs 方案，它通过比较繁琐的写法换得了相比 styled-component 和 emotion 都要好很多的性能。详见：[组件级别的 CSS-in-JS](https://ant.design/docs/blog/css-in-js-cn)。但对应用和基于 antd 封装的组件库中，这种写法可能过于繁琐和复杂，且缺少消费 antd token 系统的能力。
+
+所以 antd-style 的适用场景是业务应用和基于 antd 二次封装的组件库，它会提供这两个场景所需要的所有能力。
