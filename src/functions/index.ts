@@ -14,19 +14,13 @@ export const {
   css,
   cx,
   keyframes,
-  //****  样式表管理  **** //
-  styleInstance: emotion,
   /**
    * @deprecated
    */
   injectGlobal,
-  flush,
-  hydrate,
-  sheet,
-  cache,
-  getRegisteredStyles,
+  //****  样式表管理  **** //
+  styleManager,
   // ***** 主题相关 ***** //
-  EmotionContext,
   ThemeProvider,
   StyleProvider,
   useTheme,

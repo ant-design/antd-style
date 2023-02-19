@@ -41,8 +41,7 @@ export const createInstance = (options: CreateOptions) => {
 
   const emotion = createEmotion({ key: defaultKey, speedy: options.speedy });
 
-  const { cache, sheet, hydrate, injectGlobal, keyframes, flush, merge, getRegisteredStyles } =
-    emotion;
+  const { cache, injectGlobal, keyframes } = emotion;
 
   const classNameGenerator = createClassNameGenerator(cache, options.hashPriority);
   const cx = createCX(classNameGenerator, emotion.cx);
@@ -92,13 +91,7 @@ export const createInstance = (options: CreateOptions) => {
     //******************** //
     //****  样式表管理  **** //
     //******************** //
-    cache,
-    sheet,
-    flush,
-    merge,
-    hydrate,
-    getRegisteredStyles,
-    styleInstance: emotion,
+    styleManager: emotion,
     // ******************** //
     // ***** 主题相关 ***** //
     // ******************** //
