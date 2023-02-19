@@ -11,14 +11,13 @@ import type {
   UseTheme,
 } from '@/types';
 import { isReactCssResult } from '@/utils';
-import { Emotion, EmotionCache } from '@emotion/css/create-instance';
+import { EmotionCache } from '@emotion/css/create-instance';
 
 import { convertResponsiveStyleToString, useMediaQueryMap } from './response';
 import { ReturnStyles, StyleOrGetStyleFn } from './types';
 
 interface CreateStylesFactory {
   cache: EmotionCache;
-  cx: Emotion['cx'];
   styledUseTheme?: UseTheme;
   hashPriority?: HashPriority;
 }
@@ -31,14 +30,14 @@ export interface CreateStyleOptions {
  * 创建样式基础写法
  */
 export const createStylesFactory =
-  ({ styledUseTheme, hashPriority, cache, cx: emotionCX }: CreateStylesFactory) =>
+  ({ styledUseTheme, hashPriority, cache }: CreateStylesFactory) =>
   <Props, Input extends BaseReturnType = BaseReturnType>(
     styleOrGetStyle: StyleOrGetStyleFn<Input, Props>,
     options?: CreateStyleOptions,
   ) => {
     // 由于 toClassName 方法依赖了用户给 createStyle 传递的 hashPriority，所以需要在这里重新生成 cx 和 toClassName 方法
     const toClassName = createClassNameGenerator(cache, options?.hashPriority || hashPriority);
-    const cx = createCX(toClassName, emotionCX);
+    const cx = createCX(cache, toClassName);
 
     const useTheme = createUseTheme(styledUseTheme);
 

@@ -1,6 +1,6 @@
 import { insertStyles } from '@/core/insertStyles';
-import { HashPriority } from '@/types';
-import { Emotion, EmotionCache } from '@emotion/css/create-instance';
+import { ClassNameGenerator, HashPriority } from '@/types';
+import { EmotionCache } from '@emotion/css/create-instance';
 import { serializeStyles } from '@emotion/serialize';
 
 /**
@@ -9,7 +9,7 @@ import { serializeStyles } from '@emotion/serialize';
  * @param hashPriority
  */
 export const createClassNameGenerator =
-  (cache: EmotionCache, hashPriority: HashPriority = 'high'): Emotion['css'] =>
+  (cache: EmotionCache, hashPriority: HashPriority = 'high'): ClassNameGenerator =>
   (...args) => {
     const serialized = serializeStyles(args, cache.registered, undefined);
     insertStyles(cache, serialized, false, hashPriority);

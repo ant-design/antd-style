@@ -7,12 +7,12 @@ import { createGlobalStyleFactory } from '@/factories/createGlobalStyle';
 import { createStylishFactory } from '@/factories/createStyish';
 import { createStyleProvider } from '@/factories/createStyleProvider';
 import { createStylesFactory } from '@/factories/createStyles';
-import { createThemeProvider } from '@/factories/createThemeProvider';
+import { createThemeProvider, ThemeProviderProps } from '@/factories/createThemeProvider';
 import { createUseTheme } from '@/factories/createUseTheme';
 
 import { HashPriority, StyledConfig, StyleManager, Theme } from '@/types';
 
-export interface CreateOptions {
+export interface CreateOptions<T> {
   /**
    * 生成的 css 关键词
    * @default ant-css
@@ -26,7 +26,7 @@ export interface CreateOptions {
   speedy?: boolean;
   hashPriority?: HashPriority;
 
-  ThemeProvider?: any;
+  ThemeProvider?: Omit<ThemeProviderProps<T>, 'children'>;
   styled?: StyledConfig;
 }
 
@@ -34,7 +34,7 @@ export interface CreateOptions {
  * Creates a new instance of antd-style
  * 创建一个新的 antd-style 实例
  */
-export const createInstance = (options: CreateOptions) => {
+export const createInstance = <T = any>(options: CreateOptions<T>) => {
   const defaultKey = options.key || 'ant-css';
 
   const styledUseTheme = options.styled?.useTheme as () => Theme;
@@ -44,15 +44,13 @@ export const createInstance = (options: CreateOptions) => {
   const { cache, injectGlobal, keyframes } = emotion;
 
   const classNameGenerator = createClassNameGenerator(cache, options.hashPriority);
-  const cx = createCX(classNameGenerator, emotion.cx);
+  const cx = createCX(cache, classNameGenerator);
 
   const useTheme = createUseTheme(styledUseTheme);
 
   const createStyles = createStylesFactory({
     cache,
-    cx: emotion.cx,
     styledUseTheme,
-
     hashPriority: options.hashPriority,
   });
 

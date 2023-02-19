@@ -3,13 +3,15 @@
   "version": "3.0.0-alpha.58",
   "description": "a css-in-js solution for application combine with antd v5 token system and emotion",
   "keywords": [
+    "antd",
     "css-in-js",
     "cssinjs",
-    "emtion",
+    "antd design token",
     "token",
     "design token",
     "token-system",
-    "antd"
+    "emtion",
+    "styled-components"
   ],
   "homepage": "https://github.com/ant-design/antd-style",
   "bugs": {
@@ -135,10 +137,5 @@
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org"
-  },
-  "pnpm": {
-    "overrides": {
-      "esquery": "1.4.0"
-    }
   }
 }

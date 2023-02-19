@@ -1,5 +1,5 @@
 import { Theme } from '@/types/theme';
-import { ArrayClassNamesArg } from '@emotion/css/create-instance';
+import { ArrayClassNamesArg, Emotion } from '@emotion/css/create-instance';
 import { CSSInterpolation, SerializedStyles } from '@emotion/serialize';
 import { Interpolation } from '@emotion/styled';
 
@@ -7,6 +7,8 @@ export type CSSStyle<T = Theme> = Array<TemplateStringsArray | Interpolation<T>>
 
 export { type CSSObject } from '@emotion/css';
 export type { SerializedStyles } from '@emotion/serialize';
+
+export type ClassNameGenerator = Emotion['css'];
 
 export interface CssUtil {
   (template: TemplateStringsArray, ...args: Array<CSSInterpolation>): SerializedStyles;
