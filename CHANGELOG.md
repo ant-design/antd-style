@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.0.0-alpha.58](https://github.com/ant-design/antd-style/compare/v3.0.0-alpha.57...v3.0.0-alpha.58) (2023-02-19)
+
+### ✨ Features
+
+- 移除若干无用 api 并调整样式表实例为 styleManager ([8dafbc4](https://github.com/ant-design/antd-style/commit/8dafbc4))
+
 # [3.0.0-alpha.57](https://github.com/ant-design/antd-style/compare/v3.0.0-alpha.56...v3.0.0-alpha.57) (2023-02-18)
 
 ### ✨ Features
