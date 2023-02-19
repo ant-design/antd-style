@@ -2,7 +2,7 @@
 title: createInstance
 description: 创建样式实例方法
 group:
-  title: 组件研发
+  title: 高级设置
   order: 10
 ---
 
