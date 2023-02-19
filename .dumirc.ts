@@ -38,4 +38,7 @@ export default defineConfig({
     posthog.init('phc_opzQkyrq6tim3eBoeRYwY0No5hZ9Dl5ws7iQLpNrLXG',{api_host:'https://app.posthog.com'})
 `,
   ],
+  codeSplitting: {
+    jsStrategy: 'granularChunks',
+  },
 });
