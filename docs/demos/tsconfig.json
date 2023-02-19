@@ -1,0 +1,15 @@
+{
+  "include": ["**/*.tsx", "**/*.ts"],
+  "compilerOptions": {
+    "strict": true,
+    "declaration": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "jsx": "react-jsx",
+    "lib": ["DOM", "ESNext"],
+    "baseUrl": ".",
+    "paths": {
+      "antd-style": ["../../es"]
+    }
+  }
+}

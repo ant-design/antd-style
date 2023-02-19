@@ -19,7 +19,10 @@ describe('styled', () => {
       `;
 
       const { container } = render(<App>自定义样式</App>);
-      expect(container).toHaveStyle({ color: undefined, background: undefined, width: 30 });
+
+      expect(container.firstChild).toHaveStyleRule('width', '30px');
+      expect(container.firstChild).toHaveStyle('color: undefined');
+      expect(container.firstChild).toHaveStyle('background: undefined');
       expect(container).toMatchSnapshot();
     });
 
@@ -31,12 +34,10 @@ describe('styled', () => {
       `;
 
       const { container } = render(<App>自定义样式</App>, { wrapper: ThemeProvider });
-      expect(container.firstChild).toHaveStyle({
-        width: '30px',
-        color: '#1677ff',
-        background: '#e6f4ff',
-      });
 
+      expect(container.firstChild).toHaveStyleRule('width', '30px');
+      expect(container.firstChild).toHaveStyleRule('color', '#1677ff');
+      expect(container.firstChild).toHaveStyleRule('background', '#e6f4ff');
       expect(container).toMatchSnapshot();
     });
 
@@ -50,23 +51,20 @@ describe('styled', () => {
       `;
       const { container, rerender } = render(<Card>卡片</Card>, { wrapper: ThemeProvider });
 
-      expect(container.firstChild).toHaveStyle({
-        borderRadius: '8px',
-        padding: '24px',
-        color: 'rgba(0,0,0,0.88)',
-        background: 'rgb(255, 255, 255)',
-      });
+      const content = container.firstChild;
+      expect(content).toHaveStyleRule('border-radius', '8px');
+      expect(content).toHaveStyleRule('padding', '24px');
+      expect(content).toHaveStyleRule('background', '#ffffff');
+      expect(content).toHaveStyleRule('color', 'rgba(0, 0, 0, 0.88)');
 
       expect(container).toMatchSnapshot();
 
-      rerender(<Card primary>卡片</Card>);
+      rerender(<Card primary={true}>卡片</Card>);
 
-      expect(container.firstChild).toHaveStyle({
-        borderRadius: '8px',
-        padding: '24px',
-        background: '#1677ff',
-        color: 'rgb(255, 255, 255)',
-      });
+      expect(content).toHaveStyleRule('border-radius', '8px');
+      expect(content).toHaveStyleRule('padding', '24px');
+      expect(content).toHaveStyleRule('background', '#1677ff');
+      expect(content).toHaveStyleRule('color', '#fff');
 
       expect(container).toMatchSnapshot();
     });

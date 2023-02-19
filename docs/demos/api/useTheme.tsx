@@ -1,7 +1,10 @@
-import { Divider, Space } from 'antd';
-import { AppContainer, ThemeProvider, useTheme } from 'antd-style';
+/**
+ * iframe: 500
+ */
+import { App, Divider, Space } from 'antd';
+import { ThemeProvider, useTheme } from 'antd-style';
 
-const App = () => {
+const Demo = () => {
   const token = useTheme();
 
   return (
@@ -31,20 +34,27 @@ const App = () => {
 };
 
 export default () => {
+  const token = useTheme();
   return (
-    <>
-      AppContainer 包裹
-      <AppContainer>
-        <App />
-      </AppContainer>
-      <Divider />
-      <div>ThemeProvider 包裹</div>
-      <ThemeProvider>
-        <App />
+    <div style={{ background: token.colorBgLayout, padding: 24 }}>
+      <ThemeProvider appearance={'dark'}>
+        <App>
+          <div style={{ background: '#000', padding: '24px 12px', borderRadius: 12 }}>
+            ThemeProvider & 暗色模式
+            <div>
+              <Demo />
+            </div>
+          </div>
+        </App>
       </ThemeProvider>
       <Divider />
-      <div>未包裹</div>
-      <App />
-    </>
+      <div>ThemeProvider & token 值</div>
+      <ThemeProvider theme={{ token: { colorPrimary: '#60ff68' } }}>
+        <Demo />
+      </ThemeProvider>
+      <Divider />
+      <div>未包裹，使用默认值</div>
+      <Demo />
+    </div>
   );
 };
