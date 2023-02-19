@@ -77,4 +77,27 @@ const useStyles = createStyles(getStyleFn, { hashPriority: 'low' });
 
 这些场景，都可以通过 antd-style 提供的创建独立样式方法 `createInstance` 来实现。
 
-该方法详细的 API 可以查阅: [createInstance](/api/create-instance)。
+```ts
+import { createInstance } from 'antd-style';
+
+interface ForDemoToken {
+  primaryColor: string;
+  demoBgColor: string;
+}
+
+export const { createStyles, ThemeProvider } = createInstance<ForDemoToken>({
+  key: 'css',
+  hashPriority: 'low',
+  defaultCustomToken: {
+    primaryColor: '#ce1472',
+    demoBgColor: '#f1f2f5',
+  },
+  prefixCls: 'for-demo',
+});
+```
+
+在下方示例显示了自定义样式实例和自定义 token 默认值，并应用在组件 demo 的方案。
+
+<code src="../demos/guide/component-usage/CustomInstance"></code>
+
+`createInstance` 方法详细的 API 请查阅: [createInstance](/api/create-instance)。

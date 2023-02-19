@@ -5,14 +5,12 @@ interface ForDemoToken {
   demoBgColor: string;
 }
 
-export const { createStyles } = createInstance<ForDemoToken>({
+export const { createStyles, ThemeProvider: ProDemoProvider } = createInstance<ForDemoToken>({
   key: 'css',
-  ThemeProvider: {
-    prefixCls: 'for-demo',
-    // customToken: {
-    //   primaryColor: '#ce1472',
-    //   demoBgColor: '#f1f2f5',
-    // },
+  prefixCls: 'for-demo',
+  customToken: {
+    primaryColor: '#ce1472',
+    demoBgColor: '#f1f2f5',
   },
   hashPriority: 'low',
 });
