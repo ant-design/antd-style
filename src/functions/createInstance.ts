@@ -10,7 +10,7 @@ import { createStylesFactory } from '@/factories/createStyles';
 import { createThemeProvider } from '@/factories/createThemeProvider';
 import { createUseTheme } from '@/factories/createUseTheme';
 
-import { HashPriority, StyledConfig, Theme } from '@/types';
+import { HashPriority, StyledConfig, StyleManager, Theme } from '@/types';
 
 export interface CreateOptions {
   /**
@@ -91,7 +91,7 @@ export const createInstance = (options: CreateOptions) => {
     //******************** //
     //****  样式表管理  **** //
     //******************** //
-    styleManager: emotion,
+    styleManager: emotion as StyleManager,
     // ******************** //
     // ***** 主题相关 ***** //
     // ******************** //

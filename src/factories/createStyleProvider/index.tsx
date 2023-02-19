@@ -1,4 +1,5 @@
 import { createEmotion, Emotion } from '@/core/createEmotion';
+import { StyleManager } from '@/types';
 import { StylisPlugin } from '@emotion/cache';
 import { Context, FC, memo, ReactNode, useEffect, useMemo } from 'react';
 
@@ -16,10 +17,10 @@ export interface StyleProviderProps {
   insertionPoint?: HTMLElement;
 
   /**
-   * 获取到 emotion 实例
-   * @param emotion
+   * 获取到 styleManager 实例
+   * @param styleManager
    */
-  getEmotionInstance?: (emotion: Emotion) => void;
+  getStyleManager?: (styleManager: StyleManager) => void;
   children: ReactNode;
 }
 
@@ -37,7 +38,7 @@ export const createStyleProvider = (
       children,
       prefix = defaultProps?.prefix || 'ant-css',
       speedy = defaultProps?.speedy,
-      getEmotionInstance,
+      getStyleManager,
 
       ...emotionOptions
     }) => {
@@ -52,7 +53,7 @@ export const createStyleProvider = (
       }, [prefix, speedy, emotionOptions]);
 
       useEffect(() => {
-        getEmotionInstance?.(emotion);
+        getStyleManager?.(emotion);
       }, [emotion]);
 
       return <EmotionContext.Provider value={emotion}>{children}</EmotionContext.Provider>;
