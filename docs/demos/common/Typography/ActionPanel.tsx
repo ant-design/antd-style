@@ -1,5 +1,5 @@
+import styled from '@emotion/styled';
 import { Space } from 'antd';
-import { styled } from 'antd-style';
 
 export const ActionPanel = styled(Space)`
   .anticon {

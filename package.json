@@ -74,7 +74,6 @@
     "@emotion/css": "^11",
     "@emotion/react": "^11",
     "@emotion/serialize": "^1",
-    "@emotion/styled": "^11",
     "@emotion/utils": "^1",
     "use-merge-value": "^1"
   },
@@ -83,6 +82,7 @@
     "@commitlint/cli": "^17",
     "@emotion/babel-plugin": "^11",
     "@emotion/jest": "^11",
+    "@emotion/styled": "^11",
     "@floating-ui/react": "^0.17",
     "@react-three/fiber": "^8",
     "@testing-library/jest-dom": "^5",

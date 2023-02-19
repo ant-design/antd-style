@@ -1,5 +1,6 @@
+import styled from '@emotion/styled';
 import { Avatar as A } from 'antd';
-import { styled, useTheme } from 'antd-style';
+import { useTheme } from 'antd-style';
 import { FC } from 'react';
 
 const AvatarText = styled.span`

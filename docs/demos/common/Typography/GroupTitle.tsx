@@ -1,4 +1,4 @@
-import { styled } from 'antd-style';
+import styled from '@emotion/styled';
 import { FC } from 'react';
 
 const T = styled.div`

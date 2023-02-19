@@ -1,8 +1,10 @@
 /**
  * iframe: 500
  */
+import styled from '@emotion/styled';
 import { App } from 'antd';
-import { styled, ThemeProvider } from 'antd-style';
+import { ThemeProvider } from 'antd-style';
+
 import { Flexbox } from 'react-layout-kit';
 
 import { GroupCollapse, GroupTitle, SubTitle, Title } from '../../common/Typography';

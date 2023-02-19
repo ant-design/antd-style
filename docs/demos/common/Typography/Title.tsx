@@ -1,6 +1,6 @@
 import { HomeOutlined } from '@ant-design/icons';
+import styled from '@emotion/styled';
 import { Col, Row } from 'antd';
-import { styled } from 'antd-style';
 
 import { ActionPanel } from './ActionPanel';
 import Avatar from './Avatar';

@@ -1,6 +1,6 @@
+import styled from '@emotion/styled';
 import { render } from '@testing-library/react';
-
-import { styled, ThemeProvider } from 'antd-style';
+import { ThemeProvider } from 'antd-style';
 
 describe('styled', () => {
   it('类型定义正常', () => {

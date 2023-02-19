@@ -1,6 +1,6 @@
 import { ReadOutlined } from '@ant-design/icons';
+import styled from '@emotion/styled';
 import { Row } from 'antd';
-import { styled } from 'antd-style';
 import { startCase } from 'lodash';
 import { FC, ReactNode } from 'react';
 

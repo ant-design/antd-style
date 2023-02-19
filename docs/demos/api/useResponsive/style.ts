@@ -1,4 +1,4 @@
-import { styled } from 'antd-style';
+import styled from '@emotion/styled';
 
 export const Container = styled.div`
   background: ${({ theme }) => theme.colorBgLayout};

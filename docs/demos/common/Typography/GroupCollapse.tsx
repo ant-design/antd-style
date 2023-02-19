@@ -1,5 +1,5 @@
+import styled from '@emotion/styled';
 import { Collapse } from 'antd';
-import { styled } from 'antd-style';
 import { FC, PropsWithChildren } from 'react';
 
 const CustomCollapse = styled(Collapse)`

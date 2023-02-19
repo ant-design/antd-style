@@ -119,7 +119,7 @@ export default () => {
 #### 场景二：使用 styled 搭配 Token 创建自定义样式的组件
 
 ```tsx | pure
-import { styled } from 'antd-style';
+import styled from '@emotion/styled';
 
 const Card = styled.div<{ primary?: boolean }>`
   border-radius: ${(p) => p.theme.borderRadiusLG}px;
