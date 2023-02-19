@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.0.0-alpha.59](https://github.com/ant-design/antd-style/compare/v3.0.0-alpha.58...v3.0.0-alpha.59) (2023-02-19)
+
+### 🐛 Bug Fixes
+
+- 修正 cx 下 where 选择器不正常显示的问题 ([a641ace](https://github.com/ant-design/antd-style/commit/a641ace))
+
 # [3.0.0-alpha.58](https://github.com/ant-design/antd-style/compare/v3.0.0-alpha.57...v3.0.0-alpha.58) (2023-02-19)
 
 ### ✨ Features
