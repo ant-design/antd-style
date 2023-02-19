@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { createContext, useContext } from 'react';
 
 import { createCSS, createEmotion, serializeCSS } from '@/core';
 
@@ -18,12 +18,21 @@ export interface CreateOptions<T> {
    * @default ant-css
    */
   key?: string;
+
+  /**
+   * 默认的组件 prefixCls
+   */
+  prefixCls?: string;
   /**
    * 是否开启急速模式
    *
    * @default false
    */
   speedy?: boolean;
+  /**
+   * 默认的自定义 Token
+   */
+  defaultCustomToken?: T;
   hashPriority?: HashPriority;
 
   ThemeProvider?: Omit<ThemeProviderProps<T>, 'children'>;
@@ -37,25 +46,42 @@ export interface CreateOptions<T> {
 export const createInstance = <T = any>(options: CreateOptions<T>) => {
   const defaultKey = options.key || 'ant-css';
 
-  const styledUseTheme = options.styled?.useTheme as () => Theme;
-
   const emotion = createEmotion({ key: defaultKey, speedy: options.speedy });
 
   const { cache, injectGlobal, keyframes } = emotion;
 
   const { cx } = createCSS(cache, options.hashPriority);
 
-  const useTheme = createUseTheme(styledUseTheme);
+  // ******* 下面这些都和主题相关，如果做了任何改动，都需要排查一遍 ************* //
+
+  const CustomThemeContext = createContext<T>(
+    (options.defaultCustomToken ? options.defaultCustomToken : {}) as T,
+  );
+
+  const styledUseTheme = options.styled?.useTheme as () => Theme;
+
+  const useTheme = createUseTheme({
+    prefixCls: options?.prefixCls,
+    CustomThemeContext,
+    styledUseTheme,
+  });
 
   const createStyles = createStylesFactory({
     cache,
-    styledUseTheme,
     hashPriority: options.hashPriority,
+    useTheme,
   });
-
   const createGlobalStyle = createGlobalStyleFactory(useTheme);
 
   const createStylish = createStylishFactory(createStyles);
+
+  const ThemeProvider = createThemeProvider({
+    styledConfig: options.styled,
+    CustomThemeContext,
+    prefixCls: options.prefixCls,
+  });
+
+  // ******** 上面这些都和主题相关，如果做了任何改动，都需要排查一遍 ************ //
 
   const EmotionContext = createEmotionContext(emotion);
 
@@ -64,9 +90,8 @@ export const createInstance = <T = any>(options: CreateOptions<T>) => {
     prefix: defaultKey,
   });
 
-  const ThemeProvider = createThemeProvider(options.styled);
-
   const useEmotion = () => useContext(EmotionContext);
+
   return {
     // ******************** //
     // **** 样式生成相关 **** //

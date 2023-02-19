@@ -5,7 +5,7 @@ import { EmotionCache } from '@emotion/css/create-instance';
 import { serializeStyles } from '@emotion/serialize';
 
 const createClassNameGenerator =
-  (cache: EmotionCache, hashPriority: HashPriority = 'high'): ClassNameGenerator =>
+  (cache: EmotionCache, hashPriority: HashPriority): ClassNameGenerator =>
   (...args) => {
     const serialized = serializeStyles(args, cache.registered, undefined);
     insertStyles(cache, serialized, false, hashPriority);

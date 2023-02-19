@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import { getRegisteredStyles, RegisteredCache } from '@emotion/utils';
 
 /**

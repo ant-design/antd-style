@@ -1,14 +1,12 @@
 import { useMemo } from 'react';
 
 import { createCSS, serializeCSS } from '@/core';
-import { createUseTheme } from '@/factories/createUseTheme';
 import type {
   BaseReturnType,
   CSSObject,
   HashPriority,
   ResponsiveUtil,
   ReturnStyleToUse,
-  UseTheme,
 } from '@/types';
 import { isReactCssResult } from '@/utils';
 import { EmotionCache } from '@emotion/css/create-instance';
@@ -18,8 +16,8 @@ import { ReturnStyles, StyleOrGetStyleFn } from './types';
 
 interface CreateStylesFactory {
   cache: EmotionCache;
-  styledUseTheme?: UseTheme;
   hashPriority?: HashPriority;
+  useTheme: () => any;
 }
 
 export interface CreateStyleOptions {
@@ -30,15 +28,13 @@ export interface CreateStyleOptions {
  * 创建样式基础写法
  */
 export const createStylesFactory =
-  ({ styledUseTheme, hashPriority, cache }: CreateStylesFactory) =>
+  ({ hashPriority, cache, useTheme }: CreateStylesFactory) =>
   <Props, Input extends BaseReturnType = BaseReturnType>(
     styleOrGetStyle: StyleOrGetStyleFn<Input, Props>,
     options?: CreateStyleOptions,
   ) => {
     // 由于 toClassName 方法依赖了用户给 createStyle 传递的 hashPriority，所以需要在这里重新生成 cx 和 toClassName 方法
     const { cx, css: toClassName } = createCSS(cache, options?.hashPriority || hashPriority);
-
-    const useTheme = createUseTheme(styledUseTheme);
 
     // 返回 useStyles 方法，作为 hooks 使用
     return (props?: Props): ReturnStyles<Input> => {

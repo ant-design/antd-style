@@ -1,4 +1,5 @@
 /* istanbul ignore file */
+
 // copied from https://github.com/emotion-js/emotion/blob/main/packages/utils/src/index.js
 import type { HashPriority } from '@/types';
 import type { EmotionCache } from '@emotion/css/create-instance';
