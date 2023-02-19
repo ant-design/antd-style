@@ -15,6 +15,7 @@ interface CreateThemeProviderOptions {
   styledConfig?: StyledConfig;
   CustomThemeContext: Context<any>;
   prefixCls?: string;
+  customToken: ThemeProviderProps<any>['customToken'];
 }
 
 export const createThemeProvider = (
@@ -24,7 +25,7 @@ export const createThemeProvider = (
     ({
       children,
 
-      customToken,
+      customToken = option.customToken,
       customStylish,
 
       theme,

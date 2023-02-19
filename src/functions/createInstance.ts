@@ -32,7 +32,7 @@ export interface CreateOptions<T> {
   /**
    * 默认的自定义 Token
    */
-  defaultCustomToken?: T;
+  customToken?: T;
   hashPriority?: HashPriority;
 
   ThemeProvider?: Omit<ThemeProviderProps<T>, 'children'>;
@@ -55,7 +55,7 @@ export const createInstance = <T = any>(options: CreateOptions<T>) => {
   // ******* 下面这些都和主题相关，如果做了任何改动，都需要排查一遍 ************* //
 
   const CustomThemeContext = createContext<T>(
-    (options.defaultCustomToken ? options.defaultCustomToken : {}) as T,
+    (options.customToken ? options.customToken : {}) as T,
   );
 
   const styledUseTheme = options.styled?.useTheme as () => Theme;
@@ -79,6 +79,7 @@ export const createInstance = <T = any>(options: CreateOptions<T>) => {
     styledConfig: options.styled,
     CustomThemeContext,
     prefixCls: options.prefixCls,
+    customToken: options.customToken,
   });
 
   // ******** 上面这些都和主题相关，如果做了任何改动，都需要排查一遍 ************ //

@@ -9,7 +9,6 @@ let darkThemeMatch: MediaQueryList;
 const matchThemeMode = (mode: ThemeAppearance) =>
   matchMedia && matchMedia(`(prefers-color-scheme: ${mode})`);
 
-// 将适配
 const ThemeObserver: FC<{
   themeMode: ThemeMode;
   setAppearance: (value: ThemeAppearance) => void;

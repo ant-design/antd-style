@@ -6,7 +6,7 @@ describe('createInstance', () => {
     key: 'xxx',
     prefixCls: 'test',
     speedy: true,
-    defaultCustomToken: {
+    customToken: {
       x: '123',
     },
   });
@@ -26,14 +26,16 @@ describe('createInstance', () => {
 
     expect(result.current.x).toEqual('123');
   });
+  it('包裹 ThemeProvider 时 x 也存在', () => {
+    const { result } = renderHook(instance.useTheme, { wrapper: instance.ThemeProvider });
+
+    expect(result.current.x).toEqual('123');
+  });
 
   it('创建实例时可以不填 key', () => {
     const instance = createInstance({
       prefixCls: 'test',
       speedy: true,
-      defaultCustomToken: {
-        x: '123',
-      },
     });
     expect(instance.styleManager.sheet.key).toEqual('ant-css');
   });
