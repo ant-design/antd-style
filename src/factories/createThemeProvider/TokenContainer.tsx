@@ -2,9 +2,9 @@ import { ReactElement, useMemo } from 'react';
 
 import { serializeCSS } from '@/core';
 import { useAntdTheme, useThemeMode } from '@/hooks';
-import { Theme } from '@/types';
+import { StyledThemeProvider, Theme } from '@/types';
 
-import type { StyledThemeProvider, ThemeProviderProps } from './type';
+import type { ThemeProviderProps } from './type';
 
 interface TokenContainerProps<T, S = Record<string, string>>
   extends Pick<
