@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.0.0-beta.2](https://github.com/ant-design/antd-style/compare/v3.0.0-beta.1...v3.0.0-beta.2) (2023-02-19)
+
+### ✨ Features
+
+- 移除 styled 的默认导出 ([9ced0aa](https://github.com/ant-design/antd-style/commit/9ced0aa))
+
 # [3.0.0-beta.1](https://github.com/ant-design/antd-style/compare/v2.0.2...v3.0.0-beta.1) (2023-02-19)
 
 ### ✨ Features
