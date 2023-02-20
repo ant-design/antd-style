@@ -61,7 +61,7 @@
 推荐使用 `pnpm` 安装
 
 ```bash
-pnpm i antd-style@alpha -S
+pnpm i antd-style@beta -S
 ```
 
 ### 典型使用场景
