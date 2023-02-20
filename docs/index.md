@@ -9,9 +9,9 @@ hero:
       link: /case
 
 features:
-  - title: style-component 与 Emotion 双样式引擎
+  - title: 兼容样式引擎
     image: https://mdn.alipayobjects.com/huamei_rqvucu/afts/img/A*MvKkQqXEyfQAAAAAAAAAAAAADoN6AQ/original
-    description: Ant Design Style 采用 styled-component 和 emotion 双样式引擎，兼具丰富的写法能力与性能表现
+    description: Ant Design Style 可以同时兼容 styled-components、emotion-styled 等多种样式引擎，兼具丰富的写法能力
     link: /guide/strategy
     imageType: light
     row: 8
