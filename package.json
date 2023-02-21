@@ -95,6 +95,7 @@
     "@types/react-dom": "^18",
     "@types/testing-library__jest-dom": "^5",
     "@umijs/lint": "^4",
+    "@umijs/test": "^4",
     "antd": "^5",
     "classnames": "^2",
     "commitlint": "^17",
