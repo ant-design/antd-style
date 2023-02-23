@@ -8,6 +8,11 @@ import type { IApi } from 'dumi';
 import fs from 'fs';
 import { join } from 'path';
 
+declare global {
+  // eslint-disable-next-line no-var
+  var __ANTD_STYLE_CACHE_MANAGER_FOR_SSR__: CacheManager;
+}
+
 const getHash = (str: string) => createHash('md5').update(str).digest('base64url');
 
 const RoutesPlugin = (api: IApi) => {
@@ -71,15 +76,16 @@ const RoutesPlugin = (api: IApi) => {
 
       .map((file) => {
         // 提取 antd-style emotion 样式
-        CacheManager.getCacheList()
-          .filter((i) => i)
-          .forEach((cache) => {
-            const styleFromCache = getStyleFromEmotionCache(cache, file);
 
-            if (styleFromCache.file) {
-              file.content = addLinkStyle(file.content, styleFromCache.file);
-            }
-          });
+        const cacheManager = global.__ANTD_STYLE_CACHE_MANAGER_FOR_SSR__;
+
+        cacheManager.getCacheList().forEach((cache) => {
+          const styleFromCache = getStyleFromEmotionCache(cache, file);
+
+          if (styleFromCache.file) {
+            file.content = addLinkStyle(file.content, styleFromCache.file);
+          }
+        });
 
         // 提取 antd 样式
         const styleCache = (global as any).__ANTD_CACHE__;
