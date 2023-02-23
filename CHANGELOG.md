@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.0.0-beta.6](https://github.com/ant-design/antd-style/compare/v3.0.0-beta.5...v3.0.0-beta.6) (2023-02-23)
+
+### 🐛 Bug Fixes
+
+- 补回 CacheManager 类型 ([b95093f](https://github.com/ant-design/antd-style/commit/b95093f))
+
 # [3.0.0-beta.5](https://github.com/ant-design/antd-style/compare/v3.0.0-beta.4...v3.0.0-beta.5) (2023-02-23)
 
 ### 🐛 Bug Fixes
