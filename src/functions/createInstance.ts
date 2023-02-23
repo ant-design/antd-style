@@ -12,6 +12,15 @@ import { createUseTheme } from '@/factories/createUseTheme';
 
 import { HashPriority, StyledConfig, StyleManager, Theme } from '@/types';
 
+// 为 SSR 添加一个全局的 cacheManager，用于统一抽取 ssr 样式
+declare global {
+  // eslint-disable-next-line no-var
+  var __ANTD_STYLE_CACHE_MANAGER_FOR_SSR__: CacheManager;
+}
+const cacheManager = new CacheManager();
+
+global.__ANTD_STYLE_CACHE_MANAGER_FOR_SSR__ = cacheManager;
+
 export interface CreateOptions<T> {
   /**
    * 生成的 css 关键词
@@ -49,7 +58,7 @@ export const createInstance = <T = any>(options: CreateOptions<T>) => {
   const emotion = createEmotion({ key: defaultKey, speedy: options.speedy });
 
   // 将 cache 存到一个全局
-  CacheManager.add(emotion.cache);
+  cacheManager.add(emotion.cache);
 
   const { cache, injectGlobal, keyframes } = emotion;
 

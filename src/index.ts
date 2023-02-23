@@ -1,4 +1,3 @@
-export { CacheManager } from './core/CacheManager';
 export * from './factories/createStyles/types';
 export * from './factories/createThemeProvider/type';
 export * from './functions';
