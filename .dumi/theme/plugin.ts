@@ -1,6 +1,7 @@
 import { extractStyle } from '@ant-design/cssinjs';
 import createEmotionServer from '@emotion/server/create-instance';
 import { EmotionCache } from '@emotion/utils';
+import { CacheManager } from 'antd-style';
 import chalk from 'chalk';
 import { createHash } from 'crypto';
 import type { IApi } from 'dumi';
@@ -10,46 +11,57 @@ import { join } from 'path';
 const getHash = (str: string) => createHash('md5').update(str).digest('base64url');
 
 const RoutesPlugin = (api: IApi) => {
+  // 如果没有开启 SSR，则啥也不做
+  if (!api.userConfig.ssr) return;
+
+  api.logger.info('detect ssr config, when building html will extract css.');
+
   const writeCSSFile = (key: string, hashKey: string, cssString: string) => {
     const fileName = `ssr-${key}-${getHash(hashKey)}.css`;
 
     const filePath = join(api.paths.absOutputPath, fileName);
 
     if (!fs.existsSync(filePath)) {
-      api.logger.info(chalk.grey(`写入文件: ${filePath}`));
+      api.logger.event(chalk.grey(`write to: ${filePath}`));
       fs.writeFileSync(filePath, cssString, 'utf8');
     }
 
     return fileName;
   };
 
-  const getStyleFromEmotionCache = (cache: EmotionCache, html: string, path: string) => {
-    const result = createEmotionServer(cache).extractCritical(html);
+  const getStyleFromEmotionCache = (
+    cache: EmotionCache,
+    file: {
+      content: string;
+      path: string;
+    },
+  ) => {
+    const result = createEmotionServer(cache).extractCritical(file.content);
 
     const css = result.css ?? '';
 
     if (!!css) {
-      api.logger.info(
-        `${chalk.yellow(path)} 包含 [${cache.key}] ${chalk.yellow(result.ids.length)} 组样式`,
+      api.logger.event(
+        `${chalk.yellow(file.path)} include ${chalk.blue`[${cache.key}]`} ${chalk.yellow(
+          result.ids.length,
+        )} styles`,
       );
 
-      const file = writeCSSFile(cache.key, result.ids.join(''), css);
+      const cssFile = writeCSSFile(cache.key, result.ids.join(''), css);
 
       const tag = `<style data-emotion="${cache.key} ${result.ids.join(' ')}">${
         result.css
       }</style>`;
 
-      return { css, file, tag };
+      return { css, file: cssFile, tag };
     }
 
     return {};
   };
 
   const addLinkStyle = (html: string, cssFile: string) => {
-    return html.replace(
-      '</head>',
-      `<link rel="stylesheet" href="${api.userConfig.publicPath + cssFile}"></head>`,
-    );
+    const prefix = api.userConfig.publicPath || api.config.publicPath;
+    return html.replace('</head>', `<link rel="stylesheet" href="${prefix + cssFile}"></head>`);
   };
 
   api.modifyExportHTMLFiles((files) =>
@@ -58,28 +70,16 @@ const RoutesPlugin = (api: IApi) => {
       .filter((f) => !f.path.includes(':'))
 
       .map((file) => {
-        // 提取 antd-style 样式
+        // 提取 antd-style emotion 样式
+        CacheManager.getCacheList()
+          .filter((i) => i)
+          .forEach((cache) => {
+            const styleFromCache = getStyleFromEmotionCache(cache, file);
 
-        const antdStyle = getStyleFromEmotionCache(
-          // @ts-ignore
-          global.__ANTD_STYLE_CACHE__ as EmotionCache,
-          file.content,
-          file.path,
-        );
-
-        if (antdStyle.file) {
-          file.content = addLinkStyle(file.content, antdStyle.file);
-        }
-        // 提取 emotion 默认样式
-        const emotionStyle = getStyleFromEmotionCache(
-          // @ts-ignore
-          global.__EMOTION_CACHE__ as EmotionCache,
-          file.content,
-          file.path,
-        );
-        if (emotionStyle.file) {
-          file.content = addLinkStyle(file.content, emotionStyle.file);
-        }
+            if (styleFromCache.file) {
+              file.content = addLinkStyle(file.content, styleFromCache.file);
+            }
+          });
 
         // 提取 antd 样式
         const styleCache = (global as any).__ANTD_CACHE__;
@@ -88,9 +88,9 @@ const RoutesPlugin = (api: IApi) => {
 
         const antdCssString = styleText.replace(/<style\s[^>]*>/g, '').replace(/<\/style>/g, '');
 
-        const antdCssFileName = writeCSSFile('antd', antdCssString, antdCssString);
-
         if (antdCssString) {
+          api.logger.event(`${chalk.yellow(file.path)} include ${chalk.blue`antd`} styles`);
+          const antdCssFileName = writeCSSFile('antd', antdCssString, antdCssString);
           file.content = addLinkStyle(file.content, antdCssFileName);
         }
 
