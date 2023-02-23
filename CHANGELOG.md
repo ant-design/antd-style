@@ -1,5 +1,15 @@
 # Changelog
 
+# [3.0.0-beta.3](https://github.com/ant-design/antd-style/compare/v3.0.0-beta.2...v3.0.0-beta.3) (2023-02-23)
+
+### ✨ Features
+
+- 提供全局 cache 列表存放样式缓存供 SSR 消费 ([4777e1b](https://github.com/ant-design/antd-style/commit/4777e1b))
+
+### 🐛 Bug Fixes
+
+- 默认 cache-key 改为 css ([a2b585a](https://github.com/ant-design/antd-style/commit/a2b585a))
+
 # [3.0.0-beta.2](https://github.com/ant-design/antd-style/compare/v3.0.0-beta.1...v3.0.0-beta.2) (2023-02-19)
 
 ### ✨ Features
