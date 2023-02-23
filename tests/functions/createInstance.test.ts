@@ -37,6 +37,6 @@ describe('createInstance', () => {
       prefixCls: 'test',
       speedy: true,
     });
-    expect(instance.styleManager.sheet.key).toEqual('ant-css');
+    expect(instance.styleManager.sheet.key).toEqual('css');
   });
 });

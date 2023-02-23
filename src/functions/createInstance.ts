@@ -53,7 +53,7 @@ export interface CreateOptions<T> {
  * 创建一个新的 antd-style 实例
  */
 export const createInstance = <T = any>(options: CreateOptions<T>) => {
-  const defaultKey = options.key || 'acss';
+  const defaultKey = options.key || 'css';
 
   const emotion = createEmotion({ key: defaultKey, speedy: options.speedy });
 
