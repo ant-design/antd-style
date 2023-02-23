@@ -1,3 +1,4 @@
+import { cache } from '@emotion/css';
 import { createContext, useContext } from 'react';
 
 import { createCSS, createEmotion, serializeCSS } from '@/core';
@@ -11,6 +12,14 @@ import { createThemeProvider, ThemeProviderProps } from '@/factories/createTheme
 import { createUseTheme } from '@/factories/createUseTheme';
 
 import { HashPriority, StyledConfig, StyleManager, Theme } from '@/types';
+import { EmotionCache } from '@emotion/css/create-instance';
+
+declare global {
+  // eslint-disable-next-line no-var
+  var __CSSINJS_EMOTION_CACHE_MAP__: { custom?: boolean; cache: EmotionCache }[];
+}
+
+global.__CSSINJS_EMOTION_CACHE_MAP__ = [{ cache }];
 
 export interface CreateOptions<T> {
   /**
@@ -44,9 +53,14 @@ export interface CreateOptions<T> {
  * 创建一个新的 antd-style 实例
  */
 export const createInstance = <T = any>(options: CreateOptions<T>) => {
-  const defaultKey = options.key || 'ant-css';
+  const defaultKey = options.key || 'acss';
 
   const emotion = createEmotion({ key: defaultKey, speedy: options.speedy });
+
+  // 将 cache 存到一个全局
+  if (global.__CSSINJS_EMOTION_CACHE_MAP__.findIndex((e) => e.cache === emotion.cache) === -1) {
+    global.__CSSINJS_EMOTION_CACHE_MAP__.push({ custom: true, cache: emotion.cache });
+  }
 
   const { cache, injectGlobal, keyframes } = emotion;
 
