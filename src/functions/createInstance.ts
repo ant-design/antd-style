@@ -1,4 +1,4 @@
-import { createContext, useContext } from 'react';
+import { createContext } from 'react';
 
 import { CacheManager, createCSS, createEmotion, serializeCSS } from '@/core';
 
@@ -103,8 +103,6 @@ export const createInstance = <T = any>(options: CreateOptions<T>) => {
     prefix: defaultKey,
   });
 
-  const useEmotion = () => useContext(EmotionContext);
-
   return {
     // ******************** //
     // **** 样式生成相关 **** //
@@ -131,8 +129,6 @@ export const createInstance = <T = any>(options: CreateOptions<T>) => {
     // ***** 主题相关 ***** //
     // ******************** //
     useTheme,
-    EmotionContext,
-    useEmotion,
     StyleProvider,
     ThemeProvider,
   };
