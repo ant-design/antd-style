@@ -76,10 +76,10 @@ StyledButton.defaultProps = {
 
 ```tsx | pure
 import { ThemeProvider } from 'antd-style';
-import { ThemeProvider as StyledThemeProvider, useTheme } from 'styled-components';
+import { ThemeContext } from 'styled-components';
 
 render(
-  <ThemeProvider styled={{ ThemeProvider: StyledThemeProvider, useTheme: useTheme }}>
+  <ThemeProvider styled={{ ThemeContext }}>
     <StyledButton />
   </ThemeProvider>,
 );
@@ -96,13 +96,10 @@ render(
 
 ```tsx | pure
 import { setupStyled, ThemeProvider } from 'antd-style';
-import { ThemeProvider as StyledThemeProvider, useTheme } from 'styled-components';
+import { ThemeContext } from 'styled-components';
 
-// 将 styled-components 的 ThemeProvider 和 useTheme 注入到 antd-style 的 ThemeProvider 中
-setupStyled({
-  ThemeProvider: StyledThemeProvider,
-  useTheme,
-});
+// 将 styled-components 的 ThemeContext 注入到 antd-style 的 ThemeProvider 中
+setupStyled({ ThemeContext });
 
 render(
   <ThemeProvider>

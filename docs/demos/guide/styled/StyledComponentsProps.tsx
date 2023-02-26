@@ -1,11 +1,11 @@
 /**
  * title: styled-components
- * description: 只有注入了 styled-components 的 ThemeProvider ，才能响应自定义 token
+ * description: 只有注入了 styled-components 的 ThemeContext ，才能响应自定义 token
  * iframe: 100
  */
 import { ThemeProvider } from 'antd-style';
 import { Flexbox } from 'react-layout-kit';
-import { styled, ThemeProvider as StyledThemeProvider, useTheme } from 'styled-components';
+import { styled, ThemeContext } from 'styled-components';
 
 const StyledButton = styled.button`
   color: ${(p) => p.theme.text};
@@ -24,10 +24,7 @@ export default () => {
           border: 'cyan',
           borderRadius: 8,
         }}
-        styled={{
-          ThemeProvider: StyledThemeProvider,
-          useTheme,
-        }}
+        styled={{ ThemeContext }}
       >
         <StyledButton>注入 styled-components 的 Provider</StyledButton>
       </ThemeProvider>

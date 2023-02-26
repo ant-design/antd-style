@@ -1,9 +1,9 @@
 /**
  * title: '@emotion/styled'
- * description: 'antd-style 内置了 @emotion/react 的 ThemeProvider，所以默认可以响应自定义 Token'
+ * description: 'antd-style 内置了 @emotion/react 的 ThemeContext，所以默认可以响应自定义 Token'
  * iframe: 100
  */
-import { ThemeProvider as StyledThemeProvider, useTheme } from '@emotion/react';
+import { ThemeContext } from '@emotion/react';
 import styled from '@emotion/styled';
 import { ThemeProvider } from 'antd-style';
 import { Flexbox } from 'react-layout-kit';
@@ -25,10 +25,7 @@ export default () => {
           border: 'cyan',
           borderRadius: 8,
         }}
-        styled={{
-          ThemeProvider: StyledThemeProvider,
-          useTheme,
-        }}
+        styled={{ ThemeContext }}
       >
         <StyledButton>注入 @emotion/react Provider</StyledButton>
       </ThemeProvider>
