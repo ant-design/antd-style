@@ -25,7 +25,7 @@ export const createThemeProvider = (
     ({
       children,
 
-      customToken = option.customToken,
+      customToken,
       customStylish,
 
       theme,
@@ -59,6 +59,7 @@ export const createThemeProvider = (
           <TokenContainer
             prefixCls={prefixCls}
             customToken={customToken}
+            defaultCustomToken={option.customToken}
             customStylish={customStylish}
             StyledThemeProvider={
               styled?.ThemeProvider || option.styledConfig?.ThemeProvider || DEFAULT_THEME_PROVIDER

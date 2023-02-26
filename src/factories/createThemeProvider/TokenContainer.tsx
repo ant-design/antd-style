@@ -12,11 +12,13 @@ interface TokenContainerProps<T, S = Record<string, string>>
     'children' | 'customToken' | 'customStylish' | 'prefixCls'
   > {
   StyledThemeProvider: StyledThemeProvider;
+  defaultCustomToken?: ThemeProviderProps<T, S>['customToken'];
 }
 
 const TokenContainer: <T, S>(props: TokenContainerProps<T, S>) => ReactElement | null = ({
   children,
   customToken: customTokenOrFn,
+  defaultCustomToken: defaultCustomTokenFn,
   customStylish: stylishOrGetStylish,
   prefixCls = 'ant',
   StyledThemeProvider,
@@ -25,14 +27,25 @@ const TokenContainer: <T, S>(props: TokenContainerProps<T, S>) => ReactElement |
   const { appearance, isDarkMode } = themeState;
   const { stylish: antdStylish, ...token } = useAntdTheme();
 
+  // 获取默认的自定义 token
+  const defaultCustomToken = useMemo(() => {
+    if (!defaultCustomTokenFn) return {};
+
+    if (defaultCustomTokenFn instanceof Function) {
+      return defaultCustomTokenFn({ token, appearance, isDarkMode });
+    }
+
+    return defaultCustomTokenFn;
+  }, [defaultCustomTokenFn, token, appearance]);
+
   // 获取 自定义 token
   const customToken = useMemo(() => {
     if (customTokenOrFn instanceof Function) {
-      return customTokenOrFn({ token, appearance, isDarkMode });
+      return { ...defaultCustomToken, ...customTokenOrFn({ token, appearance, isDarkMode }) };
     }
 
-    return customTokenOrFn;
-  }, [customTokenOrFn, token, appearance]);
+    return { ...defaultCustomToken, ...customTokenOrFn };
+  }, [defaultCustomToken, customTokenOrFn, token, appearance]);
 
   // 获取 stylish
   const customStylish = useMemo(() => {

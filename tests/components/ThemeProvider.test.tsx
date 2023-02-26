@@ -8,9 +8,12 @@ import { FC, PropsWithChildren } from 'react';
 
 interface TestDesignToken {
   customBrandColor: string;
+
+  customColor?: string;
 }
 interface TestDesignStylish {
   defaultText: string;
+  x?: any;
 }
 
 declare module 'antd-style' {
@@ -153,7 +156,7 @@ describe('ThemeProvider', () => {
       );
 
       const { result } = renderHook(useTheme, { wrapper: Wrapper });
-      expect(result.current.stylish.x.styles).toEqual('');
+      expect(result.current.stylish.x!.styles).toEqual('');
     });
   });
 
