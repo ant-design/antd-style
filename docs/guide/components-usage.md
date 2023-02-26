@@ -88,7 +88,7 @@ interface ForDemoToken {
 export const { createStyles, ThemeProvider } = createInstance<ForDemoToken>({
   key: 'css',
   hashPriority: 'low',
-  defaultCustomToken: {
+  customToken: {
     primaryColor: '#ce1472',
     demoBgColor: '#f1f2f5',
   },
@@ -112,4 +112,4 @@ export const { createStyles, ThemeProvider } = createInstance<ForDemoToken>({
 
 1. **更灵活**：应用到组件的改造成本小，只需添加相应的 className，即可将应用样式变成组件样式；
 2. **便于覆写**：保证组件样式的扁平化，便于外部用户进行组件样式的覆写；
-3. **研发心智模型统一**：组件库与应用的书写心智可以保持一样；
+3. **研发心智模型统一**：组件库与应用的书写心智可以保持一致；

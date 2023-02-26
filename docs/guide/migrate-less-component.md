@@ -123,3 +123,5 @@ export const useStyles = createStyles(({ css, prefixCls })=>{
 <code src="../demos/migration/ProComponentsStatic/CSSinJS.tsx"></code>
 
 ## 新组件书写方案
+
+详见：[组件研发](/guide/components-usage#最佳实践建议)
