@@ -29,17 +29,17 @@ const styleInstance = createInstance<DefaultToken>({
   hashPriority: 'low', // 将生成 hash 的样式选择器设为 :where 选择器降低权重。这样可以让用户自定义的样式覆盖组件的样式
 
   // ***** 主题相关 ***** //
-
   // 配置默认传给 ThemeProvider 的 props，而该 Provider 同样可以被外部覆盖 props
   // 配置后的值也会成为相关方法消费的默认值，这样一来不需要包裹 ThemeProvider 即可消费到默认值
-  ThemeProvider: {
-    prefixCls: 'tna', // 设定 antd 组件的 类名前缀，例如 Button 的类型将会是 .tna-btn
+
+  prefixCls: 'tna', // 设定 antd 组件的 类名前缀，例如 Button 的类型将会是 .tna-btn
+  customToken: {
+    accessColor: '#12388f',
   },
 });
 
 export const {
   // **** 核心样式方法 **** //
-
   createStyles,
   createStyish,
   createGlobalStyle,
@@ -48,19 +48,15 @@ export const {
   cx,
   css,
   keyframes,
+  injectGlobal,
 
   //****  样式表管理  **** //
-  cache,
-  sheet,
-  flush,
-  merge,
-  hydrate,
-  getRegisteredStyles,
+  styleManager,
 
   // ****  数据容器   **** //
+  useTheme,
   StyleProvider,
   ThemeProvider,
-  useTheme,
 } = styleInstance;
 ```
 
@@ -71,27 +67,10 @@ export const {
 ```ts | pure
 // styled-components 版本
 import { createInstance } from 'antd-style';
-import { ThemeProvider, useTheme } from 'styled-components';
+import { ThemeContext } from 'styled-components';
 
 const componentStyleIntanceWithSC = createInstance({
   // ...
-  styled: {
-    ThemeProvider,
-    useTheme,
-  },
-});
-```
-
-```ts | pure
-// @emotion/react 版本
-import { ThemeProvider, useTheme } from '@emotion/react';
-import { createInstance } from 'antd-style';
-
-const componentStyleIntanceWithEmotion = createInstance({
-  // ...
-  styled: {
-    ThemeProvider,
-    useTheme,
-  },
+  styled: { ThemeContext },
 });
 ```

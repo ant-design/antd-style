@@ -116,9 +116,6 @@ export const createInstance = <T = any>(options: CreateOptions<T>) => {
     css: serializeCSS,
     cx,
     keyframes,
-    /**
-     * @deprecated
-     */
     injectGlobal,
 
     //******************** //

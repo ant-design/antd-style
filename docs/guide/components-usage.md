@@ -30,7 +30,7 @@ antd-style 的一开始使用对象是业务应用，因此在默认的设计上
 <button className="ant-btn css-dcba">click</button> // -> red background
 ```
 
-但是这样做也会带来一个问题：组件的样式会被 hash 的选择器权重抬升，覆写会变得很困难。当用户需要使用 `.ant-btn` 覆盖样式时，由于 `.css-abcd .ant-btn` 的权重更高，因此用户的覆盖样式 `.ant-btn` 基本上是无法生效的。
+但是这样做也会带来一个问题：组件的样式会被 hash 的选择器权重抬升，覆写会变得很困难。当用户需要使用 `.ant-btn` 覆盖样式时，由于 `.css-abcd .ant-btn` 的权重更高，因此用户如果覆盖样式 `.ant-btn` 是无法生效的。
 
 所以 `:where()` 选择器登场了，它可以说是组件级 cssinjs 的一个核心基石。`:where()` 接受选择器列表作为它的参数，将会选择所有能被该选择器列表中任何一条规则选中的元素。
 
@@ -45,9 +45,7 @@ antd-style 的一开始使用对象是业务应用，因此在默认的设计上
 }
 ```
 
-当然，局部选择器除了 where 以外， is 也是可以实现的。但 `:where()` 和 `:is()` 的不同之处，也是最重要的一点，在于 **`:where()` 的权重总是为 0**。
-
-也就是说，利用 where 选择器，我们就可以实现 0 权重增加的情况下，为组件样式添加局部作用域。这也意味着此时组件仍然保留和原本一致的覆写能力。
+局部选择器除了 where 以外， is 也是可以实现的。但 `:where()` 和 `:is()` 的不同之处，也是最重要的一点，在于 **`:where()` 的权重总是为 0**。 也就是说，利用 where 选择器，我们就可以实现 0 权重增加的情况下，为组件样式添加局部作用域，**同时组件仍然保留和原本一致的覆写特性**。
 
 下述 demo 就是一组对比示例。上方一组是未使用 where 选择器的 demo，下方一组是使用 whrere 选择器的 demo，两组 demo 都在外部添加了同一个覆写样式。
 
@@ -55,14 +53,14 @@ antd-style 的一开始使用对象是业务应用，因此在默认的设计上
 
 ## 开启 where 选择器
 
-通过上述 demo 对比，应该就能非常直观地感受到 where 选择器对于组件级研发的重要性。那 antd-style 如何针对组件研发开启 where 选择器呢？
+通过上述 demo 对比，大家就可以了解到 where 选择器对于组件级样式研发的重要性。而 antd-style 也为对组件研发提供了开启 where 选择器的能力。
 
-`antd-style` 默认提供的 `createStyles` 方法中，通过设置第二个入参 `options` 中的 `hashPriority: "low"` ，即可将这部分样式开启 where 选择器，在插入时将默认集成 where 选择器。
+在 `createStyles` 方法中，通过设置第二个入参 `options` 中的 `hashPriority: "low"` ，即可将这部分样式使用 where 选择器。
 
 ```ts
 const useStyles = createStyles(getStyleFn, { hashPriority: 'low' });
 
-// useStyles 里的样式将都会使用 where 选择器
+// 该 useStyles 里的样式将都会使用 where 选择器
 ```
 
 当然如果你不希望给每个 createStyles 设置一遍 `{ hashPriority: 'low' }`，你可以往下阅读，了解如何为组件库设定一个自己的样式实例方法。
@@ -111,5 +109,5 @@ export const { createStyles, ThemeProvider } = createInstance<ForDemoToken>({
 针对使用 cssinjs 完全新写的组件，我们建议仍然使用 `{ hashPriority: 'high' }` 配置。并将所有样式实现放置在 `css` 中，有需要的部分再额外添加 className。这样有两点好处：
 
 1. **更灵活**：应用到组件的改造成本小，只需添加相应的 className，即可将应用样式变成组件样式；
-2. **便于覆写**：保证组件样式的扁平化，便于外部用户进行组件样式的覆写；
+2. **便于覆写**：保证组件样式的扁平化，便于使用组件的开发者覆写组件样式；
 3. **研发心智模型统一**：组件库与应用的书写心智可以保持一致；

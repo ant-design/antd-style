@@ -29,7 +29,7 @@ export default () => {
   const { styles } = useStyles();
   return (
     <Flexbox padding={24} gap={24} style={{ background: token.colorBgLayout }}>
-      <Card size={'small'} title={'未使用 :where 选择器'}>
+      <Card size={'small'} title={'未使用 :where 选择器，外部样式无法覆盖 ❌'}>
         <Flexbox horizontal gap={8} className={styles}>
           <Button type={'primary'}>强调按钮</Button>
           <Button type={'filled'}>填充按钮</Button>
@@ -37,7 +37,7 @@ export default () => {
           <Button type={'text'}>文本按钮</Button>
         </Flexbox>
       </Card>
-      <Card size={'small'} title={'使用了 :where 选择器'}>
+      <Card size={'small'} title={'使用了 :where 选择器，外部样式可正常覆盖 ✅'}>
         <Flexbox horizontal gap={8} className={styles}>
           <WithWhereButton type={'primary'}>强调按钮</WithWhereButton>
           <WithWhereButton type={'filled'}>填充按钮</WithWhereButton>
