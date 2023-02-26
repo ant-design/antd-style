@@ -1,7 +1,9 @@
 import { defineConfig } from 'dumi';
 
+const isProd = process.env.NODE_ENV === 'production';
+
 // 不是预览模式 同时是生产环境
-const isProdSite = process.env.PREVIEW !== '1' && process.env.NODE_ENV === 'production';
+const isProdSite = process.env.PREVIEW !== '1' && isProd;
 
 export default defineConfig({
   themeConfig: {
@@ -17,8 +19,10 @@ export default defineConfig({
         dark: 'one-dark-pro',
       },
     },
+    footer: 'Made with ❤️ by 蚂蚁集团 - AFX & 数字科技',
   },
-  ssr: {},
+  // @ts-ignore
+  ssr: isProd ? {} : false,
   favicons: [
     'https://gw.alipayobjects.com/zos/hitu-asset/c88e3678-6900-4289-8538-31367c2d30f2/hitu-1609235995955-image.png',
   ],
