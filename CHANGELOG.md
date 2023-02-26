@@ -1,5 +1,19 @@
 # Changelog
 
+# [3.0.0-beta.7](https://github.com/ant-design/antd-style/compare/v3.0.0-beta.6...v3.0.0-beta.7) (2023-02-26)
+
+### ✨ Features
+
+- 移除 useEmotion 方法 ([7f7a59e](https://github.com/ant-design/antd-style/commit/7f7a59e))
+
+### 🐛 Bug Fixes
+
+- 修正 createInstance 的 ThemeProvider 会全量覆盖默认的自定义 token 问题 ([9477630](https://github.com/ant-design/antd-style/commit/9477630))
+
+### 💥 BREAKING CHANGES
+
+- 移除 useEmotion 方法，用户不应该感知内部实现的实例对象
+
 # [3.0.0-beta.6](https://github.com/ant-design/antd-style/compare/v3.0.0-beta.5...v3.0.0-beta.6) (2023-02-23)
 
 ### 🐛 Bug Fixes
