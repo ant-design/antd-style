@@ -1,6 +1,12 @@
 import styled from '@emotion/styled';
 import { render } from '@testing-library/react';
-import { ThemeProvider } from 'antd-style';
+import { Theme as AntdStyleTheme, ThemeProvider } from 'antd-style';
+
+// 为 emotion 的 styled 注入 antd-style 的主题类型
+declare module '@emotion/react' {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  interface Theme extends AntdStyleTheme {}
+}
 
 describe('styled', () => {
   it('类型定义正常', () => {

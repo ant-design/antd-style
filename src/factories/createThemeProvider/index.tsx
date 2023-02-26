@@ -1,9 +1,10 @@
 import { Context, memo, ReactElement } from 'react';
 
 import { createUseTheme } from '@/factories/createUseTheme';
-import { DEFAULT_THEME_PROVIDER, DEFAULT_USE_THEME } from '@/functions/setupStyled';
+import { DEFAULT_THEME_CONTEXT, DEFAULT_THEME_PROVIDER } from '@/functions/setupStyled';
 import { StyledConfig } from '@/types';
 
+import { createStyledThemeProvider } from '@/factories/createStyledThemeProvider';
 import AntdProvider from './AntdProvider';
 import ThemeSwitcher from './ThemeSwitcher';
 import TokenContainer from './TokenContainer';
@@ -20,8 +21,13 @@ interface CreateThemeProviderOptions {
 
 export const createThemeProvider = (
   option: CreateThemeProviderOptions,
-): (<T = any, S = any>(props: ThemeProviderProps<T, S>) => ReactElement | null) =>
-  memo(
+): (<T = any, S = any>(props: ThemeProviderProps<T, S>) => ReactElement | null) => {
+  // 如果有全局配置 styledConfig，那么 ThemeProvider
+  const DefaultStyledThemeProvider = option.styledConfig
+    ? createStyledThemeProvider(option.styledConfig)
+    : undefined;
+
+  return memo(
     ({
       children,
 
@@ -38,36 +44,44 @@ export const createThemeProvider = (
       onAppearanceChange,
       themeMode,
       styled,
-    }) => (
-      <ThemeSwitcher
-        themeMode={themeMode}
-        defaultAppearance={defaultAppearance}
-        appearance={appearance}
-        onAppearanceChange={onAppearanceChange}
-        useTheme={createUseTheme({
-          prefixCls: prefixCls || option.prefixCls,
-          styledUseTheme: styled?.useTheme || option.styledConfig?.useTheme || DEFAULT_USE_THEME,
-          CustomThemeContext: option.CustomThemeContext,
-        })}
-      >
-        <AntdProvider
-          prefixCls={prefixCls}
-          staticInstanceConfig={staticInstanceConfig}
-          theme={theme}
-          getStaticInstance={getStaticInstance}
+    }) => {
+      const useTheme = createUseTheme({
+        prefixCls: prefixCls || option.prefixCls,
+        styledThemeContext:
+          styled?.ThemeContext || option.styledConfig?.ThemeContext || DEFAULT_THEME_CONTEXT,
+        CustomThemeContext: option.CustomThemeContext,
+      });
+
+      const StyledThemeProvider = styled
+        ? createStyledThemeProvider(styled)
+        : DefaultStyledThemeProvider || DEFAULT_THEME_PROVIDER;
+
+      return (
+        <ThemeSwitcher
+          themeMode={themeMode}
+          defaultAppearance={defaultAppearance}
+          appearance={appearance}
+          onAppearanceChange={onAppearanceChange}
+          useTheme={useTheme}
         >
-          <TokenContainer
+          <AntdProvider
             prefixCls={prefixCls}
-            customToken={customToken}
-            defaultCustomToken={option.customToken}
-            customStylish={customStylish}
-            StyledThemeProvider={
-              styled?.ThemeProvider || option.styledConfig?.ThemeProvider || DEFAULT_THEME_PROVIDER
-            }
+            staticInstanceConfig={staticInstanceConfig}
+            theme={theme}
+            getStaticInstance={getStaticInstance}
           >
-            {children}
-          </TokenContainer>
-        </AntdProvider>
-      </ThemeSwitcher>
-    ),
+            <TokenContainer
+              prefixCls={prefixCls}
+              customToken={customToken}
+              defaultCustomToken={option.customToken}
+              customStylish={customStylish}
+              StyledThemeProvider={StyledThemeProvider}
+            >
+              {children}
+            </TokenContainer>
+          </AntdProvider>
+        </ThemeSwitcher>
+      );
+    },
   );
+};
