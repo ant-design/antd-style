@@ -24,5 +24,4 @@ export const {
   ThemeProvider,
   StyleProvider,
   useTheme,
-  useEmotion,
 } = styleInstance;
