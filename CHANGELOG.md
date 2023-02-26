@@ -1,5 +1,15 @@
 # Changelog
 
+# [3.0.0-beta.8](https://github.com/ant-design/antd-style/compare/v3.0.0-beta.7...v3.0.0-beta.8) (2023-02-26)
+
+### ✨ Features
+
+- 简化 ThemeProvider 注入 styled 的接口配置 ([84f828c](https://github.com/ant-design/antd-style/commit/84f828c))
+
+### 💥 BREAKING CHANGES
+
+- 移除 styled.useTheme 的用法，需要调整为 styled.ThemeContext，且 styled 的 ThemeProvider 可以无需注入
+
 # [3.0.0-beta.7](https://github.com/ant-design/antd-style/compare/v3.0.0-beta.6...v3.0.0-beta.7) (2023-02-26)
 
 ### ✨ Features
