@@ -71,7 +71,7 @@ styled 的语法候选池中有两个库： `styled-component` 和 `emotion`。 
 因此综合实践案例，结合包体积、使用场景，我们在多次摇摆下最终选择了 `@emotion/styled` 作为 `styled` 语法的样式引擎。
 
 :::info{title=特别说明}
-虽然选择了 `@emotion/styled` 作为 styled 语法的样式引擎，但是 antd-style 并没有内置 `styled` 方法，而仅仅默认集成 `@emotion/react` 的 ThemeProvider。详情可以查看：[与 styled 集成](/guide/styled)
+虽然选择了 `@emotion/styled` 作为 styled 语法的样式引擎，但是 antd-style 并没有内置 `styled` 方法，而仅仅默认集成 `@emotion/react` 的 ThemeContext。详情可以查看：[与 styled 集成](/guide/styled)
 :::
 
 ### css: 为什么选择 emotion

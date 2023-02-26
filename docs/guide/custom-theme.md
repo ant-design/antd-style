@@ -77,21 +77,44 @@ theme: ThemeConfig | (appearance: Appearance) => ThemeConfig;
 
 ## 自定义 Token
 
-几乎可以肯定的是，Ant Design 默认的 Token 体系是不满足业务定制化的诉求的。而且绝大多数业务场景中，我们基本都需要自定义一些应用级的 Token 以便于在应用中统一消费。可能你会觉得 Token 只有设计师才需要关心，但是实际上 Token 体系是应用规范的基础，大到一个渐变的样式，小到顶部导航栏的宽度，其实都可以收到 token 体系中统一管理与消费。
+在设计之初， Ant Design 默认的 Token 体系并不是面向所有业务定制化的诉求而打造的，它只包含了 Ant Design 设计系统所必须的 token。在绝大多数业务场景中，我们往往需要自定义一些 Token ，以便于在应用中统一消费。可能你会觉得 Token 只有设计师才需要关心，但是实际上 Token 体系是应用规范的基础，大到一个渐变的样式，小到顶部导航栏的宽度，都可以收到 token 体系中统一管理与消费。
 
 因此 antd-style 中提供了自定义 token 的能力，让应用层可以自定义自己的 token，并在 `createStyles` 、 `styled` 等样式方法中使用。
 
-在 ThemeProvider 中，可以通过 `customToken` 字段传入自定义的 token。和 theme 的使用逻辑一样，你既可以传入一个对象，也可以传入一个函数。函数的入参为当前的主题外观，出参为 token 对象。
+在 ThemeProvider 中，可以通过 `customToken` 字段传入自定义的 token。和 theme 的使用逻辑一样，你既可以传入一个对象，也可以传入一个函数。
 
 ```tsx | pure
 import { ThemeProvider } from 'antd-style';
 
-() => (
+// 对象用法
+export default () => (
   <ThemeProvider
     customToken={{
       customColor: '#1232f',
       headerHeight: 64,
     }}
+  >
+    <App />
+  </ThemeProvider>
+);
+```
+
+函数的入参为我们内置的一些方法，但出参为 token 对象。在该方法入参中，你可以拿到当前的主题外观、antd 的 token 值，进而实现自定义 token 的主题继承效果。
+
+```tsx | pure
+export interface CustomTokenParams {
+  appearance: ThemeAppearance;
+  isDarkMode: boolean;
+  token: AntdToken;
+}
+
+// 函数用法
+export default () => (
+  <ThemeProvider
+    customToken={({ token, isDarkMode }) => ({
+      customColor: isDarkMode ? token.colorWarning : token.colorPrimary,
+      headerHeight: 64,
+    })}
   >
     <App />
   </ThemeProvider>

@@ -1,6 +1,6 @@
 ---
 title: stylish 复合样式
-order: 3
+order: 10
 group: 进阶使用
 ---
 
