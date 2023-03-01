@@ -1,4 +1,5 @@
 import { renderHook } from '@testing-library/react';
+import { ThemeContext } from 'styled-components';
 
 import { ThemeProvider, useTheme } from 'antd-style';
 import { FC, PropsWithChildren } from 'react';
@@ -31,8 +32,48 @@ describe('useTheme', () => {
     };
     const { result } = renderHook(useTheme, { wrapper: Wrapper });
     expect(result.current.colorPrimary.toLowerCase()).toEqual('#1668dc');
+    expect(result.current.prefixCls).toEqual('kitchen');
   });
 
-  it('TODO: 自定义 Token', () => {});
+  describe('自定义 Token', () => {
+    it('普通值', () => {
+      const Wrapper: FC<PropsWithChildren> = ({ children }) => {
+        return <ThemeProvider customToken={{ x: '222' }}>{children}</ThemeProvider>;
+      };
+      const { result } = renderHook(useTheme, { wrapper: Wrapper });
+      expect(result.current.x).toEqual('222');
+    });
+
+    it('函数获取', () => {
+      const Wrapper: FC<PropsWithChildren> = ({ children }) => {
+        return (
+          <ThemeProvider customToken={({ appearance }) => ({ x: appearance })} themeMode={'dark'}>
+            {children}
+          </ThemeProvider>
+        );
+      };
+      const { result } = renderHook(useTheme, { wrapper: Wrapper });
+      expect(result.current.x).toEqual('dark');
+    });
+
+    it('集成 styled 的 ThemeProvider 后可以拿到自定义 token', () => {
+      const Wrapper: FC<PropsWithChildren> = ({ children }) => {
+        return (
+          <ThemeProvider
+            customToken={{ x: '123' }}
+            prefixCls={'kitchen'}
+            themeMode={'dark'}
+            styled={{ ThemeContext }}
+          >
+            {children}
+          </ThemeProvider>
+        );
+      };
+      const { result } = renderHook(useTheme, { wrapper: Wrapper });
+      expect(result.current.prefixCls).toEqual('kitchen');
+      expect(result.current.x).toEqual('123');
+    });
+  });
+
   it('TODO: 自定义 Stylish', () => {});
 });
