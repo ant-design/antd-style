@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.0.0-beta.10](https://github.com/ant-design/antd-style/compare/v3.0.0-beta.9...v3.0.0-beta.10) (2023-03-01)
+
+### ✨ Features
+
+- 优化 css-prefix key 为 acss 以减少样式类名体积 ([d367033](https://github.com/ant-design/antd-style/commit/d367033))
+
 # [3.0.0-beta.9](https://github.com/ant-design/antd-style/compare/v3.0.0-beta.8...v3.0.0-beta.9) (2023-03-01)
 
 ### 🐛 Bug Fixes
