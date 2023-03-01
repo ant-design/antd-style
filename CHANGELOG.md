@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.0.0-beta.9](https://github.com/ant-design/antd-style/compare/v3.0.0-beta.8...v3.0.0-beta.9) (2023-03-01)
+
+### 🐛 Bug Fixes
+
+- 修正使用 styled ThemeProvider 后 useTheme 方法不响应自定义 token 的问题 ([35d87a9](https://github.com/ant-design/antd-style/commit/35d87a9))
+
 # [3.0.0-beta.8](https://github.com/ant-design/antd-style/compare/v3.0.0-beta.7...v3.0.0-beta.8) (2023-02-26)
 
 ### ✨ Features
