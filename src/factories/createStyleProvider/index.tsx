@@ -1,3 +1,4 @@
+import { DEFAULT_CSS_PREFIX_KEY } from '@/core';
 import { createEmotion, Emotion } from '@/core/createEmotion';
 import { StyleManager } from '@/types';
 import { StylisPlugin } from '@emotion/cache';
@@ -36,7 +37,7 @@ export const createStyleProvider = (
   memo(
     ({
       children,
-      prefix = defaultProps?.prefix || 'ant-css',
+      prefix = defaultProps?.prefix || DEFAULT_CSS_PREFIX_KEY,
       speedy = defaultProps?.speedy,
       getStyleManager,
 

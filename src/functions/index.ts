@@ -1,9 +1,10 @@
+import { DEFAULT_CSS_PREFIX_KEY } from '@/core';
 import { createInstance } from './createInstance';
 
 export { setupStyled } from './setupStyled';
 export { createInstance };
 
-const styleInstance = createInstance({ key: 'ant-css', speedy: false });
+const styleInstance = createInstance({ key: DEFAULT_CSS_PREFIX_KEY, speedy: false });
 
 export const {
   // **** 样式生成相关 **** //
