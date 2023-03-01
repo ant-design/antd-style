@@ -15,7 +15,7 @@ describe('StyledProvider', () => {
     render(<App />);
 
     // antd-style 默认的 前缀为 ant-css
-    expect(styleManager.sheet.key).toEqual('ant-css');
+    expect(styleManager.sheet.key).toEqual('acss');
     expect(styleManager.sheet.isSpeedy).toEqual(false);
 
     expect(emotion.sheet.key).toEqual('test');
