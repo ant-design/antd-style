@@ -1,5 +1,5 @@
+import { useMergeValue } from '@/utils/useMergeValue';
 import { FC, memo, ReactNode, useEffect, useLayoutEffect, useMemo, useState } from 'react';
-import useControlledState from 'use-merge-value';
 
 import { ThemeModeContext } from '@/context';
 import { ThemeAppearance, ThemeMode, UseTheme } from '@/types';
@@ -79,7 +79,7 @@ const ThemeSwitcher: FC<ThemeSwitcherProps> = memo(
       [themeModeProps, upperThemeMode],
     );
 
-    const [appearance, setAppearance] = useControlledState<ThemeAppearance>('light', {
+    const [appearance, setAppearance] = useMergeValue<ThemeAppearance>('light', {
       value: appearanceProp,
       defaultValue: defaultAppearance ?? upperAppearance,
       onChange: onAppearanceChange,
