@@ -1,8 +1,7 @@
-import { Context, memo, ReactElement } from 'react';
+import { Context, memo, ReactElement, useContext } from 'react';
 
-import { createUseTheme } from '@/factories/createUseTheme';
 import { DEFAULT_THEME_CONTEXT, DEFAULT_THEME_PROVIDER } from '@/functions/setupStyled';
-import { StyledConfig } from '@/types';
+import { StyledConfig, StyleEngine, UseTheme } from '@/types';
 
 import { createStyledThemeProvider } from '@/factories/createStyledThemeProvider';
 import AntdProvider from './AntdProvider';
@@ -14,9 +13,8 @@ export * from './type';
 
 interface CreateThemeProviderOptions {
   styledConfig?: StyledConfig;
-  CustomThemeContext: Context<any>;
-  prefixCls?: string;
-  customToken: ThemeProviderProps<any>['customToken'];
+  StyleEngineContext: Context<StyleEngine>;
+  useTheme: UseTheme;
 }
 
 export const createThemeProvider = (
@@ -26,6 +24,8 @@ export const createThemeProvider = (
   const DefaultStyledThemeProvider = option.styledConfig
     ? createStyledThemeProvider(option.styledConfig)
     : undefined;
+
+  const { StyleEngineContext } = option;
 
   return memo(
     ({
@@ -45,42 +45,50 @@ export const createThemeProvider = (
       themeMode,
       styled,
     }) => {
-      const useTheme = createUseTheme({
-        prefixCls: prefixCls || option.prefixCls,
-        styledThemeContext:
-          styled?.ThemeContext || option.styledConfig?.ThemeContext || DEFAULT_THEME_CONTEXT,
-        CustomThemeContext: option.CustomThemeContext,
-      });
+      const {
+        prefixCls: defaultPrefixCls,
+        StyledThemeContext,
+        CustomThemeContext,
+      } = useContext(StyleEngineContext);
+      const defaultCustomToken = useContext(CustomThemeContext);
 
       const StyledThemeProvider = styled
         ? createStyledThemeProvider(styled)
         : DefaultStyledThemeProvider || DEFAULT_THEME_PROVIDER;
 
       return (
-        <ThemeSwitcher
-          themeMode={themeMode}
-          defaultAppearance={defaultAppearance}
-          appearance={appearance}
-          onAppearanceChange={onAppearanceChange}
-          useTheme={useTheme}
+        <StyleEngineContext.Provider
+          value={{
+            prefixCls: prefixCls || defaultPrefixCls,
+            StyledThemeContext: styled?.ThemeContext || StyledThemeContext || DEFAULT_THEME_CONTEXT,
+            CustomThemeContext,
+          }}
         >
-          <AntdProvider
-            prefixCls={prefixCls}
-            staticInstanceConfig={staticInstanceConfig}
-            theme={theme}
-            getStaticInstance={getStaticInstance}
+          <ThemeSwitcher
+            themeMode={themeMode}
+            defaultAppearance={defaultAppearance}
+            appearance={appearance}
+            onAppearanceChange={onAppearanceChange}
+            useTheme={option.useTheme}
           >
-            <TokenContainer
+            <AntdProvider
               prefixCls={prefixCls}
-              customToken={customToken}
-              defaultCustomToken={option.customToken}
-              customStylish={customStylish}
-              StyledThemeProvider={StyledThemeProvider}
+              staticInstanceConfig={staticInstanceConfig}
+              theme={theme}
+              getStaticInstance={getStaticInstance}
             >
-              {children}
-            </TokenContainer>
-          </AntdProvider>
-        </ThemeSwitcher>
+              <TokenContainer
+                prefixCls={prefixCls}
+                customToken={customToken}
+                defaultCustomToken={defaultCustomToken}
+                customStylish={customStylish}
+                StyledThemeProvider={StyledThemeProvider}
+              >
+                {children}
+              </TokenContainer>
+            </AntdProvider>
+          </ThemeSwitcher>
+        </StyleEngineContext.Provider>
       );
     },
   );

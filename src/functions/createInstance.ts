@@ -10,7 +10,7 @@ import { createStylesFactory } from '@/factories/createStyles';
 import { createThemeProvider, ThemeProviderProps } from '@/factories/createThemeProvider';
 import { createUseTheme } from '@/factories/createUseTheme';
 
-import { HashPriority, StyledConfig, StyleManager } from '@/types';
+import { HashPriority, StyledConfig, StyleEngine, StyleManager } from '@/types';
 
 // 为 SSR 添加一个全局的 cacheManager，用于统一抽取 ssr 样式
 declare global {
@@ -72,26 +72,28 @@ export const createInstance = <T = any>(options: CreateOptions<T>) => {
 
   const styledThemeContext = options.styled?.ThemeContext;
 
-  const useTheme = createUseTheme({
-    prefixCls: options?.prefixCls,
+  const StyleEngineContext = createContext<StyleEngine>({
     CustomThemeContext,
-    styledThemeContext,
+    StyledThemeContext: styledThemeContext,
+    prefixCls: options?.prefixCls,
   });
+
+  const useTheme = createUseTheme({ StyleEngineContext });
 
   const createStyles = createStylesFactory({
     cache,
     hashPriority: options.hashPriority,
     useTheme,
   });
+
   const createGlobalStyle = createGlobalStyleFactory(useTheme);
 
   const createStylish = createStylishFactory(createStyles);
 
   const ThemeProvider = createThemeProvider({
     styledConfig: options.styled,
-    CustomThemeContext,
-    prefixCls: options.prefixCls,
-    customToken: options.customToken,
+    StyleEngineContext,
+    useTheme,
   });
 
   // ******** 上面这些都和主题相关，如果做了任何改动，都需要排查一遍 ************ //

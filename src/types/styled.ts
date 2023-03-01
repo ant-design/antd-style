@@ -14,3 +14,9 @@ export interface StyledConfig {
 }
 
 export type StyledThemeProvider = FC<{ theme: Theme; children: ReactNode }>;
+
+export interface StyleEngine {
+  CustomThemeContext: Context<any>;
+  StyledThemeContext?: Context<any>;
+  prefixCls?: string;
+}

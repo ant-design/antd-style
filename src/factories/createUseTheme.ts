@@ -1,4 +1,4 @@
-import { Theme } from '@/types';
+import { StyleEngine, Theme } from '@/types';
 import { Context, useContext, useMemo } from 'react';
 
 import { DEFAULT_THEME_CONTEXT } from '@/functions/setupStyled';
@@ -6,19 +6,18 @@ import { useAntdTheme } from '@/hooks/useAntdTheme';
 import { useThemeMode } from '@/hooks/useThemeMode';
 
 interface CreateUseThemeOptions {
-  prefixCls?: string;
-  CustomThemeContext: Context<any>;
-  styledThemeContext?: Context<any>;
+  StyleEngineContext: Context<StyleEngine>;
 }
 
 export const createUseTheme = (options: CreateUseThemeOptions) => (): Theme => {
-  const { prefixCls, styledThemeContext, CustomThemeContext } = options;
+  const { StyleEngineContext } = options;
+  const { StyledThemeContext, CustomThemeContext, prefixCls } = useContext(StyleEngineContext);
+
   const antdTheme = useAntdTheme();
   const themeState = useThemeMode();
 
   const defaultCustomTheme = useContext(CustomThemeContext);
-
-  const styledTheme = useContext(styledThemeContext ?? DEFAULT_THEME_CONTEXT) || {};
+  const styledTheme = useContext(StyledThemeContext ?? DEFAULT_THEME_CONTEXT) || {};
 
   const initTheme = useMemo<Theme>(
     () => ({
