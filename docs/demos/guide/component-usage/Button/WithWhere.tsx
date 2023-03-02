@@ -2,8 +2,8 @@ import { createStyles } from 'antd-style';
 import { FC, ReactNode } from 'react';
 
 const useStyles = createStyles(
-  ({ css, cx, prefixCls, token }) => {
-    const prefix = `${prefixCls}-btn`;
+  ({ css, cx, token }) => {
+    const prefix = `my-btn`;
     return {
       container: cx(
         prefix,

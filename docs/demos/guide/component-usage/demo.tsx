@@ -11,13 +11,13 @@ import Button from './Button/Default';
 import WithWhereButton from './Button/WithWhere';
 
 const useStyles = createStyles(
-  ({ css, prefixCls }) => css`
-    .${prefixCls}-btn {
+  ({ css }) => css`
+    .my-btn {
       background: darkgreen;
       color: white;
     }
 
-    .${prefixCls}-btn-primary {
+    .my-btn-primary {
       background: springgreen;
       color: green;
     }

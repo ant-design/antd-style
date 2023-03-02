@@ -8,7 +8,7 @@ demo:
 
 # 组件级研发方案
 
-antd-style 的一开始使用对象是业务应用，因此在默认的设计上主要面向应用消费场景。但这并不代表着组件应用的研发不能使用 antd-style。antd-style 也提供了组件级研发的方案，这里将介绍如何使用 antd-style 来研发组件。
+antd-style 的一开始使用对象是业务应用，因此在默认的设计上主要面向应用消费场景。但这并不代表着组件应用的研发不能使用 antd-style。antd-style 为组件级研发提供了解决方案，这里将介绍如何使用 antd-style 来研发组件。
 
 ## :where 选择器
 
@@ -16,38 +16,54 @@ antd-style 的一开始使用对象是业务应用，因此在默认的设计上
 
 ```less
 // style-1
-.css-abcd .ant-btn {
+.css-abcd .my-btn {
   background: blue;
 }
 // style-2
-.css-dcba .ant-btn {
+.css-dcba .my-btn {
   background: red;
 }
 ```
 
 ```jsx | pure
-<button className="ant-btn css-abcd">click</button> // -> blue background
-<button className="ant-btn css-dcba">click</button> // -> red background
+<button className="my-btn css-abcd">click</button> // -> blue background
+<button className="my-btn css-dcba">click</button> // -> red background
 ```
 
-但是这样做也会带来一个问题：组件的样式会被 hash 的选择器权重抬升，覆写会变得很困难。当用户需要使用 `.ant-btn` 覆盖样式时，由于 `.css-abcd .ant-btn` 的权重更高，因此用户如果覆盖样式 `.ant-btn` 是无法生效的。
+但是这样做也会带来一个问题 —— 组件的样式会被 hash 选择器抬升权重，此时用户要覆写样式就会变得很困难： 原本用户使用 `.my-btn` 就可以覆盖样式。但现在由于 `.css-abcd .my-btn` 的权重更高，因此用户如果只书写了 `.my-btn { color:green } ` ，这个覆盖样式是无法生效的。
 
-所以 `:where()` 选择器登场了，它可以说是组件级 cssinjs 的一个核心基石。`:where()` 接受选择器列表作为它的参数，将会选择所有能被该选择器列表中任何一条规则选中的元素。
+那怎么办？此时 `:where()` 选择器登场了，它可以说是未来组件级 cssinjs 的一个核心基石。
+
+> `:where()` 接受选择器列表作为它的参数，将会选择所有能被该选择器列表中任何一条规则选中的元素。 —— [:where —— MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/:where)
+
+来看下代码：
 
 ```less
-:where(.css-abcd) .ant-btn {
+:where(.css-abcd) .my-btn {
   background: blue;
 }
 
 //上述代码在选择范围上等效于
-.css-abcd .ant-btn {
+.css-abcd .my-btn {
   background: blue;
 }
 ```
 
-局部选择器除了 where 以外， is 也是可以实现的。但 `:where()` 和 `:is()` 的不同之处，也是最重要的一点，在于 **`:where()` 的权重总是为 0**。 也就是说，利用 where 选择器，我们就可以实现 0 权重增加的情况下，为组件样式添加局部作用域，**同时组件仍然保留和原本一致的覆写特性**。
+局部选择器除了 where 以外， is 也是可以实现的。但 `:where()` 和 `:is()` 的不同之处，也是最重要的一点，在于 **`:where()` 的权重总是为 0**。 也就是说，利用 where 选择器，我们就可以实现 0 权重增加的情况下，为组件样式添加局部作用域，**同时组件仍然保留和原本一致的覆写便捷度**。
 
-下述 demo 就是一组对比示例。上方一组是未使用 where 选择器的 demo，下方一组是使用 whrere 选择器的 demo，两组 demo 都在外部添加了同一个覆写样式。
+下述 demo 就是一组对比示例。上方一组是未使用 where 选择器的 demo，下方一组是使用 whrere 选择器的 demo，两组 demo 都在外部添加了同一组覆写样式。
+
+```css
+.my-btn {
+  background: darkgreen;
+  color: white;
+}
+
+.my-btn-primary {
+  background: springgreen;
+  color: green;
+}
+```
 
 <code src="../demos/guide/component-usage/demo"></code>
 
@@ -63,14 +79,14 @@ const useStyles = createStyles(getStyleFn, { hashPriority: 'low' });
 // 该 useStyles 里的样式将都会使用 where 选择器
 ```
 
-当然如果你不希望给每个 createStyles 设置一遍 `{ hashPriority: 'low' }`，你可以往下阅读，了解如何为组件库设定一个自己的样式实例方法。
+当然如果你不希望给每个 createStyles 设置一遍 `{ hashPriority: 'low' }`，可以继续往下阅读，了解如何为组件库设定一个自己的样式实例方法。
 
 ## 独立样式实例
 
-其实，除了 where 以外，组件研发的场景和应用研发的场景还有一些不同之处。比如：
+其实，除了 `:where` 以外，组件研发的场景和应用研发的场景还有一些不同之处。比如：
 
 - 需要在组件库层面定义一些自定义 token，并在组件中可以消费到默认值，而不是在每个组件内部手动包一层 Provider，或让用户在消费时包一层 Provider；
-- 可能会希望让组件库的前缀可以默认变成自定义的前缀；
+- 可能会希望让组件库的前缀可以默认变成自定义前缀；
 - 同样希望组件库可以响应应用传入的主题配置；
 
 这些场景，都可以通过 antd-style 提供的创建独立样式实例 `createInstance` 来实现。
