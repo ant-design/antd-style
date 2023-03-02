@@ -22,25 +22,80 @@ antd-style 提供的核心 api 就是使用 `createStyles` 方法可以适用类
 
 ## 详细介绍
 
-`createStyles` 针对不同的使用场景，提供了若干种写法，满足研发诉求，并提升研发体验。
+`createStyles` 针对不同的使用场景，提供了若干种写法来满足研发诉求，并且提升研发体验。
 
 ### 写法一：不需要动态性
 
 如果不需要动态性，可以直接用 `createStyles` 传入一个样式对象。
 
-使用示例：
+示例：
+
+```tsx | pure
+import { createStyles, css } from 'antd-style';
+
+const useStyles = createStyles({
+  container: {
+    padding: 24,
+    background: 'lightslategrey',
+  },
+  header: css`
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    color: white;
+  `,
+  text: {
+    color: 'lightblue',
+  },
+});
+
+export default () => {
+  const { styles } = useStyles();
+
+  return (
+    <div className={styles.container}>
+      <div className={styles.header}>用法一</div>
+      <p className={styles.text}>普通对象，无需动态性</p>
+    </div>
+  );
+};
+```
 
 <code src="../demos/createStyles/SimpleObject.tsx"></code>
-
-样式对象的类型为：
-
-```ts | pure
-type StyleInput<T> = string | Record<T, CSSObject | string>;
-```
 
 ### 写法二：结合 antd 的 token 使用
 
 和其他 `antd-style` 的方法一样，`createStyles` 方法可以使用 antd 的 token 和自定义 token。此时 `createStyles` 的入参需要变成函数。
+
+```ts
+import { createStyles } from 'antd-style';
+
+const useStyles = createStyles(({ token, css }) => {
+  const commonCard = css`
+    border-radius: ${token.borderRadiusLG}px;
+    padding: ${token.paddingLG}px;
+  `;
+
+  return {
+    container: css`
+      background-color: ${token.colorBgLayout};
+      padding: 24px;
+    `,
+
+    primaryCard: css`
+      ${commonCard};
+      background: ${token.colorPrimary};
+      color: ${token.colorTextLightSolid};
+    `,
+
+    defaultCard: css`
+      ${commonCard};
+      background: ${token.colorBgContainer};
+      color: ${token.colorText};
+    `,
+  };
+});
+```
 
 demo 示例：
 
@@ -48,7 +103,7 @@ demo 示例：
 
 ### 写法三：结合外部传入 props
 
-`createStyles` 的第二个参数可以指定可传入的 props。
+`createStyles` 的第一个参数如果是函数，那么该函数的第二个参数可以指定外部的 props。
 
 ```tsx | pure
 const useStyles = createStyles(({ token, css }, props: { id: string; open: boolean }) => {
@@ -69,11 +124,13 @@ const Select = () => {
 };
 ```
 
+下方 demo 为结合外部入参的 antd Select 组件覆写 demo。
+
 <code src="../demos/createStyles/withProps.tsx"></code>
 
 ## 代码组织文件拆分
 
-如果组件样式简单，可以合并在一个文件中，但如果样式文件较大，可以把样式文件部分独立到 `style.ts` 文件中。如下所示：
+如果组件样式简单，可以合并在一个文件中，但如果样式文件较大，强烈建议把样式文件部分独立到 `style.ts` 文件中。如下所示：
 
 <code src="../demos/createStyles/Command/index.tsx" ></code>
 
