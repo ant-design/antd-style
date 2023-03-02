@@ -72,7 +72,7 @@ StyledButton.defaultProps = {
 
 ## styled 与 ThemeProvider 集成
 
-在 antd-style 的 ThemeProvider 中，我们提供了一个 `styled` 的 props ，用于接收外部 styled 的 ThemeProvider 和 useTheme ，进而让 styled 方法可以响应到 antd-style 的 ThemeProvider 内容。
+在 antd-style 的 ThemeProvider 中，我们提供了一个 `styled` 的 props ，用于接收外部 styled 所对应的 ThemeContext ，进而让 styled 方法可以响应到 antd-style 中的 antd token 、 自定义 token 与主题状态。
 
 ```tsx | pure
 import { ThemeProvider } from 'antd-style';
@@ -92,7 +92,7 @@ render(
 
 ## 全局统一集成 styled
 
-在 antd-style 中，我们提供了一个 `setupStyled` 方法，用于将外部 styled 的 ThemeProvider 和 useTheme 统一注入到 antd-style 的 ThemeProvider 里，进而让 styled 方法可以响应到所有的 ThemeProvider 内容。
+针对存在多个 ThemeProvider 的场景，我们提供了一个 `setupStyled` 方法，用于将外部 styled 的 ThemeContext 统一注入到 antd-style 的 ThemeProvider 里，进而让 styled 方法可以响应到任意一个 ThemeProvider。
 
 ```tsx | pure
 import { setupStyled, ThemeProvider } from 'antd-style';
@@ -110,20 +110,34 @@ render(
 
 <code src="../demos/guide/styled/SetupStyled/index.tsx"></code>
 
+:::waring
+请注意：setupStyled 需要在应用初始化前执行，否则不会生效。此外由于 setupStyled 会对 antd-style 的所有 ThemeProvider 生效，不建议在多个应用场景下使用，否则可能会污染其他应用的 ThemeProvider。
+:::
+
 ## Typescript 类型定义支持
 
 同 antd-style 的主题类型扩展一样，如果需要让各自的 styled 方法能够获取到 antd-style 的主题类型，需要在项目中全局补充 styled-components 或 @emotion/styled 的类型定义。
 
+### 为 styled-components 注入主题类型
+
+为 styled-components 的 styled 注入 antd-style 的主题类型。
+
 ```tsx | pure
 import { Theme as AntdStyleTheme } from 'antd-style';
 
-// 为 styled-components 的 styled 注入 antd-style 的主题类型
 declare module 'styled-components' {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
   export interface DefaultTheme extends AntdStyleTheme {}
 }
+```
 
-// 为 emotion 的 styled 注入 antd-style 的主题类型
+### 为 @emotion/styled 注入主题类型
+
+为 emotion 的 styled 注入主题类型时需要注意，需要声明的包是 `@emotion/react` 而不是 `@emotion/styled`。
+
+```tsx | pure
+import { Theme as AntdStyleTheme } from 'antd-style';
+
 declare module '@emotion/react' {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
   export interface Theme extends AntdStyleTheme {}

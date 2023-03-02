@@ -52,7 +52,7 @@ export default () => {
 
 ## 3. 受控模式的主题切换
 
-但在很多场景下， 我们需要给用户提供自助选择权，让用户自行切换需要的模式。这个时候可以通过受控模式来实现这种能力。
+但在很多场景下， 我们需要给用户提供自助选择权，让用户自行切换需要的模式。这个时候可以通过 `themeMode` 的受控来实现。
 
 <code src="../demos/guide/switch-theme/ControlledSwitch"></code>
 
