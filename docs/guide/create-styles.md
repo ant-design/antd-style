@@ -4,6 +4,8 @@ order: 1
 group:
   title: 快速上手
   order: 0
+demo:
+  tocDepth: 4
 ---
 
 # 使用 createStyles 类名组织样式
@@ -29,37 +31,6 @@ antd-style 提供的核心 api 就是使用 `createStyles` 方法可以适用类
 如果不需要动态性，可以直接用 `createStyles` 传入一个样式对象。
 
 示例：
-
-```tsx | pure
-import { createStyles, css } from 'antd-style';
-
-const useStyles = createStyles({
-  container: {
-    padding: 24,
-    background: 'lightslategrey',
-  },
-  header: css`
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 24px;
-    color: white;
-  `,
-  text: {
-    color: 'lightblue',
-  },
-});
-
-export default () => {
-  const { styles } = useStyles();
-
-  return (
-    <div className={styles.container}>
-      <div className={styles.header}>用法一</div>
-      <p className={styles.text}>普通对象，无需动态性</p>
-    </div>
-  );
-};
-```
 
 <code src="../demos/createStyles/SimpleObject.tsx"></code>
 

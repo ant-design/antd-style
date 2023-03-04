@@ -1,3 +1,7 @@
+/**
+ * defaultShowCode: true
+ * codePlacement: top
+ */
 import { createStyles, css } from 'antd-style';
 
 const useStyles = createStyles({

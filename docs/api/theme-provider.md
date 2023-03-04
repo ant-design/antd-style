@@ -7,6 +7,7 @@ group:
   order: 1
 demo:
   cols: 2
+  tocDepth: 4
 ---
 
 ## 简介

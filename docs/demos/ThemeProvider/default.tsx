@@ -1,5 +1,6 @@
 /**
- * compact: true
+ * defaultShowCode: true
+ * codePlacement: left
  */
 import { Divider } from 'antd';
 import { ThemeProvider } from 'antd-style';

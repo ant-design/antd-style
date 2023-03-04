@@ -2,6 +2,8 @@
 title: 主题切换
 group: 快速上手
 order: 2
+demo:
+  tocDepth: 4
 ---
 
 # 主题切换

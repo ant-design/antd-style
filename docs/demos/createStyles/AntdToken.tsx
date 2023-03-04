@@ -1,3 +1,6 @@
+/**
+ * inherit: true
+ */
 import { SmileOutlined } from '@ant-design/icons';
 import { Button, Space } from 'antd';
 import { createStyles } from 'antd-style';
