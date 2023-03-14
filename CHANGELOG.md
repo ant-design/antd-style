@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.0.0-beta.11](https://github.com/ant-design/antd-style/compare/v3.0.0-beta.10...v3.0.0-beta.11) (2023-03-14)
+
+### ✨ Features
+
+- useThemeMode 支持获取当前浏览器主题模式 ([a4e2e67](https://github.com/ant-design/antd-style/commit/a4e2e67))
+
 # [3.0.0-beta.10](https://github.com/ant-design/antd-style/compare/v3.0.0-beta.9...v3.0.0-beta.10) (2023-03-01)
 
 ### ✨ Features
