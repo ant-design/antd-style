@@ -3,11 +3,9 @@ import { FC, memo, ReactNode, useEffect, useLayoutEffect, useMemo, useState } fr
 
 import { ThemeModeContext } from '@/context';
 import { BrowserPrefers, ThemeAppearance, ThemeMode, UseTheme } from '@/types';
+import { matchBrowserPrefers } from '@/utils/matchBrowserPrefers';
 
 let darkThemeMatch: MediaQueryList;
-
-const matchThemeMode = (mode: ThemeAppearance) =>
-  matchMedia && matchMedia(`(prefers-color-scheme: ${mode})`);
 
 const ThemeObserver: FC<{
   themeMode: ThemeMode;
@@ -15,7 +13,7 @@ const ThemeObserver: FC<{
   setBrowserPrefers: (value: BrowserPrefers) => void;
 }> = ({ themeMode, setAppearance, setBrowserPrefers }) => {
   const matchBrowserTheme = () => {
-    if (matchThemeMode('dark').matches) {
+    if (matchBrowserPrefers('dark').matches) {
       setAppearance('dark');
     } else {
       setAppearance('light');
@@ -23,7 +21,7 @@ const ThemeObserver: FC<{
   };
 
   const updateBrowserTheme = () => {
-    if (matchThemeMode('dark').matches) {
+    if (matchBrowserPrefers('dark').matches) {
       setBrowserPrefers('dark');
     } else {
       setBrowserPrefers('light');
@@ -41,7 +39,7 @@ const ThemeObserver: FC<{
     setTimeout(matchBrowserTheme, 1);
 
     if (!darkThemeMatch) {
-      darkThemeMatch = matchThemeMode('dark');
+      darkThemeMatch = matchBrowserPrefers('dark');
     }
     darkThemeMatch.addEventListener('change', matchBrowserTheme);
 
@@ -52,7 +50,7 @@ const ThemeObserver: FC<{
 
   useEffect(() => {
     if (!darkThemeMatch) {
-      darkThemeMatch = matchThemeMode('dark');
+      darkThemeMatch = matchBrowserPrefers('dark');
     }
 
     darkThemeMatch.addEventListener('change', updateBrowserTheme);
@@ -107,7 +105,7 @@ const ThemeSwitcher: FC<ThemeSwitcherProps> = memo(
     });
 
     const [browserPrefers, setBrowserPrefers] = useState<BrowserPrefers>(
-      matchThemeMode('dark')?.matches ? 'dark' : 'light',
+      matchBrowserPrefers('dark')?.matches ? 'dark' : 'light',
     );
 
     const [startObserver, setStartObserver] = useState(false);

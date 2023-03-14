@@ -1,13 +1,11 @@
 import { createContext } from 'react';
 
-import { ThemeAppearance, ThemeContextState } from '@/types';
-
-const matchThemeMode = (mode: ThemeAppearance) =>
-  matchMedia && matchMedia(`(prefers-color-scheme: ${mode})`);
+import { ThemeContextState } from '@/types';
+import { matchBrowserPrefers } from '@/utils/matchBrowserPrefers';
 
 export const ThemeModeContext = createContext<ThemeContextState>({
   appearance: 'light',
   isDarkMode: false,
   themeMode: 'light',
-  browserPrefers: matchThemeMode('dark')?.matches ? 'dark' : 'light',
+  browserPrefers: matchBrowserPrefers('dark')?.matches ? 'dark' : 'light',
 });
