@@ -12,7 +12,7 @@ interface AppProps {
 }
 const Demo: FC<AppProps> = ({ extra }) => {
   const theme = useTheme();
-  const { appearance, themeMode } = useThemeMode();
+  const { appearance, themeMode, browserPrefers } = useThemeMode();
   return (
     <App>
       <Flexbox
@@ -29,6 +29,9 @@ const Demo: FC<AppProps> = ({ extra }) => {
             <Divider type={'vertical'} />
             <Text type={'secondary'}>外观模式：</Text>
             {appearance}
+            <Divider type={'vertical'} />
+            <Text type={'secondary'}>浏览器外观：</Text>
+            {browserPrefers}
           </Flexbox>
           {extra}
         </Flexbox>
