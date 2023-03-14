@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.0.0-beta.12](https://github.com/ant-design/antd-style/compare/v3.0.0-beta.11...v3.0.0-beta.12) (2023-03-14)
+
+### 🐛 Bug Fixes
+
+- 修正 matchBrowserPrefer 在 SSR 下无法正常使用的问题 ([660a338](https://github.com/ant-design/antd-style/commit/660a338))
+
 # [3.0.0-beta.11](https://github.com/ant-design/antd-style/compare/v3.0.0-beta.10...v3.0.0-beta.11) (2023-03-14)
 
 ### ✨ Features
