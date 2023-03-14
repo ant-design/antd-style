@@ -61,8 +61,27 @@ export interface ThemeProviderProps<T, S = Record<string, string>> {
   themeMode?: ThemeMode;
 }
 
+/**
+ * 静态实例
+ */
 export interface StaticInstance {
+  /**
+   * 消息实例
+   */
   message: MessageInstance;
+  /**
+   * 通知实例
+   */
   notification: NotificationInstance;
+  /**
+   * 弹窗实例，不包含 warn 方法
+   * @typedef {object} Omit<ModalStaticFunctions, 'warn'>
+   * @property {Function} info - info 弹窗
+   * @property {Function} success - success 弹窗
+   * @property {Function} error - error 弹窗
+   * @property {Function} warning - warning 弹窗
+   * @property {Function} confirm - confirm 弹窗
+   * @property {Function} destroyAll - 关闭所有弹窗
+   */
   modal: Omit<ModalStaticFunctions, 'warn'>;
 }

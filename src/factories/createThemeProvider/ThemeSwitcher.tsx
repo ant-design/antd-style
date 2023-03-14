@@ -2,7 +2,7 @@ import { useMergeValue } from '@/utils/useMergeValue';
 import { FC, memo, ReactNode, useEffect, useLayoutEffect, useMemo, useState } from 'react';
 
 import { ThemeModeContext } from '@/context';
-import { ThemeAppearance, ThemeMode, UseTheme } from '@/types';
+import { BrowserPrefers, ThemeAppearance, ThemeMode, UseTheme } from '@/types';
 
 let darkThemeMatch: MediaQueryList;
 
@@ -12,12 +12,21 @@ const matchThemeMode = (mode: ThemeAppearance) =>
 const ThemeObserver: FC<{
   themeMode: ThemeMode;
   setAppearance: (value: ThemeAppearance) => void;
-}> = ({ themeMode, setAppearance }) => {
+  setBrowserPrefers: (value: BrowserPrefers) => void;
+}> = ({ themeMode, setAppearance, setBrowserPrefers }) => {
   const matchBrowserTheme = () => {
     if (matchThemeMode('dark').matches) {
       setAppearance('dark');
     } else {
       setAppearance('light');
+    }
+  };
+
+  const updateBrowserTheme = () => {
+    if (matchThemeMode('dark').matches) {
+      setBrowserPrefers('dark');
+    } else {
+      setBrowserPrefers('light');
     }
   };
 
@@ -40,6 +49,18 @@ const ThemeObserver: FC<{
       darkThemeMatch.removeEventListener('change', matchBrowserTheme);
     };
   }, [themeMode]);
+
+  useEffect(() => {
+    if (!darkThemeMatch) {
+      darkThemeMatch = matchThemeMode('dark');
+    }
+
+    darkThemeMatch.addEventListener('change', updateBrowserTheme);
+
+    return () => {
+      darkThemeMatch.removeEventListener('change', updateBrowserTheme);
+    };
+  }, []);
 
   return null;
 };
@@ -85,6 +106,10 @@ const ThemeSwitcher: FC<ThemeSwitcherProps> = memo(
       onChange: onAppearanceChange,
     });
 
+    const [browserPrefers, setBrowserPrefers] = useState<BrowserPrefers>(
+      matchThemeMode('dark')?.matches ? 'dark' : 'light',
+    );
+
     const [startObserver, setStartObserver] = useState(false);
 
     // Wait until after client-side hydration to show
@@ -98,9 +123,16 @@ const ThemeSwitcher: FC<ThemeSwitcherProps> = memo(
           themeMode,
           appearance,
           isDarkMode: appearance === 'dark',
+          browserPrefers,
         }}
       >
-        {startObserver && <ThemeObserver themeMode={themeMode} setAppearance={setAppearance} />}
+        {startObserver && (
+          <ThemeObserver
+            themeMode={themeMode}
+            setAppearance={setAppearance}
+            setBrowserPrefers={setBrowserPrefers}
+          />
+        )}
         {children}
       </ThemeModeContext.Provider>
     );
