@@ -68,7 +68,7 @@ const useStyles = createStyles(({ token, css }) => {
 });
 ```
 
-demo 示例：
+demo 示例：（当切换站点主题时，能响应亮色或暗色）
 
 <code src="../demos/createStyles/AntdToken.tsx"></code>
 

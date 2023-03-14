@@ -8,4 +8,4 @@ group: 进阶使用
 
 TBD
 
-参考源码：https://github.com/arvinxx/dumi-theme-antd-style/blob/master/src/plugin.ts
+参考源码：https://github.com/arvinxx/dumi-theme-antd-style/blob/master/src/plugin/index.ts
