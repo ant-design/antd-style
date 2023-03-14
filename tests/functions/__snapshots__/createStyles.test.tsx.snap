@@ -1,5 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`createStyles styles 对象的使用 createStyleFn 通过函数方式可以拿到 token 等信息 只返回一个 css 字符串，使用正常，类型定义也正常 1`] = `
+.emotion-0 {
+  background-color: #ffffff;
+  padding: 24px;
+}
+
+<div
+  class="emotion-0"
+>
+  card
+</div>
+`;
+
 exports[`createStyles styles 对象的使用 createStyleFn 通过函数方式可以拿到 token 等信息 字符串模板的对象模式用法 1`] = `
 .emotion-0 {
   background-color: #f5f5f5;
@@ -18,6 +31,61 @@ exports[`createStyles styles 对象的使用 createStyleFn 通过函数方式可
   >
     card
   </div>
+</div>
+`;
+
+exports[`createStyles styles 对象的使用 cx 的处理方式 1`] = `
+.emotion-0 {
+  background-color: #f5f5f5;
+  padding: 24px;
+}
+
+.emotion-1 {
+  margin-top: 24px;
+}
+
+<div
+  class="emotion-0 with-cx"
+>
+  <div
+    class="emotion-1"
+  >
+    card
+  </div>
+</div>
+`;
+
+exports[`createStyles styles 对象的使用 styleObject 方法 css模式的写法 1`] = `
+.emotion-0 {
+  background-color: #f5f5f5;
+  padding: 24px;
+}
+
+.emotion-1 {
+  margin-top: 16px;
+}
+
+<div
+  class="emotion-0"
+>
+  <div
+    class="emotion-1"
+  >
+    card
+  </div>
+</div>
+`;
+
+exports[`createStyles styles 对象的使用 styleObject 方法 只返回一个 css 字符串，使用正常，类型定义也正常 1`] = `
+.emotion-0 {
+  background-color: #f5f5f5;
+  padding: 24px;
+}
+
+<div
+  class="emotion-0"
+>
+  card
 </div>
 `;
 
@@ -42,7 +110,7 @@ exports[`createStyles styles 对象的使用 styleObject 方法 对象模式的�
 </div>
 `;
 
-exports[`createStyles theme 对象使用 需要包裹 ThemeProvider 才能拿到 theme 对象 1`] = `
+exports[`createStyles theme 对象使用 默认用法 1`] = `
 .emotion-0 {
   color: #1677ff;
 }

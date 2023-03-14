@@ -1,0 +1,10 @@
+{
+  "include": ["**/*.tsx", "*.ts", "*.tsx", "../src"],
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "antd-style": ["../es"]
+    }
+  }
+}

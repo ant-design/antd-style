@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`createStylish 渲染使用 1`] = `
+.emotion-0 {
+  cursor: pointer;
+  -webkit-transition: 150ms background-color ease-in-out;
+  transition: 150ms background-color ease-in-out;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.emotion-0:hover {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.emotion-0:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+<div
+  class="emotion-0"
+>
+  bglayout
+</div>
+`;
+
+exports[`createStylish 默认快照 1`] = `
+{
+  "containerBgHover": "acss-5g3hbo",
+  "containerBgL2": "acss-1ij3f7o",
+  "defaultButton": "acss-ujg4eo",
+}
+`;

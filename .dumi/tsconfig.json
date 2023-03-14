@@ -1,0 +1,15 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "baseUrl": "..",
+    "paths": {
+      "@@/*": ["./.dumi/tmp/*"],
+      "dumi/theme-original/builtins/*": ["./.dumi/tmp/dumi/theme/builtins/*"],
+      "antd-style": ["es"]
+    }
+  },
+  "include": ["./**/*"]
+}

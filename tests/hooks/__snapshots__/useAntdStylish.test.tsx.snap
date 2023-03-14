@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`useAntdStylish 包裹 Provider 后如果自定义主题变量 1`] = `
+{
+  "buttonDefaultHover": "background-color:#ffffff;border:1px solid #d9d9d9;cursor:pointer;:hover{color:#7183eb;border-color:#7183eb;}:active{color:#323db8;border-color:#323db8;}",
+}
+`;
+
+exports[`useAntdStylish 如果没有 Provider，stylish 对象是 antd Token 的默认值 1`] = `
+{
+  "buttonDefaultHover": "background-color:#ffffff;border:1px solid #d9d9d9;cursor:pointer;:hover{color:#4096ff;border-color:#4096ff;}:active{color:#0958d9;border-color:#0958d9;}",
+}
+`;
+
+exports[`useAntdStylish 嵌套 Provider 后能拿到准确的主题值 1`] = `"background-color:#141414;border:1px solid #424242;cursor:pointer;:hover{color:#3c89e8;border-color:#3c89e8;}:active{color:#1554ad;border-color:#1554ad;}"`;

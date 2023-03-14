@@ -1,11 +1,13 @@
 {
-  "include": ["src", "tests", ".dumi/**/*", ".dumirc.ts", "*.ts"],
+  "include": ["src", ".dumi/**/*", ".dumirc.ts", "*.ts"],
   "compilerOptions": {
     "strict": true,
     "declaration": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
+    "resolveJsonModule": true,
     "jsx": "react-jsx",
+    "lib": ["DOM", "ESNext"],
     "baseUrl": ".",
     "paths": {
       "@@/*": [".dumi/tmp/*"],
