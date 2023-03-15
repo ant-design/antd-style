@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.0.0-beta.16](https://github.com/ant-design/antd-style/compare/v3.0.0-beta.15...v3.0.0-beta.16) (2023-03-15)
+
+### 🐛 Bug Fixes
+
+- 修正 StyleProvider 的类型定义 ([780bf91](https://github.com/ant-design/antd-style/commit/780bf91))
+
 # [3.0.0-beta.15](https://github.com/ant-design/antd-style/compare/v3.0.0-beta.14...v3.0.0-beta.15) (2023-03-15)
 
 ### ✨ Features
