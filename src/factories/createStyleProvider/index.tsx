@@ -1,10 +1,16 @@
 import { DEFAULT_CSS_PREFIX_KEY } from '@/core';
 import { createEmotion, Emotion } from '@/core/createEmotion';
 import { StyleManager } from '@/types';
+import { StyleProvider as AntdStyleProvider } from '@ant-design/cssinjs';
+import type { StyleContextProps } from '@ant-design/cssinjs/es/StyleContext';
 import { StylisPlugin } from '@emotion/cache';
 import { Context, FC, memo, ReactNode, useEffect, useMemo } from 'react';
 
-export interface StyleProviderProps {
+export interface StyleProviderProps
+  extends Pick<
+    StyleContextProps,
+    'container' | 'autoClear' | 'cache' | 'hashPriority' | 'ssrInline' | 'transformers'
+  > {
   prefix: string;
 
   nonce?: string;
@@ -40,8 +46,11 @@ export const createStyleProvider = (
       prefix = defaultProps?.prefix || DEFAULT_CSS_PREFIX_KEY,
       speedy = defaultProps?.speedy,
       getStyleManager,
-
-      ...emotionOptions
+      container,
+      nonce,
+      insertionPoint,
+      stylisPlugins,
+      ...antdStyleProviderProps
     }) => {
       const emotion = useMemo(() => {
         const defaultSpeedy = process.env.NODE_ENV === 'development';
@@ -49,14 +58,22 @@ export const createStyleProvider = (
         return createEmotion({
           speedy: speedy ?? defaultSpeedy,
           key: prefix,
-          ...emotionOptions,
+          container,
+          nonce,
+          insertionPoint,
+          stylisPlugins,
         });
-      }, [prefix, speedy, emotionOptions]);
+      }, [prefix, speedy, container, nonce, insertionPoint, stylisPlugins]);
 
       useEffect(() => {
         getStyleManager?.(emotion);
       }, [emotion]);
 
-      return <EmotionContext.Provider value={emotion}>{children}</EmotionContext.Provider>;
+      return (
+        // @ts-ignore
+        <AntdStyleProvider {...antdStyleProviderProps}>
+          <EmotionContext.Provider value={emotion}>{children}</EmotionContext.Provider>
+        </AntdStyleProvider>
+      );
     },
   );

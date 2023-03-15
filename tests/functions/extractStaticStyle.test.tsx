@@ -2,9 +2,8 @@
  * @jest-environment node
  */
 
-import { StyleProvider } from '@ant-design/cssinjs';
 import { Button } from 'antd';
-import { createStyles, extractStaticStyle } from 'antd-style';
+import { createStyles, extractStaticStyle, StyleProvider } from 'antd-style';
 import { renderToString } from 'react-dom/server';
 import { Flexbox } from 'react-layout-kit';
 
