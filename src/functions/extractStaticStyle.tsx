@@ -2,7 +2,7 @@ import createEmotionServer from '@emotion/server/create-instance';
 /**
  * 表示一个样式项
  */
-interface StyleItem {
+export interface StyleItem {
   /**
    * @title 键值
    */
@@ -26,10 +26,12 @@ interface StyleItem {
 }
 
 /**
- * Extract SSR style
+ * Extract Static style
  * @param html html page string
  */
-export const extractStyle = (html: string): StyleItem[] => {
+export const extractStaticStyle = (html: string): StyleItem[] => {
+  // copy from emotion ssr
+  // https://github.com/vercel/next.js/blob/deprecated-main/examples/with-emotion-vanilla/pages/_document.js
   const styles = global.__ANTD_STYLE_CACHE_MANAGER_FOR_SSR__.getCacheList().map((cache) => {
     const result = createEmotionServer(cache).extractCritical(html);
     if (!result) return null;
