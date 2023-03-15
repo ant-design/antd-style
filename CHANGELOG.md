@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.0.0-beta.13](https://github.com/ant-design/antd-style/compare/v3.0.0-beta.12...v3.0.0-beta.13) (2023-03-15)
+
+### ✨ Features
+
+- 提供 ssr 抽取方法 extractStyle ([8d22e4a](https://github.com/ant-design/antd-style/commit/8d22e4a))
+
 # [3.0.0-beta.12](https://github.com/ant-design/antd-style/compare/v3.0.0-beta.11...v3.0.0-beta.12) (2023-03-14)
 
 ### 🐛 Bug Fixes
