@@ -136,6 +136,7 @@
     "zustand": "^4"
   },
   "peerDependencies": {
+    "@ant-design/cssinjs": "^1",
     "antd": "^5",
     "react": ">=18"
   },

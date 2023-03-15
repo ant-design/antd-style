@@ -1,4 +1,7 @@
+import { createCache, extractStyle } from '@ant-design/cssinjs';
 import createEmotionServer from '@emotion/server/create-instance';
+import { version } from 'antd';
+
 /**
  * 表示一个样式项
  */
@@ -25,16 +28,47 @@ export interface StyleItem {
   tag: string;
 }
 
+const antdCache = createCache();
+
+interface ExtractStyleOptions {
+  /**
+   * 抽取样式时是否包含 antd，默认抽取
+   * @default true
+   */
+  includeAntd?: boolean;
+}
 /**
  * Extract Static style
  * @param html html page string
+ * @param options
  */
-export const extractStaticStyle = (html: string): StyleItem[] => {
+export const extractStaticStyle = (html: string, options?: ExtractStyleOptions): StyleItem[] => {
+  const shouldExtreactAntdStyle =
+    typeof options?.includeAntd !== 'undefined' ? options.includeAntd : true;
+
+  const styleText = extractStyle(antdCache);
+
+  const antdCssString = styleText.replace(/<style\s[^>]*>/g, '').replace(/<\/style>/g, '');
+
+  const antdStyle: StyleItem = {
+    style: (
+      <style
+        key={'antd'}
+        data-antd-version={version}
+        dangerouslySetInnerHTML={{ __html: antdCssString }}
+      />
+    ),
+    ids: [],
+    key: 'antd',
+    css: antdCssString,
+    tag: `<style data-antd-version="${version}">${antdCssString}</style>`,
+  };
+
   // copy from emotion ssr
   // https://github.com/vercel/next.js/blob/deprecated-main/examples/with-emotion-vanilla/pages/_document.js
   const styles = global.__ANTD_STYLE_CACHE_MANAGER_FOR_SSR__.getCacheList().map((cache) => {
     const result = createEmotionServer(cache).extractCritical(html);
-    if (!result) return null;
+    if (!result.css) return null;
 
     const { css, ids } = result;
 
@@ -53,5 +87,12 @@ export const extractStaticStyle = (html: string): StyleItem[] => {
     };
   });
 
+  // 只有当有 antd 的 css ，且需要抽取 antd 样式时，才抽取 antd 样式
+  if (!!antdCssString && shouldExtreactAntdStyle) {
+    styles.unshift(antdStyle);
+  }
+
   return styles.filter(Boolean) as StyleItem[];
 };
+
+extractStaticStyle.cache = antdCache;
