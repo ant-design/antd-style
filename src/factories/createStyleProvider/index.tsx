@@ -11,7 +11,7 @@ export interface StyleProviderProps
     StyleContextProps,
     'container' | 'autoClear' | 'cache' | 'hashPriority' | 'ssrInline' | 'transformers'
   > {
-  prefix: string;
+  prefix?: string;
 
   nonce?: string;
   stylisPlugins?: StylisPlugin[];
