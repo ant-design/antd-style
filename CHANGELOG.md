@@ -1,5 +1,12 @@
 # Changelog
 
+# [3.0.0-beta.15](https://github.com/ant-design/antd-style/compare/v3.0.0-beta.14...v3.0.0-beta.15) (2023-03-15)
+
+### ✨ Features
+
+- extractStaticStyle 支持抽取 antd 样式 ([5d0d10c](https://github.com/ant-design/antd-style/commit/5d0d10c))
+- 支持使用 antd-style 的 StyleProvider 做 SSR ([6c0b017](https://github.com/ant-design/antd-style/commit/6c0b017))
+
 # [3.0.0-beta.14](https://github.com/ant-design/antd-style/compare/v3.0.0-beta.13...v3.0.0-beta.14) (2023-03-15)
 
 ### ✨ Features
