@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.0.0-beta.14](https://github.com/ant-design/antd-style/compare/v3.0.0-beta.13...v3.0.0-beta.14) (2023-03-15)
+
+### ✨ Features
+
+- 将 extractStyle 改名为 extractStaticStyle ，与 antd cssinjs 的错开 ([89f17dc](https://github.com/ant-design/antd-style/commit/89f17dc))
+
 # [3.0.0-beta.13](https://github.com/ant-design/antd-style/compare/v3.0.0-beta.12...v3.0.0-beta.13) (2023-03-15)
 
 ### ✨ Features
