@@ -74,6 +74,7 @@
     "@emotion/css": "^11",
     "@emotion/react": "^11",
     "@emotion/serialize": "^1",
+    "@emotion/server": "^11",
     "@emotion/utils": "^1"
   },
   "devDependencies": {
@@ -82,7 +83,6 @@
     "@commitlint/cli": "^17",
     "@emotion/babel-plugin": "^11",
     "@emotion/jest": "^11",
-    "@emotion/server": "^11",
     "@emotion/styled": "^11",
     "@floating-ui/react": "^0.17",
     "@react-three/fiber": "^8",

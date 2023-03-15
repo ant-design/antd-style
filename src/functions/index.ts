@@ -1,6 +1,7 @@
 import { DEFAULT_CSS_PREFIX_KEY } from '@/core';
 import { createInstance } from './createInstance';
 
+export { extractStyle } from './extractStyle';
 export { setupStyled } from './setupStyled';
 export { createInstance };
 
