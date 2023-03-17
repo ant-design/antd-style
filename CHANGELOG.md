@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.0.0-beta.17](https://github.com/ant-design/antd-style/compare/v3.0.0-beta.16...v3.0.0-beta.17) (2023-03-17)
+
+### 🐛 Bug Fixes
+
+- cache 设为可选项 ([495cd78](https://github.com/ant-design/antd-style/commit/495cd78))
+
 # [3.0.0-beta.16](https://github.com/ant-design/antd-style/compare/v3.0.0-beta.15...v3.0.0-beta.16) (2023-03-15)
 
 ### 🐛 Bug Fixes
