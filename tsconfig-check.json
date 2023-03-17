@@ -3,5 +3,5 @@
   "compilerOptions": {
     "noEmit": true
   },
-  "exclude": ["./.dumi/theme"]
+  "exclude": ["./.dumi/theme", ".dumi/tmp"]
 }
