@@ -7,9 +7,11 @@ import { StylisPlugin } from '@emotion/cache';
 import { Context, FC, memo, ReactNode, useEffect, useMemo } from 'react';
 
 export interface StyleProviderProps
-  extends Pick<
-    StyleContextProps,
-    'container' | 'autoClear' | 'cache' | 'hashPriority' | 'ssrInline' | 'transformers'
+  extends Partial<
+    Pick<
+      StyleContextProps,
+      'container' | 'autoClear' | 'cache' | 'hashPriority' | 'ssrInline' | 'transformers'
+    >
   > {
   prefix?: string;
 
@@ -69,11 +71,14 @@ export const createStyleProvider = (
         getStyleManager?.(emotion);
       }, [emotion]);
 
-      return (
-        // @ts-ignore
-        <AntdStyleProvider {...antdStyleProviderProps}>
-          <EmotionContext.Provider value={emotion}>{children}</EmotionContext.Provider>
-        </AntdStyleProvider>
-      );
+      const content = <EmotionContext.Provider value={emotion}>{children}</EmotionContext.Provider>;
+
+      if (antdStyleProviderProps.cache) {
+        return (
+          // @ts-ignore
+          <AntdStyleProvider {...antdStyleProviderProps}>{content}</AntdStyleProvider>
+        );
+      }
+      return content;
     },
   );
