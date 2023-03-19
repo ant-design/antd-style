@@ -1,4 +1,5 @@
 import { createCache, extractStyle } from '@ant-design/cssinjs';
+import CacheEntity from '@ant-design/cssinjs/es/Cache';
 import createEmotionServer from '@emotion/server/create-instance';
 import { version } from 'antd';
 
@@ -36,6 +37,10 @@ interface ExtractStyleOptions {
    * @default true
    */
   includeAntd?: boolean;
+  /**
+   * Antd 样式缓存配置
+   */
+  antdCache?: CacheEntity;
 }
 /**
  * Extract Static style
@@ -46,7 +51,7 @@ export const extractStaticStyle = (html: string, options?: ExtractStyleOptions):
   const shouldExtreactAntdStyle =
     typeof options?.includeAntd !== 'undefined' ? options.includeAntd : true;
 
-  const styleText = extractStyle(antdCache);
+  const styleText = extractStyle(options?.antdCache ?? antdCache);
 
   const antdCssString = styleText.replace(/<style\s[^>]*>/g, '').replace(/<\/style>/g, '');
 
