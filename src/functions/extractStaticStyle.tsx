@@ -29,7 +29,7 @@ export interface StyleItem {
   tag: string;
 }
 
-const antdCache = createCache();
+const defaultAntdCache = createCache();
 
 interface ExtractStyleOptions {
   /**
@@ -51,7 +51,8 @@ export const extractStaticStyle = (html: string, options?: ExtractStyleOptions):
   const shouldExtreactAntdStyle =
     typeof options?.includeAntd !== 'undefined' ? options.includeAntd : true;
 
-  const styleText = extractStyle(options?.antdCache ?? antdCache);
+  const cache = options?.antdCache ?? defaultAntdCache;
+  const styleText = extractStyle(cache);
 
   const antdCssString = styleText.replace(/<style\s[^>]*>/g, '').replace(/<\/style>/g, '');
 
@@ -63,7 +64,7 @@ export const extractStaticStyle = (html: string, options?: ExtractStyleOptions):
         dangerouslySetInnerHTML={{ __html: antdCssString }}
       />
     ),
-    ids: [],
+    ids: Array.from(cache.cache.keys()),
     key: 'antd',
     css: antdCssString,
     tag: `<style data-antd-version="${version}">${antdCssString}</style>`,
@@ -100,4 +101,4 @@ export const extractStaticStyle = (html: string, options?: ExtractStyleOptions):
   return styles.filter(Boolean) as StyleItem[];
 };
 
-extractStaticStyle.cache = antdCache;
+extractStaticStyle.cache = defaultAntdCache;
