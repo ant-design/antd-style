@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.0.0-beta.19](https://github.com/ant-design/antd-style/compare/v3.0.0-beta.18...v3.0.0-beta.19) (2023-03-19)
+
+### ✨ Features
+
+- extractStaticStyle 提供 antd 的 ids 计数 ([47254d3](https://github.com/ant-design/antd-style/commit/47254d3))
+
 # [3.0.0-beta.18](https://github.com/ant-design/antd-style/compare/v3.0.0-beta.17...v3.0.0-beta.18) (2023-03-19)
 
 ### ✨ Features
