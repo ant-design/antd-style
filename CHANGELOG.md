@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.0.0-beta.18](https://github.com/ant-design/antd-style/compare/v3.0.0-beta.17...v3.0.0-beta.18) (2023-03-19)
+
+### ✨ Features
+
+- extractStaticStyle 支持传入 antdCache ([d87ddde](https://github.com/ant-design/antd-style/commit/d87ddde))
+
 # [3.0.0-beta.17](https://github.com/ant-design/antd-style/compare/v3.0.0-beta.16...v3.0.0-beta.17) (2023-03-17)
 
 ### 🐛 Bug Fixes
