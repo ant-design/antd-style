@@ -19,6 +19,12 @@ export type BaseReturnType = KVObject | AtomInputType;
 
 type KVObject = Record<string, CSSObject | string | SerializedStyles>;
 
+/**
+ * @title StyleObjectOnly
+ * @description 从 BaseReturnType 中排除 string 和 SerializedStyles 类型，只保留对象类型
+ * @template T - BaseReturnType 的类型变量
+ * @returns BaseReturnType 中的对象类型
+ */
 type StyleObjectOnly<T extends BaseReturnType> = T extends string
   ? never
   : T extends SerializedStyles

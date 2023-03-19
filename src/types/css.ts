@@ -10,6 +10,12 @@ export type { SerializedStyles } from '@emotion/serialize';
 
 export type ClassNameGenerator = Emotion['css'];
 
+/**
+ * @title CSS 工具函数
+ * @param template - 模板字符串数组
+ * @param args - CSS 插值数组
+ * @returns CSS 序列化后的样式
+ */
 export interface CssUtil {
   (template: TemplateStringsArray, ...args: Array<CSSInterpolation>): SerializedStyles;
   (...args: Array<CSSInterpolation>): SerializedStyles;

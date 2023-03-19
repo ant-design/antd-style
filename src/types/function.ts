@@ -20,11 +20,21 @@ export interface ResponsiveUtil extends Record<ResponsiveKey, string> {
   (breakpoints: BreakpointMapParams): SerializedStyles;
 }
 
+/**
+ * @title 通用样式工具函数
+ */
 export interface CommonStyleUtils {
+  /**
+   * @title CSS 类名工具函数
+   */
   cx: ClassNamesUtil;
+  /**
+   * @title CSS 序列化函数
+   */
   css: CssUtil;
   /**
-   * 可以快速创建响应式媒体查询的工具函数
+   * @title 响应式媒体查询工具函数
+   * @description 可以快速创建响应式媒体查询的工具函数
    */
   responsive: ResponsiveUtil;
 }

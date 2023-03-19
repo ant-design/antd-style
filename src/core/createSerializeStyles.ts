@@ -1,5 +1,11 @@
 import { CSSInterpolation, SerializedStyles, serializeStyles } from '@emotion/serialize';
 
+/**
+ * @title CSS 序列化函数
+ * @param template - 模板字符串数组
+ * @param args - CSS 插值数组
+ * @returns CSS 序列化后的样式
+ */
 export interface SerializeCSS {
   (template: TemplateStringsArray, ...args: Array<CSSInterpolation>): SerializedStyles;
   (...args: Array<CSSInterpolation>): SerializedStyles;
