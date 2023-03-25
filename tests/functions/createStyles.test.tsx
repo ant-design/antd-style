@@ -1,5 +1,6 @@
 import { render } from '@testing-library/react';
-import { createStyles, css } from 'antd-style';
+import { createStyles, css, GetCustomToken, ThemeProvider } from 'antd-style';
+import { FC, PropsWithChildren } from 'react';
 
 describe('createStyles', () => {
   describe('styles 对象的使用', () => {
@@ -180,6 +181,47 @@ describe('createStyles', () => {
       expect(container.firstChild).toHaveStyle({ color: '#1677FF', background: '#f5f5f5' });
     });
   });
+
+  describe('响应主题', () => {
+    it('嵌套主题', () => {
+      const customTokenFn: GetCustomToken<any> = ({ token, isDarkMode }) => ({
+        customColor: isDarkMode ? '#000' : token.colorPrimary,
+        customBrandColor: isDarkMode ? token.colorPrimary : '#FFF',
+      });
+
+      const Wrapper: FC<PropsWithChildren> = ({ children }) => (
+        <ThemeProvider customToken={customTokenFn}>
+          <ThemeProvider customToken={{ a: 'red' }}>{children}</ThemeProvider>
+        </ThemeProvider>
+      );
+
+      const useStyles = createStyles(({ token, css }) => ({
+        container: css`
+          background-color: ${token.customColor};
+          color: ${token.a};
+          padding: 24px;
+        `,
+        card: css`
+          margin-top: ${token.marginLG}px;
+        `,
+      }));
+
+      const App = () => {
+        const { styles } = useStyles();
+        return (
+          <div className={styles.container}>
+            <div className={styles.card}>card</div>
+          </div>
+        );
+      };
+
+      const { container } = render(<App />, { wrapper: Wrapper });
+
+      expect(container.firstChild).toMatchSnapshot();
+
+      expect(container.firstChild).toHaveStyle({ backgroundColor: '#1677ff', color: 'red' });
+    });
+  });
 });
 
 describe('createStyles：响应式工具函数', () => {
@@ -234,6 +276,7 @@ describe('createStyles：响应式工具函数', () => {
       ({ css, responsive }) => css`
         background-color: blue;
         ${responsive({
+          // @ts-ignore
           xxx: css`
             background-color: red;
           `,

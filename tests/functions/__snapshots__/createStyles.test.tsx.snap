@@ -122,3 +122,25 @@ exports[`createStyles theme 对象使用 默认用法 1`] = `
   123
 </div>
 `;
+
+exports[`createStyles 响应主题 嵌套主题 1`] = `
+.emotion-0 {
+  background-color: #1677ff;
+  color: red;
+  padding: 24px;
+}
+
+.emotion-1 {
+  margin-top: 24px;
+}
+
+<div
+  class="emotion-0"
+>
+  <div
+    class="emotion-1"
+  >
+    card
+  </div>
+</div>
+`;

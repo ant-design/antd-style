@@ -10,6 +10,8 @@ interface TestDesignToken {
   customBrandColor: string;
 
   customColor?: string;
+
+  a?: string;
 }
 interface TestDesignStylish {
   defaultText: string;
@@ -157,6 +159,24 @@ describe('ThemeProvider', () => {
 
       const { result } = renderHook(useTheme, { wrapper: Wrapper });
       expect(result.current.stylish.x!.styles).toEqual('');
+    });
+
+    it('嵌套 ThemeProvider 下的 自定义 Token', () => {
+      const customTokenFn: GetCustomToken<any> = ({ token, isDarkMode }) => ({
+        customColor: isDarkMode ? '#000' : token.colorPrimary,
+        customBrandColor: isDarkMode ? token.colorPrimary : '#FFF',
+      });
+
+      const Wrapper: FC<PropsWithChildren> = ({ children }) => (
+        <ThemeProvider customToken={customTokenFn}>
+          <ThemeProvider customToken={{ a: 'red' }}>{children}</ThemeProvider>
+        </ThemeProvider>
+      );
+
+      const { result: light } = renderHook(useTheme, { wrapper: Wrapper });
+      expect(light.current.customColor).toEqual('#1677ff');
+      expect(light.current.customBrandColor).toEqual('#FFF');
+      expect(light.current.a).toEqual('red');
     });
   });
 
