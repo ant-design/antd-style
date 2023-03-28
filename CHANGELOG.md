@@ -1,5 +1,12 @@
 # Changelog
 
+# [3.0.0-beta.20](https://github.com/ant-design/antd-style/compare/v3.0.0-beta.19...v3.0.0-beta.20) (2023-03-28)
+
+### 🐛 Bug Fixes
+
+- 修正 @ant-design/cssinjs 作为 deps ([912a59f](https://github.com/ant-design/antd-style/commit/912a59f))
+- 修正 vite 模式下 global 为 undefined 的问题 ([d0a19ba](https://github.com/ant-design/antd-style/commit/d0a19ba))
+
 # [3.0.0-beta.19](https://github.com/ant-design/antd-style/compare/v3.0.0-beta.18...v3.0.0-beta.19) (2023-03-19)
 
 ### ✨ Features
