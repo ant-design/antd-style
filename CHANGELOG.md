@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.0.0-beta.22](https://github.com/ant-design/antd-style/compare/v3.0.0-beta.21...v3.0.0-beta.22) (2023-03-31)
+
+### 🐛 Bug Fixes
+
+- 修正 createGlobalStyle 类型找不到的问题 ([64fda0f](https://github.com/ant-design/antd-style/commit/64fda0f))
+
 # [3.0.0-beta.21](https://github.com/ant-design/antd-style/compare/v3.0.0-beta.20...v3.0.0-beta.21) (2023-03-29)
 
 ### 🐛 Bug Fixes
