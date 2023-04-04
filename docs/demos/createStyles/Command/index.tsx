@@ -1,6 +1,8 @@
 /**
  * iframe: 510
- * description: Demo 示例参考 https://designmaestro.io/
+ * title: 复杂样式场景下建议独立拆分样式文件
+ * description: "Demo 示例参考 https://designmaestro.io/"
+ * defaultShowCode: true
  */
 import { SearchOutlined } from '@ant-design/icons';
 

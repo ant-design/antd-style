@@ -1,10 +1,11 @@
 import { createContext } from 'react';
 
-import { DisplayTheme, ThemeMode } from '@/types';
+import { ThemeContextState } from '@/types';
+import { matchBrowserPrefers } from '@/utils/matchBrowserPrefers';
 
-export interface ThemeModeContextState {
-  appearance: DisplayTheme;
-  themeMode: ThemeMode;
-}
-
-export const ThemeModeContext = createContext<ThemeModeContextState | undefined>(undefined);
+export const ThemeModeContext = createContext<ThemeContextState>({
+  appearance: 'light',
+  isDarkMode: false,
+  themeMode: 'light',
+  browserPrefers: matchBrowserPrefers('dark')?.matches ? 'dark' : 'light',
+});

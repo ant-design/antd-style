@@ -1,94 +1,38 @@
-import { PropsOf } from '@emotion/react';
-import { CreateStyledComponent } from '@emotion/styled';
-import {
-  CreateStyled as BaseCreateStyled,
-  FilteringStyledOptions,
-  StyledOptions,
-} from '@emotion/styled/base';
-import * as React from 'react';
-
+import { Context, FC, ReactNode } from 'react';
 import { Theme } from './theme';
 
-export type StyledTags = {
-  [Tag in keyof JSX.IntrinsicElements]: CreateStyledComponent<
-    {
-      theme?: Theme;
-      as?: React.ElementType;
-    },
-    JSX.IntrinsicElements[Tag]
-  >;
-};
-
-export interface CreateStyled {
-  <
-    C extends React.ComponentClass<React.ComponentProps<C>>,
-    ForwardedProps extends keyof React.ComponentProps<C> & string = keyof React.ComponentProps<C> &
-      string,
-  >(
-    component: C,
-    options: FilteringStyledOptions<React.ComponentProps<C>, ForwardedProps>,
-  ): CreateStyledComponent<
-    Pick<PropsOf<C>, ForwardedProps> & {
-      theme?: Theme;
-    },
-    // eslint-disable-next-line @typescript-eslint/ban-types
-    {},
-    {
-      ref?: React.Ref<InstanceType<C>>;
-    }
-  >;
-
-  <C extends React.ComponentClass<React.ComponentProps<C>>>(
-    component: C,
-    options?: StyledOptions<React.ComponentProps<C>>,
-  ): CreateStyledComponent<
-    PropsOf<C> & {
-      theme?: Theme;
-    },
-    // eslint-disable-next-line @typescript-eslint/ban-types
-    {},
-    {
-      ref?: React.Ref<InstanceType<C>>;
-    }
-  >;
-
-  <
-    C extends React.ComponentType<React.ComponentProps<C>>,
-    ForwardedProps extends keyof React.ComponentProps<C> & string = keyof React.ComponentProps<C> &
-      string,
-  >(
-    component: C,
-    options: FilteringStyledOptions<React.ComponentProps<C>, ForwardedProps>,
-  ): CreateStyledComponent<
-    Pick<PropsOf<C>, ForwardedProps> & {
-      theme?: Theme;
-    }
-  >;
-
-  <C extends React.ComponentType<React.ComponentProps<C>>>(
-    component: C,
-    options?: StyledOptions<React.ComponentProps<C>>,
-  ): CreateStyledComponent<
-    PropsOf<C> & {
-      theme?: Theme;
-    }
-  >;
-
-  <
-    Tag extends keyof JSX.IntrinsicElements,
-    ForwardedProps extends keyof JSX.IntrinsicElements[Tag] &
-      string = keyof JSX.IntrinsicElements[Tag] & string,
-  >(
-    tag: Tag,
-    options: FilteringStyledOptions<JSX.IntrinsicElements[Tag], ForwardedProps>,
-  ): CreateStyledComponent<
-    { theme?: Theme; as?: React.ElementType },
-    Pick<JSX.IntrinsicElements[Tag], ForwardedProps>
-  >;
-
-  <Tag extends keyof JSX.IntrinsicElements>(
-    tag: Tag,
-    options?: StyledOptions<JSX.IntrinsicElements[Tag]>,
-  ): CreateStyledComponent<{ theme?: Theme; as?: React.ElementType }, JSX.IntrinsicElements[Tag]>;
+export interface StyledConfig {
+  /**
+   * styled 对象所对应的 ThemeContext
+   * @requires
+   */
+  ThemeContext: Context<any>;
+  /**
+   * 可以注入相应 styled 方法的 ThemeProvider，或其他自己定义的ThemeProvider
+   */
+  ThemeProvider?: StyledThemeProvider;
 }
-export interface CreateStyled extends BaseCreateStyled, StyledTags {}
+
+export type StyledThemeProvider = FC<{ theme: Theme; children: ReactNode }>;
+
+/**
+ * @title 样式引擎
+ * @description 样式引擎的参数类型
+ */
+export interface StyleEngine {
+  /**
+   * @title 自定义主题上下文
+   * @description 自定义主题的 React 上下文对象
+   */
+  CustomThemeContext: Context<any>;
+  /**
+   * @title Antd 主题上下文
+   * @description Antd 主题的 React 上下文对象
+   */
+  StyledThemeContext?: Context<any>;
+  /**
+   * @title CSS 类名前缀
+   * @description 当前组件的 CSS 类名前缀
+   */
+  prefixCls?: string;
+}

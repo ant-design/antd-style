@@ -1,8 +1,11 @@
+/**
+ * inherit: true
+ */
 import { SmileOutlined } from '@ant-design/icons';
 import { Button, Space } from 'antd';
-import { createStyles, css } from 'antd-style';
+import { createStyles } from 'antd-style';
 
-const useStyles = createStyles(({ token }) => {
+const useStyles = createStyles(({ token, css }) => {
   const commonCard = css`
     border-radius: ${token.borderRadiusLG}px;
     padding: ${token.paddingLG}px;
