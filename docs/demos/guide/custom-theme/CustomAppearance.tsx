@@ -3,7 +3,7 @@
  */
 import { Segmented, theme } from 'antd';
 import { ThemeAppearance, ThemeProvider } from 'antd-style';
-import { darkAlgorithm } from 'dumi-theme-antd-style/dist/styles/theme/dark';
+import { getAntdTheme } from 'dumi-theme-antd-style/dist/styles/antdTheme';
 import { useState } from 'react';
 
 import App from '../../common/demo';
@@ -34,7 +34,7 @@ export default () => {
 
           case 'grey':
             return {
-              algorithm: darkAlgorithm,
+              algorithm: getAntdTheme('dark')?.algorithm,
             };
         }
       }}
