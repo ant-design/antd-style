@@ -1,7 +1,3 @@
-【Beta】 当前处于 Beta 阶段
-
----
-
 # antd-style
 
 [![NPM version][npm-image]][npm-url] [![NPM downloads][download-image]][download-url] [![install size][npm-size]][npm-size-url]
@@ -43,7 +39,7 @@
 
 ## 简介
 
-基于 Ant Design V5 Token System 构建的业务级 `css-in-js` 解决方案。 底层基于 [styled-component](https://styled-components.com/) 和 [emotion](https://emotion.sh/) 封装。
+基于 Ant Design V5 Token System 构建的业务级 `css-in-js` 解决方案。 底层基于 [emotion](https://emotion.sh/) 封装。
 
 - **🧩 Token System**: 默认集成 Ant Design V5 的 Token System，风格定制轻而易举，token 消费灵活易用；
 - **🌓 暗色模式一键切换**: 基于 antd v5 cssinjs 动态主题配置与暗色主题算法封装了，为应用级场景提供易用的亮暗色主题切换能力，使用方式更加简单；
@@ -61,7 +57,7 @@
 推荐使用 `pnpm` 安装
 
 ```bash
-pnpm i antd-style@beta -S
+pnpm i antd-style -S
 ```
 
 ### 典型使用场景
@@ -115,29 +111,6 @@ export default () => {
       <div className={styles.card}>createStyles Demo</div>
       {/* theme 对象包含了所有的 token 与主题等信息 */}
       <div>当前主题模式：{theme.appearance}</div>
-    </div>
-  );
-};
-```
-
-#### 场景二：使用 styled 搭配 Token 创建自定义样式的组件
-
-```tsx | pure
-import styled from '@emotion/styled';
-
-const Card = styled.div<{ primary?: boolean }>`
-  border-radius: ${(p) => p.theme.borderRadiusLG}px;
-  padding: ${(p) => p.theme.paddingLG}px;
-
-  background: ${(p) => (p.primary ? p.theme.colorPrimary : p.theme.colorBgContainer)};
-  color: ${(p) => (p.primary ? p.theme.colorTextLightSolid : p.theme.colorText)};
-`;
-
-const App = () => {
-  return (
-    <div>
-      <Card>普通卡片</Card>
-      <Card primary>强调卡片</Card>
     </div>
   );
 };
