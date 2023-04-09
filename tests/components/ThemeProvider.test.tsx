@@ -5,6 +5,7 @@ import { MappingAlgorithm } from 'antd/es/config-provider/context';
 import { MessageInstance } from 'antd/es/message/interface';
 import { NotificationInstance } from 'antd/es/notification/interface';
 import { FC, PropsWithChildren } from 'react';
+import { vi } from 'vitest';
 
 interface TestDesignToken {
   customBrandColor: string;
@@ -184,14 +185,14 @@ describe('ThemeProvider', () => {
     beforeEach(() => {
       Object.defineProperty(window, 'matchMedia', {
         writable: true,
-        value: jest.fn().mockImplementation((query) => ({
+        value: vi.fn().mockImplementation((query) => ({
           matches: true,
           media: query,
           onchange: null,
 
-          addEventListener: jest.fn(),
-          removeEventListener: jest.fn(),
-          dispatchEvent: jest.fn(),
+          addEventListener: vi.fn(),
+          removeEventListener: vi.fn(),
+          dispatchEvent: vi.fn(),
         })),
       });
     });

@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import { matchBrowserPrefers } from './matchBrowserPrefers';
 
 describe('matchBrowserPrefers', () => {
@@ -8,15 +9,15 @@ describe('matchBrowserPrefers', () => {
   it('should return a MediaQueryList object when window is defined', () => {
     Object.defineProperty(window, 'matchMedia', {
       writable: true,
-      value: jest.fn().mockImplementation((query) => ({
+      value: vi.fn().mockImplementation((query) => ({
         matches: true,
         media: query,
         onchange: null,
-        addListener: jest.fn(),
-        removeListener: jest.fn(),
-        addEventListener: jest.fn(),
-        removeEventListener: jest.fn(),
-        dispatchEvent: jest.fn(),
+        addListener: vi.fn(),
+        removeListener: vi.fn(),
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+        dispatchEvent: vi.fn(),
       })),
     });
 
