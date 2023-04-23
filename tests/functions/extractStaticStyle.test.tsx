@@ -1,5 +1,3 @@
-// @vitest-environment node
-
 import { Button } from 'antd';
 import { createStyles, extractStaticStyle, StyleProvider } from 'antd-style';
 import { renderToString } from 'react-dom/server';
@@ -37,6 +35,7 @@ describe('extractStaticStyle', () => {
           color: red;
         `,
     );
+
     const App = () => {
       const { styles } = useStyles();
       return (
@@ -57,13 +56,13 @@ describe('extractStaticStyle', () => {
       expect(item.tag).toMatch(/<style data-antd-version="[0-9]+\.[0-9]+\.[0-9]+">\s*/);
     });
 
+    // FIXME: 迁移到 vitest 后，不知道为什么 无法提取 extractStaticStyle 了
     it.skip('should return a StyleItem object with correct data for emotion', () => {
       const html = renderToString(<App />);
       const result = extractStaticStyle(html);
 
-      console.log(result);
       const emotionCSS = result.find((i) => i.key === 'css')!;
-      console.log(emotionCSS);
+
       expect(emotionCSS).toBeDefined();
       expect(emotionCSS.css).toMatch(/css-/);
       expect(emotionCSS.tag).toMatch(/<style data-emotion="css.*">.css-/);
