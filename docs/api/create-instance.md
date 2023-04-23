@@ -74,3 +74,16 @@ const componentStyleIntanceWithSC = createInstance({
   styled: { ThemeContext },
 });
 ```
+
+## 指定 container
+
+在创建时制定 container ，可以使得样式插入时都在该容器处插入，在 iframe 等场景比较有用。
+
+```ts
+const { css, StyleProvider, createStyles } = createInstance({
+  key: 'test',
+  container: document.body,
+});
+```
+
+<code src="../demos/api/createInstance/hasContainer.tsx"></code>
