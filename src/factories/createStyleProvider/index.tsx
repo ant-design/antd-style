@@ -73,10 +73,12 @@ export const createStyleProvider = (
 
       const content = <EmotionContext.Provider value={emotion}>{children}</EmotionContext.Provider>;
 
-      if (antdStyleProviderProps.cache) {
+      if (Boolean(Object.keys(antdStyleProviderProps).length) || container) {
         return (
           // @ts-ignore
-          <AntdStyleProvider {...antdStyleProviderProps}>{content}</AntdStyleProvider>
+          <AntdStyleProvider container={container} {...antdStyleProviderProps}>
+            {content}
+          </AntdStyleProvider>
         );
       }
       return content;
