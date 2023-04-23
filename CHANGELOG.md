@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.1-beta.1](https://github.com/ant-design/antd-style/compare/v3.0.0...v3.0.1-beta.1) (2023-04-23)
+
+### 🐛 Bug Fixes
+
+- 修正 antd 组件 StyleProvider 的 container 插入位置属性丢失的问题 ([d6de186](https://github.com/ant-design/antd-style/commit/d6de186)), closes [#46](https://github.com/ant-design/antd-style/issues/46)
+- 修正 createInstance 的 container 插入位置制定无效的问题 ([c0b00c3](https://github.com/ant-design/antd-style/commit/c0b00c3)), closes [#47](https://github.com/ant-design/antd-style/issues/47)
+
 # [3.0.0](https://github.com/ant-design/antd-style/compare/v2.0.2...v3.0.0) (2023-04-04)
 
 ### ♻ Code Refactoring
