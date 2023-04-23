@@ -36,6 +36,7 @@ export interface StyleProviderProps
 interface DefaultProps {
   prefix: string;
   speedy?: boolean;
+  container?: Node;
 }
 
 export const createStyleProvider = (
@@ -48,7 +49,7 @@ export const createStyleProvider = (
       prefix = defaultProps?.prefix || DEFAULT_CSS_PREFIX_KEY,
       speedy = defaultProps?.speedy,
       getStyleManager,
-      container,
+      container = defaultProps?.container,
       nonce,
       insertionPoint,
       stylisPlugins,

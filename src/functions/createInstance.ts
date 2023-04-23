@@ -40,6 +40,8 @@ export interface CreateOptions<T> {
    * @default false
    */
   speedy?: boolean;
+
+  container?: Node;
   /**
    * 默认的自定义 Token
    */
@@ -57,7 +59,12 @@ export interface CreateOptions<T> {
 export const createInstance = <T = any>(options: CreateOptions<T>) => {
   const defaultKey = options.key || 'css';
 
-  const emotion = createEmotion({ key: defaultKey, speedy: options.speedy });
+  // TODO: 此处的 emotion 应该是 emotion context 中的 emotion，需要允许外部通过 Provider 进行修改
+  const emotion = createEmotion({
+    key: defaultKey,
+    speedy: options.speedy,
+    container: options.container,
+  });
 
   // 将 cache 存到一个全局
   cacheManager.add(emotion.cache);
@@ -105,6 +112,7 @@ export const createInstance = <T = any>(options: CreateOptions<T>) => {
   const StyleProvider = createStyleProvider(EmotionContext, {
     speedy: options.speedy,
     prefix: defaultKey,
+    container: options.container,
   });
 
   return {
