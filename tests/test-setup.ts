@@ -1,8 +1,11 @@
 import '@testing-library/jest-dom';
+import { vi } from 'vitest';
 
 // 补充 toHaveStyleRule 的 matcher
-import { matchers } from '@emotion/jest';
+import { createSerializer, matchers } from '@emotion/jest';
 expect.extend(matchers);
+
+expect.addSnapshotSerializer(createSerializer());
 
 // 关闭 antd 的 hash
 import { theme } from 'antd';
@@ -20,15 +23,15 @@ console.error = function (...msg) {
 if (typeof window !== 'undefined') {
   Object.defineProperty(window, 'matchMedia', {
     writable: true,
-    value: jest.fn().mockImplementation((query) => ({
+    value: vi.fn().mockImplementation((query) => ({
       matches: false,
       media: query,
       onchange: null,
-      addListener: jest.fn(), // deprecated
-      removeListener: jest.fn(), // deprecated
-      addEventListener: jest.fn(),
-      removeEventListener: jest.fn(),
-      dispatchEvent: jest.fn(),
+      addListener: vi.fn(), // deprecated
+      removeListener: vi.fn(), // deprecated
+      addEventListener: vi.fn(),
+      removeEventListener: vi.fn(),
+      dispatchEvent: vi.fn(),
     })),
   });
 }
