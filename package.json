@@ -130,7 +130,7 @@
     "stylelint": "^14",
     "three": "^0.148",
     "ts-node": "^10",
-    "typescript": "^4",
+    "typescript": "^5",
     "use-merge-value": "^1",
     "vitest": "latest",
     "zustand": "^4"
