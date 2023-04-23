@@ -62,11 +62,11 @@ styled 的语法候选池中有两个库： `styled-component` 和 `emotion`。 
 
 | 集成 `styled-components` 的版本（[3.0.0-alpha.42](https://bundlephobia.com/package/antd-style@3.0.0-alpha.42)） | 集成 `@emotion/styled` 的版本（[3.0.0-alpha.41](https://bundlephobia.com/package/antd-style@3.0.0-alpha.41)） |
 | --------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| ![](https://mdn.alipayobjects.com/huamei_rqvucu/afts/img/A*uuRsQKLILmIAAAAAAAAAAAAADoN6AQ/fmt.webp)             | ![](https://mdn.alipayobjects.com/huamei_rqvucu/afts/img/A*uuRsQKLILmIAAAAAAAAAAAAADoN6AQ/fmt.webp)           |
+| ![](https://user-images.githubusercontent.com/28616219/233837788-a97688a7-db60-473e-94a9-5d43995a91a3.png)      | ![](https://user-images.githubusercontent.com/28616219/233837838-4156e64f-d05e-4317-9876-d57bcc757e97.png)    |
 
 此外，在我们实际业务落地测试中发现，95% 的样式书写场景都不会用到组件选择器的语法。只有在需要动画、复合选择器等场景才会用到， 而在这种场景下 `createStyles` 的写法将会更加自然易用。
 
-而在我们看来，组件选择器的语法本质上是因为 styled 不支持创建 className ，才不得已提供的补救措施。而为了这 5% 的使用场景再去额外增大 40% 的体积（10kb+），完全不划算。同时，在最终定稿的实现方案中也明确产出了 styled 的语法替换能力方案。详见：[createInstance-兼容 styled-components](/api/create-instance#兼容-styled-主题方案)。
+在我们看来，组件选择器的语法本质上是因为 styled 不支持创建 className 才不得已提供的补救措施。而为了这 5% 的使用场景再去额外增大 40% 的体积（10kb+），完全不划算。同时，在最终定稿的实现方案中也明确产出了 styled 的语法替换能力方案。详见：[createInstance-兼容 styled-components](/api/create-instance#兼容-styled-主题方案)。
 
 因此综合实践案例，结合包体积、使用场景，我们在多次摇摆下最终选择了 `@emotion/styled` 作为 `styled` 语法的样式引擎。
 
