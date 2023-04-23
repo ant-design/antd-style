@@ -10,7 +10,7 @@ demo:
 
 # 使用 createStyles 类名组织样式
 
-antd-style 提供的核心 api 就是使用 `createStyles` 方法可以适用类名来组织样式，它更加接近 CSS Modules 的写法。
+antd-style 提供的核心 api 就是 `createStyles` ，该方法可以使用 className 组织样式，更加接近 CSS Modules 的写法。
 
 :::success{title=默认推荐}
 这是 antd-style 第一推荐的使用方式。应用样式书写或者对基础组件做样式覆写，都可以使用这种写法。
@@ -104,6 +104,14 @@ const Select = () => {
 如果组件样式简单，可以合并在一个文件中，但如果样式文件较大，强烈建议把样式文件部分独立到 `style.ts` 文件中。如下所示：
 
 <code src="../demos/createStyles/Command/index.tsx" ></code>
+
+## 其他 常用 css 语法
+
+### Keyframes
+
+支持两种 keyframes 写法，使用 `keyframes` 方法或者 css 原生的 `@keyframes`。
+
+<code src="../demos/createStyles/Keyframes.tsx" ></code>
 
 ## API
 
