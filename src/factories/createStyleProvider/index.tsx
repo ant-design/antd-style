@@ -8,16 +8,13 @@ import { Context, FC, memo, ReactNode, useEffect, useMemo } from 'react';
 
 export interface StyleProviderProps
   extends Partial<
-    Pick<
-      StyleContextProps,
-      'container' | 'autoClear' | 'cache' | 'hashPriority' | 'ssrInline' | 'transformers'
-    >
+    Pick<StyleContextProps, 'autoClear' | 'cache' | 'hashPriority' | 'ssrInline' | 'transformers'>
   > {
   prefix?: string;
 
   nonce?: string;
   stylisPlugins?: StylisPlugin[];
-  container?: HTMLElement;
+  container?: Element | ShadowRoot | null;
   /**
    * 开启极速模式，极速模式下不会插入真实的样式 style
    * @default false
@@ -37,6 +34,7 @@ interface DefaultProps {
   prefix: string;
   speedy?: boolean;
   container?: Node;
+  defaultEmotion: Emotion;
 }
 
 export const createStyleProvider = (
@@ -55,13 +53,21 @@ export const createStyleProvider = (
       stylisPlugins,
       ...antdStyleProviderProps
     }) => {
+      // FIXME: 现在的解决方案比较 hack，通过修改默认传入的 defaultEmotion 的方式来实现，后续新方案里要考虑通过 context 的方式来实现
+      if (container && defaultProps) {
+        defaultProps.defaultEmotion.sheet.container = container;
+      }
+
+      // useEffect(() => {
+      //   console.log(container);
+      // }, [container]);
       const emotion = useMemo(() => {
         const defaultSpeedy = process.env.NODE_ENV === 'development';
 
         return createEmotion({
           speedy: speedy ?? defaultSpeedy,
           key: prefix,
-          container,
+          container: container as Node,
           nonce,
           insertionPoint,
           stylisPlugins,

@@ -77,7 +77,7 @@ const componentStyleIntanceWithSC = createInstance({
 
 ## 指定 container
 
-在创建时制定 container ，可以使得样式插入时都在该容器处插入，在 iframe 等场景比较有用。
+在创建时指定 container ，可以使得样式都在该容器处插入，在 iframe 等场景比较有用。
 
 ```ts
 const { css, StyleProvider, createStyles } = createInstance({
@@ -86,4 +86,8 @@ const { css, StyleProvider, createStyles } = createInstance({
 });
 ```
 
-<code src="../demos/api/createInstance/hasContainer.tsx"></code>
+<code src="../demos/api/createInstance/createInstanceWithContainer.tsx"></code>
+
+还有一个场景是，组件库里用 `createInstance` 暴露出的 `createStyles` 定义好了样式，想在不同的业务场景下指定不同的插入位置，业务上通过组件外部包一层 `StyleProvider` 并设置 `container` 来实现节点的自行插入。
+
+<code src="../demos/api/createInstance/createInstanceWithStyleProviderContainer.tsx"></code>

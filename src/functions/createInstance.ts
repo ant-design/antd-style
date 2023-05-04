@@ -65,7 +65,6 @@ export const createInstance = <T = any>(options: CreateOptions<T>) => {
     speedy: options.speedy,
     container: options.container,
   });
-
   // 将 cache 存到一个全局
   cacheManager.add(emotion.cache);
 
@@ -113,6 +112,7 @@ export const createInstance = <T = any>(options: CreateOptions<T>) => {
     speedy: options.speedy,
     prefix: defaultKey,
     container: options.container,
+    defaultEmotion: emotion,
   });
 
   return {
