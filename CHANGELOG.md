@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.1.0-beta.1](https://github.com/ant-design/antd-style/compare/v3.0.1-beta.1...v3.1.0-beta.1) (2023-05-04)
+
+### ✨ Features
+
+- 支持 StyleProvider 上指定 container 进行样式点插入 ([6bdba25](https://github.com/ant-design/antd-style/commit/6bdba25))
+
 ## [3.0.1-beta.1](https://github.com/ant-design/antd-style/compare/v3.0.0...v3.0.1-beta.1) (2023-04-23)
 
 ### 🐛 Bug Fixes
