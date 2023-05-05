@@ -43,7 +43,7 @@ describe('createInstance', () => {
       prefixCls: 'test',
       speedy: true,
     });
-    expect(instance.styleManager.sheet.key).toEqual('css');
+    expect(instance.styleManager.sheet.key).toEqual('zcss');
   });
 
   describe('ThemeProvider', () => {
