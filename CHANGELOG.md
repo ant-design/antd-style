@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.1.0-beta.2](https://github.com/ant-design/antd-style/compare/v3.1.0-beta.1...v3.1.0-beta.2) (2023-05-05)
+
+### 🐛 Bug Fixes
+
+- 修正类型定义丢失问题的问题 ([afd06b3](https://github.com/ant-design/antd-style/commit/afd06b3))
+
 # [3.1.0-beta.1](https://github.com/ant-design/antd-style/compare/v3.0.1-beta.1...v3.1.0-beta.1) (2023-05-04)
 
 ### ✨ Features
