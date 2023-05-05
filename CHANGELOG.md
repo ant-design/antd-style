@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.1.0-beta.3](https://github.com/ant-design/antd-style/compare/v3.1.0-beta.2...v3.1.0-beta.3) (2023-05-05)
+
+### ✨ Features
+
+- 支持 StyleProvider container 与默认位置隔离的样式插入策略 ([a51d72a](https://github.com/ant-design/antd-style/commit/a51d72a))
+
 # [3.1.0-beta.2](https://github.com/ant-design/antd-style/compare/v3.1.0-beta.1...v3.1.0-beta.2) (2023-05-05)
 
 ### 🐛 Bug Fixes
