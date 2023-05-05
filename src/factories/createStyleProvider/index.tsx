@@ -1,10 +1,9 @@
-import { DEFAULT_CSS_PREFIX_KEY } from '@/core';
 import { createEmotion, Emotion } from '@/core/createEmotion';
 import { StyleManager } from '@/types';
 import { StyleProvider as AntdStyleProvider } from '@ant-design/cssinjs';
 import type { StyleContextProps } from '@ant-design/cssinjs/es/StyleContext';
 import { StylisPlugin } from '@emotion/cache';
-import { Context, FC, memo, ReactNode, useEffect, useMemo } from 'react';
+import { Context, FC, memo, ReactNode, useContext, useEffect, useMemo } from 'react';
 
 export interface StyleProviderProps
   extends Partial<
@@ -30,37 +29,25 @@ export interface StyleProviderProps
   children: ReactNode;
 }
 
-interface DefaultProps {
-  prefix: string;
-  speedy?: boolean;
-  container?: Node;
-  defaultEmotion: Emotion;
-}
-
-export const createStyleProvider = (
-  EmotionContext: Context<Emotion>,
-  defaultProps?: DefaultProps,
-): FC<StyleProviderProps> =>
+export const createStyleProvider = (EmotionContext: Context<Emotion>): FC<StyleProviderProps> =>
   memo(
     ({
       children,
-      prefix = defaultProps?.prefix || DEFAULT_CSS_PREFIX_KEY,
-      speedy = defaultProps?.speedy,
+      prefix: outerPrefix,
+      speedy: outSpeedy,
       getStyleManager,
-      container = defaultProps?.container,
+      container: outerContainer,
       nonce,
       insertionPoint,
       stylisPlugins,
       ...antdStyleProviderProps
     }) => {
-      // FIXME: 现在的解决方案比较 hack，通过修改默认传入的 defaultEmotion 的方式来实现，后续新方案里要考虑通过 context 的方式来实现
-      if (container && defaultProps) {
-        defaultProps.defaultEmotion.sheet.container = container;
-      }
+      const defaultEmotion = useContext(EmotionContext);
 
-      // useEffect(() => {
-      //   console.log(container);
-      // }, [container]);
+      const prefix = outerPrefix ?? defaultEmotion.sheet.key;
+      const container = outerContainer ?? defaultEmotion.sheet.container;
+      const speedy = outSpeedy ?? defaultEmotion.sheet.isSpeedy;
+
       const emotion = useMemo(() => {
         const defaultSpeedy = process.env.NODE_ENV === 'development';
 

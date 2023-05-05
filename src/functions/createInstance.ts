@@ -57,41 +57,45 @@ export interface CreateOptions<T> {
  * 创建一个新的 antd-style 实例
  */
 export const createInstance = <T = any>(options: CreateOptions<T>) => {
-  const defaultKey = options.key || 'css';
+  const internalOptions = {
+    ...options,
+    key: options.key ?? 'zcss', // 新建的 instance key 如果不传，则设为 zcss- 使得该 key 和 acss 不一样
+    speedy: options.speedy ?? false,
+  };
 
-  // TODO: 此处的 emotion 应该是 emotion context 中的 emotion，需要允许外部通过 Provider 进行修改
   const emotion = createEmotion({
-    key: defaultKey,
-    speedy: options.speedy,
-    container: options.container,
+    key: internalOptions.key,
+    speedy: internalOptions.speedy,
+    container: internalOptions.container,
   });
-  // 将 cache 存到一个全局
+
+  const EmotionContext = createEmotionContext(emotion);
+
+  const StyleProvider = createStyleProvider(EmotionContext);
+
+  // 将 cache 存到全局管理器中
   cacheManager.add(emotion.cache);
-
-  const { cache, injectGlobal, keyframes } = emotion;
-
-  const { cx } = createCSS(cache, options.hashPriority);
 
   // ******* 下面这些都和主题相关，如果做了任何改动，都需要排查一遍 ************* //
 
   const CustomThemeContext = createContext<T>(
-    (options.customToken ? options.customToken : {}) as T,
+    (internalOptions.customToken ? internalOptions.customToken : {}) as T,
   );
 
-  const styledThemeContext = options.styled?.ThemeContext;
+  const styledThemeContext = internalOptions.styled?.ThemeContext;
 
   const StyleEngineContext = createContext<StyleEngine>({
     CustomThemeContext,
     StyledThemeContext: styledThemeContext,
-    prefixCls: options?.prefixCls,
+    prefixCls: internalOptions?.prefixCls,
   });
 
   const useTheme = createUseTheme({ StyleEngineContext });
 
   const createStyles = createStylesFactory({
-    cache,
-    hashPriority: options.hashPriority,
+    hashPriority: internalOptions.hashPriority,
     useTheme,
+    EmotionContext,
   });
 
   const createGlobalStyle = createGlobalStyleFactory(useTheme);
@@ -99,21 +103,14 @@ export const createInstance = <T = any>(options: CreateOptions<T>) => {
   const createStylish = createStylishFactory(createStyles);
 
   const ThemeProvider = createThemeProvider({
-    styledConfig: options.styled,
+    styledConfig: internalOptions.styled,
     StyleEngineContext,
     useTheme,
   });
 
   // ******** 上面这些都和主题相关，如果做了任何改动，都需要排查一遍 ************ //
-
-  const EmotionContext = createEmotionContext(emotion);
-
-  const StyleProvider = createStyleProvider(EmotionContext, {
-    speedy: options.speedy,
-    prefix: defaultKey,
-    container: options.container,
-    defaultEmotion: emotion,
-  });
+  const { cx } = createCSS(emotion.cache, internalOptions.hashPriority);
+  const { injectGlobal, keyframes } = emotion;
 
   return {
     // ******************** //
