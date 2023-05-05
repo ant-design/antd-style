@@ -21,9 +21,12 @@ const Text = () => {
 
 export default () => {
   return (
-    <StyleProvider container={document.body}>
+    <>
+      <StyleProvider prefix={'abc'} container={document.body}>
+        <Text />
+        <Button>按钮</Button>
+      </StyleProvider>
       <Text />
-      <Button>按钮</Button>
-    </StyleProvider>
+    </>
   );
 };
