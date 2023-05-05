@@ -43,11 +43,11 @@
 
 - **🧩 Token System**: 默认集成 Ant Design V5 的 Token System，风格定制轻而易举，token 消费灵活易用；
 - **🌓 暗色模式一键切换**: 基于 antd v5 cssinjs 动态主题配置与暗色主题算法封装了，为应用级场景提供易用的亮暗色主题切换能力，使用方式更加简单；
-- **🪴 Stylish**: Ant Design Style 提供了复合样式的能力，我们称它为 Stylish。Stylish 可以通过组合多个原子 token 来组织形成复杂的交互样式，实现极高的复用度；
 - **🎨 灵活扩展自定义主题**: Ant Design Style 提供自定义 token 与 自定义 stylish 的功能，当 antd 默认的 token 不能满足样式诉求时，可以灵活扩展出自己的主题体系，并在 CSS in JS 中自由消费；
 - **🏂 less 平滑迁移**: 旧项目需要迁移？使用 antd-style 可以将项目中的 less 较低成本地迁移到 CSS in JS，并获得更好的用户体验与开发体验；
 - **☯️ 微应用良好兼容**: Ant Design Style 默认兼容 qiankun 微应用（但会牺牲一点性能）。同时并为不需要微应用的使用场景提供性能优化选项；
 - **📱 响应式轻松适配**: Ant Design Style 将为响应式应用提供便捷的工具函数，帮助开发者快速完成响应式主题开发；
+- **🪴 Stylish**: Ant Design Style 提供了复合样式的能力，我们称它为 Stylish。Stylish 可以通过组合多个原子 token 来组织形成复杂的交互样式，实现极高的复用度；
 - **🌰 文档与应用案例**: 展示使用 Ant Design Style 的组件、应用的各种案例，帮助开发者快速上手。(本文档同样使用 Ant Design Style 构建样式)
 
 ## 快速上手
