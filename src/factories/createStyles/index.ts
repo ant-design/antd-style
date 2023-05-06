@@ -1,6 +1,6 @@
-import { useMemo } from 'react';
+import { Context, useContext, useMemo } from 'react';
 
-import { createCSS, serializeCSS } from '@/core';
+import { Emotion, createCSS, serializeCSS } from '@/core';
 import type {
   BaseReturnType,
   CSSObject,
@@ -9,13 +9,12 @@ import type {
   ReturnStyleToUse,
 } from '@/types';
 import { isReactCssResult } from '@/utils';
-import { EmotionCache } from '@emotion/css/create-instance';
 
 import { convertResponsiveStyleToString, useMediaQueryMap } from './response';
 import { ReturnStyles, StyleOrGetStyleFn } from './types';
 
 interface CreateStylesFactory {
-  cache: EmotionCache;
+  EmotionContext: Context<Emotion>;
   hashPriority?: HashPriority;
   useTheme: () => any;
 }
@@ -28,17 +27,18 @@ export interface CreateStyleOptions {
  * 创建样式基础写法
  */
 export const createStylesFactory =
-  ({ hashPriority, cache, useTheme }: CreateStylesFactory) =>
+  ({ hashPriority, useTheme, EmotionContext }: CreateStylesFactory) =>
   <Props, Input extends BaseReturnType = BaseReturnType>(
     styleOrGetStyle: StyleOrGetStyleFn<Input, Props>,
     options?: CreateStyleOptions,
   ) => {
-    // 由于 toClassName 方法依赖了用户给 createStyle 传递的 hashPriority，所以需要在这里重新生成 cx 和 toClassName 方法
-    const { cx, css: toClassName } = createCSS(cache, options?.hashPriority || hashPriority);
-
     // 返回 useStyles 方法，作为 hooks 使用
     return (props?: Props): ReturnStyles<Input> => {
       const theme = useTheme();
+
+      const { cache } = useContext(EmotionContext);
+      // 由于 toClassName 方法依赖了用户给 createStyle 传递的 hashPriority，所以需要在这里重新生成 cx 和 toClassName 方法
+      const { cx, css: toClassName } = createCSS(cache, options?.hashPriority || hashPriority);
 
       const responsiveMap = useMediaQueryMap();
 
@@ -103,7 +103,7 @@ export const createStylesFactory =
 
       return useMemo(() => {
         const { prefixCls, ...res } = theme;
-        return { styles, cx: cx, theme: res, prefixCls };
+        return { styles, cx, theme: res, prefixCls };
       }, [styles, theme]);
     };
   };

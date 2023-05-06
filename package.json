@@ -1,6 +1,6 @@
 {
   "name": "antd-style",
-  "version": "3.0.0",
+  "version": "3.1.0-beta.3",
   "description": "a css-in-js solution for application combine with antd v5 token system and emotion",
   "keywords": [
     "antd",
@@ -107,7 +107,7 @@
     "dumi": "^2",
     "dumi-theme-antd-style": "latest",
     "eslint": "^8",
-    "father": "^4",
+    "father": "4.1.9",
     "framer-motion": "^8",
     "framer-motion-3d": "^8",
     "fs-extra": "^11",
@@ -130,7 +130,7 @@
     "stylelint": "^14",
     "three": "^0.148",
     "ts-node": "^10",
-    "typescript": "^4",
+    "typescript": "^5",
     "use-merge-value": "^1",
     "vitest": "latest",
     "zustand": "^4"
