@@ -1,5 +1,18 @@
 # Changelog
 
+# [3.1.0](https://github.com/ant-design/antd-style/compare/v3.0.0...v3.1.0) (2023-05-06)
+
+### ✨ Features
+
+- 支持 StyleProvider container 与默认位置隔离的样式插入策略 ([a51d72a](https://github.com/ant-design/antd-style/commit/a51d72a))
+- 支持 StyleProvider 上指定 container 进行样式点插入 ([6bdba25](https://github.com/ant-design/antd-style/commit/6bdba25))
+
+### 🐛 Bug Fixes
+
+- 修正 antd 组件 StyleProvider 的 container 插入位置属性丢失的问题 ([d6de186](https://github.com/ant-design/antd-style/commit/d6de186)), closes [#46](https://github.com/ant-design/antd-style/issues/46)
+- 修正 createInstance 的 container 插入位置制定无效的问题 ([c0b00c3](https://github.com/ant-design/antd-style/commit/c0b00c3)), closes [#47](https://github.com/ant-design/antd-style/issues/47)
+- 修正类型定义丢失问题的问题 ([afd06b3](https://github.com/ant-design/antd-style/commit/afd06b3))
+
 # [3.1.0-beta.3](https://github.com/ant-design/antd-style/compare/v3.1.0-beta.2...v3.1.0-beta.3) (2023-05-05)
 
 ### ✨ Features
