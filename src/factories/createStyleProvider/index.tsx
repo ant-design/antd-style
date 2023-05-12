@@ -1,13 +1,24 @@
 import { createEmotion, Emotion } from '@/core/createEmotion';
 import { StyleManager } from '@/types';
 import { StyleProvider as AntdStyleProvider } from '@ant-design/cssinjs';
-import type { StyleContextProps } from '@ant-design/cssinjs/es/StyleContext';
 import { StylisPlugin } from '@emotion/cache';
-import { Context, FC, memo, ReactNode, useContext, useEffect, useMemo } from 'react';
+import {
+  ComponentProps,
+  Context,
+  FC,
+  memo,
+  ReactNode,
+  useContext,
+  useEffect,
+  useMemo,
+} from 'react';
 
 export interface StyleProviderProps
   extends Partial<
-    Pick<StyleContextProps, 'autoClear' | 'cache' | 'hashPriority' | 'ssrInline' | 'transformers'>
+    Pick<
+      ComponentProps<typeof AntdStyleProvider>,
+      'autoClear' | 'cache' | 'hashPriority' | 'ssrInline' | 'transformers'
+    >
   > {
   prefix?: string;
 
