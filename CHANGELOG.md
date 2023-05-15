@@ -1,5 +1,11 @@
 # Changelog
 
+## [3.1.1](https://github.com/ant-design/antd-style/compare/v3.1.0...v3.1.1) (2023-05-15)
+
+### 🐛 Bug Fixes
+
+- 修正 StyleProvider Props 类型不准确的问题 ([38d9d34](https://github.com/ant-design/antd-style/commit/38d9d34)), closes [#51](https://github.com/ant-design/antd-style/issues/51)
+
 # [3.1.0](https://github.com/ant-design/antd-style/compare/v3.0.0...v3.1.0) (2023-05-06)
 
 ### ✨ Features
