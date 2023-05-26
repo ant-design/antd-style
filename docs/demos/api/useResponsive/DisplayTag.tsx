@@ -8,9 +8,9 @@ interface DisplayTagProps {
   value: string;
 }
 
-export const DisplayTag: FC<DisplayTagProps> = ({ active, color, title, value }) => {
+export const DisplayTag: FC<DisplayTagProps> = ({ active, color, title, value, ...props }) => {
   return (
-    <Tag color={active ? color : undefined}>
+    <Tag color={active ? color : undefined} {...props}>
       {title}: {value}
     </Tag>
   );
