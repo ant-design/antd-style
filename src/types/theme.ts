@@ -12,6 +12,7 @@ export interface ThemeContextState {
    * @title 外观
    */
   appearance: ThemeAppearance;
+  setAppearance: (appearance: ThemeAppearance) => void;
   /**
    * @title 主题模式
    * @enum ["light", "dark"]
@@ -19,6 +20,7 @@ export interface ThemeContextState {
    * @default "light"
    */
   themeMode: ThemeMode;
+  setThemeMode: (themeMode: ThemeMode) => void;
   /**
    * @title 是否为暗色模式
    */
@@ -29,7 +31,7 @@ export interface ThemeContextState {
   browserPrefers: BrowserPrefers;
 }
 
-export type AppearanceState = Omit<ThemeContextState, 'themeMode' | 'browserPrefers'>;
+export type AppearanceState = Pick<ThemeContextState, 'appearance' | 'isDarkMode'>;
 
 export type AntdToken = AliasToken;
 

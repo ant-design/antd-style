@@ -24,4 +24,16 @@ describe('matchBrowserPrefers', () => {
     expect(matchBrowserPrefers('dark').matches).toBe(true);
     expect(window.matchMedia).toHaveBeenCalledWith('(prefers-color-scheme: dark)');
   });
+
+  test('should return a dummy MediaQueryList object when window is undefined', () => {
+    const mode = 'dark';
+    const originalWindow = global.window;
+    // 模拟 window 不存在的情况
+    // @ts-ignore
+    delete global.window;
+    const result = matchBrowserPrefers(mode);
+    expect(result.matches).toBe(false);
+    // 还原全局变量
+    global.window = originalWindow;
+  });
 });

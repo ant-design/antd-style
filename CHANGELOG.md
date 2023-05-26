@@ -1,5 +1,17 @@
 # Changelog
 
+# [3.2.0-beta.2](https://github.com/ant-design/antd-style/compare/v3.2.0-beta.1...v3.2.0-beta.2) (2023-05-26)
+
+### 🐛 Bug Fixes
+
+- fix lint ([025591c](https://github.com/ant-design/antd-style/commit/025591c))
+
+# [3.2.0-beta.1](https://github.com/ant-design/antd-style/compare/v3.1.1...v3.2.0-beta.1) (2023-05-26)
+
+### ✨ Features
+
+- add set method to useThemeMode hooks ([0d65a9a](https://github.com/ant-design/antd-style/commit/0d65a9a))
+
 ## [3.1.1](https://github.com/ant-design/antd-style/compare/v3.1.0...v3.1.1) (2023-05-15)
 
 ### 🐛 Bug Fixes

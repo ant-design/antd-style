@@ -1,5 +1,3 @@
-/* istanbul ignore file */
-
 // copied from https://github.com/emotion-js/emotion/blob/main/packages/utils/src/index.js
 import type { HashPriority } from '@/types';
 import type { EmotionCache } from '@emotion/css/create-instance';
@@ -27,6 +25,7 @@ export const insertStyles = (
 
   const hashSelector = hashPriority === 'low' ? `:where(${hashClassName})` : hashClassName;
 
+  /* c8 ignore start */
   if (cache.inserted[serialized.name] === undefined) {
     let stylesForSSR = '';
     let current = serialized;
@@ -49,3 +48,4 @@ export const insertStyles = (
     }
   }
 };
+/* c8 ignore end */

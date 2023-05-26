@@ -1,7 +1,6 @@
-/* istanbul ignore file */
-
 import { getRegisteredStyles, RegisteredCache } from '@emotion/utils';
 
+/* c8 ignore start */
 /**
  * 判断是否是 ReactCss 的编译产物
  * @param params
@@ -59,3 +58,4 @@ export const mergeCSS = (registered: RegisteredCache, css: any, className: strin
 
   return rawClassName + css(registeredStyles);
 };
+/* c8 ignore end */

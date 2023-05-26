@@ -54,13 +54,17 @@ export default () => {
 
 ## 3. 受控模式的主题切换
 
-但在很多场景下， 我们需要给用户提供自助选择权，让用户自行切换需要的模式。这个时候可以通过 `themeMode` 的受控来实现。
+但在很多场景下， 我们需要给用户提供自助选择权，让用户自行切换需要的模式。我们提供了 useThemeMode 的 hooks，用于获取当前的主题模式，以及切换主题模式的能力。
+
+<code src="../demos/guide/switch-theme/GlobalSwitch"></code>
+
+除了 useThemeMode hooks 以外，也可以通过 `themeMode` 的受控来实现。
 
 <code src="../demos/guide/switch-theme/ControlledSwitch"></code>
 
 :::warning
 
-注意：themeMode 和 appearance 不建议同时受控使用，不然可能会出现预料之外的问题。
+注意：themeMode 和 appearance 目前暂不建议同时受控使用，不然可能会出现预料之外的问题。未来会增强此处的联动能力
 
 :::
 

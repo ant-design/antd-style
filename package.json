@@ -1,6 +1,6 @@
 {
   "name": "antd-style",
-  "version": "3.1.1",
+  "version": "3.2.0-beta.2",
   "description": "a css-in-js solution for application combine with antd v5 token system and emotion",
   "keywords": [
     "antd",
@@ -76,7 +76,8 @@
     "@emotion/react": "^11",
     "@emotion/serialize": "^1",
     "@emotion/server": "^11",
-    "@emotion/utils": "^1"
+    "@emotion/utils": "^1",
+    "use-merge-value": "^1"
   },
   "devDependencies": {
     "@ant-design/icons": "^5",
@@ -130,7 +131,6 @@
     "three": "^0.148",
     "ts-node": "^10",
     "typescript": "^5",
-    "use-merge-value": "^1",
     "vitest": "latest",
     "zustand": "^4"
   },

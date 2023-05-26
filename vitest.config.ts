@@ -1,9 +1,6 @@
 import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
-  esbuild: {
-    jsxInject: "import React from 'react'",
-  },
   test: {
     setupFiles: './tests/test-setup.ts',
     environment: 'jsdom',
@@ -11,6 +8,10 @@ export default defineConfig({
     alias: {
       '@': './src',
       'antd-style': './src',
+    },
+    coverage: {
+      provider: 'c8',
+      reporter: ['text', 'text-summary', 'json', 'lcov'],
     },
   },
 });
