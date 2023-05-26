@@ -31,7 +31,7 @@ export interface ThemeContextState {
   browserPrefers: BrowserPrefers;
 }
 
-export type AppearanceState = Omit<ThemeContextState, 'themeMode' | 'browserPrefers'>;
+export type AppearanceState = Pick<ThemeContextState, 'appearance' | 'isDarkMode'>;
 
 export type AntdToken = AliasToken;
 
