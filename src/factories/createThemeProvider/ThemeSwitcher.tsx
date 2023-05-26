@@ -1,5 +1,5 @@
-import { useMergeValue } from '@/utils/useMergeValue';
-import { FC, memo, ReactNode, useEffect, useLayoutEffect, useMemo, useState } from 'react';
+import { FC, memo, ReactNode, useEffect, useLayoutEffect, useState } from 'react';
+import useMergeValue from 'use-merge-value';
 
 import { ThemeModeContext } from '@/context';
 import { BrowserPrefers, ThemeAppearance, ThemeMode, UseTheme } from '@/types';
@@ -70,13 +70,15 @@ export interface ThemeSwitcherProps {
    */
   appearance?: ThemeAppearance;
   defaultAppearance?: ThemeAppearance;
-  onAppearanceChange?: (mode: ThemeAppearance) => void;
+  onAppearanceChange?: (appearance: ThemeAppearance) => void;
   /**
    * 主题的展示模式，有三种配置：跟随系统、亮色、暗色
    * 默认不开启自动模式，需要手动进行配置
    * @default light
    */
   themeMode?: ThemeMode;
+  defaultThemeMode?: ThemeMode;
+  onThemeModeChange?: (themeMode: ThemeMode) => void;
 
   children: ReactNode;
   useTheme: UseTheme;
@@ -89,19 +91,22 @@ const ThemeSwitcher: FC<ThemeSwitcherProps> = memo(
     defaultAppearance,
     onAppearanceChange,
     themeMode: themeModeProps,
+    defaultThemeMode,
+    onThemeModeChange,
     useTheme,
   }) => {
     const { appearance: upperAppearance, themeMode: upperThemeMode } = useTheme();
 
-    const themeMode = useMemo(
-      () => themeModeProps ?? upperThemeMode,
-      [themeModeProps, upperThemeMode],
-    );
+    const [themeMode, setThemeMode] = useMergeValue<ThemeMode>('light', {
+      value: themeModeProps,
+      defaultValue: defaultThemeMode ?? upperThemeMode,
+      onChange: (v) => onThemeModeChange?.(v),
+    });
 
     const [appearance, setAppearance] = useMergeValue<ThemeAppearance>('light', {
       value: appearanceProp,
       defaultValue: defaultAppearance ?? upperAppearance,
-      onChange: onAppearanceChange,
+      onChange: (v) => onAppearanceChange?.(v),
     });
 
     const [browserPrefers, setBrowserPrefers] = useState<BrowserPrefers>(
@@ -119,7 +124,9 @@ const ThemeSwitcher: FC<ThemeSwitcherProps> = memo(
       <ThemeModeContext.Provider
         value={{
           themeMode,
+          setThemeMode,
           appearance,
+          setAppearance,
           isDarkMode: appearance === 'dark',
           browserPrefers,
         }}

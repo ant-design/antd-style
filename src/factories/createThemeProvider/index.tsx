@@ -59,6 +59,8 @@ export const createThemeProvider = (
       defaultAppearance,
       onAppearanceChange,
       themeMode,
+      defaultThemeMode,
+      onThemeModeChange,
       styled,
     }) => {
       const {
@@ -82,6 +84,8 @@ export const createThemeProvider = (
         >
           <ThemeSwitcher
             themeMode={themeMode}
+            defaultThemeMode={defaultThemeMode}
+            onThemeModeChange={onThemeModeChange}
             defaultAppearance={defaultAppearance}
             appearance={appearance}
             onAppearanceChange={onAppearanceChange}
