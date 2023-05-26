@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.2.0](https://github.com/ant-design/antd-style/compare/v3.1.1...v3.2.0) (2023-05-26)
+
+### ✨ Features
+
+- add set method to useThemeMode hooks ([0273f38](https://github.com/ant-design/antd-style/commit/0273f38)), closes [#57](https://github.com/ant-design/antd-style/issues/57)
+
 # [3.2.0-beta.2](https://github.com/ant-design/antd-style/compare/v3.2.0-beta.1...v3.2.0-beta.2) (2023-05-26)
 
 ### 🐛 Bug Fixes
