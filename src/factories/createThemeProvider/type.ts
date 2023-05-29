@@ -13,7 +13,7 @@ import { NotificationConfig, NotificationInstance } from 'antd/es/notification/i
 import { ReactNode } from 'react';
 
 export interface ThemeProviderProps<T, S = Record<string, string>> {
-  children: ReactNode;
+  children?: ReactNode;
   // --------------------- 自定义主题 --------------------- //
   /**
    * 自定义 Token
