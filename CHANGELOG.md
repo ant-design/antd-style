@@ -1,5 +1,11 @@
 # Changelog
 
+## [3.2.1](https://github.com/ant-design/antd-style/compare/v3.2.0...v3.2.1) (2023-05-29)
+
+### 🐛 Bug Fixes
+
+- 修正 SSR 样式抽取失效的问题 ([a1ba99a](https://github.com/ant-design/antd-style/commit/a1ba99a))
+
 ## [3.2.1-beta.1](https://github.com/ant-design/antd-style/compare/v3.2.0...v3.2.1-beta.1) (2023-05-29)
 
 ### 🐛 Bug Fixes
