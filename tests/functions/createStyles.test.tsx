@@ -219,7 +219,10 @@ describe('createStyles', () => {
 
       expect(container.firstChild).toMatchSnapshot();
 
-      expect(container.firstChild).toHaveStyle({ backgroundColor: '#1677ff', color: 'red' });
+      expect(container.firstChild).toHaveStyle({
+        backgroundColor: '#1677ff',
+        color: 'rgb(255, 0, 0)',
+      });
     });
   });
 });

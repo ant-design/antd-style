@@ -5,7 +5,7 @@ describe('createGlobalStyle', () => {
   it('全局样式', async () => {
     const Global = createGlobalStyle`
       .some-class {
-        color: pink;
+        color: rgb(255, 192, 203);
       }
     `;
 
@@ -18,7 +18,7 @@ describe('createGlobalStyle', () => {
 
     const item = await findByTestId('content');
 
-    expect(item.firstChild).toHaveStyle({ color: 'pink' });
+    expect(item.firstChild).toHaveStyle({ color: 'rgb(255, 192, 203)' });
   });
 
   it('包裹 ThemeProvider 后可以获取主题样式', async () => {

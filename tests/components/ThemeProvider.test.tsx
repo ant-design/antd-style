@@ -1,6 +1,6 @@
 import { act, render, renderHook } from '@testing-library/react';
 import { App, theme } from 'antd';
-import { css, cx, GetCustomToken, ThemeProvider, useTheme, useThemeMode } from 'antd-style';
+import { GetCustomToken, ThemeProvider, css, cx, useTheme, useThemeMode } from 'antd-style';
 import { MappingAlgorithm } from 'antd/es/config-provider/context';
 import { MessageInstance } from 'antd/es/message/interface';
 import { NotificationInstance } from 'antd/es/notification/interface';
@@ -224,7 +224,7 @@ describe('ThemeProvider', () => {
           <App
             className={cx(css`
               .container {
-                color: red;
+                color: rgb(255, 0, 0);
               }
             `)}
           >
@@ -239,8 +239,8 @@ describe('ThemeProvider', () => {
     const nodeWithout = await findByTestId('without');
     const nodeWithin = await findByTestId('within');
 
-    expect(nodeWithin).toHaveStyle('color: red;');
-    expect(nodeWithout).not.toHaveStyle('color: red;');
+    expect(nodeWithin).toHaveStyle('color: rgb(255, 0, 0);');
+    expect(nodeWithout).not.toHaveStyle('color: rgb(255, 0, 0);');
   });
 
   describe('静态实例对象', () => {

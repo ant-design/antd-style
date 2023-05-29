@@ -28,7 +28,7 @@ exports[`ThemeProvider > 注入自定义主题 > 自定义 Token 1`] = `
 
 exports[`ThemeProvider > 配合 App 实现局部作用域 1`] = `
 .emotion-0 .container {
-  color: red;
+  color: rgb(255, 0, 0);
 }
 
 <div>
