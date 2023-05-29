@@ -5,7 +5,13 @@ export class CacheManager {
   private _cacheList: EmotionCache[] = [cache];
 
   add(cache: EmotionCache) {
-    if (!this._cacheList.includes(cache)) this._cacheList.push(cache);
+    if (this.hasCache(cache)) return;
+
+    this._cacheList.push(cache);
+  }
+
+  private hasCache(cache: EmotionCache) {
+    return this._cacheList.some((c) => c.key === cache.key);
   }
 
   getCacheList() {

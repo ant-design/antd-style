@@ -62,7 +62,7 @@ export const createStyleProvider = (EmotionContext: Context<Emotion>): FC<StyleP
       const emotion = useMemo(() => {
         const defaultSpeedy = process.env.NODE_ENV === 'development';
 
-        return createEmotion({
+        const instance = createEmotion({
           speedy: speedy ?? defaultSpeedy,
           key: prefix,
           container: container as Node,
@@ -70,6 +70,15 @@ export const createStyleProvider = (EmotionContext: Context<Emotion>): FC<StyleP
           insertionPoint,
           stylisPlugins,
         });
+
+        const cacheManager = global?.__ANTD_STYLE_CACHE_MANAGER_FOR_SSR__;
+
+        if (cacheManager) {
+          // add 方法有幂等
+          cacheManager.add(instance.cache);
+        }
+
+        return instance;
       }, [prefix, speedy, container, nonce, insertionPoint, stylisPlugins]);
 
       useEffect(() => {
