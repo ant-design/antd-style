@@ -4,6 +4,7 @@ import useMergeValue from 'use-merge-value';
 import { ThemeModeContext } from '@/context';
 import { BrowserPrefers, ThemeAppearance, ThemeMode, UseTheme } from '@/types';
 import { matchBrowserPrefers } from '@/utils/matchBrowserPrefers';
+import { safeStartTransition } from '@/utils/safeStartTransition';
 
 let darkThemeMatch: MediaQueryList;
 
@@ -32,7 +33,9 @@ const ThemeObserver: FC<{
   useLayoutEffect(() => {
     // 如果不是自动，就明确设定亮暗色
     if (themeMode !== 'auto') {
-      setAppearance(themeMode);
+      safeStartTransition(() => {
+        setAppearance(themeMode);
+      });
       return;
     }
     // 如果是自动的话，则去做一次匹配，并开始监听
@@ -48,7 +51,7 @@ const ThemeObserver: FC<{
     };
   }, [themeMode]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!darkThemeMatch) {
       darkThemeMatch = matchBrowserPrefers('dark');
     }
@@ -117,7 +120,10 @@ const ThemeSwitcher: FC<ThemeSwitcherProps> = memo(
 
     // Wait until after client-side hydration to show
     useEffect(() => {
-      setStartObserver(true);
+      // 兼容 React18 的 Suspense 问题
+      safeStartTransition(() => {
+        setStartObserver(true);
+      });
     }, []);
 
     return (
