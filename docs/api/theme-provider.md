@@ -193,7 +193,7 @@ export interface ThemeProviderProps {
 | ------------------ | -------------------------------------- | ------------------------------------------------------------------------------------- |
 | customToken        | `undefined`                            | 自定义 token， 可在 antd v5 token 规范基础上扩展和新增自己需要的 token                |
 | customStylish      | `undefined`                            | 自定义 Stylish 变量                                                                   |
-| appearance         | `light`                                | 应用的展示外观主题，只存在亮色和暗色两种                                              |
+| appearance         | `light`                                | 应用的展示外观主题，内置亮色和暗色两种，可以自行扩展                                  |
 | defaultAppearance  |                                        |                                                                                       |
 | onAppearanceChange | `(appearance:ThemeAppearance) => void` | 外观主题的回调                                                                        |
 | themeMode          | `light`                                | 主题的展示模式，有三种配置：跟随系统、亮色、暗色 默认不开启自动模式，需要手动进行配置 |
