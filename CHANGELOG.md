@@ -1,5 +1,11 @@
 # Changelog
 
+## [3.2.2](https://github.com/ant-design/antd-style/compare/v3.2.1...v3.2.2) (2023-06-02)
+
+### 🐛 Bug Fixes
+
+- fix ThemeProvider's children to non-required ([3c13c7d](https://github.com/ant-design/antd-style/commit/3c13c7d)), closes [#58](https://github.com/ant-design/antd-style/issues/58)
+
 ## [3.2.1](https://github.com/ant-design/antd-style/compare/v3.2.0...v3.2.1) (2023-05-29)
 
 ### 🐛 Bug Fixes
