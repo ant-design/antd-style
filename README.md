@@ -25,15 +25,15 @@
 
 <!-- coverage -->
 
-[coverage]: https://codecov.io/gh/arvinxx/npm-template/branch/master/graph/badge.svg
-[codecov-url]: https://codecov.io/gh/arvinxx/npm-template/branch/master
+[coverage]: https://codecov.io/gh/ant-design/antd-style/branch/master/graph/badge.svg
+[codecov-url]: https://codecov.io/gh/ant-design/antd-style/branch/master
 
 <!-- Github CI -->
 
-[test-ci]: https://github.com/arvinxx/npm-template/workflows/Test%20CI/badge.svg
-[release-ci]: https://github.com/arvinxx/npm-template/workflows/Release%20CI/badge.svg
-[test-ci-url]: https://github.com/arvinxx/npm-template/actions?query=workflow%3ATest%20CI
-[release-ci-url]: https://github.com/arvinxx/npm-template/actions?query=workflow%Release%20CI
+[test-ci]: https://github.com/ant-design/antd-style/actions/workflows/test.yml/badge.svg
+[release-ci]: https://github.com/ant-design/antd-style/actions/workflows/release.yml/badge.svg
+[test-ci-url]: https://github.com/ant-design/antd-style/actions/workflows/test.yml
+[release-ci-url]: https://github.com/ant-design/antd-style/actions/workflows/release.yml
 [download-image]: https://img.shields.io/npm/dm/antd-style.svg?style=flat-square
 [download-url]: https://npmjs.org/package/antd-style
 
