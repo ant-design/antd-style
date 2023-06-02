@@ -1,4 +1,4 @@
-import { Context, memo, ReactElement, useContext } from 'react';
+import { Context, memo, ReactNode, useContext } from 'react';
 
 import { DEFAULT_THEME_CONTEXT, DEFAULT_THEME_PROVIDER } from '@/functions/setupStyled';
 import { StyledConfig, StyleEngine, UseTheme } from '@/types';
@@ -35,7 +35,7 @@ interface CreateThemeProviderOptions {
 }
 export const createThemeProvider = (
   option: CreateThemeProviderOptions,
-): (<T = any, S = any>(props: ThemeProviderProps<T, S>) => ReactElement | null) => {
+): (<T = any, S = any>(props: ThemeProviderProps<T, S>) => ReactNode) => {
   // 如果有全局配置 styledConfig，那么 ThemeProvider
   const DefaultStyledThemeProvider = option.styledConfig
     ? createStyledThemeProvider(option.styledConfig)
