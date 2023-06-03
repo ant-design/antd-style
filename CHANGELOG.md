@@ -1,5 +1,15 @@
 # Changelog
 
+# [3.3.0-beta.1](https://github.com/ant-design/antd-style/compare/v3.2.2...v3.3.0-beta.1) (2023-06-03)
+
+### ✨ Features
+
+- CacheManager support delete method ([595a5a6](https://github.com/ant-design/antd-style/commit/595a5a6))
+
+### 🐛 Bug Fixes
+
+- fix suspense hydration with ssr ([ef61d10](https://github.com/ant-design/antd-style/commit/ef61d10))
+
 ## [3.2.2](https://github.com/ant-design/antd-style/compare/v3.2.1...v3.2.2) (2023-06-02)
 
 ### 🐛 Bug Fixes
