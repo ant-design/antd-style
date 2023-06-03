@@ -8,34 +8,25 @@ group: Hooks
 
 获取响应式媒体查询的结果。基于 antd 的 [Grid.useBreakpoint](https://ant.design/components/grid-cn#components-grid-demo-usebreakpoint) 封装。
 
-<code src="../demos/api/useResponsive"></code>
-
 ## 用法
 
-```ts
+```tsx | pure
 import { useResponsive } from 'antd-style';
 
 function Theme() {
   const { mobile } = useResponsive();
 
-  useEffect(() => {
-    console.log(theme);
-  }, [theme]);
-
-  return null;
+  // 使用 js 来区分显示移动端
+  return mobile ? <div>mobile</div> : <div>desktop</div>;
 }
 ```
 
-## Typescript
+## 示例
 
-```ts
-useTheme = () => Theme;
-```
+<code src="../demos/api/useResponsive/default.tsx"></code>
 
-### 返回值
+## 自定义断点
 
-| 参数       | 说明           | 类型                   | 默认值  |
-| ---------- | -------------- | ---------------------- | ------- |
-| themeMode  | 主题模式       | `dark  / light / auto` | `light` |
-| appearance | 显示外观       | `dark  / light`        | `light` |
-| isDarkMode | 是否为暗色模式 | `boolean`              | `false` |
+通过传入 antd 的断点配置，来自定义响应断点。
+
+<code src="../demos/api/useResponsive/custom.tsx"></code>

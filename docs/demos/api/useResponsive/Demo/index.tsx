@@ -1,12 +1,9 @@
-/**
- * compact: true
- */
-import { Divider, Tooltip } from 'antd';
-import { Breakpoint, ThemeProvider, useResponsive, useTheme } from 'antd-style';
+import { Tooltip } from 'antd';
+import { Breakpoint, useResponsive, useTheme } from 'antd-style';
 import { Flexbox } from 'react-layout-kit';
 
+import { Label } from '../style';
 import { DisplayTag } from './DisplayTag';
-import { Container, Label } from './style';
 
 const Demo = () => {
   const responsive = useResponsive();
@@ -81,14 +78,4 @@ const Demo = () => {
   );
 };
 
-export default () => {
-  return (
-    <Container>
-      <Demo />
-      <Divider />
-      <ThemeProvider>
-        <Demo />
-      </ThemeProvider>
-    </Container>
-  );
-};
+export default Demo;
