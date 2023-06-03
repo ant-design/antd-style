@@ -1,3 +1,4 @@
+import { ThemeAppearance } from 'antd-style';
 import { vi } from 'vitest';
 import { matchBrowserPrefers } from './matchBrowserPrefers';
 
@@ -35,5 +36,18 @@ describe('matchBrowserPrefers', () => {
     expect(result.matches).toBe(false);
     // 还原全局变量
     global.window = originalWindow;
+  });
+  it('should return a MediaQueryList-like object when window object is undefined', () => {
+    const tempWin = window;
+    // eslint-disable-next-line no-global-assign,no-native-reassign
+    window = undefined as any;
+
+    const mode: ThemeAppearance = 'dark';
+    const result = matchBrowserPrefers(mode);
+
+    expect(result.matches).toBe(false);
+
+    // eslint-disable-next-line no-global-assign,no-native-reassign
+    window = tempWin;
   });
 });
