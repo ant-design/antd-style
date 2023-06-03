@@ -10,7 +10,11 @@ export class CacheManager {
     this._cacheList.push(cache);
   }
 
-  private hasCache(cache: EmotionCache) {
+  delete(cache: EmotionCache) {
+    this._cacheList = this._cacheList.filter((c) => c.key !== cache.key);
+  }
+
+  hasCache(cache: EmotionCache) {
     return this._cacheList.some((c) => c.key === cache.key);
   }
 
