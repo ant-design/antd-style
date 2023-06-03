@@ -1,5 +1,5 @@
 /**
- * iframe: true
+ * iframe: 100
  */
 import { Button } from 'antd';
 import { createInstance } from 'antd-style';

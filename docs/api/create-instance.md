@@ -60,9 +60,28 @@ export const {
 } = styleInstance;
 ```
 
+## 指定 container
+
+在创建时指定 container ，可以使得样式都在该容器处插入，在 iframe 等场景比较有用。
+
+```ts
+const { css, StyleProvider, createStyles } = createInstance({
+  key: 'test',
+  container: document.body,
+});
+```
+
+<code src="../demos/api/createInstance/withContainer.tsx"></code>
+
+如果你在组件库里用 `createInstance` 暴露出的 `createStyles` 定义好了样式，然后希望在不同的业务场景下指定不同的插入位置。
+
+那么可以在业务应用使用时，在外部包一层 `StyleProvider` 并设置 `container` 来实现自定义位置的插入。
+
+<code src="../demos/api/createInstance/withStyleProviderContainer.tsx"></code>
+
 ## 兼容 styled 主题方案
 
-无论是 `styled-component` 还是 `emotion/styled`，如果需要响应主题变化，都需要在组件外部包裹一个 `ThemeProvider`。这个时候，如果你的组件也需要响应主题变化，就需要在组件内部再包裹一个 `ThemeProvider`，通过在 createInstance 中传入 `styled` 的配置，即可让 `styled` 后的组件也响应自定义 Token。
+如果你使用 `styled-component` 且需要响应主题变化，都需要在组件外部包裹一个 `ThemeProvider`。这个时候，如果你的组件也需要响应主题变化，就需要在组件内部再包裹一个 `ThemeProvider`，通过在 createInstance 中传入 `styled` 的配置，即可让 `styled` 后的组件也响应自定义 Token。
 
 ```ts | pure
 // styled-components 版本
@@ -75,19 +94,15 @@ const componentStyleIntanceWithSC = createInstance({
 });
 ```
 
-## 指定 container
+## API
 
-在创建时指定 container ，可以使得样式都在该容器处插入，在 iframe 等场景比较有用。
-
-```ts
-const { css, StyleProvider, createStyles } = createInstance({
-  key: 'test',
-  container: document.body,
-});
-```
-
-<code src="../demos/api/createInstance/createInstanceWithContainer.tsx"></code>
-
-还有一个场景是，组件库里用 `createInstance` 暴露出的 `createStyles` 定义好了样式，想在不同的业务场景下指定不同的插入位置，业务上通过组件外部包一层 `StyleProvider` 并设置 `container` 来实现节点的自行插入。
-
-<code src="../demos/api/createInstance/createInstanceWithStyleProviderContainer.tsx"></code>
+| 属性名        | 类型                                      | 描述                                  |
+| ------------- | ----------------------------------------- | ------------------------------------- |
+| key           | `string`                                  | 生成的 CSS 关键词，默认为 `ant-css`。 |
+| prefixCls     | `string`                                  | 默认的组件前缀。                      |
+| speedy        | `boolean`                                 | 是否开启急速模式，默认为 `false`。    |
+| container     | `Node`                                    | 渲染容器节点。                        |
+| customToken   | `T`                                       | 默认的自定义 Token。                  |
+| hashPriority  | `HashPriority`                            | 控制 CSS 类名生成的优先级。           |
+| ThemeProvider | `Omit<ThemeProviderProps<T>, 'children'>` | 主题提供者。                          |
+| styled        | `StyledConfig`                            | `styled-components` 配置项。          |
