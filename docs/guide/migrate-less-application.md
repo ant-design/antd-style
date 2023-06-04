@@ -1,5 +1,5 @@
 ---
-title: Less 应用迁移
+title: Less 应用手动迁移
 order: 1
 group: 从 Less 迁移
 ---
