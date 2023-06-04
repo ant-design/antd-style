@@ -1,6 +1,6 @@
 {
   "name": "antd-style",
-  "version": "3.2.2",
+  "version": "3.3.0-beta.2",
   "description": "a css-in-js solution for application combine with antd v5 token system and emotion",
   "keywords": [
     "antd",
@@ -85,7 +85,7 @@
     "@emotion/babel-plugin": "^11",
     "@emotion/jest": "^11",
     "@emotion/styled": "^11",
-    "@floating-ui/react": "^0.17",
+    "@floating-ui/react": "^0.24",
     "@react-three/fiber": "^8",
     "@testing-library/jest-dom": "^5",
     "@testing-library/react": "^13",
