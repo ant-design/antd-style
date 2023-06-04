@@ -34,6 +34,7 @@ export default () => {
 ## 2. 自动响应系统主题
 
 介绍完上述方案后，有心人应该会发现，这种方案会强依赖用户对主题的手动切换。但手机、电脑的系统级主题切换一般都是能跟随时间自动完成的，一般不需要用户手动操作。 因此一个现代化的主题切换能力，应该是像 macOS 这样，提供一个「自动」模式。
+
 ![](https://gw.alipayobjects.com/zos/kitchen/bSG%26I1A8I/bianzu.png)
 
 在 `ThemeProvider` 中，我们提供了 `themeMode` 这个 props。对于不需要用户手动控制主题的场景，可以直接设置 `themeMode="auto"` 一键实现系统主题模式的自动切换。

@@ -117,7 +117,9 @@ export default () => (
 ```
 
 :::info
+
 由于 CustomToken 大概率是一个空 interface，如果在项目中有配置 ` @typescript-eslint/no-empty-interface` 的规则，就在代码格式化时导致接口定义被订正改为 type，而 type 是无法扩展的，会导致提示丢失（相关 issue: [#16](https://github.com/ant-design/antd-style/issues/16)）。因此解决方案为如上述示例代码一样，添加禁用规则。
+
 :::
 
 ## 基础样式重置
@@ -169,7 +171,9 @@ export default () => {
 <code src="../demos/ThemeProvider/AppGlobalStyle.tsx"></code>
 
 :::info{title=全局样式作用域}
+
 在 css-in-js 的世界中，局部作用域非常容易实现。因此应该尽量减少全局作用域的使用（实在不行才用全局作用域）。 这也是 antd v5 中推荐的用法。但如果仍然需全局作用域层面的样式注入，可以使用 [createGlobalStyles](/usage/global-styles) 来完成。
+
 :::
 
 ## styled 集成
@@ -197,4 +201,5 @@ export interface ThemeProviderProps {
 | defaultAppearance  |                                        |                                                                                       |
 | onAppearanceChange | `(appearance:ThemeAppearance) => void` | 外观主题的回调                                                                        |
 | themeMode          | `light`                                | 主题的展示模式，有三种配置：跟随系统、亮色、暗色 默认不开启自动模式，需要手动进行配置 |
-| defaultThemeMode   | `n/a`                                  |                                                                                       |
+| defaultThemeMode   | null                                   | 默认主题展示模式                                                                      |
+| onThemeModeChange  | `(themeMode: ThemeMode) => void`       | 主题模式修改后的回调                                                                  |
