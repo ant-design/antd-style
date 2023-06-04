@@ -1,6 +1,6 @@
 ---
 title: SSR 集成
-order: 11
+order: 1
 group: 进阶使用
 ---
 

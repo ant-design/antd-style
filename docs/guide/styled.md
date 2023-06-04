@@ -1,6 +1,6 @@
 ---
 title: 集成 styled
-order: 2
+order: 10
 group:
   title: 进阶使用
   order: 2
