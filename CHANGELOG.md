@@ -1,5 +1,11 @@
 # Changelog
 
+## [3.2.3](https://github.com/ant-design/antd-style/compare/v3.2.2...v3.2.3) (2023-06-04)
+
+### 🐛 Bug Fixes
+
+- fix suspense error in ssr hydration ([d4ce424](https://github.com/ant-design/antd-style/commit/d4ce424)), closes [#61](https://github.com/ant-design/antd-style/issues/61)
+
 # [3.3.0-beta.2](https://github.com/ant-design/antd-style/compare/v3.3.0-beta.1...v3.3.0-beta.2) (2023-06-03)
 
 ### ✨ Features
