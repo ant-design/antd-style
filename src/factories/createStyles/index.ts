@@ -36,7 +36,8 @@ export const createStylesFactory =
       // 由于 toClassName 方法依赖了用户给 createStyle 传递的 hashPriority，所以需要在这里重新生成 cx 和 toClassName 方法
       const { cx, css: toClassName } = createCSS(cache, {
         hashPriority: options?.hashPriority || hashPriority,
-        fileName: options?.fileName,
+        label: options?.label,
+        __BABEL_FILE_NAME__: options?.__BABEL_FILE_NAME__,
       });
 
       const responsiveMap = useMediaQueryMap();

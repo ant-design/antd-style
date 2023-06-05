@@ -6,7 +6,13 @@ import { registerStyles } from '@emotion/utils';
 
 const isBrowser = typeof document !== 'undefined';
 
-export const createHashStyleName = (cacheKey: string, hash: string, fileName?: string) => {
+export const createHashStyleName = (
+  cacheKey: string,
+  hash: string,
+  options?: ClassNameGeneratorOption,
+) => {
+  const fileName = options?.__BABEL_FILE_NAME__;
+
   return `${cacheKey}-${hash}${fileName ? `__${fileName}` : ''}`;
 };
 
@@ -26,7 +32,7 @@ export const insertStyles = (
   const hashPriority = options.hashPriority || 'high';
   registerStyles(cache, serialized, isStringTag);
 
-  const hashClassName = `.${createHashStyleName(cache.key, serialized.name, options.fileName)}`;
+  const hashClassName = `.${createHashStyleName(cache.key, serialized.name, options)}`;
 
   const hashSelector = hashPriority === 'low' ? `:where(${hashClassName})` : hashClassName;
 

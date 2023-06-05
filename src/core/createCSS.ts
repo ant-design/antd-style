@@ -11,7 +11,7 @@ const createClassNameGenerator =
 
     insertStyles(cache, serialized, false, options);
 
-    return createHashStyleName(cache.key, serialized.name, options.fileName);
+    return createHashStyleName(cache.key, serialized.name, options);
   };
 
 const createCX =
@@ -32,7 +32,8 @@ const createCX =
 export const createCSS = (cache: EmotionCache, options: ClassNameGeneratorOption) => {
   const css = createClassNameGenerator(cache, {
     hashPriority: options.hashPriority || 'high',
-    fileName: options.fileName,
+    label: options.label,
+    __BABEL_FILE_NAME__: options.__BABEL_FILE_NAME__,
   });
 
   const cx = createCX(cache, css);
