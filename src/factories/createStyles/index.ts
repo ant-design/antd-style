@@ -21,6 +21,7 @@ interface CreateStylesFactory {
 
 export interface CreateStyleOptions {
   hashPriority?: HashPriority;
+  // 用于生成 className 的文件名，用于 babel 插件使用，不建议用户使用
   fileName?: string;
 }
 
