@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.3.0](https://github.com/ant-design/antd-style/compare/v3.2.3...v3.3.0) (2023-06-05)
+
+### ✨ Features
+
+- support gen className by label ([d28b19d](https://github.com/ant-design/antd-style/commit/d28b19d)), closes [#62](https://github.com/ant-design/antd-style/issues/62)
+
 ## [3.2.3](https://github.com/ant-design/antd-style/compare/v3.2.2...v3.2.3) (2023-06-04)
 
 ### 🐛 Bug Fixes
