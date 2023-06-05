@@ -108,7 +108,7 @@ export const createInstance = <T = any>(options: CreateOptions<T>) => {
   });
 
   // ******** 上面这些都和主题相关，如果做了任何改动，都需要排查一遍 ************ //
-  const { cx } = createCSS(emotion.cache, internalOptions.hashPriority);
+  const { cx } = createCSS(emotion.cache, { hashPriority: internalOptions.hashPriority });
   const { injectGlobal, keyframes } = emotion;
 
   return {

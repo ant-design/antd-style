@@ -4,6 +4,7 @@ import { Emotion, createCSS, serializeCSS } from '@/core';
 import type {
   BaseReturnType,
   CSSObject,
+  ClassNameGeneratorOption,
   HashPriority,
   ResponsiveUtil,
   ReturnStyleToUse,
@@ -19,12 +20,6 @@ interface CreateStylesFactory {
   useTheme: () => any;
 }
 
-export interface CreateStyleOptions {
-  hashPriority?: HashPriority;
-  // 用于生成 className 的文件名，用于 babel 插件使用，不建议用户使用
-  fileName?: string;
-}
-
 /**
  * 创建样式基础写法
  */
@@ -32,18 +27,17 @@ export const createStylesFactory =
   ({ hashPriority, useTheme, EmotionContext }: CreateStylesFactory) =>
   <Props, Input extends BaseReturnType = BaseReturnType>(
     styleOrGetStyle: StyleOrGetStyleFn<Input, Props>,
-    options?: CreateStyleOptions,
+    options?: ClassNameGeneratorOption,
   ) => {
     // 返回 useStyles 方法，作为 hooks 使用
     return (props?: Props): ReturnStyles<Input> => {
       const theme = useTheme();
       const { cache } = useContext(EmotionContext);
       // 由于 toClassName 方法依赖了用户给 createStyle 传递的 hashPriority，所以需要在这里重新生成 cx 和 toClassName 方法
-      const { cx, css: toClassName } = createCSS(
-        cache,
-        options?.hashPriority || hashPriority,
-        options,
-      );
+      const { cx, css: toClassName } = createCSS(cache, {
+        hashPriority: options?.hashPriority || hashPriority,
+        fileName: options?.fileName,
+      });
 
       const responsiveMap = useMediaQueryMap();
 

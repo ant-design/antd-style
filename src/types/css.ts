@@ -9,6 +9,14 @@ export type { SerializedStyles } from '@emotion/serialize';
 
 export type ClassNameGenerator = Emotion['css'];
 
+export type ClassNameGeneratorOption = {
+  /**
+   *  用于生成 className 的文件名，用于 babel 插件使用，不建议用户使用
+   */
+  fileName?: string;
+  hashPriority?: HashPriority;
+};
+
 /**
  * @title CSS 工具函数
  * @param template - 模板字符串数组

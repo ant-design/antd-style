@@ -1,27 +1,32 @@
 // copied from https://github.com/emotion-js/emotion/blob/main/packages/utils/src/index.js
-import type { HashPriority } from '@/types';
+import { ClassNameGeneratorOption } from '@/types';
 import type { EmotionCache } from '@emotion/css/create-instance';
 import type { SerializedStyles } from '@emotion/serialize';
 import { registerStyles } from '@emotion/utils';
 
 const isBrowser = typeof document !== 'undefined';
 
+export const createHashStyleName = (cacheKey: string, hash: string, fileName?: string) => {
+  return `${cacheKey}-${hash}${fileName ? `__${fileName}` : ''}`;
+};
+
 /**
  * 向浏览器插入样式表
  * @param cache
  * @param serialized
  * @param isStringTag
- * @param hashPriority
+ * @param options
  */
 export const insertStyles = (
   cache: EmotionCache,
   serialized: SerializedStyles,
   isStringTag: boolean,
-  hashPriority: HashPriority = 'high',
+  options: ClassNameGeneratorOption,
 ) => {
+  const hashPriority = options.hashPriority || 'high';
   registerStyles(cache, serialized, isStringTag);
 
-  const hashClassName = `.${cache.key}-${serialized.name}`;
+  const hashClassName = `.${createHashStyleName(cache.key, serialized.name, options.fileName)}`;
 
   const hashSelector = hashPriority === 'low' ? `:where(${hashClassName})` : hashClassName;
 

@@ -1,23 +1,17 @@
-import { insertStyles } from '@/core/insertStyles';
-import { ClassNameGenerator, ClassNamesUtil, HashPriority } from '@/types';
+import { createHashStyleName, insertStyles } from '@/core/insertStyles';
+import { ClassNameGenerator, ClassNameGeneratorOption, ClassNamesUtil } from '@/types';
 import { classnames, isReactCssResult, mergeCSS } from '@/utils';
 import { EmotionCache } from '@emotion/css/create-instance';
 import { serializeStyles } from '@emotion/serialize';
 
-type ClassNameGeneratorOption = {
-  fileName?: string;
-};
-
 const createClassNameGenerator =
-  (
-    cache: EmotionCache,
-    hashPriority: HashPriority,
-    options?: ClassNameGeneratorOption,
-  ): ClassNameGenerator =>
+  (cache: EmotionCache, options: ClassNameGeneratorOption): ClassNameGenerator =>
   (...args) => {
     const serialized = serializeStyles(args, cache.registered, undefined);
-    insertStyles(cache, serialized, false, hashPriority);
-    return `${cache.key}${options?.fileName ? `-${options?.fileName}` : ''}-${serialized.name}`;
+
+    insertStyles(cache, serialized, false, options);
+
+    return createHashStyleName(cache.key, serialized.name, options.fileName);
   };
 
 const createCX =
@@ -33,14 +27,14 @@ const createCX =
 /**
  * CSS相关方法生成器 用于序列化的样式转换生成 className
  * @param cache
- * @param hashPriority
+ * @param options
  */
-export const createCSS = (
-  cache: EmotionCache,
-  hashPriority: HashPriority = 'high',
-  options?: ClassNameGeneratorOption,
-) => {
-  const css = createClassNameGenerator(cache, hashPriority, options);
+export const createCSS = (cache: EmotionCache, options: ClassNameGeneratorOption) => {
+  const css = createClassNameGenerator(cache, {
+    hashPriority: options.hashPriority || 'high',
+    fileName: options.fileName,
+  });
+
   const cx = createCX(cache, css);
 
   return { css, cx };
