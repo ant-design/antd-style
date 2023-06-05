@@ -11,6 +11,7 @@ import type {
 } from '@/types';
 import { isReactCssResult } from '@/utils';
 
+import { InternalClassNameOption } from '@/core/insertStyles';
 import { convertResponsiveStyleToString, useMediaQueryMap } from './response';
 import { ReturnStyles, StyleOrGetStyleFn } from './types';
 
@@ -37,7 +38,7 @@ export const createStylesFactory =
       const { cx, css: toClassName } = createCSS(cache, {
         hashPriority: options?.hashPriority || hashPriority,
         label: options?.label,
-        __BABEL_FILE_NAME__: options?.__BABEL_FILE_NAME__,
+        __BABEL_FILE_NAME__: (options as InternalClassNameOption)?.__BABEL_FILE_NAME__,
       });
 
       const responsiveMap = useMediaQueryMap();
