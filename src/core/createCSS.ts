@@ -4,12 +4,20 @@ import { classnames, isReactCssResult, mergeCSS } from '@/utils';
 import { EmotionCache } from '@emotion/css/create-instance';
 import { serializeStyles } from '@emotion/serialize';
 
+type ClassNameGeneratorOption = {
+  fileName?: string;
+};
+
 const createClassNameGenerator =
-  (cache: EmotionCache, hashPriority: HashPriority): ClassNameGenerator =>
+  (
+    cache: EmotionCache,
+    hashPriority: HashPriority,
+    options?: ClassNameGeneratorOption,
+  ): ClassNameGenerator =>
   (...args) => {
     const serialized = serializeStyles(args, cache.registered, undefined);
     insertStyles(cache, serialized, false, hashPriority);
-    return `${cache.key}-${serialized.name}`;
+    return `${cache.key}${options?.fileName ? `-${options?.fileName}` : ''}-${serialized.name}`;
   };
 
 const createCX =
@@ -27,8 +35,12 @@ const createCX =
  * @param cache
  * @param hashPriority
  */
-export const createCSS = (cache: EmotionCache, hashPriority: HashPriority = 'high') => {
-  const css = createClassNameGenerator(cache, hashPriority);
+export const createCSS = (
+  cache: EmotionCache,
+  hashPriority: HashPriority = 'high',
+  options?: ClassNameGeneratorOption,
+) => {
+  const css = createClassNameGenerator(cache, hashPriority, options);
   const cx = createCX(cache, css);
 
   return { css, cx };

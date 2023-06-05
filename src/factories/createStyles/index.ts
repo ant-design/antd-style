@@ -21,6 +21,7 @@ interface CreateStylesFactory {
 
 export interface CreateStyleOptions {
   hashPriority?: HashPriority;
+  fileName?: string;
 }
 
 /**
@@ -35,10 +36,13 @@ export const createStylesFactory =
     // 返回 useStyles 方法，作为 hooks 使用
     return (props?: Props): ReturnStyles<Input> => {
       const theme = useTheme();
-
       const { cache } = useContext(EmotionContext);
       // 由于 toClassName 方法依赖了用户给 createStyle 传递的 hashPriority，所以需要在这里重新生成 cx 和 toClassName 方法
-      const { cx, css: toClassName } = createCSS(cache, options?.hashPriority || hashPriority);
+      const { cx, css: toClassName } = createCSS(
+        cache,
+        options?.hashPriority || hashPriority,
+        options,
+      );
 
       const responsiveMap = useMediaQueryMap();
 

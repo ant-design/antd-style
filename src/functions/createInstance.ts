@@ -68,7 +68,6 @@ export const createInstance = <T = any>(options: CreateOptions<T>) => {
     speedy: internalOptions.speedy,
     container: internalOptions.container,
   });
-
   const EmotionContext = createEmotionContext(emotion);
 
   const StyleProvider = createStyleProvider(EmotionContext);
