@@ -1,10 +1,9 @@
 /**
  * compact: true
  */
-import { Flexbox } from 'react-layout-kit';
-
 import { Card, Segmented } from 'antd';
 import { ThemeMode, useThemeMode } from 'antd-style';
+import { Flexbox } from 'react-layout-kit';
 
 const options = [
   { label: '自动', value: 'auto' },

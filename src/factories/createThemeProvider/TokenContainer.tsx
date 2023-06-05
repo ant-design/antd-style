@@ -52,7 +52,7 @@ const TokenContainer: <T, S>(props: TokenContainerProps<T, S>) => ReactElement |
     if (!stylishOrGetStylish) return {};
 
     return stylishOrGetStylish({
-      token: { ...token, ...customToken },
+      token: { ...token, ...customToken } as any,
       stylish: antdStylish,
       appearance,
       isDarkMode,
@@ -67,8 +67,8 @@ const TokenContainer: <T, S>(props: TokenContainerProps<T, S>) => ReactElement |
 
   const theme: Theme = {
     ...token,
-    ...customToken,
-    stylish,
+    ...(customToken as any),
+    stylish: stylish as any,
     ...themeState,
     prefixCls,
   };
