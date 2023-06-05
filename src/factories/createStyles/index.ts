@@ -4,12 +4,14 @@ import { Emotion, createCSS, serializeCSS } from '@/core';
 import type {
   BaseReturnType,
   CSSObject,
+  ClassNameGeneratorOption,
   HashPriority,
   ResponsiveUtil,
   ReturnStyleToUse,
 } from '@/types';
 import { isReactCssResult } from '@/utils';
 
+import { InternalClassNameOption } from '@/core/insertStyles';
 import { convertResponsiveStyleToString, useMediaQueryMap } from './response';
 import { ReturnStyles, StyleOrGetStyleFn } from './types';
 
@@ -19,10 +21,6 @@ interface CreateStylesFactory {
   useTheme: () => any;
 }
 
-export interface CreateStyleOptions {
-  hashPriority?: HashPriority;
-}
-
 /**
  * 创建样式基础写法
  */
@@ -30,15 +28,18 @@ export const createStylesFactory =
   ({ hashPriority, useTheme, EmotionContext }: CreateStylesFactory) =>
   <Props, Input extends BaseReturnType = BaseReturnType>(
     styleOrGetStyle: StyleOrGetStyleFn<Input, Props>,
-    options?: CreateStyleOptions,
+    options?: ClassNameGeneratorOption,
   ) => {
     // 返回 useStyles 方法，作为 hooks 使用
     return (props?: Props): ReturnStyles<Input> => {
       const theme = useTheme();
-
       const { cache } = useContext(EmotionContext);
       // 由于 toClassName 方法依赖了用户给 createStyle 传递的 hashPriority，所以需要在这里重新生成 cx 和 toClassName 方法
-      const { cx, css: toClassName } = createCSS(cache, options?.hashPriority || hashPriority);
+      const { cx, css: toClassName } = createCSS(cache, {
+        hashPriority: options?.hashPriority || hashPriority,
+        label: options?.label,
+        __BABEL_FILE_NAME__: (options as InternalClassNameOption)?.__BABEL_FILE_NAME__,
+      });
 
       const responsiveMap = useMediaQueryMap();
 

@@ -214,6 +214,7 @@ createStyles 的第二个参数可以对生成的 className 做额外的控制�
 | 属性名       | 类型           | 描述                           |
 | ------------ | -------------- | ------------------------------ |
 | hashPriority | `HashPriority` | 生成的 hash className 样式权重 |
+| label        | `string`       | 添加后缀                       |
 
 ### hashPriority
 
@@ -222,3 +223,11 @@ createStyles 的第二个参数可以对生成的 className 做额外的控制�
 控制生成的 className 的权重，默认为 `high`。
 
 如果设为 `low`，生成 hash 的样式选择器会包裹 :where 选择器，以降低权重。一般来说在组件库的使用场景中可以用到，其他场景不建议使用。
+
+### label
+
+类型：`string`
+
+类似 emotion 的 label。添加 label 后，将会在把 label 添加到后缀中。一般来说无需使用。
+
+<code src="../demos/api/createStyles/label.tsx"></code>

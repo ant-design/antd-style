@@ -9,6 +9,11 @@ export type { SerializedStyles } from '@emotion/serialize';
 
 export type ClassNameGenerator = Emotion['css'];
 
+export interface ClassNameGeneratorOption {
+  label?: string;
+  hashPriority?: HashPriority;
+}
+
 /**
  * @title CSS 工具函数
  * @param template - 模板字符串数组
