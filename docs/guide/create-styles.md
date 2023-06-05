@@ -68,7 +68,7 @@ const useStyles = createStyles(({ token, css }) => {
 });
 ```
 
-demo 示例：（当切换站点主题时，能响应亮色或暗色）
+示例：
 
 <code src="../demos/createStyles/AntdToken.tsx"></code>
 
@@ -105,7 +105,7 @@ const Select = () => {
 
 <code src="../demos/createStyles/Command/index.tsx" ></code>
 
-## 其他 常用 css 语法
+## 其他常用 css 语法
 
 ### Keyframes
 

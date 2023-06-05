@@ -11,7 +11,7 @@ import type {
 /**
  * 书写样式时使用的第一个参数
  */
-export interface CreateStylesTheme extends CommonStyleUtils {
+export interface CreateStylesUtils extends CommonStyleUtils {
   /**
    * 包含 antd 的 token 和所有自定义 token
    */
@@ -44,7 +44,7 @@ export interface ReturnStyles<T extends BaseReturnType> extends Pick<CommonStyle
 
 // 获取样式
 export type GetStyleFn<Input extends BaseReturnType, Props> = (
-  theme: CreateStylesTheme,
+  utils: CreateStylesUtils,
   props: Props,
 ) => Input;
 

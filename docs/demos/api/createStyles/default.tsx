@@ -1,13 +1,12 @@
 /**
  * inherit: true
- * title: 结合 antd token
- * description: 当切换站点主题时，均能响应站点主题
+ * defaultShowCode: true
  */
 import { SmileOutlined } from '@ant-design/icons';
 import { Button, Space } from 'antd';
 import { createStyles } from 'antd-style';
 
-const useStyles = createStyles(({ token, css }) => {
+const useStyles = createStyles(({ token, css, cx }) => {
   const commonCard = css`
     border-radius: ${token.borderRadiusLG}px;
     padding: ${token.paddingLG}px;
@@ -19,17 +18,19 @@ const useStyles = createStyles(({ token, css }) => {
       padding: 24px;
     `,
 
-    primaryCard: css`
-      ${commonCard};
-      background: ${token.colorPrimary};
-      color: ${token.colorTextLightSolid};
-    `,
-
     defaultCard: css`
       ${commonCard};
       background: ${token.colorBgContainer};
       color: ${token.colorText};
     `,
+
+    primaryCard: cx(
+      commonCard,
+      css`
+        background: ${token.colorPrimary};
+        color: ${token.colorTextLightSolid};
+      `,
+    ),
   };
 });
 
