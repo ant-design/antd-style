@@ -1,6 +1,6 @@
 ---
 title: 🚧 createStylish
-order: 1
+order: 10
 group:
   title: 创建样式
   order: 0
