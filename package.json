@@ -10,8 +10,7 @@
     "token",
     "design token",
     "token-system",
-    "emtion",
-    "styled-components"
+    "emtion"
   ],
   "homepage": "https://github.com/ant-design/antd-style",
   "bugs": {
@@ -98,6 +97,7 @@
     "@umijs/lint": "^4",
     "@vitest/coverage-c8": "latest",
     "antd": "^5",
+    "babel-plugin-antd-style": "^1",
     "chalk": "^4",
     "classnames": "^2",
     "commitlint": "^17",
