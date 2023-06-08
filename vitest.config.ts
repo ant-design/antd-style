@@ -10,7 +10,7 @@ export default defineConfig({
       'antd-style': './src',
     },
     coverage: {
-      provider: 'c8',
+      provider: 'v8',
       reporter: ['text', 'text-summary', 'json', 'lcov'],
     },
   },
