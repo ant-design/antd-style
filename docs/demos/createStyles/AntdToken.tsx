@@ -1,7 +1,7 @@
 /**
  * inherit: true
  * title: 结合 antd token
- * description: 当切换站点主题时，均能响应站点主题
+ * description: 当切换站点亮暗色模式时，Demo 均能适应站点主题实现自动切换
  */
 import { SmileOutlined } from '@ant-design/icons';
 import { Button, Space } from 'antd';

@@ -1,3 +1,7 @@
+/**
+ * title: 带有props入参的写法
+ * description: 打开面板时，描边会变色 / 当选中选项1时，变成主色样式
+ */
 import { Select } from 'antd';
 import { createStyles } from 'antd-style';
 import { FC, useState } from 'react';
@@ -73,12 +77,9 @@ const App = () => {
   const [id2, setId2] = useState<string>('1');
 
   return (
-    <Flexbox gap={8}>
-      打开面板时，描边会变色 / 当选中选项1时，变成主色样式
-      <Flexbox horizontal gap={24}>
-        <SelectItem value={id} onChange={setId} />
-        <SelectItem value={id2} onChange={setId2} />
-      </Flexbox>
+    <Flexbox horizontal gap={24}>
+      <SelectItem value={id} onChange={setId} />
+      <SelectItem value={id2} onChange={setId2} />
     </Flexbox>
   );
 };

@@ -1,5 +1,5 @@
 ---
-title: 主题切换
+title: 切换主题
 group: 快速上手
 order: 2
 demo:
@@ -31,6 +31,12 @@ export default () => {
 
 <code src="../demos/guide/switch-theme/default.tsx"></code>
 
+:::warning{title=如果你有使用 message 等静态方法}
+antd v5 中 message、notification、modal 这三个静态不会响应主题。建议优先使用 hooks 版本的静态方法。
+
+如果你有使用这三个静态方法的诉求，又同时希望能够响应主题，请查看 [静态方法响应主题](/case/static-method)。
+:::
+
 ## 2. 自动响应系统主题
 
 介绍完上述方案后，有心人应该会发现，这种方案会强依赖用户对主题的手动切换。但手机、电脑的系统级主题切换一般都是能跟随时间自动完成的，一般不需要用户手动操作。 因此一个现代化的主题切换能力，应该是像 macOS 这样，提供一个「自动」模式。
@@ -52,6 +58,12 @@ export default () => {
 ```
 
 <code src="../demos/guide/switch-theme/AutoSwitch.tsx"></code>
+
+:::info{title=appearance 与 themeMode 的差别是什么？}
+appearance 描述了应用当前的外观状态， themeMode 则用于描述控制主题模式的逻辑。区分两者有助于实现高级的主题能力。
+
+详见讨论: [#52](https://github.com/ant-design/antd-style/issues/52)
+:::
 
 ## 3. 受控模式的主题切换
 

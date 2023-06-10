@@ -1,5 +1,5 @@
 ---
-title: 样式创建
+title: 书写样式
 order: 1
 group:
   title: 快速上手
@@ -8,12 +8,12 @@ demo:
   tocDepth: 4
 ---
 
-# 使用 createStyles 类名组织样式
+# 使用 createStyles 书写样式
 
-antd-style 提供的核心 api 就是 `createStyles` ，该方法可以使用 className 组织样式，更加接近 CSS Modules 的写法。
+antd-style 提供的核心 api 是 `createStyles` ，该方法可以使用类名组织样式，更加接近 CSS Modules 的写法。
 
 :::success{title=默认推荐}
-这是 antd-style 第一推荐的使用方式。应用样式书写或者对基础组件做样式覆写，都可以使用这种写法。
+这是我们第一推荐的写法，书写应用的样式或者覆写基础组件样式，都可以采用这种写法。
 :::
 
 ## 典型示例
@@ -30,13 +30,11 @@ antd-style 提供的核心 api 就是 `createStyles` ，该方法可以使用 cl
 
 如果不需要动态性，可以直接用 `createStyles` 传入一个样式对象。
 
-示例：
-
 <code src="../demos/createStyles/SimpleObject.tsx"></code>
 
 ### 写法二：结合 antd 的 token 使用
 
-和其他 `antd-style` 的方法一样，`createStyles` 方法可以使用 antd 的 token 和自定义 token。此时 `createStyles` 的入参需要变成函数。
+`createStyles` 方法可以使用 antd 的 token 和自定义 token。此时 `createStyles` 的入参需要变成函数。
 
 ```ts
 import { createStyles } from 'antd-style';
@@ -68,13 +66,11 @@ const useStyles = createStyles(({ token, css }) => {
 });
 ```
 
-示例：
-
 <code src="../demos/createStyles/AntdToken.tsx"></code>
 
 ### 写法三：结合外部传入 props
 
-`createStyles` 的第一个参数如果是函数，那么该函数的第二个参数可以指定外部的 props。
+函数的第二个参数可以接收外部的 props。
 
 ```tsx | pure
 const useStyles = createStyles(({ token, css }, props: { id: string; open: boolean }) => {
