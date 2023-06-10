@@ -23,7 +23,7 @@ group: 从 Less 迁移
 
 
 const Statistic: React.FC = () => {
-+  const { styles } = useStyles();
++  const { styles, cx } = useStyles();
 
   //...
 
