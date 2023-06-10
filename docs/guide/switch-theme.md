@@ -31,7 +31,7 @@ export default () => {
 
 <code src="../demos/guide/switch-theme/default.tsx"></code>
 
-:::warning{title=如果你有使用 message 等静态方法}
+:::warning{title=如果你有使用message等静态方法}
 antd v5 中 message、notification、modal 这三个静态不会响应主题。建议优先使用 hooks 版本的静态方法。
 
 如果你有使用这三个静态方法的诉求，又同时希望能够响应主题，请查看 [静态方法响应主题](/case/static-method)。
