@@ -177,7 +177,7 @@ declare module 'antd-style' {
 
 ### appearance
 
-类型：` 'dark' | 'light' | string`
+类型：`'dark' | 'light' | string`
 
 外层包裹的 ThemeProvider 下的主题模式。
 
@@ -189,7 +189,7 @@ declare module 'antd-style' {
 
 ### prefixCls
 
-类型：` string`
+类型：`string`
 
 在 ThemeProvider 上标记的 prefixCls，利用该参数，可以实现灵活的 antd 前缀覆盖。
 
