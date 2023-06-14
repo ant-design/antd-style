@@ -44,7 +44,7 @@ styled 的写法从体感上看完全是另一套代码。 由于我们在业务
 
 ```tsx | pure
 import { Button } from 'antd';
-import { styled } from 'styled-component';
+import { styled } from 'styled-components';
 
 // 引入 antd 的 Button 后做重命名
 const ButtonBox = styled(Button)`
