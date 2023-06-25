@@ -43,7 +43,7 @@ export default defineConfig({
   }`,
   ],
   alias: {
-    'react-dom$': 'react-dom/profiling',
+    'react-dom': 'react-dom/profiling',
   },
   extraBabelPlugins: [
     // 添加 antd-style babel 插件
