@@ -10,7 +10,12 @@ export const TestResult = () => {
           <Center width={100}>{item.name}</Center>
           <Flexbox horizontal gap={8}>
             {item.cases.map((testCase) => (
-              <TestSuit key={testCase.name} name={testCase.name} Component={testCase.component} />
+              <TestSuit
+                key={testCase.name}
+                name={testCase.name}
+                path={testCase.path}
+                Component={testCase.component}
+              />
             ))}
           </Flexbox>
         </Flexbox>

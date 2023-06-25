@@ -22,6 +22,7 @@ import StyledComponentsTheme from './StyledComponentsTheme';
 
 interface Case {
   name: string;
+  path?: string;
   component: FC;
 }
 interface Usage {
@@ -29,45 +30,64 @@ interface Usage {
   cases: Case[];
 }
 
+export const demoPathPrefix =
+  'https://github.com/ant-design/antd-style/tree/master/docs/guide/demos/benchmark/TestCase';
+
 export const TestCases: Usage[] = [
   {
     name: 'Pure CSS',
     cases: [
-      { name: 'Pure CSS', component: PureCss },
-      { name: 'CSS Modules', component: CSSModules },
+      { name: 'Pure CSS', component: PureCss, path: '/PureCSS/index.tsx' },
+      { name: 'CSS Modules', component: CSSModules, path: '/CSSModules/index.tsx' },
     ],
   },
   {
     name: 'antd-style',
     cases: [
-      { name: 'AntdStyleStatic', component: AntdStyleStatic },
-      { name: 'AntdStyleFunc', component: AntdStyleFunc },
-      { name: 'AntdStyleTokens', component: AntdStyleTokens },
-      { name: 'AntdStyleProps', component: AntdStyleProps },
+      {
+        name: 'createStyles Static',
+        component: AntdStyleStatic,
+        path: '/AntdStyleStatic/index.tsx',
+      },
+      { name: 'createStyles Function', component: AntdStyleFunc, path: '/AntdStyleFunc/index.tsx' },
+      {
+        name: 'createStyles Tokens',
+        component: AntdStyleTokens,
+        path: '/AntdStyleTokens/index.tsx',
+      },
+      { name: 'createStyles Props', component: AntdStyleProps, path: '/AntdStyleProps/index.tsx' },
     ],
   },
   {
     name: 'Emotion',
     cases: [
-      { name: 'EmotionCSS', component: EmotionCSS },
-      { name: 'EmotionStyled', component: EmotionStyled },
-      { name: 'EmotionReact', component: EmotionReact },
+      { name: 'Emotion CSS', component: EmotionCSS, path: '/EmotionCSS/index.tsx' },
+      { name: 'Emotion Styled', component: EmotionStyled, path: '/EmotionCSS/index.tsx' },
+      { name: 'Emotion React CSS', component: EmotionReact, path: '/EmotionReact/index.tsx' },
     ],
   },
   {
     name: 'StyledComponents',
     cases: [
-      { name: 'StyledComponents', component: StyledComponents },
-      { name: 'StyledComponentsTheme', component: StyledComponentsTheme },
+      {
+        name: 'StyledComponents',
+        component: StyledComponents,
+        path: '/StyledComponents/index.tsx',
+      },
+      {
+        name: 'StyledComponentsTheme',
+        component: StyledComponentsTheme,
+        path: '/StyledComponentsTheme/index.tsx',
+      },
     ],
   },
   {
     name: 'Material UI V4',
     cases: [
-      { name: 'MUIStatic', component: MUIStatic },
-      { name: 'MuiStyled', component: MuiStyled },
-      { name: 'MUI Box', component: MuiBox },
-      { name: 'MuiStyledTheme', component: MuiStyledTheme },
+      { name: 'MUI Static', component: MUIStatic, path: '/MuiStatic/index.tsx' },
+      { name: 'MUI Styled', component: MuiStyled, path: '/MuiStyled/index.tsx' },
+      { name: 'MUI Box', component: MuiBox, path: '/MuiBox/index.tsx' },
+      { name: 'MuiStyledTheme', component: MuiStyledTheme, path: '/MuiStyledTheme/index.tsx' },
     ],
   },
 ];

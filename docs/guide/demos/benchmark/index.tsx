@@ -50,7 +50,7 @@ export default () => {
         <Descriptions layout={'vertical'}>
           <Descriptions.Item label={'测试基准'}>渲染 {NUM_CARDS} 张卡片</Descriptions.Item>
           <Descriptions.Item label={'统计指标'}>
-            使用 React 的 &lt;Profiler /&gt; 组件统计渲染时间
+            使用 React 的 &lt;Profiler /&gt; 组件统计渲染完成时间
           </Descriptions.Item>
         </Descriptions>
       </Card>
