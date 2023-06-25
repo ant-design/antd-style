@@ -13,7 +13,7 @@ import { FullscreenOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 
 export default () => (
-  <a href="/~demos/docs-guide-performance-comparsion-demo-benchmark" target={'_blank'}>
+  <a href="~demos/docs-guide-performance-comparsion-demo-benchmark" target={'_blank'}>
     <Button type={'primary'} icon={<FullscreenOutlined />}>
       点击全屏查看
     </Button>

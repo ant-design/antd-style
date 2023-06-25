@@ -2,7 +2,6 @@ import { Card } from 'antd';
 import { createStyles } from 'antd-style';
 import { FC, Profiler, useCallback, useState } from 'react';
 
-// import { CodeOutlined } from '@ant-design/icons';
 import { demoPathPrefix } from '../TestCase';
 
 let max = 0;
