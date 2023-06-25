@@ -43,7 +43,7 @@ export default defineConfig({
   }`,
   ],
   extraBabelPlugins: [
-    require.resolve('@emotion/babel-plugin'),
+    // 添加 antd-style babel 插件
     require.resolve('babel-plugin-antd-style'),
   ],
   codeSplitting: {
