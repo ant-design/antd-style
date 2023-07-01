@@ -6,28 +6,7 @@ import { registerStyles } from '@emotion/utils';
 
 const isBrowser = typeof document !== 'undefined';
 
-export interface InternalClassNameOption extends ClassNameGeneratorOption {
-  /**
-   *  用于生成 className 的文件名，用于 babel 插件使用，不对用户透出
-   */
-  __BABEL_FILE_NAME__?: string;
-}
-
-export const createHashStyleName = (
-  cacheKey: string,
-  hash: string,
-  options?: InternalClassNameOption,
-) => {
-  const fileName = options?.__BABEL_FILE_NAME__;
-  const label = options?.label;
-
-  const babelSuffix = fileName ? `__${fileName}` : '';
-  const labelSuffix = label ? `__${label}` : '';
-
-  const prefix = `${cacheKey}-${hash}`;
-
-  return prefix + labelSuffix + babelSuffix;
-};
+export const createHashStyleName = (cacheKey: string, hash: string) => `${cacheKey}-${hash}`;
 
 /**
  * 向浏览器插入样式表
@@ -40,12 +19,12 @@ export const insertStyles = (
   cache: EmotionCache,
   serialized: SerializedStyles,
   isStringTag: boolean,
-  options: InternalClassNameOption,
+  options: ClassNameGeneratorOption,
 ) => {
   const hashPriority = options.hashPriority || 'high';
   registerStyles(cache, serialized, isStringTag);
 
-  const hashClassName = `.${createHashStyleName(cache.key, serialized.name, options)}`;
+  const hashClassName = `.${createHashStyleName(cache.key, serialized.name)}`;
 
   const hashSelector = hashPriority === 'low' ? `:where(${hashClassName})` : hashClassName;
 
