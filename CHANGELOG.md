@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.4.0-alpha.1](https://github.com/ant-design/antd-style/compare/v3.3.0...v3.4.0-alpha.1) (2023-07-01)
+
+### ✨ Features
+
+- Babel 插件支持显示 key 前缀 ([87ae9c4](https://github.com/ant-design/antd-style/commit/87ae9c4))
+
 # [3.3.0](https://github.com/ant-design/antd-style/compare/v3.2.3...v3.3.0) (2023-06-05)
 
 ### ✨ Features
