@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.4.0](https://github.com/ant-design/antd-style/compare/v3.3.0...v3.4.0) (2023-07-01)
+
+### ✨ Features
+
+- 优化 Babel 插件, closes [#77](https://github.com/ant-design/antd-style/issues/77) ([f054380](https://github.com/ant-design/antd-style/commit/f054380))
+
 # [3.4.0-alpha.1](https://github.com/ant-design/antd-style/compare/v3.3.0...v3.4.0-alpha.1) (2023-07-01)
 
 ### ✨ Features
