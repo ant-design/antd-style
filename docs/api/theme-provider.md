@@ -176,6 +176,12 @@ export default () => {
 
 :::
 
+## 嵌套 ThemeProvider
+
+在某些场景下，我们会需要在一个 ThemeProvider 中嵌套另一个 ThemeProvider，这时候需要注意的是，内层的 ThemeProvider 会覆盖外层的 ThemeProvider。
+
+<code src="../demos/ThemeProvider/nested-prefixCls.tsx"></code>
+
 ## styled 集成
 
 antd-style 通过 `styled` 方法提供了 styled-components 的 ThemeProvider 兼容能力，进而使用 antd-style 的 ThemeProvider 为 styled-components 或 emotion/styled 库提供主题消费。
