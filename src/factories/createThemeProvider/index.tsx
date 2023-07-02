@@ -52,7 +52,7 @@ export const createThemeProvider = (
 
       theme,
       getStaticInstance,
-      prefixCls,
+      prefixCls: outPrefixCls,
       staticInstanceConfig,
 
       appearance,
@@ -74,10 +74,12 @@ export const createThemeProvider = (
         ? createStyledThemeProvider(styled)
         : DefaultStyledThemeProvider || DEFAULT_THEME_PROVIDER;
 
+      const prefixCls = outPrefixCls || defaultPrefixCls;
+
       return (
         <StyleEngineContext.Provider
           value={{
-            prefixCls: prefixCls || defaultPrefixCls,
+            prefixCls: prefixCls,
             StyledThemeContext: styled?.ThemeContext || StyledThemeContext || DEFAULT_THEME_CONTEXT,
             CustomThemeContext,
           }}

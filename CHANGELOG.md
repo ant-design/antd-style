@@ -1,5 +1,11 @@
 # Changelog
 
+## [3.4.1-beta.1](https://github.com/ant-design/antd-style/compare/v3.4.0...v3.4.1-beta.1) (2023-07-02)
+
+### 🐛 Bug Fixes
+
+- 修正 prefixCls 在嵌套 ThemeProvider 中没有继承的问题 ([4e5488a](https://github.com/ant-design/antd-style/commit/4e5488a))
+
 # [3.4.0](https://github.com/ant-design/antd-style/compare/v3.3.0...v3.4.0) (2023-07-01)
 
 ### ✨ Features
