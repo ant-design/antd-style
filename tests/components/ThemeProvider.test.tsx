@@ -179,6 +179,39 @@ describe('ThemeProvider', () => {
       expect(light.current.customBrandColor).toEqual('#FFF');
       expect(light.current.a).toEqual('red');
     });
+
+    it('嵌套 ThemeProvider 算法', () => {
+      const Wrapper: FC<PropsWithChildren> = ({ children }) => (
+        <ThemeProvider
+          theme={{
+            algorithm: (designToken, derivativeToken) => ({
+              ...designToken,
+              ...derivativeToken!,
+              colorBgLayout: '#213da2',
+            }),
+          }}
+          customToken={{ a: 'red', customColor: 'world' }}
+        >
+          <ThemeProvider
+            theme={{
+              algorithm: (designToken, derivativeToken) => ({
+                ...designToken,
+                ...derivativeToken!,
+                colorBgLayout: '#123ffa',
+              }),
+            }}
+            customToken={{ a: 'ttt' }}
+          >
+            {children}
+          </ThemeProvider>
+        </ThemeProvider>
+      );
+
+      const { result: light } = renderHook(useTheme, { wrapper: Wrapper });
+      expect(light.current.colorBgLayout).toEqual('#123ffa');
+      expect(light.current.a).toEqual('ttt');
+      expect(light.current.customColor).toEqual('world');
+    });
   });
 
   describe('主题切换', () => {
@@ -261,6 +294,7 @@ describe('ThemeProvider', () => {
       expect(message.success).not.toBeUndefined();
     });
   });
+
   it('测试 prefix', () => {
     let message = {} as MessageInstance;
     let notification = {} as NotificationInstance;
