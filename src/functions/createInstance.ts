@@ -3,7 +3,7 @@ import { createContext } from 'react';
 import { CacheManager, createCSS, createEmotion, serializeCSS } from '@/core';
 
 import { createEmotionContext } from '@/factories/createEmotionContext';
-import { createGlobalStyleFactory } from '@/factories/createGlobalStyle';
+import { createGlobalFactory, createGlobalStyleFactory } from '@/factories/createGlobalStyle';
 import { createStylishFactory } from '@/factories/createStyish';
 import { createStyleProvider } from '@/factories/createStyleProvider';
 import { createStylesFactory } from '@/factories/createStyles';
@@ -99,6 +99,8 @@ export const createInstance = <T = any>(options: CreateOptions<T>) => {
 
   const createGlobalStyle = createGlobalStyleFactory(useTheme);
 
+  const createGlobal = createGlobalFactory(useTheme);
+
   const createStylish = createStylishFactory(createStyles);
 
   const ThemeProvider = createThemeProvider({
@@ -117,6 +119,7 @@ export const createInstance = <T = any>(options: CreateOptions<T>) => {
     // ******************** //
     createStyles,
     createGlobalStyle,
+    createGlobal,
     createStylish,
     // ******************** //
     // **** 基础样式方法 **** //
