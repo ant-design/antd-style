@@ -75,6 +75,7 @@ export const extractStaticStyle = (html: string, options?: ExtractStyleOptions):
     const createEmotionServer = require('@emotion/server/create-instance').default;
 
     const result = createEmotionServer(cache).extractCritical(html);
+    console.log(cache, result);
     if (!result.css) return null;
 
     const { css, ids } = result;
