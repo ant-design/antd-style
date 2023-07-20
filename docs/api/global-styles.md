@@ -18,9 +18,3 @@ group: 创建样式
 利用 antd v5 的 token 系统，我们可以自行组织实现一个在 Ant Design 中并不存在的 Button 样式。
 
 <code src="../demos/globalStyles/AntdToken.tsx"></code>
-
-## 与 `createStyles` 相似的使用方法
-
-`createGlobal` 同样可以用于插入全局样式，但拥有与 `createStyles` 相似的 api。
-
-<code src="../demos/globalStyles/createGlobal.tsx"></code>

@@ -1,8 +1,8 @@
-import { Global, css as emotionCss } from '@emotion/react';
+import { Global } from '@emotion/react';
 import { serializeStyles } from '@emotion/serialize';
 import { memo } from 'react';
 
-import { CSSStyle, FullToken, Theme } from '@/types';
+import { CSSStyle, Theme } from '@/types';
 
 export interface GlobalTheme {
   theme: Theme;
@@ -18,20 +18,3 @@ export const createGlobalStyleFactory =
       const theme = useTheme();
       return <Global styles={serializeStyles(styles, undefined, { ...props, theme })} />;
     });
-
-export const createGlobalFactory =
-  (useTheme: () => Theme) =>
-  (
-    styleFn: ({
-      token,
-      css,
-    }: {
-      token: FullToken;
-      css: typeof emotionCss;
-    }) => ReturnType<typeof emotionCss>,
-  ) => {
-    return memo(() => {
-      const token = useTheme();
-      return <Global styles={styleFn({ token, css: emotionCss })} />;
-    });
-  };

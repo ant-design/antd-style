@@ -12,7 +12,6 @@ export const {
   createStyles,
   createGlobalStyle,
   createStylish,
-  createGlobal,
   // **** 基础样式方法 **** //
   css,
   cx,
