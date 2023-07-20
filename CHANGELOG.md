@@ -1,5 +1,11 @@
 # Changelog
 
+## [3.4.2-beta.1](https://github.com/ant-design/antd-style/compare/v3.4.1...v3.4.2-beta.1) (2023-07-20)
+
+### 🐛 Bug Fixes
+
+- Emotion instance should use same cache, closes [#80](https://github.com/ant-design/antd-style/issues/80) ([17f804e](https://github.com/ant-design/antd-style/commit/17f804e))
+
 ## [3.4.1](https://github.com/ant-design/antd-style/compare/v3.4.0...v3.4.1) (2023-07-02)
 
 ### 🐛 Bug Fixes

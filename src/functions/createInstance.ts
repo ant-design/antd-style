@@ -73,7 +73,7 @@ export const createInstance = <T = any>(options: CreateOptions<T>) => {
   const StyleProvider = createStyleProvider(EmotionContext);
 
   // 将 cache 存到全局管理器中
-  cacheManager.add(emotion.cache);
+  emotion.cache = cacheManager.add(emotion.cache);
 
   // ******* 下面这些都和主题相关，如果做了任何改动，都需要排查一遍 ************* //
 

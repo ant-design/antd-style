@@ -98,7 +98,7 @@ export const createStyleProvider = (EmotionContext: Context<Emotion>): FC<StyleP
 
         if (cacheManager) {
           // add 方法有幂等
-          cacheManager.add(instance.cache);
+          instance.cache = cacheManager.add(instance.cache);
         }
 
         return instance;
