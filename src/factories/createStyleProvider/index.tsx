@@ -1,23 +1,18 @@
 import { createEmotion, Emotion } from '@/core/createEmotion';
 import { StyleManager } from '@/types';
-import { StyleProvider as AntdStyleProvider } from '@ant-design/cssinjs';
-import { StylisPlugin } from '@emotion/cache';
 import {
-  ComponentProps,
-  Context,
-  FC,
-  memo,
-  ReactNode,
-  useContext,
-  useEffect,
-  useMemo,
-} from 'react';
+  StyleProvider as AntdStyleProvider,
+  StyleProviderProps as AntdStyleProviderProps,
+} from '@ant-design/cssinjs';
+
+import { StylisPlugin } from '@emotion/cache';
+import { Context, FC, memo, ReactNode, useContext, useEffect, useMemo } from 'react';
 
 export interface StyleProviderProps
   extends Partial<
     Pick<
-      ComponentProps<typeof AntdStyleProvider>,
-      'autoClear' | 'cache' | 'hashPriority' | 'ssrInline' | 'transformers'
+      AntdStyleProviderProps,
+      'autoClear' | 'cache' | 'hashPriority' | 'ssrInline' | 'transformers' | 'linters'
     >
   > {
   /**
@@ -74,6 +69,7 @@ export const createStyleProvider = (EmotionContext: Context<Emotion>): FC<StyleP
       nonce,
       insertionPoint,
       stylisPlugins,
+      linters,
       ...antdStyleProviderProps
     }) => {
       const defaultEmotion = useContext(EmotionContext);
@@ -113,7 +109,7 @@ export const createStyleProvider = (EmotionContext: Context<Emotion>): FC<StyleP
       if (Boolean(Object.keys(antdStyleProviderProps).length) || container) {
         return (
           // @ts-ignore
-          <AntdStyleProvider container={container} {...antdStyleProviderProps}>
+          <AntdStyleProvider linters={linters} container={container} {...antdStyleProviderProps}>
             {content}
           </AntdStyleProvider>
         );
