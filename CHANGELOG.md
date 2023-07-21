@@ -1,5 +1,11 @@
 # Changelog
 
+## [3.4.3](https://github.com/ant-design/antd-style/compare/v3.4.2...v3.4.3) (2023-07-21)
+
+### 🐛 Bug Fixes
+
+- Add linters props to StyleProvider, closes [#82](https://github.com/ant-design/antd-style/issues/82) ([1d21bae](https://github.com/ant-design/antd-style/commit/1d21bae))
+
 ## [3.4.2](https://github.com/ant-design/antd-style/compare/v3.4.1...v3.4.2) (2023-07-20)
 
 ### 🐛 Bug Fixes
