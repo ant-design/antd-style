@@ -118,7 +118,7 @@ export default () => {
 
 ## CHANGELOG
 
-详情：[CHANGELOG](./CHANGELOG)
+详情：[CHANGELOG](./CHANGELOG.md)
 
 ## License
 
