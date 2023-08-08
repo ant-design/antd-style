@@ -42,7 +42,7 @@ const styleInstance = createInstance<DefaultToken>({
 export const {
   // **** 核心样式方法 **** //
   createStyles,
-  createStyish,
+  createStylish,
   createGlobalStyle,
 
   // **** 基础样式方法 **** //
