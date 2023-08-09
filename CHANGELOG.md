@@ -1,5 +1,11 @@
 # Changelog
 
+## [3.4.4](https://github.com/ant-design/antd-style/compare/v3.4.3...v3.4.4) (2023-08-09)
+
+### 🐛 Bug Fixes
+
+- Fix lint error, closes [#90](https://github.com/ant-design/antd-style/issues/90) ([bb864d0](https://github.com/ant-design/antd-style/commit/bb864d0))
+
 ## [3.4.3](https://github.com/ant-design/antd-style/compare/v3.4.2...v3.4.3) (2023-07-21)
 
 ### 🐛 Bug Fixes
