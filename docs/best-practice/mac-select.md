@@ -1,6 +1,8 @@
 ---
-title: MacOS选择器
-group: 自定义组件
+title: 自定义组件： MacOS 选择器
+group:
+  title: 样式案例
+  order: 10
 ---
 
 # MacOS 选择器

@@ -1,7 +1,6 @@
 ---
 title: 黏土风 UI
-order: 10
-group: 自定义主题
+group: 样式案例
 ---
 
 # 黏土风格
