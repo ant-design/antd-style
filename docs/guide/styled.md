@@ -28,9 +28,9 @@ const StyledButton = styled(Button)`
 `;
 
 const App = () => {
-  const [apperance] = useState('light');
+  const [appearance] = useState('light');
   return (
-    <ThemeProvider theme={{ primary: apperance === 'light' ? 'blue' : 'cyan' }}>
+    <ThemeProvider theme={{ primary: appearance === 'light' ? 'blue' : 'cyan' }}>
       <StyledButton>Click me</StyledButton>
     </ThemeProvider>
   );
