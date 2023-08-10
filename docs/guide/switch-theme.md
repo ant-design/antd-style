@@ -14,7 +14,7 @@ demo:
 
 ## 1. 亮暗色主题切换
 
-通过在容器组件 [ThemeProvider](/usage/theme-provider) 上修改 `apperance` props，即可实现主题切换，这是也是动态主题最简单的使用方式。
+通过在容器组件 [ThemeProvider](/usage/theme-provider) 上修改 `appearance` props，即可实现主题切换，这是也是动态主题最简单的使用方式。
 
 ```tsx | pure
 import { ThemeProvider } from 'antd-style';
@@ -22,7 +22,7 @@ import { ThemeProvider } from 'antd-style';
 export default () => {
   return (
     // 自动变为暗色模式
-    <ThemeProvider apperance={'dark'}>
+    <ThemeProvider appearance={'dark'}>
       <App />
     </ThemeProvider>
   );
