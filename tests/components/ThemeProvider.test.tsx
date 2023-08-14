@@ -1,7 +1,6 @@
 import { act, render, renderHook } from '@testing-library/react';
-import { App, theme } from 'antd';
+import { App, MappingAlgorithm, theme } from 'antd';
 import { GetCustomToken, ThemeProvider, css, cx, useTheme, useThemeMode } from 'antd-style';
-import { MappingAlgorithm } from 'antd/es/config-provider/context';
 import { MessageInstance } from 'antd/es/message/interface';
 import { NotificationInstance } from 'antd/es/notification/interface';
 import { FC, PropsWithChildren } from 'react';
