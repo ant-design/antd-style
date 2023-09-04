@@ -1,5 +1,5 @@
-import { ThemeConfig } from 'antd';
-import { AliasToken, MappingAlgorithm } from 'antd/es/theme/interface';
+import { ThemeConfig, MappingAlgorithm } from 'antd';
+import { AliasToken } from 'antd/es/theme/interface';
 
 import { BrowserPrefers, ThemeAppearance, ThemeMode } from './appearance';
 

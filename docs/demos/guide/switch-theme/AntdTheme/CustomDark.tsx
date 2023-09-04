@@ -1,6 +1,6 @@
 import { theme } from 'antd';
 import { ThemeProvider } from 'antd-style';
-import { MappingAlgorithm, ThemeConfig } from 'antd/es/config-provider/context';
+import { MappingAlgorithm, ThemeConfig } from 'antd';
 
 import App from '../../../common/demo';
 

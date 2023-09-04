@@ -134,7 +134,7 @@
     "zustand": "^4"
   },
   "peerDependencies": {
-    "antd": "^5",
+    "antd": ">=5.8.1",
     "react": ">=18"
   },
   "publishConfig": {
