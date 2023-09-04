@@ -1,5 +1,11 @@
 # Changelog
 
+## [3.4.5](https://github.com/ant-design/antd-style/compare/v3.4.4...v3.4.5) (2023-09-04)
+
+### 🐛 Bug Fixes
+
+- The MappingAlgorithm type doesn't exported, closes [#103](https://github.com/ant-design/antd-style/issues/103) ([046ddd6](https://github.com/ant-design/antd-style/commit/046ddd6))
+
 ## [3.4.4](https://github.com/ant-design/antd-style/compare/v3.4.3...v3.4.4) (2023-08-09)
 
 ### 🐛 Bug Fixes
