@@ -30,21 +30,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 7
 
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v3
-        with:
-          node-version: '16'
+      - name: Install bun
+        uses: oven-sh/setup-bun@v1
 
       - name: Install deps
-        run: pnpm install
+        run: bun i
 
       - name: Build Pages
-        run: pnpm run docs:build
+        run: bun run docs:build
 
       - name: Setup Pages
         uses: actions/configure-pages@v3
