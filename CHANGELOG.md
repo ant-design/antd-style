@@ -1,5 +1,11 @@
 # Changelog
 
+## [3.4.6](https://github.com/ant-design/antd-style/compare/v3.4.5...v3.4.6) (2023-09-15)
+
+### 🐛 Bug Fixes
+
+- Fix types due to father lock ts version, closes [#109](https://github.com/ant-design/antd-style/issues/109) ([9bf726e](https://github.com/ant-design/antd-style/commit/9bf726e))
+
 ## [3.4.5](https://github.com/ant-design/antd-style/compare/v3.4.4...v3.4.5) (2023-09-04)
 
 ### 🐛 Bug Fixes
