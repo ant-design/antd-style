@@ -14,19 +14,23 @@ const ThemeObserver: FC<{
   setBrowserPrefers: (value: BrowserPrefers) => void;
 }> = ({ themeMode, setAppearance, setBrowserPrefers }) => {
   const matchBrowserTheme = () => {
-    if (matchBrowserPrefers('dark').matches) {
-      setAppearance('dark');
-    } else {
-      setAppearance('light');
-    }
+    safeStartTransition(() => {
+      if (matchBrowserPrefers('dark').matches) {
+        setAppearance('dark');
+      } else {
+        setAppearance('light');
+      }
+    });
   };
 
   const updateBrowserTheme = () => {
-    if (matchBrowserPrefers('dark').matches) {
-      setBrowserPrefers('dark');
-    } else {
-      setBrowserPrefers('light');
-    }
+    safeStartTransition(() => {
+      if (matchBrowserPrefers('dark').matches) {
+        setBrowserPrefers('dark');
+      } else {
+        setBrowserPrefers('light');
+      }
+    });
   };
 
   // 自动监听系统主题变更
