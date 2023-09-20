@@ -1,5 +1,11 @@
 # Changelog
 
+## [3.4.7](https://github.com/ant-design/antd-style/compare/v3.4.6...v3.4.7) (2023-09-20)
+
+### 🐛 Bug Fixes
+
+- Add startTransition on callback function, closes [#111](https://github.com/ant-design/antd-style/issues/111) ([1b502d1](https://github.com/ant-design/antd-style/commit/1b502d1))
+
 ## [3.4.6](https://github.com/ant-design/antd-style/compare/v3.4.5...v3.4.6) (2023-09-15)
 
 ### 🐛 Bug Fixes
