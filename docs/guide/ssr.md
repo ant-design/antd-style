@@ -10,6 +10,8 @@ SSR（Server-side rendering）是指在服务器端将动态生成的 HTML 直�
 
 ## 在 Next.js 中集成
 
+### Page Router
+
 在 Next.js 的服务端渲染中，需要在组件的 getInitialProps 方法中使用 extractStaticStyle 提取静态样式，并将其添加到页面的 head 中。 具体使用示例如下：
 
 ```tsx | pure
@@ -61,7 +63,7 @@ class MyDocument extends Document {
 export default MyDocument;
 ```
 
-### 1. 引入并包裹 StyleProvider 组件，并将其包裹在需要提取静态样式的组件外层：
+#### 1. 引入并包裹 StyleProvider 组件，并将其包裹在需要提取静态样式的组件外层：
 
 将 enhanceApp 参数传入 renderPage 方法。enhanceApp 是一个函数，用于对 App 组件进行增强，这里我们将 App 组件包裹在 StyleProvider 组件中，以便提取静态样式。
 
@@ -80,7 +82,7 @@ const page = await ctx.renderPage({
 
 其中，`cache` 字段挂载的是 `@ant-design/cssinjs` 的 cache 对象。
 
-### 2. 使用 `extractStaticStyle` 方法提取静态样式
+#### 2. 使用 `extractStaticStyle` 方法提取静态样式
 
 调用 renderPage 方法得到渲染后的页面内容，并使用 `extractStaticStyle` 方法提取出其中的静态样式。
 
@@ -99,7 +101,7 @@ const styleArr = extractStaticStyle(page.html);
 | ids      | `string[]`    | 样式应用的元素 ID 数组                                             |
 | tag      | `string`      | 带有 `<style>` 标签的 css 字符串                                   |
 
-### 3. 将提取出的样式添加到页面的 head 中
+#### 3. 将提取出的样式添加到页面的 head 中
 
 由于 Nextjs 中需要直接插入 `<style>` 样式元素，我们从 `extractStaticStyle` 获得的样式对象数组中，取出 `style` 样式元素，将其添加到页面的 head 中即可。
 
@@ -110,6 +112,62 @@ return {
   styles: <>{styles}</>,
 };
 ```
+
+### App Router
+
+:::info
+需要 antd-style v3.5.0 以上版本
+:::
+
+[App Router](https://nextjs.org/docs/app) 是 Next.js 在 13.4 版本中正式完备的应用模式。 antd-style 也支持了这种模式。 接入方式如下：
+
+创建一个 `StyleRegistry.tsx` 组件，用于收集提取静态样式并插入到 html 中：
+
+```tsx | pure
+'use client';
+
+import { StyleProvider, extractStaticStyle } from 'antd-style';
+import { useServerInsertedHTML } from 'next/navigation';
+import { PropsWithChildren, useRef } from 'react';
+
+const StyleRegistry = ({ children }: PropsWithChildren) => {
+  const isInsert = useRef(false);
+
+  useServerInsertedHTML(() => {
+    // 避免多次渲染时重复插入样式
+    // refs: https://github.com/vercel/next.js/discussions/49354#discussioncomment-6279917
+    if (isInsert.current) return;
+
+    isInsert.current = true;
+
+    const styles = extractStaticStyle().map((item) => item.style);
+
+    return <>{styles}</>;
+  });
+
+  return <StyleProvider cache={extractStaticStyle.cache}>{children}</StyleProvider>;
+};
+
+export default StyleRegistry;
+```
+
+在 `app/layout.tsx` 中引入该组件：
+
+```tsx | pure
+import StyleRegistry from './StyleRegistry';
+
+const RootLayout = ({ children }: PropsWithChildren) => (
+  <html lang="en">
+    <body>
+      <StyleRegistry>{children}</StyleRegistry>
+    </body>
+  </html>
+);
+```
+
+:::warning
+由于 Next.js 的 App Router 缺少获取 html 的钩子， `extractStaticStyle` 无法分析出当前应用中使用的样式，因此 App Router 引入的样式体积会比 Page Router 大一些。
+:::
 
 ## 与 dumi 集成
 
