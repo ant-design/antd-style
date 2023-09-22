@@ -1,6 +1,14 @@
 import { createCache, extractStyle } from '@ant-design/cssinjs';
 import CacheEntity from '@ant-design/cssinjs/es/Cache';
+import { EmotionCache } from '@emotion/css/create-instance';
 import { version } from 'antd';
+
+const createExtractCriticalWithoutHtml = (cache: EmotionCache) => ({
+  ids: Object.keys(cache.inserted),
+  css: Object.values(cache.inserted)
+    .filter((i) => typeof i === 'string')
+    .join(''),
+});
 
 /**
  * 表示一个样式项
@@ -41,12 +49,13 @@ interface ExtractStyleOptions {
    */
   antdCache?: CacheEntity;
 }
+
 /**
  * Extract Static style
  * @param html html page string
  * @param options
  */
-export const extractStaticStyle = (html: string, options?: ExtractStyleOptions): StyleItem[] => {
+export const extractStaticStyle = (html?: string, options?: ExtractStyleOptions): StyleItem[] => {
   const shouldExtreactAntdStyle =
     typeof options?.includeAntd !== 'undefined' ? options.includeAntd : true;
 
@@ -74,7 +83,10 @@ export const extractStaticStyle = (html: string, options?: ExtractStyleOptions):
   const styles = global.__ANTD_STYLE_CACHE_MANAGER_FOR_SSR__.getCacheList().map((cache) => {
     const createEmotionServer = require('@emotion/server/create-instance').default;
 
-    const result = createEmotionServer(cache).extractCritical(html);
+    const result: { ids: string[]; css: string } = !html
+      ? createExtractCriticalWithoutHtml(cache)
+      : createEmotionServer(cache).extractCritical(html);
+
     if (!result.css) return null;
 
     const { css, ids } = result;
