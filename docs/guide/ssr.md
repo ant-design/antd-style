@@ -166,7 +166,7 @@ const RootLayout = ({ children }: PropsWithChildren) => (
 ```
 
 :::warning
-由于 Next.js 的 App Router 缺少获取 html 的钩子， `extractStaticStyle` 无法分析出当前应用中使用的样式，因此 App Router 引入的样式体积会比 Page Router 大一些。
+由于 Next.js 的 App Router 缺少获取 html 的钩子， `extractStaticStyle` 无法分析出当前应用中使用的样式，相当于没有 TreeShaking 能力，因此 App Router 引入的样式体积会比 Page Router 大一些。
 :::
 
 ## 与 dumi 集成
