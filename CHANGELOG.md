@@ -1,5 +1,12 @@
 # Changelog
 
+# [3.5.0](https://github.com/ant-design/antd-style/compare/v3.4.7...v3.5.0) (2023-09-22)
+
+### ✨ Features
+
+- Support app router ([cf1d267](https://github.com/ant-design/antd-style/commit/cf1d267))
+- Support App Router, closes [#112](https://github.com/ant-design/antd-style/issues/112) ([ca7e44f](https://github.com/ant-design/antd-style/commit/ca7e44f))
+
 # [3.5.0-beta.1](https://github.com/ant-design/antd-style/compare/v3.4.7...v3.5.0-beta.1) (2023-09-22)
 
 ### ✨ Features
