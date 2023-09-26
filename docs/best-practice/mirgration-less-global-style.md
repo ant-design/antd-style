@@ -7,12 +7,13 @@ group:
 
 # CSS Modules 全局样式覆写迁移
 
-迁移过程中 CSS Modules 语法中使用到的 `:global` 怎么处理，之前有部分场景需要通过 :global 去覆盖组件样式，迁移过程中这部分代码如何处理？
+迁移过程中 CSS Modules 语法中使用到的 `:global` 怎么处理？
+
+在 CSS Modules 中有部分场景需要通过 :global 去覆盖组件样式，迁移过程中这部分代码如何处理？
 
 ## 解决方案
 
-优先使用 [codemod](/guide/migrate-less-codemod) 一键迁移，该 Codemod 会自动将 Css Modules 语法中的 :global 转换为
-antd-style 中的语法。
+优先使用 [codemod](/guide/migrate-less-codemod) 一键迁移，该 Codemod 会自动将 Css Modules 语法中的 :global 转换为 antd-style 中的语法。
 
 如需手动调整，那么直接移除 :global 语法既可。
 

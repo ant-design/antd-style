@@ -1,8 +1,6 @@
 ---
 title: 父子联动的样式书写
-group:
-  title: 样式书写
-  order: 0
+group: 样式书写
 ---
 
 # 如何书写联动样式
@@ -43,7 +41,7 @@ const useStyles = createStyles(({ css, cx }) => {
 
 ## 原理解析
 
-思路上很简单，因此 `css` 方法产出的始终是[序列化样式对象](/api/create-styles#css)。用 `cx` 包裹 `css` 对象，就会将该对象转成类名 (`acss-xxxx`)。
+思路上很简单，因为 `css` 方法产出的始终是[序列化样式对象](/api/create-styles#css)。用 `cx` 包裹 `css` 对象，就会将该对象转成类名 (`acss-xxxx`)。
 
 ## 相关讨论
 
