@@ -1,5 +1,11 @@
 # Changelog
 
+## [3.5.1](https://github.com/ant-design/antd-style/compare/v3.5.0...v3.5.1) (2023-11-01)
+
+### 🐛 Bug Fixes
+
+- Fix global undefined when using vite, closes [#119](https://github.com/ant-design/antd-style/issues/119) ([1cc076d](https://github.com/ant-design/antd-style/commit/1cc076d))
+
 # [3.5.0](https://github.com/ant-design/antd-style/compare/v3.4.7...v3.5.0) (2023-09-22)
 
 ### ✨ Features
