@@ -90,11 +90,13 @@ export const createStyleProvider = (EmotionContext: Context<Emotion>): FC<StyleP
           stylisPlugins,
         });
 
-        const cacheManager = global?.__ANTD_STYLE_CACHE_MANAGER_FOR_SSR__;
+        if (typeof global !== 'undefined') {
+          const cacheManager = global.__ANTD_STYLE_CACHE_MANAGER_FOR_SSR__;
 
-        if (cacheManager) {
-          // add 方法有幂等
-          instance.cache = cacheManager.add(instance.cache);
+          if (cacheManager) {
+            // add 方法有幂等
+            instance.cache = cacheManager.add(instance.cache);
+          }
         }
 
         return instance;
