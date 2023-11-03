@@ -1,7 +1,7 @@
 {
   "name": "antd-style",
   "version": "3.5.1",
-  "description": "a css-in-js solution for application combine with antd v5 token system and emotion",
+  "description": "css-in-js solution for application combine with antd v5 token system and emotion",
   "keywords": [
     "antd",
     "css-in-js",
