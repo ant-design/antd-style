@@ -78,7 +78,7 @@ styled 的语法候选池中有两个库： `styled-component` 和 `emotion`。 
 
 css 的语法候选池中也是上述两个库： `styled-component` 和 `emotion`。
 
-在决策 css 方案时，基本上没有太多额外判断，我们直接才采用了 emotion。原因是 styled-component 所提供的 `css` 方法无法直接转为 className 。因此在这方面 styled-components 的能力是缺失的。而 `css` props 我们已经在上一节中解释过，它不是我们期望的 api，因此 `css` 采用了 emotion 作为样式引擎。
+在决策 css 方案时，基本上没有太多额外判断，我们直接采用了 emotion。原因是 styled-component 所提供的 `css` 方法无法直接转为 className 。因此在这方面 styled-components 的能力是缺失的。而 `css` props 我们已经在上一节中解释过，它不是我们期望的 api，因此 `css` 采用了 emotion 作为样式引擎。
 
 | 特性           | Styled Components   | Emotion             |
 | -------------- | ------------------- | ------------------- |
