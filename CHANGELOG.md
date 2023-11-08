@@ -1,5 +1,11 @@
 # Changelog
 
+## [3.5.2](https://github.com/ant-design/antd-style/compare/v3.5.1...v3.5.2) (2023-11-08)
+
+### 🐛 Bug Fixes
+
+- Fix release version ([8704a81](https://github.com/ant-design/antd-style/commit/8704a81))
+
 ## [3.5.1](https://github.com/ant-design/antd-style/compare/v3.5.0...v3.5.1) (2023-11-01)
 
 ### 🐛 Bug Fixes
