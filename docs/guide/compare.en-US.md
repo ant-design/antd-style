@@ -224,7 +224,3 @@ Combining the various methods mentioned above, antd-style hopes to achieve the b
 | `css` props     | ⚠️ Moderate   | ✅ High            | ⚠️ Moderate             | ⚠️ High                      | ✅ Low                        | ⭕️️ Poor           | ⚠️ Moderate    |
 | css + className | ✅ Low        | ✅ High            | ⚠️ Moderate             | ⚠️ High                      | ✅ Low                        | ⭕️️ Medium to Poor | ✅ Low         |
 | antd-style      | ✅ Low        | ✅ High            | ✅ Low                  | ✅ Low                       | ✅ Low                        | ✅ Excellent        | ✅ Low         |
-
-```
-
-```
