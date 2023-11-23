@@ -25,7 +25,7 @@ demo:
 
 <code src="../demos/StyleProvider/speedy.tsx"></code>
 
-:::info{title=Speedy模式}
+:::info{title=Speedy 模式}
 
 早期的 cssinjs 方案中，样式的插入是一个 style 标签对应一个样式，浏览器解析较慢，但便于修改与调试。
 
