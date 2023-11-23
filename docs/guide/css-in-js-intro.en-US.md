@@ -1,7 +1,7 @@
 ---
 title: Quick Start to CSS in JS
 order: 1
-group: Fundamentals
+group: Basic Knowledge
 ---
 
 # Quick Start to CSS in JS

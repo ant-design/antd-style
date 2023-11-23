@@ -1,7 +1,7 @@
 ---
 title: CSS Modules Global Style Override Migration
 group:
-  title: Style Writing
+  title: Writing Style
   order: 0
 ---
 

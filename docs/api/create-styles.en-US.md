@@ -3,9 +3,7 @@ title: createStyles
 description: Create scoped styles
 order: 0
 sourceUrl: '{github}/blob/master/src/factories/createStyles/index.ts'
-group:
-  title: Style Creation
-  order: 0
+group: Creating Styles
 demo:
   tocDepth: 4
 ---

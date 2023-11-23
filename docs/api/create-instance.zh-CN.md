@@ -5,6 +5,9 @@ sourceUrl: '{github}/blob/master/src/functions/createInstance.ts'
 group:
   title: 高级设置
   order: 10
+nav:
+  title: API
+  order: 10
 ---
 
 ## 简介

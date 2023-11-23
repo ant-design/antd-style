@@ -1,6 +1,6 @@
 ---
 title: Writing Linked Styles for Parent-Child Components
-group: Style Writing
+group: Writing Style
 ---
 
 # How to Write Linked Styles

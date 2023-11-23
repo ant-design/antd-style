@@ -5,6 +5,9 @@ sourceUrl: '{github}/blob/master/src/functions/createInstance.ts'
 group:
   title: Advanced Settings
   order: 10
+nav:
+  title: API Reference
+  order: 10
 ---
 
 ## Introduction

@@ -1,5 +1,5 @@
 ---
-title: Custom Component: MacOS Selector
+title: Custom Component —— macOS Selector
 group:
   title: Style Cases
   order: 10

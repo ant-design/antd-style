@@ -1,4 +1,3 @@
-````markdown
 ---
 title: Comparison of CSS in JS Writing Methods
 order: 2
@@ -25,7 +24,6 @@ Most applications using antd are generally paired with less and css modules for 
   box-shadow: 0 8px 20px @shadow-color;
 }
 ```
-````
 
 ```tsx | pure
 // index.tsx

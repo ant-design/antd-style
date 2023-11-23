@@ -2,7 +2,7 @@
 title: createGlobalStyle
 description: Create global styles
 order: 10
-group: Style Creation
+group: Creating Styles
 ---
 
 ## Introduction
