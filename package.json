@@ -130,6 +130,7 @@
     "three": "^0.148",
     "ts-node": "^10",
     "typescript": "^5",
+    "vite": "^4",
     "vitest": "latest",
     "zustand": "^4"
   },
