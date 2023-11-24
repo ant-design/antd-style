@@ -1,7 +1,6 @@
 ---
 title: useTheme
 order: 1
-nav: API
 group: Hooks
 ---
 

@@ -3,9 +3,7 @@ title: createStyles
 description: 创建具有作用域的样式
 order: 0
 sourceUrl: '{github}/blob/master/src/factories/createStyles/index.ts'
-group:
-  title: 创建样式
-  order: 0
+group: 创建样式
 demo:
   tocDepth: 4
 ---
