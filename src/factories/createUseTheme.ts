@@ -4,6 +4,7 @@ import { Context, useContext, useMemo } from 'react';
 import { DEFAULT_THEME_CONTEXT } from '@/functions/setupStyled';
 import { useAntdTheme } from '@/hooks/useAntdTheme';
 import { useThemeMode } from '@/hooks/useThemeMode';
+import { ConfigProvider } from 'antd';
 
 interface CreateUseThemeOptions {
   StyleEngineContext: Context<StyleEngine>;
@@ -11,7 +12,11 @@ interface CreateUseThemeOptions {
 
 export const createUseTheme = (options: CreateUseThemeOptions) => (): Theme => {
   const { StyleEngineContext } = options;
-  const { StyledThemeContext, CustomThemeContext, prefixCls } = useContext(StyleEngineContext);
+  const {
+    StyledThemeContext,
+    CustomThemeContext,
+    prefixCls: outPrefixCls,
+  } = useContext(StyleEngineContext);
 
   const antdTheme = useAntdTheme();
   const themeState = useThemeMode();
@@ -19,14 +24,20 @@ export const createUseTheme = (options: CreateUseThemeOptions) => (): Theme => {
   const defaultCustomTheme = useContext(CustomThemeContext);
   const styledTheme = useContext(StyledThemeContext ?? DEFAULT_THEME_CONTEXT) || {};
 
+  const { iconPrefixCls, getPrefixCls } = useContext(ConfigProvider.ConfigContext);
+
+  const antdPrefixCls = getPrefixCls();
+  const prefixCls = outPrefixCls ?? antdPrefixCls;
+
   const initTheme = useMemo<Theme>(
     () => ({
       ...antdTheme,
       ...themeState,
       ...defaultCustomTheme,
-      prefixCls: prefixCls || 'ant',
+      prefixCls,
+      iconPrefixCls,
     }),
-    [antdTheme, themeState, prefixCls, defaultCustomTheme],
+    [antdTheme, themeState, defaultCustomTheme, prefixCls, iconPrefixCls],
   );
 
   //  如果是个空值，说明没有套 Provider，返回 antdTheme 的默认值
@@ -34,5 +45,5 @@ export const createUseTheme = (options: CreateUseThemeOptions) => (): Theme => {
     return initTheme;
   }
 
-  return styledTheme as Theme;
+  return { ...styledTheme, prefixCls, iconPrefixCls } as Theme;
 };

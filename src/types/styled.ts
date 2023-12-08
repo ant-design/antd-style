@@ -35,4 +35,5 @@ export interface StyleEngine {
    * @description 当前组件的 CSS 类名前缀
    */
   prefixCls?: string;
+  iconPrefixCls?: string;
 }

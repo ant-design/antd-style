@@ -63,6 +63,7 @@ export const createThemeProvider = (
       onThemeModeChange,
       styled,
     }) => {
+      // 从上一层的 Context 中获取上下文信息，以实现嵌套继承的效果
       const {
         prefixCls: defaultPrefixCls,
         StyledThemeContext,
