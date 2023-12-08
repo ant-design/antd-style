@@ -51,6 +51,7 @@ describe('createStyles', () => {
         const { container } = render(<App />);
 
         expect(container.firstChild).toMatchSnapshot();
+        expect(container.firstChild).toHaveStyle({ backgroundColor: '#fff' });
       });
 
       it('可以获取 prefixCls 与 iconPrefixCls', () => {
