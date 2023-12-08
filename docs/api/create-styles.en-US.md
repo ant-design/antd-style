@@ -192,18 +192,24 @@ Type: `string`
 The prefix marked on the ThemeProvider. By using this parameter, you can flexibly override the antd prefix.
 
 ```ts
-const useStyles = createStyles(({ css, prefixCls }) => {
-  return {
-    primary: css`
-      .${prefixCls}-btn {
-        border: 12px;
-      }
-    `,
-  };
-});
+const useStyles = createStyles(({ css, prefixCls, iconPrefixCls }) => ({
+  button: css`
+    &.${prefixCls}-btn {
+      background: lightsteelblue;
+      border: none;
+      color: royalblue;
+    }
+
+    .${iconPrefixCls} {
+      color: darkblue;
+    }
+  `,
+}));
 ```
 
 The above style code can accurately override regardless of the value of the prefixCls wrapped by the outer ThemeProvider.
+
+<code src="../demos/api/createStyles/with-antd-cp.tsx"></code>
 
 ## ClassNameGeneratorOption
 

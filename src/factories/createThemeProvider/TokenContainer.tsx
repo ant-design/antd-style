@@ -20,7 +20,7 @@ const TokenContainer: <T, S>(props: TokenContainerProps<T, S>) => ReactElement |
   customToken: customTokenOrFn,
   defaultCustomToken: defaultCustomTokenFn,
   customStylish: stylishOrGetStylish,
-  prefixCls = 'ant',
+  prefixCls,
   StyledThemeProvider,
 }) => {
   const themeState = useThemeMode();

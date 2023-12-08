@@ -1,4 +1,4 @@
-import { ThemeConfig, MappingAlgorithm } from 'antd';
+import { MappingAlgorithm, ThemeConfig } from 'antd';
 import { AliasToken } from 'antd/es/theme/interface';
 
 import { BrowserPrefers, ThemeAppearance, ThemeMode } from './appearance';
@@ -76,4 +76,5 @@ export interface Theme extends FullToken, ThemeContextState {
    * antd 组件的 prefixCls
    */
   prefixCls: string;
+  iconPrefixCls: string;
 }

@@ -185,25 +185,31 @@ declare module 'antd-style' {
 
 判断亮暗色主题的语法糖，实现上等价于 `appearance === 'dark'`，直接使用 isDarkMode 可以降低外观的判断成本。
 
-### prefixCls
+### prefixCls 与 iconPrefixCls
 
 类型：`string`
 
-在 ThemeProvider 上标记的 prefixCls，利用该参数，可以实现灵活的 antd 前缀覆盖。
+在 ThemeProvider 上标记的 prefixCls/iconPrefixCls，利用该参数，可以实现灵活的 antd 前缀覆盖。
 
 ```ts
-const useStyles = createStyles(({ css, prefixCls }) => {
-  return {
-    primary: css`
-      .${prefixCls}-btn {
-        border: 12px;
-      }
-    `,
-  };
-});
+const useStyles = createStyles(({ css, prefixCls, iconPrefixCls }) => ({
+  button: css`
+    &.${prefixCls}-btn {
+      background: lightsteelblue;
+      border: none;
+      color: royalblue;
+    }
+
+    .${iconPrefixCls} {
+      color: darkblue;
+    }
+  `,
+}));
 ```
 
-上述样式代码，无论外层包裹的 ThemeProvider prefixCls 改成什么值，均可准确覆盖到。
+上述样式代码，无论是包裹的 `ThemeProvider` / `ConfigProvider` prefixCls 改成什么值，均可准确覆盖到。
+
+<code src="../demos/api/createStyles/with-antd-cp.tsx"></code>
 
 ## ClassNameGeneratorOption
 

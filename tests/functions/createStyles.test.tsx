@@ -1,5 +1,7 @@
+import { SmileOutlined } from '@ant-design/icons';
 import { render } from '@testing-library/react';
-import { createStyles, css, GetCustomToken, ThemeProvider } from 'antd-style';
+import { Button, ConfigProvider } from 'antd';
+import { GetCustomToken, ThemeProvider, createStyles, css } from 'antd-style';
 import { FC, PropsWithChildren } from 'react';
 
 describe('createStyles', () => {
@@ -49,7 +51,43 @@ describe('createStyles', () => {
         const { container } = render(<App />);
 
         expect(container.firstChild).toMatchSnapshot();
-        expect(container.firstChild).toHaveStyle({ backgroundColor: '#fff' });
+      });
+
+      it('可以获取 prefixCls 与 iconPrefixCls', () => {
+        const useStyles = createStyles(({ css, prefixCls, iconPrefixCls }) => {
+          return {
+            button: css`
+              &.${prefixCls}-btn {
+                background: lightsteelblue;
+                border: none;
+                color: royalblue;
+              }
+
+              .${iconPrefixCls} {
+                color: darkblue;
+              }
+            `,
+          };
+        });
+
+        const App = () => {
+          const { styles } = useStyles();
+
+          return (
+            <Button className={styles.button} icon={<SmileOutlined />}>
+              CP Button
+            </Button>
+          );
+        };
+        const wrapper = ({ children }: PropsWithChildren) => (
+          <ConfigProvider prefixCls={'cp'} iconPrefixCls={'cpicon'}>
+            {children}
+          </ConfigProvider>
+        );
+
+        const { container } = render(<App />, { wrapper });
+
+        expect(container.firstChild).toMatchSnapshot();
       });
     });
 

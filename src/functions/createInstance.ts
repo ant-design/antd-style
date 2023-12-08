@@ -34,6 +34,7 @@ export interface CreateOptions<T> {
    * 默认的组件 prefixCls
    */
   prefixCls?: string;
+  iconPrefixCls?: string;
   /**
    * 是否开启急速模式
    *
@@ -87,6 +88,7 @@ export const createInstance = <T = any>(options: CreateOptions<T>) => {
     CustomThemeContext,
     StyledThemeContext: styledThemeContext,
     prefixCls: internalOptions?.prefixCls,
+    iconPrefixCls: internalOptions?.iconPrefixCls,
   });
 
   const useTheme = createUseTheme({ StyleEngineContext });
