@@ -1,5 +1,8 @@
-import { renderHook } from '@testing-library/react';
+import { SmileOutlined } from '@ant-design/icons';
+import { render, renderHook } from '@testing-library/react';
+import { Button, ConfigProvider } from 'antd';
 import { createInstance } from 'antd-style';
+import { PropsWithChildren } from 'react';
 
 interface TestCustomToken {
   x?: string;
@@ -30,6 +33,43 @@ describe('createInstance', () => {
     const { result } = renderHook(instance.useTheme);
 
     expect(result.current.prefixCls).toEqual('test');
+  });
+
+  it('自定义 prefixCls 时，会采用 instance 的 prefixCls 而不是 CP 的prefixCls', () => {
+    const useStyles = instance.createStyles(({ css, prefixCls, iconPrefixCls }) => {
+      return {
+        button: css`
+          &.${prefixCls}-btn {
+            background: lightsteelblue;
+            border: none;
+            color: royalblue;
+          }
+
+          .${iconPrefixCls} {
+            color: darkblue;
+          }
+        `,
+      };
+    });
+
+    const App = () => {
+      const { styles } = useStyles();
+
+      return (
+        <Button className={styles.button} icon={<SmileOutlined />}>
+          CP Button
+        </Button>
+      );
+    };
+    const wrapper = ({ children }: PropsWithChildren) => (
+      <ConfigProvider prefixCls={'cp'} iconPrefixCls={'cpicon'}>
+        {children}
+      </ConfigProvider>
+    );
+
+    const { container } = render(<App />, { wrapper });
+
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   it('useTheme 拿到的 token 里有 x 为 123', () => {
