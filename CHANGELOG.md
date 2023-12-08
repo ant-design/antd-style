@@ -1,5 +1,11 @@
 # Changelog
 
+## [3.6.1](https://github.com/ant-design/antd-style/compare/v3.6.0...v3.6.1) (2023-12-08)
+
+### 🐛 Bug Fixes
+
+- 兼容 createInstance 时自定义 prefixCls 的场景, closes [#126](https://github.com/ant-design/antd-style/issues/126) ([61af366](https://github.com/ant-design/antd-style/commit/61af366))
+
 # [3.6.0](https://github.com/ant-design/antd-style/compare/v3.5.2...v3.6.0) (2023-12-08)
 
 ### ✨ Features
