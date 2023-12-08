@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.6.0](https://github.com/ant-design/antd-style/compare/v3.5.2...v3.6.0) (2023-12-08)
+
+### ✨ Features
+
+- Support iconPrefixCls and prefixCls on createStyles, closes [#125](https://github.com/ant-design/antd-style/issues/125) ([f2e72a3](https://github.com/ant-design/antd-style/commit/f2e72a3))
+
 ## [3.5.2](https://github.com/ant-design/antd-style/compare/v3.5.1...v3.5.2) (2023-11-08)
 
 ### 🐛 Bug Fixes
