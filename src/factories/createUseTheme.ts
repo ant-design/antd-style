@@ -27,7 +27,9 @@ export const createUseTheme = (options: CreateUseThemeOptions) => (): Theme => {
   const { iconPrefixCls, getPrefixCls } = useContext(ConfigProvider.ConfigContext);
 
   const antdPrefixCls = getPrefixCls();
-  const prefixCls = outPrefixCls ?? antdPrefixCls;
+  // 只有当用户在 createInstance 中传入与 ant 不一样的 prefixCls 时，才会使用用户的 prefixCls
+  // 否则其他情况下都优先使用 antd 的 prefixCls
+  const prefixCls = outPrefixCls && outPrefixCls !== 'ant' ? outPrefixCls : antdPrefixCls;
 
   const initTheme = useMemo<Theme>(
     () => ({
