@@ -73,8 +73,13 @@ export interface FullToken extends AntdToken, CustomToken {}
 export interface Theme extends FullToken, ThemeContextState {
   stylish: FullStylish;
   /**
-   * antd 组件的 prefixCls
+   * 只有当用户在 createInstance 中传入与字符串 'ant' 不一样的 prefixCls 时，才会返回用户的 prefixCls
+   * 否则返回 antd 的 prefixCls
    */
   prefixCls: string;
   iconPrefixCls: string;
+  /**
+   * antd 组件的 prefixCls
+   */
+  antdPrefixCls: string;
 }

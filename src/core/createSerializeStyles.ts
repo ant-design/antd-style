@@ -14,4 +14,5 @@ export interface SerializeCSS {
  * 提供给 createStyles 方法，用于将用户写入的 css 字符串序列化成特定结构的样式对象
  * @param args
  */
-export const serializeCSS: SerializeCSS = (...args) => serializeStyles(args);
+// FIXME: fix type
+export const serializeCSS: SerializeCSS = (...args) => serializeStyles(args as any);

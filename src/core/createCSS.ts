@@ -7,7 +7,8 @@ import { serializeStyles } from '@emotion/serialize';
 const createClassNameGenerator =
   (cache: EmotionCache, options: ClassNameGeneratorOption): ClassNameGenerator =>
   (...args) => {
-    const serialized = serializeStyles(args, cache.registered, undefined);
+    // FIXME: fix type
+    const serialized = serializeStyles(args as any, cache.registered, undefined);
 
     insertStyles(cache, serialized, false, options);
 
