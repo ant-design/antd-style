@@ -32,6 +32,7 @@ export interface CreateStylesUtils extends CommonStyleUtils {
    */
   prefixCls: string;
   iconPrefixCls: string;
+  antdPrefixCls: string;
 }
 
 /**
@@ -39,8 +40,9 @@ export interface CreateStylesUtils extends CommonStyleUtils {
  */
 export interface ReturnStyles<T extends BaseReturnType> extends Pick<CommonStyleUtils, 'cx'> {
   styles: ReturnStyleToUse<T>;
-  theme: Omit<Theme, 'prefixCls'>;
+  theme: Omit<Theme, 'prefixCls' | 'antdPrefixCls'>;
   iconPrefixCls: string;
+  antdPrefixCls: string;
   prefixCls: string;
 }
 

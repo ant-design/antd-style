@@ -92,6 +92,60 @@ describe('createStyles', () => {
       });
     });
 
+    it('获取 antdPrefixCls，未通过ConfigProvider传入 prefixCls时，拿到的perfixCls应该为ant design默认的"ant"', () => {
+      const useStyles = createStyles(({ css, antdPrefixCls }) => {
+        return {
+          button: css`
+            &.${antdPrefixCls}-div {
+              background: lightsteelblue;
+              border: none;
+              font-size: 10px;
+            }
+          `,
+        };
+      });
+
+      const App = () => {
+        const { styles } = useStyles();
+
+        return <div className={`${styles.button} ant-div`}>my custom button</div>;
+      };
+
+      const { container } = render(<App />);
+      expect(container.firstChild).toHaveStyle({ fontSize: '10px' });
+    });
+
+    it('获取 antdPrefixCls，通过ConfigProvider传入 prefixCls 时，拿到的值为传入的prefixCls', () => {
+      const myCustomAntPrefix = 'my-custom-ant-prefix';
+      const useStyles = createStyles(({ css, antdPrefixCls }) => {
+        return {
+          button: css`
+            &.${antdPrefixCls}-div {
+              background: lightsteelblue;
+              border: none;
+              font-size: 11px;
+            }
+          `,
+        };
+      });
+
+      const App = () => {
+        const { styles } = useStyles();
+
+        return (
+          <div className={`${styles.button} ${`${myCustomAntPrefix}-div`}`}>my custom Button</div>
+        );
+      };
+
+      const wrapper = ({ children }: PropsWithChildren) => (
+        <ConfigProvider prefixCls={myCustomAntPrefix}>{children}</ConfigProvider>
+      );
+
+      const { container } = render(<App />, { wrapper });
+      expect(container.firstChild).toHaveClass(`${myCustomAntPrefix}-div`);
+      expect(container.firstChild).toHaveStyle({ fontSize: '11px' });
+    });
+
     describe('styleObject 方法', () => {
       it('对象模式的用法', () => {
         const useStyles = createStyles({
