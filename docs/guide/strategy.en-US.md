@@ -26,7 +26,7 @@ The goal of the style engine is to provide developers with various powerful capa
 
 ## Positioning and Goals of antd-style
 
-Therefore, when we cleanly separate the above two, it becomes very clear: the positioning of `antd-style` is a `style practice` library, providing a set of deterministic style writing solutions for antd's developer users, and providing best practice solutions for the vast majority of style writing scenarios, including but not limited to: 1) application styles, 2) component styles, 3) less migration, 4) responsive design, 4) dynamic themes, 5) custom themes, 6) token extension, 7) design collaboration, and so on.
+Therefore, when we cleanly separate the above two, it becomes very clear: the positioning of `antd-style` is a `style practice` library, providing a set of deterministic style writing solutions for antd's developer users, and providing best practice solutions for the vast majority of style writing scenarios, including but not limited to: 1) application styles, 2) component styles, 3) less migration, 4) responsive design, 5) dynamic themes, 6) custom themes, 7) token extension, 8) design collaboration, and so on.
 
 Therefore, antd-style will encapsulate a set of APIs on top of excellent CSSinJS style engines in the community, providing application developers and component developers with a more user-friendly syntax and better performance.
 
