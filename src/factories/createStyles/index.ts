@@ -57,7 +57,15 @@ export const createStylesFactory =
 
         // 函数场景
         if (styleOrGetStyle instanceof Function) {
-          const { stylish, appearance, isDarkMode, prefixCls, iconPrefixCls, ...token } = theme;
+          const {
+            stylish,
+            appearance,
+            isDarkMode,
+            prefixCls,
+            iconPrefixCls,
+            antdPrefixCls,
+            ...token
+          } = theme;
 
           // 创建响应式断点选择器的工具函数
           // @ts-ignore
@@ -74,6 +82,7 @@ export const createStylesFactory =
               isDarkMode,
               prefixCls,
               iconPrefixCls,
+              antdPrefixCls,
               // 工具函数们
               cx,
               css: serializeCSS,
@@ -122,8 +131,8 @@ export const createStylesFactory =
       }, [props, theme]);
 
       return useMemo(() => {
-        const { prefixCls, iconPrefixCls, ...res } = theme;
-        return { styles, cx, theme: res, prefixCls, iconPrefixCls };
+        const { prefixCls, iconPrefixCls, antdPrefixCls, ...res } = theme;
+        return { styles, cx, theme: res, prefixCls, iconPrefixCls, antdPrefixCls };
       }, [styles, theme]);
     };
   };
