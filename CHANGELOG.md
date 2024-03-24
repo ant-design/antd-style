@@ -1,5 +1,11 @@
 # Changelog
 
+## [3.6.2](https://github.com/ant-design/antd-style/compare/v3.6.1...v3.6.2) (2024-03-24)
+
+### 🐛 Bug Fixes
+
+- Fix rerender with ThemeSwitcher ([8669b88](https://github.com/ant-design/antd-style/commit/8669b88))
+
 ## [3.6.2-beta.1](https://github.com/ant-design/antd-style/compare/v3.6.1...v3.6.2-beta.1) (2024-03-24)
 
 ### 🐛 Bug Fixes
