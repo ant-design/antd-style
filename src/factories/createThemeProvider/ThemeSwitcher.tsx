@@ -1,4 +1,4 @@
-import { FC, memo, ReactNode, useEffect, useLayoutEffect, useState } from 'react';
+import { FC, memo, ReactNode, useLayoutEffect, useState } from 'react';
 import useMergeValue from 'use-merge-value';
 
 import { ThemeModeContext } from '@/context';
@@ -120,16 +120,6 @@ const ThemeSwitcher: FC<ThemeSwitcherProps> = memo(
       matchBrowserPrefers('dark')?.matches ? 'dark' : 'light',
     );
 
-    const [startObserver, setStartObserver] = useState(false);
-
-    // Wait until after client-side hydration to show
-    useEffect(() => {
-      // 兼容 React18 的 Suspense 问题
-      safeStartTransition(() => {
-        setStartObserver(true);
-      });
-    }, []);
-
     return (
       <ThemeModeContext.Provider
         value={{
@@ -141,17 +131,22 @@ const ThemeSwitcher: FC<ThemeSwitcherProps> = memo(
           browserPrefers,
         }}
       >
-        {startObserver && (
-          <ThemeObserver
-            themeMode={themeMode}
-            setAppearance={setAppearance}
-            setBrowserPrefers={setBrowserPrefers}
-          />
-        )}
+        {
+          // Wait until after client-side hydration to show
+          typeof window !== 'undefined' && (
+            <ThemeObserver
+              themeMode={themeMode}
+              setAppearance={setAppearance}
+              setBrowserPrefers={setBrowserPrefers}
+            />
+          )
+        }
         {children}
       </ThemeModeContext.Provider>
     );
   },
 );
+
+ThemeSwitcher.displayName = 'ThemeSwitcher';
 
 export default ThemeSwitcher;

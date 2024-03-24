@@ -67,4 +67,6 @@ const AntdProvider: FC<AntdProviderProps> = memo(
   },
 );
 
+AntdProvider.displayName = 'AntdProvider';
+
 export default AntdProvider;
