@@ -16,11 +16,11 @@ antd-style 的一开始使用对象是业务应用，因此在默认的设计上
 
 ```less
 // style-1
-.css-abcd .my-btn {
+.css-abcd.my-btn {
   background: blue;
 }
 // style-2
-.css-dcba .my-btn {
+.css-dcba.my-btn {
   background: red;
 }
 ```
@@ -30,7 +30,7 @@ antd-style 的一开始使用对象是业务应用，因此在默认的设计上
 <button className="my-btn css-dcba">click</button> // -> red background
 ```
 
-但是这样做也会带来一个问题 —— 组件的样式会被 hash 选择器抬升权重，此时用户要覆写样式就会变得很困难： 原本用户使用 `.my-btn` 就可以覆盖样式。但现在由于 `.css-abcd .my-btn` 的权重更高，因此用户如果只书写了 `.my-btn { color:green } ` ，这个覆盖样式是无法生效的。
+但是这样做也会带来一个问题 —— 组件的样式会被 hash 选择器抬升权重，此时用户要覆写样式就会变得很困难： 原本用户使用 `.my-btn` 就可以覆盖样式。但现在由于 `.css-abcd.my-btn` 的权重更高，因此用户如果只书写了 `.my-btn { color:green } ` ，这个覆盖样式是无法生效的。
 
 那怎么办？此时 `:where()` 选择器登场了，它可以说是未来组件级 cssinjs 的一个核心基石。
 
@@ -39,12 +39,12 @@ antd-style 的一开始使用对象是业务应用，因此在默认的设计上
 来看下代码：
 
 ```less
-:where(.css-abcd) .my-btn {
+:where(.css-abcd).my-btn {
   background: blue;
 }
 
 //上述代码在选择范围上等效于
-.css-abcd .my-btn {
+.css-abcd.my-btn {
   background: blue;
 }
 ```

@@ -16,11 +16,11 @@ By combining the hash selector of cssinjs, we can ensure that the styles of the 
 
 ```less
 // style-1
-.css-abcd .my-btn {
+.css-abcd.my-btn {
   background: blue;
 }
 // style-2
-.css-dcba .my-btn {
+.css-dcba.my-btn {
   background: red;
 }
 ```
@@ -30,7 +30,7 @@ By combining the hash selector of cssinjs, we can ensure that the styles of the 
 <button className="my-btn css-dcba">click</button> // -> red background
 ```
 
-However, this approach also brings a problem - the styles of the component will be elevated by the hash selector, making it difficult for users to override the styles: originally, users could override the styles by using `.my-btn`. But now, because the weight of `.css-abcd .my-btn` is higher, if the user only writes `.my-btn { color:green }`, this override style will not take effect.
+However, this approach also brings a problem - the styles of the component will be elevated by the hash selector, making it difficult for users to override the styles: originally, users could override the styles by using `.my-btn`. But now, because the weight of `.css-abcd.my-btn` is higher, if the user only writes `.my-btn { color:green }`, this override style will not take effect.
 
 So what to do? This is where the `:where()` selector comes in. It can be said to be a cornerstone of future component-level cssinjs.
 
@@ -39,12 +39,12 @@ So what to do? This is where the `:where()` selector comes in. It can be said to
 Let's take a look at the code:
 
 ```less
-:where(.css-abcd) .my-btn {
+:where(.css-abcd).my-btn {
   background: blue;
 }
 
 // The above code is equivalent to the selection scope
-.css-abcd .my-btn {
+.css-abcd.my-btn {
   background: blue;
 }
 ```
