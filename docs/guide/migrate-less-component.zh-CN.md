@@ -124,4 +124,4 @@ export const useStyles = createStyles(({ css, prefixCls })=>{
 
 ## 新组件书写方案
 
-详见：[组件研发](/guide/components-usage#最佳实践建议)
+详见：[组件研发](/zh-CN/guide/components-usage#最佳实践建议)

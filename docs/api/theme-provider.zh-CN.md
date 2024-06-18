@@ -23,13 +23,13 @@ ThemeProvider 本质上是一个 React Context 的数据容器，用于为子级
 
 ## 主题切换
 
-ThemeProvider 默认集成亮暗色主题切换能力，通过 `appearance` props 即可快速完成亮暗色的主题切换。如需详细了解 `antd-style` 的主题切换能力，可以参阅 [主题切换](/guide/switch-theme) 这一部分。
+ThemeProvider 默认集成亮暗色主题切换能力，通过 `appearance` props 即可快速完成亮暗色的主题切换。如需详细了解 `antd-style` 的主题切换能力，可以参阅 [主题切换](/zh-CN/guide/switch-theme) 这一部分。
 
 <code src="../demos/ThemeProvider/SwitchTheme.tsx"></code>
 
 ## useTheme 用法
 
-全局顶层包裹 ThemeProvider 后，使用 `useTheme` 获取 theme 对象，其中包含 antd v5 token 主题值、自定义主题、当前的主题外观等方法。 api 详见 [](api/use-theme-mode)
+全局顶层包裹 ThemeProvider 后，使用 `useTheme` 获取 theme 对象，其中包含 antd v5 token 主题值、自定义主题、当前的主题外观等方法。 api 详见 [](/zh-CN/api/use-theme-mode)
 
 ```tsx | pure
 import { ThemeProvider, useTheme } from 'antd-style';
@@ -172,7 +172,7 @@ export default () => {
 
 :::info{title=全局样式作用域}
 
-在 css-in-js 的世界中，局部作用域非常容易实现。因此应该尽量减少全局作用域的使用（实在不行才用全局作用域）。 这也是 antd v5 中推荐的用法。但如果仍然需全局作用域层面的样式注入，可以使用 [createGlobalStyles](/usage/global-styles) 来完成。
+在 css-in-js 的世界中，局部作用域非常容易实现。因此应该尽量减少全局作用域的使用（实在不行才用全局作用域）。 这也是 antd v5 中推荐的用法。但如果仍然需全局作用域层面的样式注入，可以使用 [createGlobalStyles](/zh-CN/usage/global-styles) 来完成。
 
 :::
 

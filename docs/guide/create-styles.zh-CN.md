@@ -111,4 +111,4 @@ const Select = () => {
 
 ## API
 
-关于 `createStyles` 方法的详细 API 说明，可以参阅 [createStyles API 文档](/api/create-styles)。
+关于 `createStyles` 方法的详细 API 说明，可以参阅 [createStyles API 文档](/zh-CN/api/create-styles)。

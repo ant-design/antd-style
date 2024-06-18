@@ -12,7 +12,7 @@ demo:
 这是最推荐的使用方式。书写应用样式或者覆写基础组件样式，都可以采用这种写法。
 :::
 
-使用 `createStyles` 可以创建具有作用域的的样式。书写能力上和 DX 基本与 CSS Modules 齐平。并在动态主题写法更方便，能力更强。createStyles 的基础使用方法详见[快速上手 - 样式创建](/guide/create-styles)，本节将重点介绍 createStyles 的 API。
+使用 `createStyles` 可以创建具有作用域的的样式。书写能力上和 DX 基本与 CSS Modules 齐平。并在动态主题写法更方便，能力更强。createStyles 的基础使用方法详见[快速上手 - 样式创建](/zh-CN/guide/create-styles)，本节将重点介绍 createStyles 的 API。
 
 <code src="../demos/api/createStyles/default.tsx"></code>
 
@@ -54,7 +54,7 @@ interface CssObject {
 
 CSS 序列化函数，是 createStyles 中的核心 api。该方法底层基于 `emotion/css` 封装，我们做了诸多能力上的强化，例如 支持多个 css 对象级联（ `@emotion/css` 在 v11 之后不再支持级联，相关 [issue](https://github.com/emotion-js/emotion/issues/1186)）、支持 `:where` 选择器等。
 
-该序列化函数支持 CSS Object，也支持 CSS String。CSS Object 写法默认可以获得 TS 类型提示， CSS String 写法需要结合 [相关插件](/guide/css-in-js-intro#工程化支持) 获得提示能力。
+该序列化函数支持 CSS Object，也支持 CSS String。CSS Object 写法默认可以获得 TS 类型提示， CSS String 写法需要结合 [相关插件](/zh-CN/guide/css-in-js-intro#工程化支持) 获得提示能力。
 
 :::warning{title=注意事项}
 与 @emotion/css 的 css 不同，该方法的产物类型为 SerializedStyles，是无法直接应用到 className 上的。我们在 createStyles 中做了一层转换，最终得到的 `styles.xxx` 是 className 字符串。

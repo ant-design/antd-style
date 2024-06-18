@@ -68,7 +68,7 @@ StyledButton.defaultProps = {
 
 这也就意味如果想要自定义一个 ThemeContext 作为组件的默认主题，并在 styled 的写法中获取到，就必须要自己实现自己的 styled 方法，但这对于绝大多数组件开发者来说并不现实。
 
-在 [CSS in JS 写法对比](/guide/compare) 这一章节中，我们认为 styled 这个 api 由于设计缺陷，在未来将会没落。所以我们在 antd-style 中也将只提供 styled 的 ThemeProvider 和 useTheme 的兼容使用方案。
+在 [CSS in JS 写法对比](/zh-CN/guide/compare) 这一章节中，我们认为 styled 这个 api 由于设计缺陷，在未来将会没落。所以我们在 antd-style 中也将只提供 styled 的 ThemeProvider 和 useTheme 的兼容使用方案。
 
 ## styled 与 ThemeProvider 集成
 
@@ -88,7 +88,7 @@ render(
 <code src="../demos/guide/styled/StyledComponentsProps"></code>
 <code src="../demos/guide/styled/EmotionStyledProps.tsx"></code>
 
-关于 ThemeProvider 的 styled API 文档，详见: [ThemeProvider - styled 集成配置](/api/theme-provider#styled-集成)
+关于 ThemeProvider 的 styled API 文档，详见: [ThemeProvider - styled 集成配置](/zh-CN/api/theme-provider#styled-集成)
 
 ## 全局统一集成 styled
 

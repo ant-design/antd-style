@@ -121,7 +121,7 @@ export default () => (
 );
 ```
 
-关于自定义 Token API 的 demo、Typescript 类型定义集成 等详细介绍，可以查阅 [ThemeProvider - 注入自定义 Token 主题](/api/theme-provider#注入自定义-token-主题)。
+关于自定义 Token API 的 demo、Typescript 类型定义集成 等详细介绍，可以查阅 [ThemeProvider - 注入自定义 Token 主题](/zh-CN/api/theme-provider#注入自定义-token-主题)。
 
 :::success{title=应用案例}
 antd-style 所使用的文档主题包，就自定义了主题包所需的一些自定义 Token，若感兴趣可以前往 [dumi-theme-antd-style](https://dumi-theme-antd-style.arvinx.app/components/dumi-site-provider#demo) 查看。

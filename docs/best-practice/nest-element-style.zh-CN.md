@@ -41,7 +41,7 @@ const useStyles = createStyles(({ css, cx }) => {
 
 ## 原理解析
 
-思路上很简单，因为 `css` 方法产出的始终是[序列化样式对象](/api/create-styles#css)。用 `cx` 包裹 `css` 对象，就会将该对象转成类名 (`acss-xxxx`)。
+思路上很简单，因为 `css` 方法产出的始终是[序列化样式对象](/zh-CN/api/create-styles#css)。用 `cx` 包裹 `css` 对象，就会将该对象转成类名 (`acss-xxxx`)。
 
 ## 相关讨论
 

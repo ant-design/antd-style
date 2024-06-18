@@ -114,13 +114,13 @@ export const { createStyles, ThemeProvider } = createInstance<ForDemoToken>({
 
 <code src="../demos/guide/component-usage/CustomInstance"></code>
 
-`createInstance` 方法详细的 API 请查阅: [createInstance](/api/create-instance)。
+`createInstance` 方法详细的 API 请查阅: [createInstance](/zh-CN/api/create-instance)。
 
 ## 最佳实践建议
 
 在组件研发的场景下，我们建议你使用 `createInstance` 方法来创建一个独立的样式实例，这样可以让你的组件库更加独立可控。自定义 token 的消费使用也更加便捷。
 
-针对从 less 迁移的部分，我们建议开启 `{ hashPriority: 'low' }` 配置，这样可以通过极小的迁移成本完成 cssinjs 的改造（详见：[组件代码迁移](/guide/migrate-less-component)）。
+针对从 less 迁移的部分，我们建议开启 `{ hashPriority: 'low' }` 配置，这样可以通过极小的迁移成本完成 cssinjs 的改造（详见：[组件代码迁移](/zh-CN/guide/migrate-less-component)）。
 
 针对使用 cssinjs 完全新写的组件，我们建议仍然使用 `{ hashPriority: 'high' }` 配置。并将所有样式实现放置在 `css` 中，有需要的部分再额外添加 className。这样有两点好处：
 

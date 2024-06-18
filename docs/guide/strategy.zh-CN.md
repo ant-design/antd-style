@@ -66,12 +66,12 @@ styled 的语法候选池中有两个库： `styled-component` 和 `emotion`。 
 
 此外，在我们实际业务落地测试中发现，95% 的样式书写场景都不会用到组件选择器的语法。只有在需要动画、复合选择器等场景才会用到， 而在这种场景下 `createStyles` 的写法将会更加自然易用。
 
-在我们看来，组件选择器的语法本质上是因为 styled 不支持创建 className 才不得已提供的补救措施。而为了这 5% 的使用场景再去额外增大 40% 的体积（10kb+），完全不划算。同时，在最终定稿的实现方案中也明确产出了 styled 的语法替换能力方案。详见：[createInstance-兼容 styled-components](/api/create-instance#兼容-styled-主题方案)。
+在我们看来，组件选择器的语法本质上是因为 styled 不支持创建 className 才不得已提供的补救措施。而为了这 5% 的使用场景再去额外增大 40% 的体积（10kb+），完全不划算。同时，在最终定稿的实现方案中也明确产出了 styled 的语法替换能力方案。详见：[createInstance-兼容 styled-components](/zh-CN/api/create-instance#兼容-styled-主题方案)。
 
 因此综合实践案例，结合包体积、使用场景，我们在多次摇摆下最终选择了 `@emotion/styled` 作为 `styled` 语法的样式引擎。
 
 :::info{title=特别说明}
-虽然选择了 `@emotion/styled` 作为 styled 语法的样式引擎，但是 antd-style 并没有内置 `styled` 方法，而仅仅默认集成 `@emotion/react` 的 ThemeContext。详情可以查看：[与 styled 集成](/guide/styled)
+虽然选择了 `@emotion/styled` 作为 styled 语法的样式引擎，但是 antd-style 并没有内置 `styled` 方法，而仅仅默认集成 `@emotion/react` 的 ThemeContext。详情可以查看：[与 styled 集成](/zh-CN/guide/styled)
 :::
 
 ### css: 为什么选择 emotion

@@ -19,7 +19,7 @@ group: 主题定制
 
 ## 原理解析
 
-antd-style 在 `ThemeProvider` 中提供了一个 [`getStaticInstance`](api/theme-provider#消费静态实例方法) 接口，用户可以从中获取集成后的实例。
+antd-style 在 `ThemeProvider` 中提供了一个 [`getStaticInstance`](/zh-CN/api/theme-provider#消费静态实例方法) 接口，用户可以从中获取集成后的实例。
 
 该方法的实现原理也很简单，以 message 为例：
 

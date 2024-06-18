@@ -17,7 +17,7 @@ antd 在 V5 提供了全新的 theme 属性用于自定义，因此如果需要�
 更多基于 ConfigProvider 的主题定制能力，详见 [聊聊 Ant Design V5 的主题（上）：CSSinJS 动态主题的花活](https://www.yuque.com/antfe/featured/durxuu94nvgvgmzq#vFlnd)。
 :::
 
-antd-style 的 ThemeProvider 是基于 ConfigProvider 的业务层封装，提供业务友好的定制能力，查看：[自定义主题](/guide/custom-theme)
+antd-style 的 ThemeProvider 是基于 ConfigProvider 的业务层封装，提供业务友好的定制能力，查看：[自定义主题](/zh-CN/guide/custom-theme)
 
 ## 基本覆写
 
