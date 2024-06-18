@@ -14,7 +14,7 @@ demo:
 
 ## 1. 亮暗色主题切换
 
-通过在容器组件 [ThemeProvider](/usage/theme-provider) 上修改 `appearance` props，即可实现主题切换，这是也是动态主题最简单的使用方式。
+通过在容器组件 [ThemeProvider](/zh-CN/usage/theme-provider) 上修改 `appearance` props，即可实现主题切换，这是也是动态主题最简单的使用方式。
 
 ```tsx | pure
 import { ThemeProvider } from 'antd-style';
@@ -31,10 +31,10 @@ export default () => {
 
 <code src="../demos/guide/switch-theme/default.tsx"></code>
 
-:::warning{title=如果你有使用message等静态方法}
+:::warning{title=如果你有使用 message 等静态方法}
 antd v5 中 message、notification、modal 这三个静态不会响应主题。建议优先使用 hooks 版本的静态方法。
 
-如果你有使用这三个静态方法的诉求，又同时希望能够响应主题，请查看 [静态方法响应主题](/case/static-method)。
+如果你有使用这三个静态方法的诉求，又同时希望能够响应主题，请查看 [静态方法响应主题](/zh-CN/case/static-method)。
 :::
 
 ## 2. 自动响应系统主题
@@ -59,7 +59,7 @@ export default () => {
 
 <code src="../demos/guide/switch-theme/AutoSwitch.tsx"></code>
 
-:::info{title=appearance与themeMode的差别是什么？}
+:::info{title=appearance 与 themeMode 的差别是什么？}
 appearance 描述了应用当前的外观状态， themeMode 则用于描述控制主题模式的逻辑。区分两者有助于实现高级的主题能力。
 
 详见讨论: [#52](https://github.com/ant-design/antd-style/issues/52)
@@ -124,4 +124,4 @@ export default () => (
 
 ## API
 
-与主题切换相关的 API 查阅：[ThemeProvider](/api/theme-provider#themeprovider-api)
+与主题切换相关的 API 查阅：[ThemeProvider](/zh-CN/api/theme-provider#themeprovider-api)

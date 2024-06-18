@@ -8,7 +8,7 @@ group:
 
 ## 简介
 
-对于一般的样式诉求，通过 [createStyles](/usage/create-styles) 就可以基本满足，`createStylish` 属于进阶用法。
+对于一般的样式诉求，通过 [createStyles](/zh-CN/usage/create-styles) 就可以基本满足，`createStylish` 属于进阶用法。
 
 在一个复杂的业务系统中，可能会存在一些通用的样式，这些样式颗粒度更细，并不足以形成一个组件。但是如果每次都重复书写即耗费精力，又会有很多重复的代码，一旦设计师要求统一调整设计风格，多次修改的成本极高。为了解决这个问题，`createStylish` 应运而生。
 
