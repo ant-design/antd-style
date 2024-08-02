@@ -97,6 +97,8 @@ export const extractStaticStyle = (html?: string, options?: ExtractStyleOptions)
         <style
           key={cache.key}
           data-emotion={`${cache.key} ${ids.join(' ')}`}
+          data-rc-order="prepend"
+          data-rc-priority="-1000"
           dangerouslySetInnerHTML={{ __html: css }}
         />
       ),
