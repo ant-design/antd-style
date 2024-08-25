@@ -23,3 +23,23 @@ export default () => (
     <App />
   </ThemeProvider>
 );
+
+/**
+ * In some instances, if you are using a previous version of React and/or Typescript,
+ * you may get an error like this:
+ *
+ * 'ThemeProvider' cannot be used as a JSX component.
+ * Its return type 'ReactNode' is not a valid JSX element.
+ * Type 'undefined' is not assignable to type 'Element | null'.
+ *
+ * You can fix this by either upgrading React and/or Typescript, or by overriding the
+ * ThemeProvider type definition like this:
+ *
+ * import { ThemeProviderProps } from 'antd-style'
+ * ...
+ * const ThemeProviderComponent = ThemeProvider as <T = any, S = any>(
+ *   props: ThemeProviderProps<T, S>
+ * ) => JSX.Element
+ *
+ * and then use ThemeProviderComponent instead of ThemeProvider.
+ */
