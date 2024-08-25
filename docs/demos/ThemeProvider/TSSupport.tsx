@@ -35,7 +35,7 @@ export default () => (
  * You can fix this by either upgrading React and/or Typescript, or by overriding the
  * ThemeProvider type definition like this:
  *
- * import { ThemeProviderProps } from 'antd-style'
+ * import { ThemeProvider, ThemeProviderProps } from 'antd-style'
  * ...
  * const ThemeProviderComponent = ThemeProvider as <T = any, S = any>(
  *   props: ThemeProviderProps<T, S>
