@@ -1,5 +1,11 @@
 # Changelog
 
+## [3.6.3](https://github.com/ant-design/antd-style/compare/v3.6.2...v3.6.3) (2024-09-12)
+
+### 🐛 Bug Fixes
+
+- Export the CSSObject type from incorrect package, closes [#167](https://github.com/ant-design/antd-style/issues/167) ([85db0b3](https://github.com/ant-design/antd-style/commit/85db0b3))
+
 ## [3.6.2](https://github.com/ant-design/antd-style/compare/v3.6.1...v3.6.2) (2024-03-24)
 
 ### 🐛 Bug Fixes
