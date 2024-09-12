@@ -4,8 +4,7 @@ import { CSSInterpolation, Interpolation, SerializedStyles } from '@emotion/seri
 
 export type CSSStyle<T = Theme> = Array<TemplateStringsArray | Interpolation<T>>;
 
-export { type CSSObject } from '@emotion/css';
-export type { SerializedStyles } from '@emotion/serialize';
+export type { CSSObject, SerializedStyles } from '@emotion/serialize';
 
 export type ClassNameGenerator = Emotion['css'];
 
