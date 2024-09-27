@@ -12,7 +12,7 @@ exports[`createInstance > 自定义 prefixCls 时，会采用 instance 的 prefi
 }
 
 <button
-  class="cp-btn cp-btn-default emotion-0"
+  class="cp-btn cp-btn-default cp-btn-color-default cp-btn-variant-outlined emotion-0"
   type="button"
 >
   <span
