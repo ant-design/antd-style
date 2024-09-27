@@ -3,6 +3,8 @@ import CacheEntity from '@ant-design/cssinjs/es/Cache';
 import { EmotionCache } from '@emotion/css/create-instance';
 import { version } from 'antd';
 
+import { createExtractCritical } from '@/utils/createEmotionServer';
+
 const createExtractCriticalWithoutHtml = (cache: EmotionCache) => ({
   ids: Object.keys(cache.inserted),
   css: Object.values(cache.inserted)
@@ -81,11 +83,11 @@ export const extractStaticStyle = (html?: string, options?: ExtractStyleOptions)
   // copy from emotion ssr
   // https://github.com/vercel/next.js/blob/deprecated-main/examples/with-emotion-vanilla/pages/_document.js
   const styles = global.__ANTD_STYLE_CACHE_MANAGER_FOR_SSR__.getCacheList().map((cache) => {
-    const createEmotionServer = require('@emotion/server/create-instance').default;
+    const extractHtml = createExtractCritical(cache);
 
     const result: { ids: string[]; css: string } = !html
       ? createExtractCriticalWithoutHtml(cache)
-      : createEmotionServer(cache).extractCritical(html);
+      : extractHtml(html);
 
     if (!result.css) return null;
 
