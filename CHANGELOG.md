@@ -1,5 +1,11 @@
 # Changelog
 
+# [3.7.0](https://github.com/ant-design/antd-style/compare/v3.6.3...v3.7.0) (2024-09-28)
+
+### ✨ Features
+
+- Remove `@emotion/server` to adapt SSR in edge runtime, closes [#169](https://github.com/ant-design/antd-style/issues/169) ([3a6b86c](https://github.com/ant-design/antd-style/commit/3a6b86c))
+
 # [3.7.0-beta.1](https://github.com/ant-design/antd-style/compare/v3.6.3...v3.7.0-beta.1) (2024-09-27)
 
 ### ✨ Features
