@@ -25,7 +25,7 @@ exports[`createStyles > styles 对象的使用 > createStyleFn 通过函数方�
 }
 
 <button
-  class="cp-btn cp-btn-default emotion-0"
+  class="cp-btn cp-btn-default cp-btn-color-default cp-btn-variant-outlined emotion-0"
   type="button"
 >
   <span
