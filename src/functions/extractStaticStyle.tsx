@@ -71,13 +71,15 @@ export const extractStaticStyle = (html?: string, options?: ExtractStyleOptions)
       <style
         key={'antd'}
         data-antd-version={version}
+        data-rc-order="prepend"
+        data-rc-priority="-9999"
         dangerouslySetInnerHTML={{ __html: antdCssString }}
       />
     ),
     ids: Array.from(cache.cache.keys()),
     key: 'antd',
     css: antdCssString,
-    tag: `<style data-antd-version="${version}">${antdCssString}</style>`,
+    tag: `<style data-rc-order="prepend" data-rc-priority="-9999" data-antd-version="${version}">${antdCssString}</style>`,
   };
 
   // copy from emotion ssr
