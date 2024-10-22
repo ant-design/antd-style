@@ -1,5 +1,11 @@
 # Changelog
 
+## [3.7.1](https://github.com/ant-design/antd-style/compare/v3.7.0...v3.7.1) (2024-10-22)
+
+### 🐛 Bug Fixes
+
+- Fix antd cssvar mode in SSR, closes [#172](https://github.com/ant-design/antd-style/issues/172) ([e79a0fd](https://github.com/ant-design/antd-style/commit/e79a0fd))
+
 ## [3.7.1-beta.1](https://github.com/ant-design/antd-style/compare/v3.7.0...v3.7.1-beta.1) (2024-10-22)
 
 ### 🐛 Bug Fixes
