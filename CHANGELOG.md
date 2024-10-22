@@ -1,5 +1,11 @@
 # Changelog
 
+## [3.7.1-beta.1](https://github.com/ant-design/antd-style/compare/v3.7.0...v3.7.1-beta.1) (2024-10-22)
+
+### 🐛 Bug Fixes
+
+- Fix cssvar ([ac642b7](https://github.com/ant-design/antd-style/commit/ac642b7))
+
 # [3.7.0](https://github.com/ant-design/antd-style/compare/v3.6.3...v3.7.0) (2024-09-28)
 
 ### ✨ Features
