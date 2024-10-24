@@ -1,4 +1,4 @@
-import useMemo from 'rc-util/es/hooks/useMemo';
+import useMemo from 'rc-util/lib/hooks/useMemo';
 import isEqual from 'rc-util/lib/isEqual';
 import React, { Context, useContext } from 'react';
 
