@@ -1,6 +1,6 @@
 import useMemo from 'rc-util/lib/hooks/useMemo';
 import isEqual from 'rc-util/lib/isEqual';
-import React, { Context, useContext } from 'react';
+import { Context, useContext } from 'react';
 
 import { Emotion, createCSS, serializeCSS } from '@/core';
 import type {
@@ -124,17 +124,16 @@ export const createStylesFactory =
           return tempStyles;
         },
         [props, theme],
-        (prev: any[], next: any[]) =>
-          prev.some((prevDep, index) => {
-            const nextDep = next[index];
-
-            return !isEqual(prevDep, nextDep, true);
-          }),
+        (prev, next) => !isEqual(prev[0], next[0], true) || prev[1] !== next[1],
       );
 
-      return React.useMemo(() => {
-        const { prefixCls, iconPrefixCls, ...res } = theme;
-        return { styles, cx, theme: res, prefixCls, iconPrefixCls };
-      }, [styles, theme]);
+      return useMemo(
+        () => {
+          const { prefixCls, iconPrefixCls, ...res } = theme;
+          return { styles, cx, theme: res, prefixCls, iconPrefixCls };
+        },
+        [styles, theme],
+        (prev, next) => !isEqual(prev[0], next[0], true) || prev[1] !== next[1],
+      );
     };
   };
