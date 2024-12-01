@@ -1,5 +1,7 @@
 # Changelog
 
+## [3.7.2-alpha.1](https://github.com/ant-design/antd-style/compare/v3.7.1...v3.7.2-alpha.1) (2024-12-01)
+
 ## [3.7.1](https://github.com/ant-design/antd-style/compare/v3.7.0...v3.7.1) (2024-10-22)
 
 ### 🐛 Bug Fixes
