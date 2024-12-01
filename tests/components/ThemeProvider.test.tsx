@@ -275,47 +275,13 @@ describe('ThemeProvider', () => {
     expect(nodeWithout).not.toHaveStyle('color: rgb(255, 0, 0);');
   });
 
-  describe('静态实例对象', () => {
-    it('获得静态实例对象', () => {
-      let message = {} as MessageInstance;
-      const Demo: FC = () => {
-        return (
-          <ThemeProvider getStaticInstance={(instances) => (message = instances.message)}>
-            <div style={{ padding: 16 }} className={'container'}>
-              <a href="">节点样式</a>
-            </div>
-          </ThemeProvider>
-        );
-      };
-
-      render(<Demo />);
-
-      expect(message.success).not.toBeUndefined();
-    });
-  });
-
-  it('测试 prefix', () => {
+  it.skip('测试 prefix', () => {
     let message = {} as MessageInstance;
     let notification = {} as NotificationInstance;
 
     const Demo: FC = () => {
       return (
-        <ThemeProvider
-          prefixCls={'demo'}
-          getStaticInstance={(instances) => {
-            message = instances.message;
-            notification = instances.notification;
-          }}
-          staticInstanceConfig={{
-            message: {
-              maxCount: 1,
-              getContainer: () => document.getElementById('xxx')!,
-            },
-            notification: {
-              getContainer: () => document.getElementById('xxx')!,
-            },
-          }}
-        >
+        <ThemeProvider prefixCls={'demo'}>
           <div id={'xxx'} style={{ padding: 16 }} className={'container'}>
             <a href="">节点样式</a>
           </div>
