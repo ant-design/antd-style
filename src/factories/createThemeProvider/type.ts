@@ -7,9 +7,8 @@ import {
   ThemeMode,
 } from '@/types';
 import { ThemeConfig } from 'antd/es/config-provider/context';
-import { ConfigOptions as MessageConfig, MessageInstance } from 'antd/es/message/interface';
-import { ModalStaticFunctions } from 'antd/es/modal/confirm';
-import { NotificationConfig, NotificationInstance } from 'antd/es/notification/interface';
+import { ConfigOptions as MessageConfig } from 'antd/es/message/interface';
+import { NotificationConfig } from 'antd/es/notification/interface';
 import { ReactNode } from 'react';
 
 export interface ThemeProviderProps<T, S = Record<string, string>> {
@@ -31,12 +30,6 @@ export interface ThemeProviderProps<T, S = Record<string, string>> {
    * 直接传入 antd 主题，或者传入一个函数，根据当前的主题模式返回对应的主题
    */
   theme?: ThemeConfig | GetAntdTheme;
-
-  /**
-   * 从 ThemeProvider 中获取静态方法的实例对象
-   * @param instances
-   */
-  getStaticInstance?: (instances: StaticInstance) => void;
 
   /**
    * 静态方法的入参
@@ -61,29 +54,4 @@ export interface ThemeProviderProps<T, S = Record<string, string>> {
   themeMode?: ThemeMode;
   defaultThemeMode?: ThemeMode;
   onThemeModeChange?: (mode: ThemeMode) => void;
-}
-
-/**
- * 静态实例
- */
-export interface StaticInstance {
-  /**
-   * 消息实例
-   */
-  message: MessageInstance;
-  /**
-   * 通知实例
-   */
-  notification: NotificationInstance;
-  /**
-   * 弹窗实例，不包含 warn 方法
-   * @typedef {object} Omit<ModalStaticFunctions, 'warn'>
-   * @property {Function} info - info 弹窗
-   * @property {Function} success - success 弹窗
-   * @property {Function} error - error 弹窗
-   * @property {Function} warning - warning 弹窗
-   * @property {Function} confirm - confirm 弹窗
-   * @property {Function} destroyAll - 关闭所有弹窗
-   */
-  modal: Omit<ModalStaticFunctions, 'warn'>;
 }

@@ -51,9 +51,7 @@ export const createThemeProvider = (
       customStylish,
 
       theme,
-      getStaticInstance,
       prefixCls: outPrefixCls,
-      staticInstanceConfig,
 
       appearance,
       defaultAppearance,
@@ -94,12 +92,7 @@ export const createThemeProvider = (
             onAppearanceChange={onAppearanceChange}
             useTheme={option.useTheme}
           >
-            <AntdProvider
-              prefixCls={prefixCls}
-              staticInstanceConfig={staticInstanceConfig}
-              theme={theme}
-              getStaticInstance={getStaticInstance}
-            >
+            <AntdProvider prefixCls={prefixCls} theme={theme}>
               <TokenContainer
                 prefixCls={prefixCls}
                 customToken={customToken}
