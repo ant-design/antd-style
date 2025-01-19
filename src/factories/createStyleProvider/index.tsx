@@ -56,6 +56,11 @@ export interface StyleProviderProps
    * 子组件
    */
   children: ReactNode;
+
+  /**
+   * 启用 layer 属性
+   */
+  layer?: boolean;
 }
 
 export const createStyleProvider = (EmotionContext: Context<Emotion>): FC<StyleProviderProps> =>
