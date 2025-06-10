@@ -2,10 +2,10 @@ import { ThemeContext, ThemeProvider } from '@emotion/react';
 import { Context } from 'react';
 
 import { createStyledThemeProvider } from '@/factories/createStyledThemeProvider';
-import { StyledConfig, StyledThemeProvider, Theme } from '@/types';
+import { StyledConfig, StyledThemeProvider } from '@/types';
 
 export let DEFAULT_THEME_PROVIDER = ThemeProvider as StyledThemeProvider;
-export let DEFAULT_THEME_CONTEXT = ThemeContext as Context<Theme>;
+export let DEFAULT_THEME_CONTEXT = ThemeContext as Context<any>;
 
 export const setupStyled = (config: StyledConfig) => {
   if (!config.ThemeContext) {
