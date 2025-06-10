@@ -61,7 +61,7 @@ describe('styled', () => {
       expect(content).toHaveStyleRule('border-radius', '8px');
       expect(content).toHaveStyleRule('padding', '24px');
       expect(content).toHaveStyleRule('background', '#ffffff');
-      expect(content).toHaveStyleRule('color', 'rgba(0, 0, 0, 0.88)');
+      expect(content).toHaveStyleRule('color', 'rgba(0,0,0,0.88)');
 
       expect(container).toMatchSnapshot();
 

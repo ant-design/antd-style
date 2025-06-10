@@ -21,7 +21,7 @@ exports[`styled > 使用 antd 主题样式 > 带有外部传参的方式 1`] = `
   border-radius: 8px;
   padding: 24px;
   background: #ffffff;
-  color: rgba(0, 0, 0, 0.88);
+  color: rgba(0,0,0,0.88);
 }
 
 <div>
