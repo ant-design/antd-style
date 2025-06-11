@@ -5,7 +5,7 @@ import { createStyledThemeProvider } from '@/factories/createStyledThemeProvider
 import { StyledConfig, StyledThemeProvider, Theme } from '@/types';
 
 export let DEFAULT_THEME_PROVIDER = ThemeProvider as StyledThemeProvider;
-export let DEFAULT_THEME_CONTEXT = ThemeContext as Context<Theme>;
+export let DEFAULT_THEME_CONTEXT = ThemeContext as unknown as Context<Theme>;
 
 export const setupStyled = (config: StyledConfig) => {
   if (!config.ThemeContext) {
