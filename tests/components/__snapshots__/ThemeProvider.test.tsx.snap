@@ -19,7 +19,7 @@ exports[`ThemeProvider > 注入自定义主题 > 自定义 Stylish 1`] = `
 exports[`ThemeProvider > 注入自定义主题 > 自定义 Token 1`] = `
 <div>
   <div
-    style="color: rgb(201, 86, 223);"
+    style="color: #c956df;"
   >
     #c956df
   </div>
@@ -44,7 +44,7 @@ exports[`ThemeProvider > 配合 App 实现局部作用域 1`] = `
     </a>
   </div>
   <div
-    class="ant-app emotion-0"
+    class="ant-app emotion-0 css-var-rd"
   >
     <div
       class="container"

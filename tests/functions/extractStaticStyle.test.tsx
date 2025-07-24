@@ -53,7 +53,9 @@ describe('extractStaticStyle', () => {
       const item = result.find((i) => i.key === 'antd')!;
       expect(item).toBeDefined();
       expect(item.css).toMatch(/\.ant-/);
-      expect(item.tag).toMatch(/<style data-rc-order="prepend" data-rc-priority="-9999" data-antd-version="[0-9]+\.[0-9]+\.[0-9]+">\s*/);
+      expect(item.tag).toMatch(
+        /<style data-rc-order="prepend" data-rc-priority="-9999" data-antd-version="6.0.0-alpha.1">\s*/,
+      );
     });
 
     // FIXME: 迁移到 vitest 后，不知道为什么 无法提取 extractStaticStyle 了

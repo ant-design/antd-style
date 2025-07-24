@@ -38,7 +38,7 @@ describe('createGlobalStyle', () => {
 
     const item = await findByTestId('content');
 
-    expect(item.firstChild).toHaveStyle({ color: '#1677FF' });
+    expect(item.firstChild).toHaveStyle({ color: '#1677ff' });
   });
 
   it('不包裹 ThemeProvider 也能获得 token', async () => {
@@ -57,6 +57,6 @@ describe('createGlobalStyle', () => {
 
     const item = await findByTestId('content');
 
-    expect(item.firstChild).toHaveStyle({ color: '#1677FF' });
+    expect(item.firstChild).toHaveStyle({ color: '#1677ff' });
   });
 });

@@ -3,7 +3,7 @@
 exports[`createInstance > 自定义 prefixCls 时，会采用 instance 的 prefixCls 而不是 CP 的prefixCls 1`] = `
 .emotion-0.test-btn {
   background: lightsteelblue;
-  border: none;
+  border: none none;
   color: royalblue;
 }
 
@@ -12,7 +12,7 @@ exports[`createInstance > 自定义 prefixCls 时，会采用 instance 的 prefi
 }
 
 <button
-  class="cp-btn cp-btn-default cp-btn-color-default cp-btn-variant-outlined emotion-0"
+  class="cp-btn css-var-root cp-btn-default cp-btn-color-default cp-btn-variant-outlined emotion-0"
   type="button"
 >
   <span
@@ -20,7 +20,7 @@ exports[`createInstance > 自定义 prefixCls 时，会采用 instance 的 prefi
   >
     <span
       aria-label="smile"
-      class="cpicon cpicon-smile"
+      class="anticon anticon-smile"
       role="img"
     >
       <svg

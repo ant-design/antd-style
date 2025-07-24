@@ -52,7 +52,7 @@ describe('<ThemeSwitcher />', () => {
 
   it('should render with default appearance', () => {
     const { container } = render(<Component />);
-    expect(container.firstChild).toHaveStyle('background-color: #fff');
+    expect(container.firstChild).toHaveStyle('background-color: #ffffff');
   });
 
   it.skip('should render with dark appearance', () => {
@@ -64,7 +64,7 @@ describe('<ThemeSwitcher />', () => {
   it('should render with light theme mode', () => {
     const { container } = render(<Component themeMode={'light'} />);
 
-    expect(container.firstChild).toHaveStyle('background-color: #fff');
+    expect(container.firstChild).toHaveStyle('background-color: #ffffff');
   });
 
   it.skip('should render with dark theme mode', () => {
