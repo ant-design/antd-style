@@ -57,7 +57,8 @@ export const createStylesFactory =
 
         // 函数场景
         if (styleOrGetStyle instanceof Function) {
-          const { stylish, appearance, isDarkMode, prefixCls, iconPrefixCls, ...token } = theme;
+          const { stylish, appearance, isDarkMode, prefixCls, iconPrefixCls, cssVar, ...token } =
+            theme;
 
           // 创建响应式断点选择器的工具函数
           // @ts-ignore
@@ -74,6 +75,7 @@ export const createStylesFactory =
               isDarkMode,
               prefixCls,
               iconPrefixCls,
+              cssVar,
               // 工具函数们
               cx,
               css: serializeCSS,

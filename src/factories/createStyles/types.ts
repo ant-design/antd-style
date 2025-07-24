@@ -16,6 +16,7 @@ export interface CreateStylesUtils extends CommonStyleUtils {
    * 包含 antd 的 token 和所有自定义 token
    */
   token: FullToken;
+  cssVar: FullToken;
   stylish: FullStylish;
   /**
    * ThemeProvider 下当前的主题模式
