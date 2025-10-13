@@ -4,6 +4,7 @@ import { serializeCSS } from '@/core';
 import { useAntdTheme, useThemeMode } from '@/hooks';
 import { StyledThemeProvider, Theme } from '@/types';
 
+import { useCustomToken } from '@/hooks/useCustomToken';
 import type { ThemeProviderProps } from './type';
 
 interface TokenContainerProps<T, S = Record<string, string>>
@@ -25,7 +26,7 @@ const TokenContainer: <T, S>(props: TokenContainerProps<T, S>) => ReactElement |
 }) => {
   const themeState = useThemeMode();
   const { appearance, isDarkMode } = themeState;
-  const { stylish: antdStylish, ...token } = useAntdTheme();
+  const { stylish: antdStylish, cssVar, ...token } = useAntdTheme();
 
   // 获取默认的自定义 token
   const defaultCustomToken = useMemo(() => {
@@ -46,6 +47,13 @@ const TokenContainer: <T, S>(props: TokenContainerProps<T, S>) => ReactElement |
 
     return { ...defaultCustomToken, ...customTokenOrFn };
   }, [defaultCustomToken, customTokenOrFn, token, appearance]);
+
+  const { token: cssVariableToken, cssVarCls, hashId } = useCustomToken(customToken as any);
+
+  const mergedCssVar = useMemo(
+    () => ({ ...cssVar, ...cssVariableToken }),
+    [cssVar, cssVariableToken],
+  );
 
   // 获取 stylish
   const customStylish = useMemo(() => {
@@ -68,12 +76,17 @@ const TokenContainer: <T, S>(props: TokenContainerProps<T, S>) => ReactElement |
   const theme: Theme = {
     ...token,
     ...(customToken as any),
+    cssVar: mergedCssVar,
     stylish: stylish as any,
     ...themeState,
     prefixCls,
   };
 
-  return <StyledThemeProvider theme={theme}>{children}</StyledThemeProvider>;
+  return (
+    <StyledThemeProvider theme={theme}>
+      <div className={[cssVarCls, hashId].filter(Boolean).join(' ')}>{children}</div>
+    </StyledThemeProvider>
+  );
 };
 
 export default TokenContainer;

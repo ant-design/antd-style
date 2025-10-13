@@ -1,5 +1,5 @@
 import { MappingAlgorithm, ThemeConfig } from 'antd';
-import { AliasToken } from 'antd/es/theme/interface';
+import { AliasToken, GlobalToken } from 'antd/es/theme/interface';
 
 import { BrowserPrefers, ThemeAppearance, ThemeMode } from './appearance';
 
@@ -66,6 +66,7 @@ export interface FullStylish extends AntdStylish, CustomStylish {}
 
 export interface AntdTheme extends AntdToken {
   stylish: AntdStylish;
+  cssVar: GlobalToken;
 }
 
 export interface FullToken extends AntdToken, CustomToken {}

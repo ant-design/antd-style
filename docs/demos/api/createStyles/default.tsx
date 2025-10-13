@@ -3,7 +3,7 @@
  * defaultShowCode: true
  */
 import { SmileOutlined } from '@ant-design/icons';
-import { Button, Space } from 'antd';
+import { Button, Space, version } from 'antd';
 import { createStyles } from 'antd-style';
 
 const useStyles = createStyles(({ cssVar, css, cx }) => {
@@ -38,7 +38,7 @@ const App = () => {
   const { styles } = useStyles();
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} data-antd-ver={version}>
       <Space direction={'vertical'} style={{ width: '100%' }} size={16}>
         <Space>
           <Button title={'功能按钮的说明'} icon={<SmileOutlined />} />
