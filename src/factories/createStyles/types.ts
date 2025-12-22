@@ -1,4 +1,5 @@
 import type {
+  AntdToken,
   BaseReturnType,
   CommonStyleUtils,
   FullStylish,
@@ -16,7 +17,10 @@ export interface CreateStylesUtils extends CommonStyleUtils {
    * 包含 antd 的 token 和所有自定义 token
    */
   token: FullToken;
-  cssVar: FullToken;
+  /**
+   * 支持通过 cssVar 访问的 antd Token，[不包含自定义 Token](https://github.com/ant-design/antd-style/issues/199)
+   */
+  cssVar: AntdToken;
   stylish: FullStylish;
   /**
    * ThemeProvider 下当前的主题模式
