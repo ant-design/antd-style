@@ -69,7 +69,7 @@
     ]
   },
   "dependencies": {
-    "@ant-design/cssinjs": "^2.0.0-alpha.5",
+    "@ant-design/cssinjs": "^2.0.0",
     "@babel/runtime": "^7.24.1",
     "@emotion/cache": "^11.11.0",
     "@emotion/css": "^11.11.2",
@@ -96,7 +96,7 @@
     "@types/testing-library__jest-dom": "^5.14.9",
     "@umijs/lint": "^4.1.5",
     "@vitest/coverage-v8": "^3.2.4",
-    "antd": "^6.0.0-alpha.1",
+    "antd": "^6.0.0",
     "babel-plugin-antd-style": "^1.0.4",
     "chalk": "^4.1.2",
     "classnames": "^2.5.1",
@@ -137,7 +137,7 @@
     "zustand": "^4.5.2"
   },
   "peerDependencies": {
-    "antd": ">= 6.0.0-alpha.1",
+    "antd": ">=6.0.0",
     "react": ">=18"
   },
   "publishConfig": {
