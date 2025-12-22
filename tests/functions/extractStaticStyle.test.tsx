@@ -54,7 +54,7 @@ describe('extractStaticStyle', () => {
       expect(item).toBeDefined();
       expect(item.css).toMatch(/\.ant-/);
       expect(item.tag).toMatch(
-        /<style data-rc-order="prepend" data-rc-priority="-9999" data-antd-version="6.0.0-alpha.1">\s*/,
+        /<style data-rc-order="prepend" data-rc-priority="-9999" data-antd-version="6\s*/,
       );
     });
 

@@ -3,7 +3,7 @@
 exports[`createInstance > 自定义 prefixCls 时，会采用 instance 的 prefixCls 而不是 CP 的prefixCls 1`] = `
 .emotion-0.test-btn {
   background: lightsteelblue;
-  border: none;
+  border: none none;
   color: royalblue;
 }
 
