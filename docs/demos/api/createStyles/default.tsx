@@ -6,29 +6,29 @@ import { SmileOutlined } from '@ant-design/icons';
 import { Button, Space } from 'antd';
 import { createStyles } from 'antd-style';
 
-const useStyles = createStyles(({ token, css, cx }) => {
+const useStyles = createStyles(({ cssVar, css, cx }) => {
   const commonCard = css`
-    border-radius: ${token.borderRadiusLG}px;
-    padding: ${token.paddingLG}px;
+    border-radius: ${cssVar.borderRadiusLG};
+    padding: ${cssVar.paddingLG};
   `;
 
   return {
     container: css`
-      background-color: ${token.colorBgLayout};
+      background-color: ${cssVar.colorBgLayout};
       padding: 24px;
     `,
 
     defaultCard: css`
       ${commonCard};
-      background: ${token.colorBgContainer};
-      color: ${token.colorText};
+      background: ${cssVar.colorBgContainer};
+      color: ${cssVar.colorText};
     `,
 
     primaryCard: cx(
       commonCard,
       css`
-        background: ${token.colorPrimary};
-        color: ${token.colorTextLightSolid};
+        background: ${cssVar.colorPrimary};
+        color: ${cssVar.colorTextLightSolid};
       `,
     ),
   };

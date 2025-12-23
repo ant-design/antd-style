@@ -1,5 +1,15 @@
 # Changelog
 
+# [4.0.0-alpha.1](https://github.com/ant-design/antd-style/compare/v3.7.1...v4.0.0-alpha.1) (2025-07-24)
+
+### ✨ Features
+
+- Support antd v6 cssVar ([cd838b0](https://github.com/ant-design/antd-style/commit/cd838b0))
+
+### 💥 BREAKING CHANGES
+
+- bump peerDependencies antd >= v6
+
 ## [3.7.1](https://github.com/ant-design/antd-style/compare/v3.7.0...v3.7.1) (2024-10-22)
 
 ### 🐛 Bug Fixes

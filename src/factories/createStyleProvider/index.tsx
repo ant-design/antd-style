@@ -12,7 +12,7 @@ export interface StyleProviderProps
   extends Partial<
     Pick<
       AntdStyleProviderProps,
-      'autoClear' | 'cache' | 'hashPriority' | 'ssrInline' | 'transformers' | 'linters'
+      'cache' | 'hashPriority' | 'ssrInline' | 'transformers' | 'linters'
     >
   > {
   /**
