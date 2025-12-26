@@ -1,7 +1,7 @@
 ---
 title: createStaticStyles
 description: Create static styles (high performance)
-order: 1
+order: 0
 sourceUrl: '{github}/blob/master/src/factories/createStaticStyles/index.ts'
 group: Creating Styles
 demo:
@@ -166,6 +166,52 @@ const styles = createStaticStyles(({ css, cx }) => {
 3. Need dynamic styles based on props
 4. Need stylish presets
 5. Need `isDarkMode` for conditional logic
+
+## createStaticStylesFactory
+
+If your application uses a custom CSS variable prefix (e.g., via `ConfigProvider`'s `prefixCls` configuration), you can use `createStaticStylesFactory` to create a custom instance.
+
+### Basic Usage
+
+```tsx | pure
+import { createStaticStylesFactory } from 'antd-style';
+
+// Create instance with custom prefix
+const { createStaticStyles, cssVar, responsive } = createStaticStylesFactory({
+  prefix: 'my-app',
+});
+
+// cssVar.colorPrimary => 'var(--my-app-color-primary)'
+// cssVar.colorBgContainer => 'var(--my-app-color-bg-container)'
+
+const styles = createStaticStyles(({ css, cssVar }) => ({
+  container: css`
+    background: ${cssVar.colorBgContainer};
+  `,
+}));
+```
+
+### Configuration Options
+
+| Parameter    | Type           | Default  | Description         |
+| ------------ | -------------- | -------- | ------------------- |
+| prefix       | `string`       | `'ant'`  | CSS variable prefix |
+| hashPriority | `HashPriority` | `'high'` | Style hash priority |
+
+### Integration with createInstance
+
+If you use `createInstance` to create a custom instance, static styles will automatically use the configured `prefixCls`:
+
+```tsx | pure
+import { createInstance } from 'antd-style';
+
+const { createStaticStyles, cssVar } = createInstance({
+  prefixCls: 'my-app',
+});
+
+// cssVar will automatically use 'my-app' prefix
+// cssVar.colorPrimary => 'var(--my-app-color-primary)'
+```
 
 ## Performance Notes
 

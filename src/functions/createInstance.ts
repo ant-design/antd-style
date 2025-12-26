@@ -4,6 +4,7 @@ import { CacheManager, createCSS, createEmotion, serializeCSS } from '@/core';
 
 import { createEmotionContext } from '@/factories/createEmotionContext';
 import { createGlobalStyleFactory } from '@/factories/createGlobalStyle';
+import { createStaticStylesFactory } from '@/factories/createStaticStyles';
 import { createStylishFactory } from '@/factories/createStyish';
 import { createStyleProvider } from '@/factories/createStyleProvider';
 import { createStylesFactory } from '@/factories/createStyles';
@@ -103,6 +104,12 @@ export const createInstance = <T = any>(options: CreateOptions<T>) => {
 
   const createStylish = createStylishFactory(createStyles);
 
+  // 创建静态样式实例，使用配置的 prefixCls
+  const staticStylesInstance = createStaticStylesFactory({
+    prefix: internalOptions.prefixCls || 'ant',
+    hashPriority: internalOptions.hashPriority,
+  });
+
   const ThemeProvider = createThemeProvider({
     styledConfig: internalOptions.styled,
     StyleEngineContext,
@@ -122,6 +129,7 @@ export const createInstance = <T = any>(options: CreateOptions<T>) => {
     createStyles,
     createGlobalStyle,
     createStylish,
+    createStaticStyles: staticStylesInstance.createStaticStyles,
     // ******************** //
     // **** 基础样式方法 **** //
     // ******************** //
@@ -129,6 +137,8 @@ export const createInstance = <T = any>(options: CreateOptions<T>) => {
     cx,
     keyframes,
     injectGlobal,
+    cssVar: staticStylesInstance.cssVar,
+    responsive: staticStylesInstance.responsive,
 
     //******************** //
     //****  样式表管理  **** //

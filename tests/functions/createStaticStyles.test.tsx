@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import { createStaticStyles, cssVar, responsive } from 'antd-style';
+import { createStaticStyles, createStaticStylesFactory, cssVar, responsive } from 'antd-style';
 
 describe('createStaticStyles', () => {
   describe('基础功能', () => {
@@ -166,6 +166,39 @@ describe('createStaticStyles', () => {
       }));
 
       expect(styles).toMatchSnapshot();
+    });
+  });
+
+  describe('createStaticStylesFactory', () => {
+    it('应该能创建自定义 prefix 的实例，并带有 ant fallback', () => {
+      const { cssVar } = createStaticStylesFactory({ prefix: 'my-app' });
+
+      // 自定义 prefix 会自动添加 ant fallback
+      expect(cssVar.colorPrimary).toBe('var(--my-app-color-primary, var(--ant-color-primary))');
+      expect(cssVar.colorBgContainer).toBe(
+        'var(--my-app-color-bg-container, var(--ant-color-bg-container))',
+      );
+      expect(cssVar.paddingLG).toBe('var(--my-app-padding-lg, var(--ant-padding-lg))');
+    });
+
+    it('自定义实例应该能正常创建样式', () => {
+      const { createStaticStyles } = createStaticStylesFactory({ prefix: 'custom' });
+
+      const styles = createStaticStyles(({ css, cssVar }) => ({
+        container: css`
+          background: ${cssVar.colorBgContainer};
+        `,
+      }));
+
+      expect(styles.container).toBeTruthy();
+      expect(typeof styles.container).toBe('string');
+    });
+
+    it('默认 prefix 应该是 ant，无 fallback', () => {
+      const { cssVar } = createStaticStylesFactory();
+
+      // ant 前缀不需要 fallback
+      expect(cssVar.colorPrimary).toBe('var(--ant-color-primary)');
     });
   });
 });

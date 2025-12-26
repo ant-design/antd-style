@@ -4,7 +4,11 @@
  */
 import { SmileOutlined } from '@ant-design/icons';
 import { Button, Space } from 'antd';
-import { createStaticStyles } from 'antd-style';
+import { createStaticStylesFactory } from 'antd-style';
+
+// 创建使用 site 前缀的静态样式实例
+// 该前缀来自 dumi-theme-antd-style 主题的 ConfigProvider 配置
+const { createStaticStyles } = createStaticStylesFactory({ prefix: 'site' });
 
 // Styles defined at module level, computed once at import
 const styles = createStaticStyles(({ cssVar, css, cx }) => {

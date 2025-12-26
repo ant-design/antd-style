@@ -1,7 +1,7 @@
 ---
 title: createStaticStyles
 description: 创建静态样式（高性能）
-order: 1
+order: 0
 sourceUrl: '{github}/blob/master/src/factories/createStaticStyles/index.ts'
 group: 创建样式
 demo:
@@ -166,6 +166,57 @@ const styles = createStaticStyles(({ css, cx }) => {
 3. 需要 props 动态样式
 4. 需要 stylish 预设样式
 5. 需要 `isDarkMode` 进行条件判断
+
+## createStaticStylesFactory
+
+如果你的应用使用了自定义的 CSS 变量前缀（如通过 `ConfigProvider` 的 `prefixCls` 配置），可以使用 `createStaticStylesFactory` 创建自定义实例。
+
+### 基本用法
+
+```tsx | pure
+import { createStaticStylesFactory } from 'antd-style';
+
+// 创建自定义前缀的实例
+const { createStaticStyles, cssVar, responsive } = createStaticStylesFactory({
+  prefix: 'my-app',
+});
+
+// 自定义前缀会自动添加 ant fallback，确保即使自定义变量不存在也能正常工作
+// cssVar.colorPrimary => 'var(--my-app-color-primary, var(--ant-color-primary))'
+// cssVar.colorBgContainer => 'var(--my-app-color-bg-container, var(--ant-color-bg-container))'
+
+const styles = createStaticStyles(({ css, cssVar }) => ({
+  container: css`
+    background: ${cssVar.colorBgContainer};
+  `,
+}));
+```
+
+:::info{title=自动 Fallback}
+当使用非 `ant` 前缀时，生成的 CSS 变量会自动包含 `ant` 前缀作为 fallback。这样即使自定义前缀的变量不存在，样式也能正常回退到 antd 默认变量。
+:::
+
+### 配置选项
+
+| 参数         | 类型           | 默认值   | 描述             |
+| ------------ | -------------- | -------- | ---------------- |
+| prefix       | `string`       | `'ant'`  | CSS 变量前缀     |
+| hashPriority | `HashPriority` | `'high'` | 样式 hash 优先级 |
+
+### 与 createInstance 集成
+
+如果你使用 `createInstance` 创建了自定义实例，静态样式会自动使用配置的 `prefixCls`：
+
+```tsx | pure
+import { createInstance } from 'antd-style';
+
+const { createStaticStyles, cssVar } = createInstance({
+  prefixCls: 'my-app',
+});
+
+// cssVar 会自动使用 'my-app' 前缀
+// cssVar.colorPrimary => 'var(--my-app-color-primary)'
+```
 
 ## 性能说明
 
