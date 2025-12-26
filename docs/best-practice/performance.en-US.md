@@ -3,7 +3,7 @@ title: Performance - createStaticStyles
 order: 0
 group:
   title: Performance
-  order: 0
+  order: 3
 ---
 
 # Performance: createStyles vs createStaticStyles
