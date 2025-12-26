@@ -1,4 +1,6 @@
-import { createCSS, createEmotion } from '@/core';
+import { createCSS, createEmotion, DEFAULT_CSS_PREFIX_KEY } from '@/core';
+import type { EmotionCache } from '@emotion/css/create-instance';
+
 import type { BaseReturnType, HashPriority } from '@/types';
 
 import { cssVar, CSSVarMap, generateCSSVarMap } from './cssVar';
@@ -19,6 +21,11 @@ export interface CreateStaticStylesOptions {
    * @default 'high'
    */
   hashPriority?: HashPriority;
+  /**
+   * 自定义 emotion cache，用于与其他样式共享同一个 cache
+   * 如果不提供，将使用默认的全局 cache
+   */
+  cache?: EmotionCache;
 }
 
 /**
@@ -30,9 +37,9 @@ export interface StaticStylesInstance {
   responsive: StaticResponsiveMap;
 }
 
-// 创建全局的 emotion 实例用于静态样式
-const staticEmotion = createEmotion({
-  key: 'acss-static',
+// 创建默认的全局 emotion 实例，使用与默认 styleInstance 相同的 key
+const defaultEmotion = createEmotion({
+  key: DEFAULT_CSS_PREFIX_KEY,
   speedy: false,
 });
 
@@ -56,13 +63,16 @@ const staticEmotion = createEmotion({
 export const createStaticStylesFactory = (
   options: CreateStaticStylesOptions = {},
 ): StaticStylesInstance => {
-  const { prefix = 'ant', hashPriority = 'high' } = options;
+  const { prefix = 'ant', hashPriority = 'high', cache } = options;
 
   // 根据 prefix 生成 cssVar
   const customCssVar = generateCSSVarMap(prefix);
 
+  // 使用提供的 cache 或默认的全局 cache
+  const emotionCache = cache ?? defaultEmotion.cache;
+
   // 创建 css 和 cx 函数
-  const { css, cx } = createCSS(staticEmotion.cache, { hashPriority });
+  const { css, cx } = createCSS(emotionCache, { hashPriority });
 
   const createStaticStyles = <T extends BaseReturnType>(stylesFn: StaticStylesInput<T>): T => {
     const utils: StaticStyleUtils = {
@@ -91,19 +101,31 @@ const defaultInstance = createStaticStylesFactory();
  * 与 createStyles 不同，createStaticStyles 直接返回样式对象而非 hook。
  * 样式在模块导入时计算一次，组件内直接使用，无需调用 hook。
  *
+ * 静态样式使用与 antd-style 默认实例相同的 emotion cache，
+ * 因此可以使用从 antd-style 导出的 cx 来正确合并样式。
+ *
  * @example
  * ```tsx
+ * import { createStaticStyles, cx } from 'antd-style';
+ *
  * // 模块级别定义
  * const styles = createStaticStyles(({ css, cssVar }) => ({
  *   container: css`
  *     background: ${cssVar.colorBgContainer};
  *     color: ${cssVar.colorText};
+ *   `,
+ *   text: css`
+ *     color: ${cssVar.colorText};
+ *   `,
+ *   secondary: css`
+ *     font-size: 12px;
  *   `
  * }));
  *
  * // 组件内直接使用
  * const Component = () => {
- *   return <div className={styles.container}>Hello</div>;
+ *   // 使用 antd-style 导出的 cx 来合并样式
+ *   return <div className={cx(styles.text, styles.secondary)}>Hello</div>;
  * };
  * ```
  *

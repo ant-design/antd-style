@@ -5,13 +5,8 @@ export { extractStaticStyle } from './extractStaticStyle';
 export { setupStyled } from './setupStyled';
 export { createInstance };
 
-// 静态样式
-export {
-  createStaticStyles,
-  createStaticStylesFactory,
-  cssVar,
-  responsive,
-} from '@/factories/createStaticStyles';
+// 静态样式工厂函数（用于创建自定义实例）
+export { createStaticStylesFactory } from '@/factories/createStaticStyles';
 
 const styleInstance = createInstance({ key: DEFAULT_CSS_PREFIX_KEY, speedy: false });
 
@@ -20,6 +15,8 @@ export const {
   createStyles,
   createGlobalStyle,
   createStylish,
+  // 使用与默认实例相同 cache 的 createStaticStyles
+  createStaticStyles,
   // **** 基础样式方法 **** //
   css,
   cx,
@@ -34,4 +31,7 @@ export const {
   ThemeProvider,
   StyleProvider,
   useTheme,
+  // 静态样式工具
+  cssVar,
+  responsive,
 } = styleInstance;

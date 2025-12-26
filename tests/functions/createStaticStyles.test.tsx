@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import { createStaticStyles, createStaticStylesFactory, cssVar, responsive } from 'antd-style';
+import { createStaticStyles, createStaticStylesFactory, cssVar, cx, responsive } from 'antd-style';
 
 describe('createStaticStyles', () => {
   describe('基础功能', () => {
@@ -73,7 +73,7 @@ describe('createStaticStyles', () => {
   });
 
   describe('cx 功能', () => {
-    it('应该能使用 cx 合并多个 className', () => {
+    it('应该能使用内部 cx 合并多个 className', () => {
       const styles = createStaticStyles(({ css, cx }) => {
         const base = css`
           display: flex;
@@ -89,6 +89,72 @@ describe('createStaticStyles', () => {
       expect(styles.combined).toBeTruthy();
       // cx 返回的应该是合并后的 className 字符串
       expect(typeof styles.combined).toBe('string');
+    });
+
+    it('内部 cx 应该将多个样式合并成单个 className', () => {
+      const styles = createStaticStyles(({ css, cx }) => {
+        const text = css`
+          color: red;
+        `;
+        const secondary = css`
+          font-size: 12px;
+        `;
+        return {
+          text,
+          secondary,
+          // 合并后应该只有一个 className，而不是两个用空格分隔的
+          combined: cx(text, secondary),
+        };
+      });
+
+      // 验证原始样式是单个 className（不包含空格）
+      expect(styles.text.split(' ')).toHaveLength(1);
+      expect(styles.secondary.split(' ')).toHaveLength(1);
+
+      // cx 返回的应该是单个合并后的 className
+      const classNameParts = styles.combined.split(' ').filter(Boolean);
+      expect(classNameParts).toHaveLength(1);
+    });
+
+    it('内部 cx 应该合并三个或更多样式为单个 className', () => {
+      const styles = createStaticStyles(({ css, cx }) => {
+        const base = css`
+          display: flex;
+        `;
+        const text = css`
+          color: blue;
+        `;
+        const size = css`
+          font-size: 14px;
+        `;
+        return {
+          combined: cx(base, text, size),
+        };
+      });
+
+      const classNameParts = styles.combined.split(' ').filter(Boolean);
+      expect(classNameParts).toHaveLength(1);
+    });
+
+    it('使用外部 cx 合并静态样式应该正确合并成单个 className', () => {
+      // 先定义静态样式
+      const styles = createStaticStyles(({ css }) => ({
+        text: css`
+          color: red;
+        `,
+        secondary: css`
+          font-size: 12px;
+        `,
+      }));
+
+      // 使用从 antd-style 导出的 cx（现在使用相同的 cache）
+      const combined = cx(styles.text, styles.secondary);
+
+      // 由于现在共享相同的 cache，外部 cx 可以正确合并样式
+      const classNameParts = combined.split(' ').filter(Boolean);
+
+      // 应该合并成单个 className
+      expect(classNameParts).toHaveLength(1);
     });
   });
 
@@ -129,6 +195,29 @@ describe('createStaticStyles', () => {
 
       const spans = container.querySelectorAll('span');
       expect(spans[0].className).toBe(spans[1].className);
+    });
+
+    it('应该能在组件中使用外部 cx 合并样式', () => {
+      const styles = createStaticStyles(({ css }) => ({
+        text: css`
+          color: red;
+        `,
+        bold: css`
+          font-weight: bold;
+        `,
+      }));
+
+      const App = () => {
+        // 使用从 antd-style 导出的 cx
+        return <div className={cx(styles.text, styles.bold)}>Combined Styles</div>;
+      };
+
+      const { container } = render(<App />);
+
+      expect(container.firstChild).toHaveAttribute('class');
+      // 验证 cx 合并后只有一个 className
+      const className = (container.firstChild as HTMLElement).className;
+      expect(className.split(' ').filter(Boolean)).toHaveLength(1);
     });
   });
 

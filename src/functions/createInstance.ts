@@ -104,10 +104,11 @@ export const createInstance = <T = any>(options: CreateOptions<T>) => {
 
   const createStylish = createStylishFactory(createStyles);
 
-  // 创建静态样式实例，使用配置的 prefixCls
+  // 创建静态样式实例，使用配置的 prefixCls 和相同的 cache
   const staticStylesInstance = createStaticStylesFactory({
     prefix: internalOptions.prefixCls || 'ant',
     hashPriority: internalOptions.hashPriority,
+    cache: emotion.cache,
   });
 
   const ThemeProvider = createThemeProvider({
