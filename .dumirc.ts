@@ -28,7 +28,7 @@ const themeConfig: SiteThemeConfig = {
 export default defineConfig({
   themeConfig,
   // @ts-ignore
-  ssr: isProd ? {} : false,
+  // ssr: isProd ? {} : false,
   favicons: [
     'https://gw.alipayobjects.com/zos/hitu-asset/c88e3678-6900-4289-8538-31367c2d30f2/hitu-1609235995955-image.png',
   ],
