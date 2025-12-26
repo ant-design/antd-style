@@ -5,6 +5,9 @@ export { extractStaticStyle } from './extractStaticStyle';
 export { setupStyled } from './setupStyled';
 export { createInstance };
 
+// 静态样式
+export { createStaticStyles, cssVar, responsive } from '@/factories/createStaticStyles';
+
 const styleInstance = createInstance({ key: DEFAULT_CSS_PREFIX_KEY, speedy: false });
 
 export const {
