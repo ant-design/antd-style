@@ -46,6 +46,27 @@ describe('createStaticStyles', () => {
       expect(cssVar.colorBgContainer).toBe('var(--ant-color-bg-container)');
       expect(cssVar.borderRadius).toBe('var(--ant-border-radius)');
     });
+
+    it('cssVar 应该正确处理带数字的 token', () => {
+      // JS key 保持 camelCase（yellow1），CSS 变量名用 kebab-case（--ant-yellow-1）
+      expect(cssVar.yellow1).toBe('var(--ant-yellow-1)');
+      expect(cssVar.blue10).toBe('var(--ant-blue-10)');
+      expect(cssVar.red5).toBe('var(--ant-red-5)');
+    });
+
+    it('cssVar 的 key 应该保持 camelCase，不应该有 kebab-case 的 key', () => {
+      const keys = Object.keys(cssVar);
+
+      // 不应该有 kebab-case 的 key（包含 -）
+      const kebabKeys = keys.filter((key) => key.includes('-'));
+      expect(kebabKeys).toHaveLength(0);
+
+      // 应该有 camelCase 的 key
+      expect(keys).toContain('yellow1');
+      expect(keys).toContain('colorPrimary');
+      expect(keys).not.toContain('yellow-1');
+      expect(keys).not.toContain('color-primary');
+    });
   });
 
   describe('responsive 功能', () => {
@@ -69,6 +90,13 @@ describe('createStaticStyles', () => {
       expect(responsive.lg).toContain('@media');
       expect(responsive.xl).toContain('@media');
       expect(responsive.xxl).toContain('@media');
+    });
+
+    it('responsive 应该包含设备别名', () => {
+      expect(responsive.mobile).toBe(responsive.xs);
+      expect(responsive.tablet).toBe(responsive.md);
+      expect(responsive.laptop).toBe(responsive.lg);
+      expect(responsive.desktop).toBe(responsive.xxl);
     });
   });
 
