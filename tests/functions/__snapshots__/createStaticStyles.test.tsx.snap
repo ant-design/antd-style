@@ -1,0 +1,14 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`createStaticStyles > 快照测试 > 响应式样式快照 1`] = `
+{
+  "layout": "acss-6a6tmy",
+}
+`;
+
+exports[`createStaticStyles > 快照测试 > 基础样式快照 1`] = `
+{
+  "card": "acss-5psd9f",
+  "title": "acss-ak3l6m",
+}
+`;

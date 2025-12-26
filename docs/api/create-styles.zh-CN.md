@@ -1,15 +1,15 @@
 ---
 title: createStyles
 description: 创建具有作用域的样式
-order: 0
+order: 1
 sourceUrl: '{github}/blob/master/src/factories/createStyles/index.ts'
 group: 创建样式
 demo:
   tocDepth: 4
 ---
 
-:::success{title=默认推荐}
-这是最推荐的使用方式。书写应用样式或者覆写基础组件样式，都可以采用这种写法。
+:::success{title=推荐}
+这是推荐的使用方式（如果没有极高的性能要求）。书写应用样式或者覆写基础组件样式，都可以采用这种写法。
 :::
 
 使用 `createStyles` 可以创建具有作用域的的样式。书写能力上和 DX 基本与 CSS Modules 齐平。并在动态主题写法更方便，能力更强。createStyles 的基础使用方法详见[快速上手 - 样式创建](/zh-CN/guide/create-styles)，本节将重点介绍 createStyles 的 API。

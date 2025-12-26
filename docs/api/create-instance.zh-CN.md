@@ -47,12 +47,15 @@ export const {
   createStyles,
   createStylish,
   createGlobalStyle,
+  createStaticStyles, // 静态样式方法
 
   // **** 基础样式方法 **** //
   cx,
   css,
   keyframes,
   injectGlobal,
+  cssVar, // CSS 变量映射（使用配置的 prefixCls）
+  responsive, // 响应式断点
 
   //****  样式表管理  **** //
   styleManager,
@@ -63,6 +66,32 @@ export const {
   ThemeProvider,
 } = styleInstance;
 ```
+
+## 静态样式与 CSS 变量
+
+`createInstance` 返回的 `createStaticStyles` 和 `cssVar` 会自动使用配置的 `prefixCls`，并自动添加 `ant` 前缀作为 fallback。
+
+```ts | pure
+const { createStaticStyles, cssVar } = createInstance({
+  prefixCls: 'my-app',
+});
+
+// cssVar 会自动使用 my-app 前缀，并带有 ant fallback
+// cssVar.colorPrimary => 'var(--my-app-color-primary, var(--ant-color-primary))'
+
+const styles = createStaticStyles(({ css, cssVar }) => ({
+  container: css`
+    background: ${cssVar.colorBgContainer};
+    color: ${cssVar.colorText};
+  `,
+}));
+```
+
+<code src="../demos/api/createInstance/withStaticStyles.tsx"></code>
+
+:::warning{title=注意}
+使用自定义 `prefixCls` 时，需要确保外层的 `ConfigProvider` 配置了相同的 `prefixCls`，这样 antd 才会注入对应前缀的 CSS 变量。
+:::
 
 ## 指定 container
 

@@ -1,7 +1,7 @@
 ---
 title: createStyles
 description: Create scoped styles
-order: 0
+order: 1
 sourceUrl: '{github}/blob/master/src/factories/createStyles/index.ts'
 group: Creating Styles
 demo:
