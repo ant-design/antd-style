@@ -58,6 +58,45 @@ describe('extractStaticStyle', () => {
       );
     });
 
+    it('should be able to inject token css variables for specified appearance', () => {
+      const html = renderToString(<App />);
+      const result = extractStaticStyle(html, { injectTokenStyle: { appearance: 'dark' } });
+
+      const tokenStyle = result.find((i) => i.key === 'ant-token-dark')!;
+      expect(tokenStyle).toBeDefined();
+      expect(tokenStyle.css).toMatch(/--ant-color-bg-base:/);
+    });
+
+    it('should be able to inject minimal color token vars only(dark)', () => {
+      const html = renderToString(<App />);
+      const result = extractStaticStyle(html, {
+        injectTokenStyle: { appearance: 'dark', filter: 'color', selector: '[data-theme="dark"]' },
+      });
+
+      const tokenStyle = result.find((i) => i.key === 'ant-token-dark')!;
+      expect(tokenStyle.css).toMatchSnapshot();
+      expect(tokenStyle).toBeDefined();
+      expect(tokenStyle.css).toMatch(/--ant-color-bg-base:/);
+      // should NOT include non-color keys like boxShadow in 'color' mode
+      expect(tokenStyle.css).not.toMatch(/--ant-box-shadow:/);
+    });
+    it('should be able to inject minimal color token vars only(light)', () => {
+      const html = renderToString(<App />);
+      const result = extractStaticStyle(html, {
+        injectTokenStyle: {
+          appearance: 'light',
+          filter: 'color',
+        },
+      });
+
+      const tokenStyle = result.find((i) => i.key === 'ant-token-light')!;
+      expect(tokenStyle.css).toMatchSnapshot();
+      expect(tokenStyle).toBeDefined();
+      expect(tokenStyle.css).toMatch(/--ant-color-bg-base:/);
+      // should NOT include non-color keys like boxShadow in 'color' mode
+      expect(tokenStyle.css).not.toMatch(/--ant-box-shadow:/);
+    });
+
     // FIXME: 迁移到 vitest 后，不知道为什么 无法提取 extractStaticStyle 了
     it.skip('should return a StyleItem object with correct data for emotion', () => {
       const html = renderToString(<App />);

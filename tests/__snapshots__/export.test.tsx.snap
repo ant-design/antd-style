@@ -6,6 +6,7 @@ exports[`export > should work 1`] = `
   "setupStyled",
   "createInstance",
   "createStaticStylesFactory",
+  "getAntdToken",
   "createStyles",
   "createGlobalStyle",
   "createStylish",
