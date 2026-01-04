@@ -14,47 +14,43 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10
+      - name: Install bun
+        uses: oven-sh/setup-bun@v2
 
       - name: Setup Node.js environment
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: '24'
 
       - name: Install deps
-        run: pnpm install
+        run: bun i
 
       - name: Test
-        run: pnpm run test
+        run: bun run test
 
   release:
     needs: test
     name: Release
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10
+      - name: Install bun
+        uses: oven-sh/setup-bun@v2
 
       - name: Setup Node.js environment
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: '24'
 
       - name: Install deps
-        run: pnpm install
+        run: bun install
 
       - name: build
-        run: pnpm run build
+        run: bun run build
 
       - name: release
-        run: pnpm run release
+        run: bun run release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
