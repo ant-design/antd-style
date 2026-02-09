@@ -1,7 +1,7 @@
 import { ConfigProvider, message, Modal, notification, theme, ThemeConfig } from 'antd';
-import { memo, useEffect, useMemo, type FC } from 'react';
+import { memo, useContext, useEffect, useMemo, type FC } from 'react';
 
-import { useThemeMode } from '@/hooks';
+import { AppearanceContext } from '@/context';
 import type { ThemeProviderProps } from './type';
 
 type AntdProviderProps = Pick<
@@ -11,7 +11,8 @@ type AntdProviderProps = Pick<
 
 const AntdProvider: FC<AntdProviderProps> = memo(
   ({ children, theme: themeProp, prefixCls, getStaticInstance, staticInstanceConfig }) => {
-    const { appearance, isDarkMode } = useThemeMode();
+    const appearance = useContext(AppearanceContext);
+    const isDarkMode = appearance === 'dark';
 
     const [messageInstance, messageContextHolder] = message.useMessage(
       staticInstanceConfig?.message,

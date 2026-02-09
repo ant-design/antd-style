@@ -7,6 +7,7 @@ export { createInstance };
 
 // 静态样式工厂函数（用于创建自定义实例）
 export { createStaticStylesFactory } from '@/factories/createStaticStyles';
+export { getAntdToken } from '@/factories/createStaticStyles/cssVar';
 
 const styleInstance = createInstance({ key: DEFAULT_CSS_PREFIX_KEY, speedy: false });
 

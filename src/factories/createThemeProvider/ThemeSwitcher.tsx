@@ -1,7 +1,12 @@
 import { FC, memo, ReactNode, useLayoutEffect, useState } from 'react';
 import useMergeValue from 'use-merge-value';
 
-import { ThemeModeContext } from '@/context';
+import {
+  AppearanceContext,
+  BrowserPrefersContext,
+  ThemeActionContext,
+  ThemeModeValueContext,
+} from '@/context';
 import { BrowserPrefers, ThemeAppearance, ThemeMode, UseTheme } from '@/types';
 import { matchBrowserPrefers } from '@/utils/matchBrowserPrefers';
 import { safeStartTransition } from '@/utils/safeStartTransition';
@@ -120,29 +125,28 @@ const ThemeSwitcher: FC<ThemeSwitcherProps> = memo(
       matchBrowserPrefers('dark')?.matches ? 'dark' : 'light',
     );
 
+    const [actions] = useState(() => ({
+      setAppearance,
+      setThemeMode,
+    }));
+
     return (
-      <ThemeModeContext.Provider
-        value={{
-          themeMode,
-          setThemeMode,
-          appearance,
-          setAppearance,
-          isDarkMode: appearance === 'dark',
-          browserPrefers,
-        }}
-      >
-        {
-          // Wait until after client-side hydration to show
-          typeof window !== 'undefined' && (
-            <ThemeObserver
-              themeMode={themeMode}
-              setAppearance={setAppearance}
-              setBrowserPrefers={setBrowserPrefers}
-            />
-          )
-        }
-        {children}
-      </ThemeModeContext.Provider>
+      <ThemeModeValueContext.Provider value={themeMode}>
+        <AppearanceContext.Provider value={appearance}>
+          <BrowserPrefersContext.Provider value={browserPrefers}>
+            <ThemeActionContext.Provider value={actions}>
+              {typeof window !== 'undefined' && (
+                <ThemeObserver
+                  themeMode={themeMode}
+                  setAppearance={setAppearance}
+                  setBrowserPrefers={setBrowserPrefers}
+                />
+              )}
+              {children}
+            </ThemeActionContext.Provider>
+          </BrowserPrefersContext.Provider>
+        </AppearanceContext.Provider>
+      </ThemeModeValueContext.Provider>
     );
   },
 );
