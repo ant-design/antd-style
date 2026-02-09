@@ -1,7 +1,13 @@
-import { ReactElement, useMemo } from 'react';
+import { ReactElement, useContext, useMemo } from 'react';
 
+import {
+  AppearanceContext,
+  BrowserPrefersContext,
+  ThemeActionContext,
+  ThemeModeValueContext,
+} from '@/context';
 import { serializeCSS } from '@/core';
-import { useAntdTheme, useThemeMode } from '@/hooks';
+import { useAntdTheme } from '@/hooks';
 import { StyledThemeProvider, Theme } from '@/types';
 
 import type { ThemeProviderProps } from './type';
@@ -23,8 +29,12 @@ const TokenContainer: <T, S>(props: TokenContainerProps<T, S>) => ReactElement |
   prefixCls,
   StyledThemeProvider,
 }) => {
-  const themeState = useThemeMode();
-  const { appearance, isDarkMode } = themeState;
+  const appearance = useContext(AppearanceContext);
+  const isDarkMode = appearance === 'dark';
+  const themeMode = useContext(ThemeModeValueContext);
+  const browserPrefers = useContext(BrowserPrefersContext);
+  const { setAppearance, setThemeMode } = useContext(ThemeActionContext);
+
   const { stylish: antdStylish, ...token } = useAntdTheme();
 
   // 获取默认的自定义 token
@@ -65,13 +75,31 @@ const TokenContainer: <T, S>(props: TokenContainerProps<T, S>) => ReactElement |
     [customStylish, antdStylish],
   );
 
-  const theme: Theme = {
-    ...token,
-    ...(customToken as any),
-    stylish: stylish as any,
-    ...themeState,
-    prefixCls,
-  };
+  const theme = useMemo<Theme>(
+    () => ({
+      ...token,
+      ...(customToken as any),
+      stylish: stylish as any,
+      appearance,
+      isDarkMode,
+      themeMode,
+      setThemeMode,
+      setAppearance,
+      browserPrefers,
+      prefixCls,
+    }),
+    [
+      token,
+      customToken,
+      stylish,
+      appearance,
+      themeMode,
+      setThemeMode,
+      setAppearance,
+      browserPrefers,
+      prefixCls,
+    ],
+  );
 
   return <StyledThemeProvider theme={theme}>{children}</StyledThemeProvider>;
 };

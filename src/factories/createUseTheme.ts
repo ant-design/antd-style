@@ -1,10 +1,17 @@
 import { StyleEngine, Theme } from '@/types';
 import { Context, useContext, useMemo } from 'react';
 
+import {
+  AppearanceContext,
+  BrowserPrefersContext,
+  ThemeActionContext,
+  ThemeModeValueContext,
+} from '@/context';
 import { DEFAULT_THEME_CONTEXT } from '@/functions/setupStyled';
 import { useAntdTheme } from '@/hooks/useAntdTheme';
-import { useThemeMode } from '@/hooks/useThemeMode';
 import { ConfigProvider } from 'antd';
+
+const EMPTY_THEME = {} as const;
 
 interface CreateUseThemeOptions {
   StyleEngineContext: Context<StyleEngine>;
@@ -12,34 +19,55 @@ interface CreateUseThemeOptions {
 
 export const createUseTheme = (options: CreateUseThemeOptions) => (): Theme => {
   const { StyleEngineContext } = options;
-  const {
-    StyledThemeContext,
-    CustomThemeContext,
-    prefixCls: outPrefixCls,
-  } = useContext(StyleEngineContext);
+  const styleEngine = useContext(StyleEngineContext);
+  const { StyledThemeContext, CustomThemeContext, prefixCls: outPrefixCls } = styleEngine;
 
   const antdTheme = useAntdTheme();
-  const themeState = useThemeMode();
+
+  const appearance = useContext(AppearanceContext);
+  const themeMode = useContext(ThemeModeValueContext);
+  const browserPrefers = useContext(BrowserPrefersContext);
+  const actions = useContext(ThemeActionContext);
+  const { setAppearance, setThemeMode } = actions;
 
   const defaultCustomTheme = useContext(CustomThemeContext);
-  const styledTheme = useContext(StyledThemeContext ?? DEFAULT_THEME_CONTEXT) || {};
+  const styledTheme = useContext(StyledThemeContext ?? DEFAULT_THEME_CONTEXT) || EMPTY_THEME;
 
-  const { iconPrefixCls, getPrefixCls } = useContext(ConfigProvider.ConfigContext);
+  const configCtx = useContext(ConfigProvider.ConfigContext);
+  const { iconPrefixCls, getPrefixCls } = configCtx;
 
   const antdPrefixCls = getPrefixCls();
-  // 只有当用户在 createInstance 中传入与 ant 不一样的 prefixCls 时，才会使用用户的 prefixCls
-  // 否则其他情况下都优先使用 antd 的 prefixCls
   const prefixCls = outPrefixCls && outPrefixCls !== 'ant' ? outPrefixCls : antdPrefixCls;
 
   const initTheme = useMemo<Theme>(
     () => ({
       ...antdTheme,
-      ...themeState,
+      appearance,
+      isDarkMode: appearance === 'dark',
+      themeMode,
+      setThemeMode,
+      setAppearance,
+      browserPrefers,
       ...defaultCustomTheme,
       prefixCls,
       iconPrefixCls,
     }),
-    [antdTheme, themeState, defaultCustomTheme, prefixCls, iconPrefixCls],
+    [
+      antdTheme,
+      appearance,
+      themeMode,
+      browserPrefers,
+      setThemeMode,
+      setAppearance,
+      defaultCustomTheme,
+      prefixCls,
+      iconPrefixCls,
+    ],
+  );
+
+  const styledThemeResult = useMemo<Theme>(
+    () => ({ ...styledTheme, prefixCls, iconPrefixCls } as Theme),
+    [styledTheme, prefixCls, iconPrefixCls],
   );
 
   //  如果是个空值，说明没有套 Provider，返回 antdTheme 的默认值
@@ -47,5 +75,5 @@ export const createUseTheme = (options: CreateUseThemeOptions) => (): Theme => {
     return initTheme;
   }
 
-  return { ...styledTheme, prefixCls, iconPrefixCls } as Theme;
+  return styledThemeResult;
 };

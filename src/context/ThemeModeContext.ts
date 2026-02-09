@@ -1,13 +1,28 @@
 import { createContext } from 'react';
 
-import { ThemeContextState } from '@/types';
+import { BrowserPrefers, ThemeAppearance, ThemeMode } from '@/types';
 import { matchBrowserPrefers } from '@/utils/matchBrowserPrefers';
 
-export const ThemeModeContext = createContext<ThemeContextState>({
-  appearance: 'light',
-  setAppearance: () => {},
-  isDarkMode: false,
-  themeMode: 'light',
-  setThemeMode: () => {},
-  browserPrefers: matchBrowserPrefers('dark')?.matches ? 'dark' : 'light',
+// ---- Fine-grained State Contexts (primitives, reference-stable when value unchanged) ----
+
+export const AppearanceContext = createContext<ThemeAppearance>('light');
+
+export const ThemeModeValueContext = createContext<ThemeMode>('light');
+
+export const BrowserPrefersContext = createContext<BrowserPrefers>(
+  matchBrowserPrefers('dark')?.matches ? 'dark' : 'light',
+);
+
+// ---- Action Context (function refs, stable across renders) ----
+
+export interface ThemeActions {
+  setAppearance: (appearance: ThemeAppearance) => void;
+  setThemeMode: (themeMode: ThemeMode) => void;
+}
+
+const noop = () => {};
+
+export const ThemeActionContext = createContext<ThemeActions>({
+  setAppearance: noop,
+  setThemeMode: noop,
 });
