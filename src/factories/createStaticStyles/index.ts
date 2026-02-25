@@ -1,11 +1,17 @@
-import { createCSS, createEmotion, DEFAULT_CSS_PREFIX_KEY } from '@/core';
+import {
+  createCSS,
+  createEmotion,
+  DEFAULT_CSS_PREFIX_KEY,
+  getExtractedStyles,
+  getStyleRuntimeMode,
+} from '@/core';
 import type { EmotionCache } from '@emotion/css/create-instance';
 
 import type { BaseReturnType, HashPriority } from '@/types';
 
 import { cssVar, CSSVarMap, generateCSSVarMap } from './cssVar';
 import { responsive, StaticResponsiveMap } from './responsive';
-import type { StaticStylesInput, StaticStyleUtils } from './types';
+import type { StaticStylesInput, StaticStylesOptions, StaticStyleUtils } from './types';
 
 /**
  * createStaticStyles 的配置选项
@@ -32,7 +38,10 @@ export interface CreateStaticStylesOptions {
  * 工厂函数返回类型
  */
 export interface StaticStylesInstance {
-  createStaticStyles: <T extends BaseReturnType>(stylesFn: StaticStylesInput<T>) => T;
+  createStaticStyles: <T extends BaseReturnType>(
+    stylesFn: StaticStylesInput<T>,
+    options?: StaticStylesOptions,
+  ) => T;
   cssVar: CSSVarMap;
   responsive: StaticResponsiveMap;
 }
@@ -74,7 +83,17 @@ export const createStaticStylesFactory = (
   // 创建 css 和 cx 函数
   const { css, cx } = createCSS(emotionCache, { hashPriority });
 
-  const createStaticStyles = <T extends BaseReturnType>(stylesFn: StaticStylesInput<T>): T => {
+  const createStaticStyles = <T extends BaseReturnType>(
+    stylesFn: StaticStylesInput<T>,
+    options?: StaticStylesOptions,
+  ): T => {
+    // Extract mode: consume pre-compiled className map first.
+    // If no extracted payload found, gracefully fall back to runtime path.
+    if (getStyleRuntimeMode() === 'extract' && options?.styleId) {
+      const extracted = getExtractedStyles<T>(options.styleId);
+      if (extracted) return extracted;
+    }
+
     const utils: StaticStyleUtils = {
       css,
       cx,
@@ -136,4 +155,10 @@ export const createStaticStyles = defaultInstance.createStaticStyles;
 
 // 导出类型和工具
 export { cssVar, generateCSSVarMap, responsive };
-export type { CSSVarMap, StaticResponsiveMap, StaticStylesInput, StaticStyleUtils };
+export type {
+  CSSVarMap,
+  StaticResponsiveMap,
+  StaticStylesInput,
+  StaticStylesOptions,
+  StaticStyleUtils,
+};
