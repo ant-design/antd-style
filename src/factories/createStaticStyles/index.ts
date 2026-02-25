@@ -101,7 +101,43 @@ export const createStaticStylesFactory = (
       responsive,
     };
 
-    return stylesFn(utils);
+    const res = stylesFn(utils);
+
+    // Experimental runtime collector bridge:
+    // when enabled, collect generated class map + css text into extract collector.
+    if (options?.styleId && process.env.ANTD_STYLE_EXTRACT_COLLECT === '1') {
+      try {
+        // lazy import to avoid hard coupling and potential circular init
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
+        const { pushExtractedChunk } = require('@/extract/collector') as typeof import('@/extract/collector');
+
+        const classNames = new Set<string>();
+        for (const value of Object.values(res as any)) {
+          if (typeof value !== 'string') continue;
+          for (const cls of value.split(/\s+/).filter(Boolean)) classNames.add(cls);
+        }
+
+        const cssParts: string[] = [];
+        for (const cls of classNames) {
+          const hash = cls.startsWith(`${emotionCache.key}-`)
+            ? cls.slice(emotionCache.key.length + 1)
+            : undefined;
+          if (!hash) continue;
+          const inserted = (emotionCache.inserted as any)?.[hash];
+          if (typeof inserted === 'string') cssParts.push(inserted);
+        }
+
+        pushExtractedChunk({
+          styleId: options.styleId,
+          styles: res,
+          cssText: cssParts.join('\n'),
+        });
+      } catch {
+        // ignore collector errors in runtime path
+      }
+    }
+
+    return res;
   };
 
   return {

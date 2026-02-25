@@ -8,6 +8,7 @@ This folder contains the building blocks for zero-runtime extraction.
 - Manifest hydration API (`hydrateExtractedStyles`)
 - Experimental Babel pass to inject stable `styleId` for `createStaticStyles`
 - Experimental webpack emit plugin scaffold (`AntdStyleExtractWebpackPlugin`)
+- Experimental runtime collector bridge (`ANTD_STYLE_EXTRACT_COLLECT=1`)
 
 ## Next
 
