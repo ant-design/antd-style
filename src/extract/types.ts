@@ -24,3 +24,14 @@ export interface ExtractStyleManifest {
   version: 1;
   entries: ExtractStyleEntry[];
 }
+
+export interface AntdStyleExtractWebpackPluginOptions {
+  /** Output manifest file name */
+  manifestFile?: string;
+  /** Output css file name (placeholder scaffold) */
+  cssFile?: string;
+  /**
+   * Extracted entries provided by external transform step.
+   */
+  getEntries?: () => ExtractStyleManifest['entries'];
+}

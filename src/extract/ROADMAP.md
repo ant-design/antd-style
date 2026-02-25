@@ -7,6 +7,7 @@ This folder contains the building blocks for zero-runtime extraction.
 - Runtime extract-mode registry (`core/styleEngine.ts`)
 - Manifest hydration API (`hydrateExtractedStyles`)
 - Experimental Babel pass to inject stable `styleId` for `createStaticStyles`
+- Experimental webpack emit plugin scaffold (`AntdStyleExtractWebpackPlugin`)
 
 ## Next
 
