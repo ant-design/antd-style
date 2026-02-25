@@ -1,4 +1,5 @@
 export type { CacheManager } from './core/CacheManager';
+export * from './extract';
 export * from './factories/createStaticStyles/types';
 export * from './factories/createStyles/types';
 export * from './factories/createThemeProvider/type';
