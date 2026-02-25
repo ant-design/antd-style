@@ -1,5 +1,6 @@
 import type { Compiler } from 'webpack';
 
+import { pullExtractedChunks } from './collector';
 import type {
   AntdStyleExtractWebpackPluginOptions,
   ExtractStyleManifest,
@@ -42,7 +43,13 @@ export class AntdStyleExtractWebpackPlugin {
           stage: Compilation.PROCESS_ASSETS_STAGE_ADDITIONS,
         },
         () => {
-          const entries = this.options.getEntries?.() || [];
+          const collected = pullExtractedChunks();
+          const entries =
+            this.options.getEntries?.() ||
+            collected.map(({ styleId, styles }) => ({
+              styleId,
+              styles,
+            }));
 
           const manifest: ExtractStyleManifest = {
             version: 1,
@@ -54,10 +61,11 @@ export class AntdStyleExtractWebpackPlugin {
             new sources.RawSource(JSON.stringify(manifest, null, 2)),
           );
 
-          // Placeholder stylesheet. Real css extraction lands in next phase.
+          const cssText = collected.map((c) => c.cssText).filter(Boolean).join('\n');
+
           compilation.emitAsset(
             this.options.cssFile,
-            new sources.RawSource('/* antd-style extract css (placeholder) */\n'),
+            new sources.RawSource(cssText || '/* antd-style extract css (empty) */\n'),
           );
         },
       );
