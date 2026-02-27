@@ -1,5 +1,3 @@
-import type { Compiler } from 'webpack';
-
 import { babelInjectStyleId, resetStaticCollectState } from './babelInjectStyleId';
 import { pullExtractedChunks } from './collector';
 import { clearCompiledExtractChunks, pullCompiledExtractChunks } from './compiledCollector';
@@ -44,7 +42,7 @@ export class AntdStyleExtractWebpackPlugin {
     };
   }
 
-  apply(compiler: Compiler) {
+  apply(compiler: any) {
     const pluginName = 'AntdStyleExtractWebpackPlugin';
 
     compiler.hooks.thisCompilation.tap(pluginName, (compilation: any) => {
