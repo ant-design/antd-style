@@ -84,7 +84,10 @@ export const extractStaticStyle = (html?: string, options?: ExtractStyleOptions)
 
   // copy from emotion ssr
   // https://github.com/vercel/next.js/blob/deprecated-main/examples/with-emotion-vanilla/pages/_document.js
-  const styles = global.__ANTD_STYLE_CACHE_MANAGER_FOR_SSR__.getCacheList().map((cache) => {
+  const cacheManager = (globalThis as any).__ANTD_STYLE_CACHE_MANAGER_FOR_SSR__;
+  const cacheList = cacheManager?.getCacheList?.() || [];
+
+  const styles = cacheList.map((cache: EmotionCache) => {
     const extractHtml = createExtractCritical(cache);
 
     const result: { ids: string[]; css: string } = !html

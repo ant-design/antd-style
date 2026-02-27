@@ -1,8 +1,6 @@
-import type { BaseReturnType } from '@/types';
+import type { ExtractStyleChunk } from './types';
 
-interface ExtractedChunk {
-  styleId: string;
-  styles: BaseReturnType;
+interface ExtractedChunk extends ExtractStyleChunk {
   cssText: string;
 }
 

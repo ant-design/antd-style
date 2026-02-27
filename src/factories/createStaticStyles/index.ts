@@ -109,7 +109,8 @@ export const createStaticStylesFactory = (
       try {
         // lazy import to avoid hard coupling and potential circular init
         // eslint-disable-next-line @typescript-eslint/no-var-requires
-        const { pushExtractedChunk } = require('@/extract/collector') as typeof import('@/extract/collector');
+        const { pushExtractedChunk } =
+          require('@/extract/collector') as typeof import('@/extract/collector');
 
         const classNames = new Set<string>();
         for (const value of Object.values(res as any)) {
@@ -118,14 +119,14 @@ export const createStaticStylesFactory = (
         }
 
         const cssParts: string[] = [];
-        for (const cls of classNames) {
+        classNames.forEach((cls) => {
           const hash = cls.startsWith(`${emotionCache.key}-`)
             ? cls.slice(emotionCache.key.length + 1)
             : undefined;
-          if (!hash) continue;
+          if (!hash) return;
           const inserted = (emotionCache.inserted as any)?.[hash];
           if (typeof inserted === 'string') cssParts.push(inserted);
-        }
+        });
 
         pushExtractedChunk({
           styleId: options.styleId,

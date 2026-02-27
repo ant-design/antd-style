@@ -53,7 +53,8 @@
     "test": "vitest",
     "test:coverage": "vitest run --coverage",
     "test:update": "vitest -u",
-    "type-check": "tsc -p tsconfig-check.json"
+    "type-check": "tsc -p tsconfig-check.json",
+    "verify:extract-prototype": "node scripts/verify-extract-prototype.cjs"
   },
   "lint-staged": {
     "*.{md,json}": [

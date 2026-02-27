@@ -26,5 +26,10 @@ jobs:
       - name: Test and coverage
         run: pnpm run test:coverage
 
+      - name: Build and verify extract prototype
+        run: |
+          pnpm run build
+          pnpm run verify:extract-prototype
+
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
