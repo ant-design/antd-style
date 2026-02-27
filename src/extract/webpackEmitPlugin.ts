@@ -10,6 +10,29 @@ import type {
 
 const DEFAULT_SCRIPT_PATTERN = /\.[cm]?[jt]sx?$/;
 
+const loadBabelCore = () => {
+  try {
+    // Prefer eval-based require in CommonJS runtime.
+    // Avoid static require() so client bundlers won't pull @babel/core eagerly.
+    // eslint-disable-next-line no-eval
+    const req = eval('require');
+    if (typeof req === 'function') return req('@babel/core');
+  } catch {
+    // ignore
+  }
+
+  try {
+    // Fallback for environments where eval('require') is unavailable.
+    // eslint-disable-next-line no-new-func
+    const dynamicRequire = Function('try { return require; } catch { return null; }')();
+    if (typeof dynamicRequire === 'function') return dynamicRequire('@babel/core');
+  } catch {
+    // ignore
+  }
+
+  return undefined;
+};
+
 /**
  * Experimental webpack plugin for zero-runtime pipeline.
  *
@@ -91,13 +114,8 @@ export class AntdStyleExtractWebpackPlugin {
   }
 
   private collectStaticChunksFromCompilation(compilation: any) {
-    let babel: any;
-    try {
-      // eslint-disable-next-line @typescript-eslint/no-var-requires
-      babel = require('@babel/core');
-    } catch {
-      return;
-    }
+    const babel = loadBabelCore();
+    if (!babel) return;
 
     clearCompiledExtractChunks();
     resetStaticCollectState();

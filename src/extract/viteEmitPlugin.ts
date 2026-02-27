@@ -66,6 +66,29 @@ const resolveChunks = (
   return [];
 };
 
+const loadBabelCore = () => {
+  try {
+    // Prefer eval-based require in CommonJS runtime.
+    // Avoid static require() so client bundlers won't pull @babel/core eagerly.
+    // eslint-disable-next-line no-eval
+    const req = eval('require');
+    if (typeof req === 'function') return req('@babel/core');
+  } catch {
+    // ignore
+  }
+
+  try {
+    // Fallback for environments where eval('require') is unavailable.
+    // eslint-disable-next-line no-new-func
+    const dynamicRequire = Function('try { return require; } catch { return null; }')();
+    if (typeof dynamicRequire === 'function') return dynamicRequire('@babel/core');
+  } catch {
+    // ignore
+  }
+
+  return undefined;
+};
+
 /**
  * Experimental Vite/Rollup plugin for zero-runtime extraction.
  *
@@ -98,13 +121,8 @@ export const AntdStyleExtractVitePlugin = (
       if (!resolved.experimentalStaticCollect) return null;
       if (!shouldCollect(id, resolved.staticCollect)) return null;
 
-      let babel: any;
-      try {
-        // eslint-disable-next-line @typescript-eslint/no-var-requires
-        babel = require('@babel/core');
-      } catch {
-        return null;
-      }
+      const babel = loadBabelCore();
+      if (!babel) return null;
 
       try {
         const result = babel.transformSync(code, {
