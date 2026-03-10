@@ -8,8 +8,10 @@ This folder contains the building blocks for zero-runtime extraction.
 - Manifest hydration API (`hydrateExtractedStyles`)
 - Experimental Babel pass to inject stable `styleId` for `createStaticStyles`
   - supports optional `salt` (or `ANTD_STYLE_EXTRACT_SALT`) to avoid cross-project collisions
-  - supports strict static collection mode (`collectStatic`) for template-literal `css` rules
-  - supports limited interpolation static evaluation for `cssVar.xxx` expressions
+  - supports best-effort static collection mode (`collectStatic`) for object and atom returns
+  - supports static interpolation for `cssVar.xxx`, `responsive.xxx`, local constants, and imported values via resolver
+  - supports `cx(...)` composition and collected `keyframes`
+  - can optionally prune runtime style factories with `pruneRuntimeStyles`
 - Extract asset assembly core (`buildExtractAssets`) for manifest/css generation
 - Experimental webpack emit plugin scaffold (`AntdStyleExtractWebpackPlugin`)
   - supports compilation static collect mode (`experimentalStaticCollect`)

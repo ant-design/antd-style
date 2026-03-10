@@ -160,6 +160,8 @@ export class AntdStyleExtractWebpackPlugin {
                   cssVarPrefix: this.options.staticCollect?.cssVarPrefix,
                   rootDir: this.options.staticCollect?.rootDir,
                   salt: this.options.staticCollect?.salt,
+                  pruneRuntimeStyles: this.options.staticCollect?.pruneRuntimeStyles === true,
+                  resolveImportedValue: this.options.staticCollect?.resolveImportedValue,
                 },
               ],
             ],

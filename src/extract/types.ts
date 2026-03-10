@@ -68,6 +68,14 @@ export interface StaticCollectRule {
   exclude?: RegExp | ((resourcePath: string) => boolean);
 }
 
+export interface StaticCollectImportMeta {
+  imported: string;
+  local: string;
+  source: string;
+  type: 'default' | 'named' | 'namespace';
+  property?: string;
+}
+
 export interface StaticCollectOptions extends StaticCollectRule {
   emotionKey?: string;
   /**
@@ -75,6 +83,15 @@ export interface StaticCollectOptions extends StaticCollectRule {
    * @default 'ant'
    */
   cssVarPrefix?: string;
+  /**
+   * Replace collected createStaticStyles runtime function body with pre-resolved class map.
+   * @default false
+   */
+  pruneRuntimeStyles?: boolean;
+  /**
+   * Optional resolver for imported values used in static expression evaluation.
+   */
+  resolveImportedValue?: (meta: StaticCollectImportMeta) => string | number | boolean | undefined;
   rootDir?: string;
   salt?: string;
 }

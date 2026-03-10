@@ -149,6 +149,8 @@ export const AntdStyleExtractVitePlugin = (
                 cssVarPrefix: resolved.staticCollect?.cssVarPrefix,
                 rootDir: resolved.staticCollect?.rootDir,
                 salt: resolved.staticCollect?.salt,
+                pruneRuntimeStyles: resolved.staticCollect?.pruneRuntimeStyles === true,
+                resolveImportedValue: resolved.staticCollect?.resolveImportedValue,
               },
             ],
           ],

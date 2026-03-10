@@ -68,15 +68,20 @@ function verifyBabelStaticCollection() {
   m.resetStaticCollectState();
 
   const source = `
-    import { createStaticStyles } from 'antd-style';
+    import { createStaticStyles, cssVar, responsive } from 'antd-style';
 
-    const styles = createStaticStyles(({ css, cssVar }) => ({
-      a: css\`color: red;\`,
-      b: css\`margin: 0; &:hover { margin: 1px; }\`,
-      c: css\`border-color: \${cssVar.colorText};\`,
+    const prefixCls = 'ant';
+    const space = 4;
+
+    const styles = createStaticStyles(({ css, cx }) => ({
+      base: css\`color: \${cssVar.colorText};\`,
+      media: css\`\${responsive.sm} { padding: \${space * 2}px; }\`,
+      mixed: cx('helper', css\`.\${prefixCls}-x { margin: \${space + 1}px; }\`),
     }));
 
-    export { styles };
+    const atom = createStaticStyles(({ css }) => css\`margin: \${space + 3}px;\`);
+
+    export { styles, atom };
   `;
 
   babel.transformSync(source, {
@@ -88,14 +93,25 @@ function verifyBabelStaticCollection() {
 
   const compiledChunks = m.pullCompiledExtractChunks();
 
-  assert.equal(compiledChunks.length, 1, 'babel static collection should push one compiled chunk');
-  assert.ok(compiledChunks[0].styleId.startsWith('as-'));
-  assert.deepEqual(Object.keys(compiledChunks[0].styles), ['a', 'b', 'c']);
-  assert.ok(compiledChunks[0].cssText.includes('.acss-'));
-  assert.ok(
-    compiledChunks[0].cssText.includes('var(--ant-color-text)'),
-    'babel static collection should resolve cssVar interpolation',
-  );
+  assert.equal(compiledChunks.length, 2, 'babel static collection should push two compiled chunks');
+
+  const objectChunk = compiledChunks.find((chunk) => chunk.styles && typeof chunk.styles === 'object');
+  const atomChunk = compiledChunks.find((chunk) => typeof chunk.styles === 'string');
+
+  assert.ok(objectChunk, 'object-style chunk should exist');
+  assert.ok(atomChunk, 'atom-style chunk should exist');
+
+  assert.ok(objectChunk.styleId.startsWith('as-'));
+  assert.deepEqual(Object.keys(objectChunk.styles), ['base', 'media', 'mixed']);
+  assert.ok(objectChunk.styles.mixed.includes('helper'));
+  assert.ok(objectChunk.cssText.includes('.acss-'));
+  assert.ok(objectChunk.cssText.includes('var(--ant-color-text)'));
+  assert.ok(objectChunk.cssText.includes('@media (max-width: 575.98px)'));
+  assert.ok(objectChunk.cssText.includes('.ant-x'));
+
+  assert.ok(atomChunk.styleId.startsWith('as-'));
+  assert.ok(typeof atomChunk.styles === 'string' && atomChunk.styles.includes('acss-'));
+  assert.ok(atomChunk.cssText.includes('margin:7px'));
 
   console.log('✅ babel static collection verified');
 }
@@ -286,7 +302,11 @@ async function runWebpackBuild(webpack, config) {
     });
   });
 
-  await new Promise((resolve) => compiler.close(() => resolve()));
+  await new Promise((resolve) => {
+    compiler.close(() => {
+      resolve();
+    });
+  });
 
   return buildDir;
 }
