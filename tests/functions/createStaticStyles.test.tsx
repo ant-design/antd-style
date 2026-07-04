@@ -1,5 +1,12 @@
 import { render } from '@testing-library/react';
-import { createStaticStyles, createStaticStylesFactory, cssVar, cx, responsive } from 'antd-style';
+import {
+  createStaticStyles,
+  createStaticStylesFactory,
+  cssVar,
+  cx,
+  responsive,
+  staticStylesCache,
+} from 'antd-style';
 
 describe('createStaticStyles', () => {
   describe('基础功能', () => {
@@ -316,6 +323,26 @@ describe('createStaticStyles', () => {
 
       // ant 前缀不需要 fallback
       expect(cssVar.colorPrimary).toBe('var(--ant-color-primary)');
+    });
+  });
+
+  describe('staticStylesCache', () => {
+    it('未显式传入 cache 的工厂实例，样式应记录在 staticStylesCache 中', () => {
+      const { createStaticStyles } = createStaticStylesFactory({ prefix: 'cache-probe' });
+
+      const styles = createStaticStyles(({ css }) => ({
+        probe: css`
+          outline-offset: 7px;
+        `,
+      }));
+
+      // className 形如 `${cache.key}-${hash}`，剥掉 key 前缀得到 hash
+      const hash = styles.probe.slice(staticStylesCache.key.length + 1);
+
+      // 构建工具与 SSR 抽取依赖该 cache 收集工厂实例的样式
+      expect(styles.probe.startsWith(`${staticStylesCache.key}-`)).toBe(true);
+      expect(staticStylesCache.inserted[hash]).toBeDefined();
+      expect(staticStylesCache.registered[styles.probe]).toContain('outline-offset: 7px');
     });
   });
 });

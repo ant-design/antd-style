@@ -44,6 +44,15 @@ const defaultEmotion = createEmotion({
 });
 
 /**
+ * createStaticStylesFactory 默认实例使用的 emotion cache
+ *
+ * 供构建工具（如 vite-plugin-antd-style 静态编译插件）与 SSR 样式抽取读取：
+ * 未显式传入 cache 的工厂实例产生的样式记录在这里，而非全局 CacheManager 中，
+ * 此前对外完全不可达。
+ */
+export const staticStylesCache = defaultEmotion.cache;
+
+/**
  * 创建 createStaticStyles 工厂函数
  *
  * 用于创建带有自定义 prefix 的 createStaticStyles 实例

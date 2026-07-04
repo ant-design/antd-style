@@ -16,6 +16,7 @@ describe('useResponsive', () => {
         "xl": false,
         "xs": false,
         "xxl": false,
+        "xxxl": false,
       }
     `);
   });
