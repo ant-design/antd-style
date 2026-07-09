@@ -1,6 +1,7 @@
 import { SerializedStyles } from './css';
 
 export type Breakpoint =
+  | 'xxxl'
   | 'xxl'
   | 'xl'
   | 'lg'

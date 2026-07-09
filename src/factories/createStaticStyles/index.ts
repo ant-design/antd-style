@@ -24,8 +24,22 @@ export interface CreateStaticStylesOptions {
   /**
    * 自定义 emotion cache，用于与其他样式共享同一个 cache
    * 如果不提供，将使用默认的全局 cache
+   *
+   * 若提供了 cache，`speedy` 选项会被忽略（speedy 由该 cache 自身决定）
    */
   cache?: EmotionCache;
+  /**
+   * 是否开启 emotion 急速模式（speedy mode）
+   *
+   * 开启后 emotion 使用 `CSSStyleSheet.insertRule()` 注入样式（一个 <style>
+   * 标签承载多达 65000 条规则），相较默认逐条 textContent 模式可显著减少
+   * DOM 操作开销。但会牺牲 devtools 中实时编辑样式与某些 SSR 抽取场景的能力。
+   *
+   * 仅当未提供 `cache` 时生效。
+   *
+   * @default false
+   */
+  speedy?: boolean;
 }
 
 /**
@@ -42,6 +56,10 @@ const defaultEmotion = createEmotion({
   key: DEFAULT_CSS_PREFIX_KEY,
   speedy: false,
 });
+
+// 单例缓存 speedy=true 时的 emotion 实例，避免多次调用 factory 时重复创建
+// 同 key emotion 实例（emotion 会发出 multi-instance 警告）
+let speedyEmotion: ReturnType<typeof createEmotion> | undefined;
 
 /**
  * createStaticStylesFactory 默认实例使用的 emotion cache
@@ -72,13 +90,26 @@ export const staticStylesCache = defaultEmotion.cache;
 export const createStaticStylesFactory = (
   options: CreateStaticStylesOptions = {},
 ): StaticStylesInstance => {
-  const { prefix = 'ant', hashPriority = 'high', cache } = options;
+  const { prefix = 'ant', hashPriority = 'high', cache, speedy = false } = options;
 
   // 根据 prefix 生成 cssVar
   const customCssVar = generateCSSVarMap(prefix);
 
-  // 使用提供的 cache 或默认的全局 cache
-  const emotionCache = cache ?? defaultEmotion.cache;
+  // 决定使用的 emotion cache：
+  // 1. 用户显式提供则使用之；
+  // 2. speedy=true 时使用单例 speedyEmotion.cache（首次惰性创建）；
+  // 3. 否则回退到默认的全局 cache（speedy=false）。
+  let emotionCache: EmotionCache;
+  if (cache) {
+    emotionCache = cache;
+  } else if (speedy) {
+    if (!speedyEmotion) {
+      speedyEmotion = createEmotion({ key: DEFAULT_CSS_PREFIX_KEY, speedy: true });
+    }
+    emotionCache = speedyEmotion.cache;
+  } else {
+    emotionCache = defaultEmotion.cache;
+  }
 
   // 创建 css 和 cx 函数
   const { css, cx } = createCSS(emotionCache, { hashPriority });

@@ -324,6 +324,71 @@ describe('createStaticStyles', () => {
       // ant 前缀不需要 fallback
       expect(cssVar.colorPrimary).toBe('var(--ant-color-primary)');
     });
+
+    describe('speedy 选项', () => {
+      it('未传 speedy 时，应使用 speedy=false 的默认 cache', () => {
+        // 不传 speedy，行为与原先保持一致
+        const { createStaticStyles } = createStaticStylesFactory();
+
+        const styles = createStaticStyles(({ css }) => ({
+          box: css`
+            color: red;
+          `,
+        }));
+
+        expect(typeof styles.box).toBe('string');
+        expect(styles.box.length).toBeGreaterThan(0);
+      });
+
+      it('speedy=true 时应正常生成样式', () => {
+        const { createStaticStyles, cssVar } = createStaticStylesFactory({ speedy: true });
+
+        const styles = createStaticStyles(({ css }) => ({
+          box: css`
+            background: ${cssVar.colorBgContainer};
+            color: red;
+          `,
+        }));
+
+        expect(typeof styles.box).toBe('string');
+        expect(styles.box.length).toBeGreaterThan(0);
+      });
+
+      it('speedy=true 多次调用应复用同一个 emotion 单例（不应报 multi-instance 警告）', () => {
+        const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+        createStaticStylesFactory({ speedy: true });
+        createStaticStylesFactory({ speedy: true });
+        createStaticStylesFactory({ speedy: true });
+
+        // emotion 多实例警告会通过 console.error 触发
+        const multiInstanceWarning = errorSpy.mock.calls.find((args) =>
+          String(args[0] ?? '').includes('multiple instances of Emotion'),
+        );
+        expect(multiInstanceWarning).toBeUndefined();
+
+        errorSpy.mockRestore();
+      });
+
+      it('speedy=true 与 speedy=false 实例可同时存在并各自生成样式', () => {
+        const { createStaticStyles: a } = createStaticStylesFactory({ speedy: true });
+        const { createStaticStyles: b } = createStaticStylesFactory({ speedy: false });
+
+        const styleA = a(({ css }) => ({
+          x: css`
+            color: blue;
+          `,
+        }));
+        const styleB = b(({ css }) => ({
+          x: css`
+            color: green;
+          `,
+        }));
+
+        expect(typeof styleA.x).toBe('string');
+        expect(typeof styleB.x).toBe('string');
+      });
+    });
   });
 
   describe('staticStylesCache', () => {
