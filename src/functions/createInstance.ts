@@ -20,8 +20,8 @@ declare global {
 }
 const cacheManager = new CacheManager();
 
-if (typeof global !== 'undefined') {
-  global.__ANTD_STYLE_CACHE_MANAGER_FOR_SSR__ = cacheManager;
+if (typeof globalThis !== 'undefined') {
+  (globalThis as any).__ANTD_STYLE_CACHE_MANAGER_FOR_SSR__ = cacheManager;
 }
 
 export interface CreateOptions<T> {

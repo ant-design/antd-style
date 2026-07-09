@@ -29,3 +29,12 @@ export interface StaticStyleUtils {
  * createStaticStyles 的输入函数类型
  */
 export type StaticStylesInput<T extends BaseReturnType> = (utils: StaticStyleUtils) => T;
+
+/**
+ * Internal options for createStaticStyles.
+ *
+ * `styleId` is reserved for compile-time extractor to inject stable ids.
+ */
+export interface StaticStylesOptions {
+  styleId?: string;
+}
