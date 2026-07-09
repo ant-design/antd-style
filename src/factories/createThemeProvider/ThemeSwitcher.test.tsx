@@ -1,16 +1,15 @@
 import { fireEvent, render } from '@testing-library/react';
 import { vi } from 'vitest';
 
-import { ThemeModeContext } from '@/context';
+import {
+  AppearanceContext,
+  BrowserPrefersContext,
+  ThemeActionContext,
+  ThemeModeValueContext,
+} from '@/context';
 import { useTheme } from '@/functions';
 import { useThemeMode } from '@/hooks';
-import { ThemeContextState } from '@/types';
 import ThemeSwitcher, { ThemeSwitcherProps } from './ThemeSwitcher';
-
-const mockUseTheme = {
-  appearance: 'light',
-  themeMode: 'light',
-} as ThemeContextState;
 
 const MockedChild = () => {
   const theme = useTheme();
@@ -36,12 +35,20 @@ const MockedChild = () => {
   );
 };
 
+const noop = () => {};
+
 const Component = (props: Partial<ThemeSwitcherProps>) => (
-  <ThemeModeContext.Provider value={mockUseTheme}>
-    <ThemeSwitcher {...props} useTheme={useTheme}>
-      <MockedChild />
-    </ThemeSwitcher>
-  </ThemeModeContext.Provider>
+  <ThemeModeValueContext.Provider value="light">
+    <AppearanceContext.Provider value="light">
+      <BrowserPrefersContext.Provider value="light">
+        <ThemeActionContext.Provider value={{ setThemeMode: noop, setAppearance: noop }}>
+          <ThemeSwitcher {...props} useTheme={useTheme}>
+            <MockedChild />
+          </ThemeSwitcher>
+        </ThemeActionContext.Provider>
+      </BrowserPrefersContext.Provider>
+    </AppearanceContext.Provider>
+  </ThemeModeValueContext.Provider>
 );
 
 describe('<ThemeSwitcher />', () => {

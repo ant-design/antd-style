@@ -1,4 +1,4 @@
-import { Context, FC, memo, useContext } from 'react';
+import { Context, FC, memo, useContext, useMemo } from 'react';
 
 import { DEFAULT_THEME_CONTEXT, DEFAULT_THEME_PROVIDER } from '@/functions/setupStyled';
 import { StyleEngine, StyledConfig, UseTheme } from '@/types';
@@ -77,14 +77,20 @@ export const createThemeProvider = (
 
       const prefixCls = outPrefixCls || defaultPrefixCls;
 
+      const resolvedStyledThemeContext =
+        styled?.ThemeContext || StyledThemeContext || DEFAULT_THEME_CONTEXT;
+
+      const styleEngineValue = useMemo(
+        () => ({
+          prefixCls,
+          StyledThemeContext: resolvedStyledThemeContext,
+          CustomThemeContext,
+        }),
+        [prefixCls, resolvedStyledThemeContext, CustomThemeContext],
+      );
+
       return (
-        <StyleEngineContext.Provider
-          value={{
-            prefixCls: prefixCls,
-            StyledThemeContext: styled?.ThemeContext || StyledThemeContext || DEFAULT_THEME_CONTEXT,
-            CustomThemeContext,
-          }}
-        >
+        <StyleEngineContext.Provider value={styleEngineValue}>
           <ThemeSwitcher
             themeMode={themeMode}
             defaultThemeMode={defaultThemeMode}
